@@ -6,7 +6,7 @@
   <link href="https://yushui1995.github.io/atom.xml" rel="self"/>
   
   <link href="https://yushui1995.github.io/"/>
-  <updated>2022-05-02T16:20:30.931Z</updated>
+  <updated>2022-05-03T13:35:45.071Z</updated>
   <id>https://yushui1995.github.io/</id>
   
   <author>
@@ -17,36 +17,30 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>test</title>
-    <link href="https://yushui1995.github.io/2022/05/03/test/"/>
-    <id>https://yushui1995.github.io/2022/05/03/test/</id>
-    <published>2022-05-02T16:17:45.000Z</published>
-    <updated>2022-05-02T16:20:30.931Z</updated>
-    
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://yushui1995.github.io/2022/05/02/hello-world/"/>
-    <id>https://yushui1995.github.io/2022/05/02/hello-world/</id>
-    <published>2022-05-02T04:36:15.543Z</published>
-    <updated>2022-05-02T04:36:15.544Z</updated>
+    <title>磁盘的数据恢复</title>
+    <link href="https://yushui1995.github.io/2022/05/03/ci-pan-de-shu-ju-hui-fu/"/>
+    <id>https://yushui1995.github.io/2022/05/03/ci-pan-de-shu-ju-hui-fu/</id>
+    <published>2022-05-03T12:06:46.000Z</published>
+    <updated>2022-05-03T13:35:45.071Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+    <summary type="html">&lt;h1 id=&quot;磁盘的数据恢复&quot;&gt;&lt;a href=&quot;#磁盘的数据恢复&quot; class=&quot;headerlink&quot; title=&quot;磁盘的数据恢复&quot;&gt;&lt;/a&gt;磁盘的数据恢复&lt;/h1&gt;&lt;hr&gt;
+&lt;h3 id=&quot;起因：&quot;&gt;&lt;a href=&quot;#起因：&quot; class=&quot;headerlink&quot;</summary>
         
       
     
     
     
+    <category term="系统" scheme="https://yushui1995.github.io/categories/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="linux" scheme="https://yushui1995.github.io/tags/linux/"/>
     
   </entry>
   

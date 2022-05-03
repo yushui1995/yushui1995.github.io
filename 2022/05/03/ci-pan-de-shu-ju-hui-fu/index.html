@@ -4,8 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, ">
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex">
+    <meta name="keywords" content="磁盘的数据恢复, ">
+    <meta name="description" content="磁盘的数据恢复
+起因：服务器断电，没有正常关闭服务器导致，通过xshell连接发现无法正常连接至服务器，只能通过vmware管理进入控制台
+问题:linux系统无法启动提示give root password for maintenance">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +21,7 @@
 
     
 
-    <title>Hello World | </title>
+    <title>磁盘的数据恢复 | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -312,12 +314,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://raw.githubusercontent.com/yushui1995/img/main/202205032121798.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">磁盘的数据恢复</h1>
                 </div>
             </div>
         </div>
@@ -431,12 +433,29 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%B3%BB%E7%BB%9F/">
+                                <span class="chip bg-color">系统</span>
+                            </a>
+                        
+                            <a href="/tags/linux/">
+                                <span class="chip bg-color">linux</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                系统
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -445,7 +464,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-02
+                    2022-05-03
                 </div>
                 
 
@@ -454,14 +473,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    73
+                    1.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -484,19 +503,97 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <h1 id="磁盘的数据恢复"><a href="#磁盘的数据恢复" class="headerlink" title="磁盘的数据恢复"></a>磁盘的数据恢复</h1><hr>
+<h3 id="起因："><a href="#起因：" class="headerlink" title="起因："></a>起因：</h3><p>服务器断电，没有正常关闭服务器导致，通过xshell连接发现无法正常连接至服务器，只能通过vmware管理进入控制台</p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h3><p>linux系统无法启动提示<strong>give root password for maintenance</strong></p>
+<p>系统重启停留在如下[<strong>Welcome to emergency mode</strong>]画面，提示输入root密码进入维护</p>
+<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032107520.png"></p>
+<p>进入紧急模式的原因：非法重启或硬盘故障或者错误编辑/etc/fstab文件等错误操作都会引起Linux系统无法启动，同时无法进入操作系统，这样就会出现“<strong>give root password for maintenance</strong>”的错误</p>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法:"></a>解决方法:</h3><h4 id="一、-fsck修复"><a href="#一、-fsck修复" class="headerlink" title="一、 fsck修复"></a><strong>一、</strong> fsck修复</h4><p>1、这时候输入服务器root用户的密码：</p>
+<p>2、输入 <code>fsck -y</code></p>
+<p>即开始修复文件系统。时间根据硬盘的大小，在1个小时－8个小时不等。</p>
+<p>3、修复完成后输入<code>reboot</code>回车重启电脑即可。</p>
+<h4 id="二、重新挂载"><a href="#二、重新挂载" class="headerlink" title="二、重新挂载"></a><strong>二、</strong>重新挂载</h4><p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032107766.png"></p>
+<p>重新挂载/目录，因为现在我们只有r读的权限，而没有w写的权限</p>
+<p><code>#mount –o remount,rw /</code> 此处是重新挂载/，并给予rw读写的权限</p>
+<p>对<code>vi /etc/fstab</code>进行修改</p>
+<p><code>lsblk -f</code>(图一)</p>
+<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032108748.png"></p>
+<p><code>vi /etc/fstab</code> (图二)</p>
+<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032108109.png"></p>
+<p>进入到配置文件</p>
+<p>拿图一和图二做对比,图一有的UUID就保存 没有的就在图二里面删注释掉 或删掉 如图</p>
+<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032108001.png"></p>
+<p>然后就是保存退出 最后就是重启</p>
+<h4 id="三、e2fsck修复"><a href="#三、e2fsck修复" class="headerlink" title="三、e2fsck修复"></a>三、e2fsck修复</h4><p>1、 键入root密码，然后按”输入Enter”键；</p>
+<p>2、此时画面便会出现以下指令提示：(Repair filesystem)1#;</p>
+<p>3.、于提示后输入”<code>e2fsck -y /dev/</code>你的分区″，再按”键入(Enter)”，便可检查档案系统；</p>
+<p>4、系统即会自动进行修复并于画面显示修复进度；</p>
+<p>5、完成后键入”<strong>exit</strong>”，再按输入键，重新启动系统。</p>
+<p>如果以上方法没用 使用下面步骤：</p>
+<p>注释掉/etc/fstab内，有问题的挂载项，这里可以看出应该是/dev/data/data1分区表出了问题。注释掉reboot后可以看系统是否可以正常启动</p>
+<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032108286.png"></p>
+<h4 id="xfs-文件系统损坏修复-fscheck（补充，未使用到）"><a href="#xfs-文件系统损坏修复-fscheck（补充，未使用到）" class="headerlink" title="xfs 文件系统损坏修复 fscheck（补充，未使用到）"></a>xfs 文件系统损坏修复 fscheck（补充，未使用到）</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">需要先进行mount查找挂载路径，unmount将其卸载
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<span class="token number">1</span>、用xfs_repair /dev/data/data1          <span class="token comment">#进行修复 修复成功进入4，失败进入下一步</span>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<span class="token number">2</span>、执行xfs_repair -L /dev/data/data1     <span class="token comment">#进行修复 修复成功进入4，失败进入下一步</span>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<span class="token number">3</span>、文件彻底损坏，使用工具或找专员进行修复
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<span class="token number">4</span>、使用xfs_check /dev/data/data1          <span class="token comment">#查看修复是否成功 修复成功便可以挂载，失败进入2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="磁盘彻底损坏无法恢复"><a href="#磁盘彻底损坏无法恢复" class="headerlink" title="磁盘彻底损坏无法恢复"></a>磁盘彻底损坏无法恢复</h2><h3 id="数据恢复工具-Testdisk"><a href="#数据恢复工具-Testdisk" class="headerlink" title="数据恢复工具-Testdisk"></a>数据恢复工具-Testdisk</h3><ul>
+<li><p>Testdisk</p>
+<p>参考文档：</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zafu/p/11406525.html">testdisk修复磁盘文件</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/luckywang1103/article/details/80975164">开源工具TestDisk数据恢复方法_luckywang1103的博客-CSDN博客_testdisk</a></p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://www.cgsecurity.org/wiki/TestDisk_Download">https://www.cgsecurity.org/wiki/TestDisk_Download</a></p>
+</li>
+</ul>
+<h4 id="下载地址："><a href="#下载地址：" class="headerlink" title="下载地址："></a>下载地址：</h4><p><a target="_blank" rel="noopener" href="https://www.cgsecurity.org/wiki/TestDisk_Download">TestDisk Download</a></p>
+<p><strong>Testdisk</strong> 是一个强大的免费的跨平台的数据恢复工具，根据它的<a target="_blank" rel="noopener" href="https://www.cgsecurity.org/wiki/TestDisk">官网</a> 上的简介，这款软件主要被设计用于恢复丢失的分区以及修复那些由于人为或者病毒等原因导致分区表错误而无法启动系统的问题</p>
+<blockquote>
+<p>使用 TestDisk 的重点:</p>
+</blockquote>
+<blockquote>
+<p>用 方向键 和 上一页/下一页 按键在TestDisk 中导航。</p>
+</blockquote>
+<blockquote>
+<p>然后, 按Enter 键确认你的选择.</p>
+</blockquote>
+<blockquote>
+<p>若要返回前一页或者退出TestDisk, 按 q (Quit) 键。</p>
+</blockquote>
+<blockquote>
+<p>若要在 TestDisk 下保存修改,按 y (Yes) 或者 Enter 键来确认</p>
+</blockquote>
+<blockquote>
+<p>如果确实要把分区信息写入主引导记录（MBR），应该选择 “Write” 选项并按 Enter 键。</p>
+</blockquote>
+<h4 id="1、安装"><a href="#1、安装" class="headerlink" title="1、安装"></a>1、安装</h4><p>下载后解压安装，使用脚本程序进入工具</p>
+<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032108251.png"></p>
+<h4 id="2、使用"><a href="#2、使用" class="headerlink" title="2、使用"></a>2、使用</h4><p>创建一个*.log文件存储运行TestDisk时的信息。（会在当前目录）</p>
+<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032109880.png"></p>
+<p>选择你要恢复数据的分区，也可以选择整个硬盘</p>
+<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032110199.png"></p>
+<p>选择分区的类型</p>
+<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032110923.png"></p>
+<p>选择”<strong>Analyse</strong>”选项</p>
+<p>TestDisk对当前分区的结构进行分析，按回车键确认</p>
+<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032110643.png"></p>
+<h4 id="3、罗列分区结构"><a href="#3、罗列分区结构" class="headerlink" title="3、罗列分区结构"></a>3、罗列分区结构</h4><p>存在两个1，主分区指向同一个部分或者是不可用的分区表入口。存在1个可用的扩展分区，和一个丢失的逻辑分区。</p>
+<p><code>P </code>代表主分区，<code>L </code>代表逻辑分区 <code>E </code>代表扩展分区 <code>D </code>表示已经删除的分区</p>
+<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032110613.png"></p>
+<h4 id="4、磁盘分析"><a href="#4、磁盘分析" class="headerlink" title="4、磁盘分析"></a>4、磁盘分析</h4><p>按<strong>Quick Search</strong>磁盘分析 根据所选分区大小花费时间不一样</p>
+<p>选择”<strong>Quick Search</strong>”进行下一步</p>
+<p>这时请注意你按下的每一个键，很可能按错回到前面Quick Rearch 的界面，又需要等待漫长的数据分析过程。</p>
+<p>按回车进行下一步</p>
+<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032111344.png"></p>
+<h4 id="5、等待分析结束"><a href="#5、等待分析结束" class="headerlink" title="5、等待分析结束"></a>5、等待分析结束</h4><p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032111600.png"></p>
+<p>找到你所要恢复数据的分区，按“<strong>P</strong>”进入文件列表，” <strong>:</strong> ”选择所要恢复的文件夹，”<strong>c</strong>”拷贝到自己的地址中，我是新加了一块盘，拷到了新加的盘中，u盘应该是”/media/udisk”,移动硬盘是”/run/media/disk”</p>
+<p>当把你想要恢复的数据全部拷贝完之后，按”q”退出程序</p>
+<p>最后，十分感谢<a target="_blank" rel="noopener" href="https://zhangguanzhang.github.io/">张馆长</a>的帮助，磁盘才得以恢复</p>
 
                 
             </div>
@@ -523,7 +620,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yushui1995.github.io/2022/05/02/hello-world/">https://yushui1995.github.io/2022/05/02/hello-world/</a>
+                    <a href="https://yushui1995.github.io/2022/05/03/ci-pan-de-shu-ju-hui-fu/">https://yushui1995.github.io/2022/05/03/ci-pan-de-shu-ju-hui-fu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -560,7 +657,15 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E7%B3%BB%E7%BB%9F/">
+                                    <span class="chip bg-color">系统</span>
+                                </a>
+                            
+                                <a href="/tags/linux/">
+                                    <span class="chip bg-color">linux</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -998,16 +1103,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/05/03/test/">
+                <a href="/2022/05/03/ci-pan-de-shu-ju-hui-fu/">
                     <div class="card-image">
                         
-                        <img src="https://img-blog.csdnimg.cn/20200309120551356.png" class="responsive-img" alt="test">
+                        <img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032121798.png" class="responsive-img" alt="磁盘的数据恢复">
                         
-                        <span class="card-title">test</span>
+                        <span class="card-title">磁盘的数据恢复</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1017,16 +1123,33 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-03
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-03
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            yushui1995
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    系统
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%B3%BB%E7%BB%9F/">
+                        <span class="chip bg-color">系统</span>
+                    </a>
+                    
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -1038,13 +1161,12 @@
                 本篇&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/02/hello-world/">
+                <a href="/2022/05/03/ci-pan-de-shu-ju-hui-fu/">
                     <div class="card-image">
                         
+                        <img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032121798.png" class="responsive-img" alt="磁盘的数据恢复">
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
-                        
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">磁盘的数据恢复</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1055,17 +1177,33 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-02
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-03
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            yushui1995
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    系统
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%B3%BB%E7%BB%9F/">
+                        <span class="chip bg-color">系统</span>
+                    </a>
+                    
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -1199,7 +1337,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">73</span>
+                        class="white-color">1.3k</span>
             
             
             

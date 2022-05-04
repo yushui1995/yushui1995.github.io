@@ -4,10 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="磁盘的数据恢复, ">
-    <meta name="description" content="磁盘的数据恢复
-起因：服务器断电，没有正常关闭服务器导致，通过xshell连接发现无法正常连接至服务器，只能通过vmware管理进入控制台
-问题:linux系统无法启动提示give root password for maintenance">
+    <meta name="keywords" content="Reids集群slots缺失修复, ">
+    <meta name="description" content="Reids集群slots报错总结今天项目挂掉了，显示redis集群报错，看了报错日志，发现和redis的slots有关，报错如下：2020-09-04 09:54:06.734 [localhost-startStop-1] WARN  o">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +19,7 @@
 
     
 
-    <title>磁盘的数据恢复 | </title>
+    <title>Reids集群slots缺失修复 | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -275,7 +273,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">磁盘的数据恢复</h1>
+                    <h1 class="description center-align post-title">Reids集群slots缺失修复</h1>
                 </div>
             </div>
         </div>
@@ -391,12 +389,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%B3%BB%E7%BB%9F/">
-                                <span class="chip bg-color">系统</span>
+                            <a href="/tags/redis/">
+                                <span class="chip bg-color">redis</span>
                             </a>
                         
-                            <a href="/tags/linux/">
-                                <span class="chip bg-color">linux</span>
+                            <a href="/tags/%E4%BF%AE%E5%A4%8D/">
+                                <span class="chip bg-color">修复</span>
                             </a>
                         
                     </div>
@@ -407,8 +405,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%B3%BB%E7%BB%9F/" class="post-category">
-                                系统
+                            <a href="/categories/redis/" class="post-category">
+                                redis
                             </a>
                         
                     </div>
@@ -420,7 +418,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-03
+                    2022-05-04
                 </div>
                 
 
@@ -436,7 +434,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    7 分
                 </div>
                 
 
@@ -459,97 +457,235 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="磁盘的数据恢复"><a href="#磁盘的数据恢复" class="headerlink" title="磁盘的数据恢复"></a>磁盘的数据恢复</h1><hr>
-<h3 id="起因："><a href="#起因：" class="headerlink" title="起因："></a>起因：</h3><p>服务器断电，没有正常关闭服务器导致，通过xshell连接发现无法正常连接至服务器，只能通过vmware管理进入控制台</p>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h3><p>linux系统无法启动提示<strong>give root password for maintenance</strong></p>
-<p>系统重启停留在如下[<strong>Welcome to emergency mode</strong>]画面，提示输入root密码进入维护</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032107520.png"></p>
-<p>进入紧急模式的原因：非法重启或硬盘故障或者错误编辑/etc/fstab文件等错误操作都会引起Linux系统无法启动，同时无法进入操作系统，这样就会出现“<strong>give root password for maintenance</strong>”的错误</p>
-<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法:"></a>解决方法:</h3><h4 id="一、-fsck修复"><a href="#一、-fsck修复" class="headerlink" title="一、 fsck修复"></a><strong>一、</strong> fsck修复</h4><p>1、这时候输入服务器root用户的密码：</p>
-<p>2、输入 <code>fsck -y</code></p>
-<p>即开始修复文件系统。时间根据硬盘的大小，在1个小时－8个小时不等。</p>
-<p>3、修复完成后输入<code>reboot</code>回车重启电脑即可。</p>
-<h4 id="二、重新挂载"><a href="#二、重新挂载" class="headerlink" title="二、重新挂载"></a><strong>二、</strong>重新挂载</h4><p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032107766.png"></p>
-<p>重新挂载/目录，因为现在我们只有r读的权限，而没有w写的权限</p>
-<p><code>#mount –o remount,rw /</code> 此处是重新挂载/，并给予rw读写的权限</p>
-<p>对<code>vi /etc/fstab</code>进行修改</p>
-<p><code>lsblk -f</code>(图一)</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032108748.png"></p>
-<p><code>vi /etc/fstab</code> (图二)</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032108109.png"></p>
-<p>进入到配置文件</p>
-<p>拿图一和图二做对比,图一有的UUID就保存 没有的就在图二里面删注释掉 或删掉 如图</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032108001.png"></p>
-<p>然后就是保存退出 最后就是重启</p>
-<h4 id="三、e2fsck修复"><a href="#三、e2fsck修复" class="headerlink" title="三、e2fsck修复"></a>三、e2fsck修复</h4><p>1、 键入root密码，然后按”输入Enter”键；</p>
-<p>2、此时画面便会出现以下指令提示：(Repair filesystem)1#;</p>
-<p>3.、于提示后输入”<code>e2fsck -y /dev/</code>你的分区″，再按”键入(Enter)”，便可检查档案系统；</p>
-<p>4、系统即会自动进行修复并于画面显示修复进度；</p>
-<p>5、完成后键入”<strong>exit</strong>”，再按输入键，重新启动系统。</p>
-<p>如果以上方法没用 使用下面步骤：</p>
-<p>注释掉/etc/fstab内，有问题的挂载项，这里可以看出应该是/dev/data/data1分区表出了问题。注释掉reboot后可以看系统是否可以正常启动</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032108286.png"></p>
-<h4 id="xfs-文件系统损坏修复-fscheck（补充，未使用到）"><a href="#xfs-文件系统损坏修复-fscheck（补充，未使用到）" class="headerlink" title="xfs 文件系统损坏修复 fscheck（补充，未使用到）"></a>xfs 文件系统损坏修复 fscheck（补充，未使用到）</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">需要先进行mount查找挂载路径，unmount将其卸载
+                <h1 id="Reids集群slots报错总结"><a href="#Reids集群slots报错总结" class="headerlink" title="Reids集群slots报错总结"></a>Reids集群slots报错总结</h1><h3 id="今天项目挂掉了，显示redis集群报错，看了报错日志，发现和redis的slots有关，报错如下："><a href="#今天项目挂掉了，显示redis集群报错，看了报错日志，发现和redis的slots有关，报错如下：" class="headerlink" title="今天项目挂掉了，显示redis集群报错，看了报错日志，发现和redis的slots有关，报错如下："></a>今天项目挂掉了，显示redis集群报错，看了报错日志，发现和redis的slots有关，报错如下：</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">2020-09-04 09:54:06.734 [localhost-startStop-1] WARN  org.hibernate.id.UUIDHexGenerator - HHH000409: Using org.hibernate.id.UUIDHexGenerator which does not generate IETF RFC 4122 compliant UUID values; consider using org.hibernate.id.UUIDGenerator instead
+2020-09-04 09:54:08.111 [redisson-netty-1-1] ERROR org.redisson.cluster.ClusterConnectionManager - cluster_state:fail for /192.168.205.82:6379
+2020-09-04 09:54:10.392 [localhost-startStop-1] ERROR o.hibernate.cache.redis.client.RedisClientFactory - Fail to create RedisClient.
+org.redisson.client.RedisConnectionException: Not all slots are covered! Only 10923 slots are avaliable
+	at org.redisson.cluster.ClusterConnectionManager.&lt;init&gt;(ClusterConnectionManager.java:175)
+	at org.redisson.config.ConfigSupport.createConnectionManager(ConfigSupport.java:240)
+	at org.redisson.Redisson.&lt;init&gt;(Redisson.java:115)
+	at org.redisson.Redisson.create(Redisson.java:152)
+	at org.hibernate.cache.redis.client.RedisClientFactory.createRedisClient(RedisClientFactory.java:47)
+	at org.hibernate.cache.redis.client.RedisClientFactory.createRedisClient(RedisClientFactory.java:64)
+	at org.hibernate.cache.redis.client.RedisClientFactory.createRedisClient(RedisClientFactory.java:92)
+	at org.hibernate.cache.redis.hibernate5.AbstractRedisRegionFactory.createRedisClient(AbstractRedisRegionFactory.java:65)
+	at org.hibernate.cache.redis.hibernate5.SingletonRedisRegionFactory.start(SingletonRedisRegionFactory.java:55)
+	at org.hibernate.internal.CacheImpl.&lt;init&gt;(CacheImpl.java:49)
+	at org.hibernate.engine.spi.CacheInitiator.initiateService(CacheInitiator.java:28)
+	at org.hibernate.engine.spi.CacheInitiator.initiateService(CacheInitiator.java:20)
+	at org.hibernate.service.internal.SessionFactoryServiceRegistryImpl.initiateService(SessionFactoryServiceRegistryImpl.java:49)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:254)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:228)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:207)
+	at org.hibernate.service.internal.SessionFactoryServiceRegistryImpl.getService(SessionFactoryServiceRegistryImpl.java:68)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token number">1</span>、用xfs_repair /dev/data/data1          <span class="token comment">#进行修复 修复成功进入4，失败进入下一步</span>
+<h2 id="1、登录服务器进行查看"><a href="#1、登录服务器进行查看" class="headerlink" title="1、登录服务器进行查看"></a>1、登录服务器进行查看</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">redis-cli -h &lt;ip&gt;  -p &lt;端口&gt; -a &lt;密码&gt;
+127.0.0.1:7000&gt; set age 20
+(error) CLUSTERDOWN The cluster is down
+127.0.0.1:7000&gt; cluster info
+cluster_state:fail
+cluster_slots_assigned:16371
+cluster_slots_ok:16371
+cluster_slots_pfail:0
+cluster_slots_fail:0
+cluster_known_nodes:6
+cluster_size:3
+cluster_current_epoch:8
+cluster_my_epoch:1
+cluster_stats_messages_sent:1007
+cluster_stats_messages_received:1005<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token number">2</span>、执行xfs_repair -L /dev/data/data1     <span class="token comment">#进行修复 修复成功进入4，失败进入下一步</span>
+<h3 id="由于redis集群默认slots为16384个，而现在只有16371个，少了13个slots，再看一下slots信息："><a href="#由于redis集群默认slots为16384个，而现在只有16371个，少了13个slots，再看一下slots信息：" class="headerlink" title="由于redis集群默认slots为16384个，而现在只有16371个，少了13个slots，再看一下slots信息："></a>由于redis集群默认slots为16384个，而现在只有16371个，少了13个slots，再看一下slots信息：</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">127.0.0.1:7000&gt;cluster slots
+1) 1) (integer) 0
+    2) (integer) 5460
+    3) 1) "192.168.205.81"
+       2) (integer) 6380
+       3) "5fbcbee6cff9c0e4391dbf1553e87befa4914049"
+    4) 1) "192.168.205.86"
+       2) (integer) 6379
+       3) "25cf4ec8180d6cc7e78192cb0d2d021335501b6a"
+ 2) 1) (integer) 5461
+    2) (integer) 6606
+    3) 1) "192.168.205.81"
+       2) (integer) 6379
+       3) "9d83c3a9be7ee1a12a38da33e260f4dbda059462"
+    4) 1) "192.168.205.82"
+       2) (integer) 6380
+       3) "30a9d2065538e59874eced14836c512b5a0d09f4"
+ 3) 1) (integer) 6608
+    2) (integer) 6613
+    3) 1) "192.168.205.81"
+       2) (integer) 6379
+       3) "9d83c3a9be7ee1a12a38da33e260f4dbda059462"
+    4) 1) "192.168.205.82"
+       2) (integer) 6380
+       3) "30a9d2065538e59874eced14836c512b5a0d09f4"
+ 4) 1) (integer) 6615
+    2) (integer) 7037
+    3) 1) "192.168.205.81"
+       2) (integer) 6379
+       3) "9d83c3a9be7ee1a12a38da33e260f4dbda059462"
+    4) 1) "192.168.205.82"
+       2) (integer) 6380
+       3) "30a9d2065538e59874eced14836c512b5a0d09f4"
+ 5) 1) (integer) 7039
+    2) (integer) 7471
+    3) 1) "192.168.205.81"
+       2) (integer) 6379
+       3) "9d83c3a9be7ee1a12a38da33e260f4dbda059462"
+    4) 1) "192.168.205.82"
+       2) (integer) 6380
+       3) "30a9d2065538e59874eced14836c512b5a0d09f4"
+ 6) 1) (integer) 7473
+    2) (integer) 8197
+    3) 1) "192.168.205.81"
+       2) (integer) 6379
+       3) "9d83c3a9be7ee1a12a38da33e260f4dbda059462"
+    4) 1) "192.168.205.82"
+       2) (integer) 6380
+       3) "30a9d2065538e59874eced14836c512b5a0d09f4"
+ 7) 1) (integer) 8199
+    2) (integer) 8324
+    3) 1) "192.168.205.81"
+       2) (integer) 6379
+       3) "9d83c3a9be7ee1a12a38da33e260f4dbda059462"
+    4) 1) "192.168.205.82"
+       2) (integer) 6380
+       3) "30a9d2065538e59874eced14836c512b5a0d09f4"
+ 8) 1) (integer) 8326
+    2) (integer) 8342
+    3) 1) "192.168.205.81"
+       2) (integer) 6379
+       3) "9d83c3a9be7ee1a12a38da33e260f4dbda059462"
+    4) 1) "192.168.205.82"
+       2) (integer) 6380
+       3) "30a9d2065538e59874eced14836c512b5a0d09f4"
+ 9) 1) (integer) 8344
+    2) (integer) 8492
+    3) 1) "192.168.205.81"
+       2) (integer) 6379
+       3) "9d83c3a9be7ee1a12a38da33e260f4dbda059462"
+    4) 1) "192.168.205.82"
+       2) (integer) 6380
+       3) "30a9d2065538e59874eced14836c512b5a0d09f4"
+10) 1) (integer) 8494
+    2) (integer) 9555
+    3) 1) "192.168.205.81"
+       2) (integer) 6379
+       3) "9d83c3a9be7ee1a12a38da33e260f4dbda059462"
+    4) 1) "192.168.205.82"
+       2) (integer) 6380
+       3) "30a9d2065538e59874eced14836c512b5a0d09f4"
+11) 1) (integer) 9557
+    2) (integer) 9901
+    3) 1) "192.168.205.81"
+       2) (integer) 6379
+       3) "9d83c3a9be7ee1a12a38da33e260f4dbda059462"
+    4) 1) "192.168.205.82"
+       2) (integer) 6380
+       3) "30a9d2065538e59874eced14836c512b5a0d09f4"
+12) 1) (integer) 9903
+    2) (integer) 9999
+    3) 1) "192.168.205.81"
+       2) (integer) 6379
+       3) "9d83c3a9be7ee1a12a38da33e260f4dbda059462"
+    4) 1) "192.168.205.82"
+       2) (integer) 6380
+       3) "30a9d2065538e59874eced14836c512b5a0d09f4"
+13) 1) (integer) 10001
+    2) (integer) 10338
+    3) 1) "192.168.205.81"
+       2) (integer) 6379
+       3) "9d83c3a9be7ee1a12a38da33e260f4dbda059462"
+    4) 1) "192.168.205.82"
+       2) (integer) 6380
+       3) "30a9d2065538e59874eced14836c512b5a0d09f4"
+14) 1) (integer) 10340
+    2) (integer) 10802
+    3) 1) "192.168.205.81"
+       2) (integer) 6379
+       3) "9d83c3a9be7ee1a12a38da33e260f4dbda059462"
+    4) 1) "192.168.205.82"
+       2) (integer) 6380
+       3) "30a9d2065538e59874eced14836c512b5a0d09f4"
+15) 1) (integer) 10804
+    2) (integer) 10922
+    3) 1) "192.168.205.81"
+       2) (integer) 6379
+       3) "9d83c3a9be7ee1a12a38da33e260f4dbda059462"
+    4) 1) "192.168.205.82"
+       2) (integer) 6380
+       3) "30a9d2065538e59874eced14836c512b5a0d09f4"
+16) 1) (integer) 10923
+    2) (integer) 16383
+    3) 1) "192.168.205.82"
+       2) (integer) 6379
+       3) "031d12ae9a6f15e7550e17916454b41fdeaa0bbe"
+    4) 1) "192.168.205.86"
+       2) (integer) 6380
+       3) "eeaa7bbb9e71c47d4c8c0fc67b188753910713e5"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token number">3</span>、文件彻底损坏，使用工具或找专员进行修复
+<h2 id="2、分析slots缺少情况"><a href="#2、分析slots缺少情况" class="headerlink" title="2、分析slots缺少情况"></a>2、分析slots缺少情况</h2><p>从上述slots中，把所有缺失的slots统计出来：</p>
+<pre class="line-numbers language-none"><code class="language-none">0-5460
+5461-6606
+6608-6613
+6615-7037
+7039-7471
+7473-8197
+8199-8324
+8326-8342
+8344-8492
+8494-9555
+9557-9901
+9903-9999
+10001-10338
+10340-10802
+10804-10922
+10923-16383<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token number">4</span>、使用xfs_check /dev/data/data1          <span class="token comment">#查看修复是否成功 修复成功便可以挂载，失败进入2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>缺失的slots为：</p>
+<pre class="line-numbers language-none"><code class="language-none">6607 6614 7038 7472 8198 8325 8343 8493 9556 9902 10000 10339 10803<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h2 id="磁盘彻底损坏无法恢复"><a href="#磁盘彻底损坏无法恢复" class="headerlink" title="磁盘彻底损坏无法恢复"></a>磁盘彻底损坏无法恢复</h2><h3 id="数据恢复工具-Testdisk"><a href="#数据恢复工具-Testdisk" class="headerlink" title="数据恢复工具-Testdisk"></a>数据恢复工具-Testdisk</h3><ul>
-<li><p>Testdisk</p>
-<p>参考文档：</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zafu/p/11406525.html">testdisk修复磁盘文件</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/luckywang1103/article/details/80975164">开源工具TestDisk数据恢复方法_luckywang1103的博客-CSDN博客_testdisk</a></p>
-<p>下载地址：<a target="_blank" rel="noopener" href="https://www.cgsecurity.org/wiki/TestDisk_Download">https://www.cgsecurity.org/wiki/TestDisk_Download</a></p>
-</li>
-</ul>
-<h4 id="下载地址："><a href="#下载地址：" class="headerlink" title="下载地址："></a>下载地址：</h4><p><a target="_blank" rel="noopener" href="https://www.cgsecurity.org/wiki/TestDisk_Download">TestDisk Download</a></p>
-<p><strong>Testdisk</strong> 是一个强大的免费的跨平台的数据恢复工具，根据它的<a target="_blank" rel="noopener" href="https://www.cgsecurity.org/wiki/TestDisk">官网</a> 上的简介，这款软件主要被设计用于恢复丢失的分区以及修复那些由于人为或者病毒等原因导致分区表错误而无法启动系统的问题</p>
-<blockquote>
-<p>使用 TestDisk 的重点:</p>
-</blockquote>
-<blockquote>
-<p>用 方向键 和 上一页/下一页 按键在TestDisk 中导航。</p>
-</blockquote>
-<blockquote>
-<p>然后, 按Enter 键确认你的选择.</p>
-</blockquote>
-<blockquote>
-<p>若要返回前一页或者退出TestDisk, 按 q (Quit) 键。</p>
-</blockquote>
-<blockquote>
-<p>若要在 TestDisk 下保存修改,按 y (Yes) 或者 Enter 键来确认</p>
-</blockquote>
-<blockquote>
-<p>如果确实要把分区信息写入主引导记录（MBR），应该选择 “Write” 选项并按 Enter 键。</p>
-</blockquote>
-<h4 id="1、安装"><a href="#1、安装" class="headerlink" title="1、安装"></a>1、安装</h4><p>下载后解压安装，使用脚本程序进入工具</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032108251.png"></p>
-<h4 id="2、使用"><a href="#2、使用" class="headerlink" title="2、使用"></a>2、使用</h4><p>创建一个*.log文件存储运行TestDisk时的信息。（会在当前目录）</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032109880.png"></p>
-<p>选择你要恢复数据的分区，也可以选择整个硬盘</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032110199.png"></p>
-<p>选择分区的类型</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032110923.png"></p>
-<p>选择”<strong>Analyse</strong>”选项</p>
-<p>TestDisk对当前分区的结构进行分析，按回车键确认</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032110643.png"></p>
-<h4 id="3、罗列分区结构"><a href="#3、罗列分区结构" class="headerlink" title="3、罗列分区结构"></a>3、罗列分区结构</h4><p>存在两个1，主分区指向同一个部分或者是不可用的分区表入口。存在1个可用的扩展分区，和一个丢失的逻辑分区。</p>
-<p><code>P </code>代表主分区，<code>L </code>代表逻辑分区 <code>E </code>代表扩展分区 <code>D </code>表示已经删除的分区</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032110613.png"></p>
-<h4 id="4、磁盘分析"><a href="#4、磁盘分析" class="headerlink" title="4、磁盘分析"></a>4、磁盘分析</h4><p>按<strong>Quick Search</strong>磁盘分析 根据所选分区大小花费时间不一样</p>
-<p>选择”<strong>Quick Search</strong>”进行下一步</p>
-<p>这时请注意你按下的每一个键，很可能按错回到前面Quick Rearch 的界面，又需要等待漫长的数据分析过程。</p>
-<p>按回车进行下一步</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032111344.png"></p>
-<h4 id="5、等待分析结束"><a href="#5、等待分析结束" class="headerlink" title="5、等待分析结束"></a>5、等待分析结束</h4><p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032111600.png"></p>
-<p>找到你所要恢复数据的分区，按“<strong>P</strong>”进入文件列表，” <strong>:</strong> ”选择所要恢复的文件夹，”<strong>c</strong>”拷贝到自己的地址中，我是新加了一块盘，拷到了新加的盘中，u盘应该是”/media/udisk”,移动硬盘是”/run/media/disk”</p>
-<p>当把你想要恢复的数据全部拷贝完之后，按”q”退出程序</p>
-<p>最后，十分感谢<a target="_blank" rel="noopener" href="https://zhangguanzhang.github.io/">张馆长</a>的帮助，磁盘才得以恢复</p>
+<p>正好为我们缺失的13个slots (16384-16371=13)</p>
+<h2 id="3、解决方法如下"><a href="#3、解决方法如下" class="headerlink" title="3、解决方法如下"></a>3、解决方法如下</h2><h3 id="3-1将一个或多个槽（slot）指派（assign）给当前节点"><a href="#3-1将一个或多个槽（slot）指派（assign）给当前节点" class="headerlink" title="3.1将一个或多个槽（slot）指派（assign）给当前节点"></a>3.1将一个或多个槽（slot）指派（assign）给当前节点</h3><pre class="line-numbers language-none"><code class="language-none">127.0.0.1:7000&gt;cluster addslots  6607 6614 7038 7472 8198 8325 8343 8493 9556 9902 10000 10339 10803
+OK<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="3-2查看结果"><a href="#3-2查看结果" class="headerlink" title="3-2查看结果"></a>3-2查看结果</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">127.0.0.1:7000&gt;cluster info
+cluster_state:ok
+cluster_slots_assigned:16384
+cluster_slots_ok:16384
+cluster_slots_pfail:0
+cluster_slots_fail:0
+cluster_known_nodes:6
+cluster_size:3
+cluster_current_epoch:30
+cluster_my_epoch:25
+cluster_stats_messages_ping_sent:2831
+cluster_stats_messages_pong_sent:686
+cluster_stats_messages_publish_sent:98525
+cluster_stats_messages_sent:102042
+cluster_stats_messages_ping_received:686
+cluster_stats_messages_pong_received:690
+cluster_stats_messages_publish_received:96234
+cluster_stats_messages_received:97610<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>集群里slots问题已经修复成功，下面进行检测，发现集群上一些slots有些问题</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">./redis-trib.rb check 192.168.205.81:6379
+&gt;&gt;&gt; Check for open slots...
+[WARNING] Node 192.168.205.81:6379 has slots in importing state (194,299,626,660,710,1274,1819,1838,2109,3237,3504,3647,3909,4044,4313,4453,4478,4706,4979).
+[WARNING] Node 192.168.205.81:6380 has slots in importing state (6607,6614,8712,9902).
+[WARNING] Node 192.168.205.82:6379 has slots in importing state (8712).
+[WARNING] The following slots are open: 194,299,626,660,710,1274,1819,1838,2109,3237,3504,3647,3909,4044,4313,4453,4478,4706,4979,6607,6614,8712,9902
+&gt;&gt;&gt; Check slots coverage...
+[OK] All 16384 slots covered.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-3-分别登录上述node的redis中，删除对应的slosts，再添加slots"><a href="#3-3-分别登录上述node的redis中，删除对应的slosts，再添加slots" class="headerlink" title="3-3 分别登录上述node的redis中，删除对应的slosts，再添加slots"></a>3-3 分别登录上述node的redis中，删除对应的slosts，再添加slots</h3><pre class="line-numbers language-none"><code class="language-none">127.0.0.1:7000&gt;cluster delslots 194 299 626 660 710 1274 1819 1838 2109 3237 3504 3647 3909 4044 4313 4453 4478 4706 4979
+ok
+127.0.0.1:7000&gt;cluster addslots 194 299 626 660 710 1274 1819 1838 2109 3237 3504 3647 3909 4044 4313 4453 4478 4706 4979
+ok<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>再对集群进行检测时，已经没有警告信息了，至此redis已全部修复完成</p>
+<p>redis原理查看：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/mengchunchen/p/10059436.html">https://www.cnblogs.com/mengchunchen/p/10059436.html</a></p>
 
                 
             </div>
@@ -576,7 +712,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yushui1995.github.io/2022/05/03/ci-pan-de-shu-ju-hui-fu/">https://yushui1995.github.io/2022/05/03/ci-pan-de-shu-ju-hui-fu/</a>
+                    <a href="https://yushui1995.github.io/2022/05/04/reids-ji-qun-slots-que-shi-xiu-fu/">https://yushui1995.github.io/2022/05/04/reids-ji-qun-slots-que-shi-xiu-fu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -614,12 +750,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%B3%BB%E7%BB%9F/">
-                                    <span class="chip bg-color">系统</span>
+                                <a href="/tags/redis/">
+                                    <span class="chip bg-color">redis</span>
                                 </a>
                             
-                                <a href="/tags/linux/">
-                                    <span class="chip bg-color">linux</span>
+                                <a href="/tags/%E4%BF%AE%E5%A4%8D/">
+                                    <span class="chip bg-color">修复</span>
                                 </a>
                             
                         </div>
@@ -1059,9 +1195,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/05/04/reids-ji-qun-slots-que-shi-xiu-fu/">
                     <div class="card-image">
@@ -1078,9 +1215,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-04
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1093,6 +1230,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1112,7 +1250,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2022/05/03/ci-pan-de-shu-ju-hui-fu/">
@@ -1145,7 +1283,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     

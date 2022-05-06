@@ -4,10 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="磁盘的数据恢复, ">
-    <meta name="description" content="磁盘的数据恢复
-起因：服务器断电，没有正常关闭服务器导致，通过xshell连接发现无法正常连接至服务器，只能通过vmware管理进入控制台
-问题:linux系统无法启动提示give root password for maintenance">
+    <meta name="keywords" content="Xtrabackup备份与恢复, ">
+    <meta name="description" content="Xtrabackup备份与恢复一、Xtrabackup介绍Percona-xtrabackup是 Percona公司开发的一个用于MySQL数据库物理热备的备份工具，支持MySQL、Percona server和MariaDB，开源免费，是">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +19,7 @@
 
     
 
-    <title>磁盘的数据恢复 | </title>
+    <title>Xtrabackup备份与恢复 | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -275,7 +273,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">磁盘的数据恢复</h1>
+                    <h1 class="description center-align post-title">Xtrabackup备份与恢复</h1>
                 </div>
             </div>
         </div>
@@ -391,12 +389,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%B3%BB%E7%BB%9F/">
-                                <span class="chip bg-color">系统</span>
+                            <a href="/tags/%E5%B7%A5%E5%85%B7/">
+                                <span class="chip bg-color">工具</span>
                             </a>
                         
-                            <a href="/tags/linux/">
-                                <span class="chip bg-color">linux</span>
+                            <a href="/tags/mysql/">
+                                <span class="chip bg-color">mysql</span>
                             </a>
                         
                     </div>
@@ -407,8 +405,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%B3%BB%E7%BB%9F/" class="post-category">
-                                系统
+                            <a href="/categories/%E5%B7%A5%E5%85%B7/" class="post-category">
+                                工具
                             </a>
                         
                     </div>
@@ -420,7 +418,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-03
+                    2022-05-06
                 </div>
                 
 
@@ -429,14 +427,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    7 分
                 </div>
                 
 
@@ -459,97 +457,138 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="磁盘的数据恢复"><a href="#磁盘的数据恢复" class="headerlink" title="磁盘的数据恢复"></a>磁盘的数据恢复</h1><hr>
-<h3 id="起因："><a href="#起因：" class="headerlink" title="起因："></a>起因：</h3><p>服务器断电，没有正常关闭服务器导致，通过xshell连接发现无法正常连接至服务器，只能通过vmware管理进入控制台</p>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h3><p>linux系统无法启动提示<strong>give root password for maintenance</strong></p>
-<p>系统重启停留在如下[<strong>Welcome to emergency mode</strong>]画面，提示输入root密码进入维护</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032107520.png"></p>
-<p>进入紧急模式的原因：非法重启或硬盘故障或者错误编辑/etc/fstab文件等错误操作都会引起Linux系统无法启动，同时无法进入操作系统，这样就会出现“<strong>give root password for maintenance</strong>”的错误</p>
-<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法:"></a>解决方法:</h3><h4 id="一、-fsck修复"><a href="#一、-fsck修复" class="headerlink" title="一、 fsck修复"></a><strong>一、</strong> fsck修复</h4><p>1、这时候输入服务器root用户的密码：</p>
-<p>2、输入 <code>fsck -y</code></p>
-<p>即开始修复文件系统。时间根据硬盘的大小，在1个小时－8个小时不等。</p>
-<p>3、修复完成后输入<code>reboot</code>回车重启电脑即可。</p>
-<h4 id="二、重新挂载"><a href="#二、重新挂载" class="headerlink" title="二、重新挂载"></a><strong>二、</strong>重新挂载</h4><p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032107766.png"></p>
-<p>重新挂载/目录，因为现在我们只有r读的权限，而没有w写的权限</p>
-<p><code>#mount –o remount,rw /</code> 此处是重新挂载/，并给予rw读写的权限</p>
-<p>对<code>vi /etc/fstab</code>进行修改</p>
-<p><code>lsblk -f</code>(图一)</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032108748.png"></p>
-<p><code>vi /etc/fstab</code> (图二)</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032108109.png"></p>
-<p>进入到配置文件</p>
-<p>拿图一和图二做对比,图一有的UUID就保存 没有的就在图二里面删注释掉 或删掉 如图</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032108001.png"></p>
-<p>然后就是保存退出 最后就是重启</p>
-<h4 id="三、e2fsck修复"><a href="#三、e2fsck修复" class="headerlink" title="三、e2fsck修复"></a>三、e2fsck修复</h4><p>1、 键入root密码，然后按”输入Enter”键；</p>
-<p>2、此时画面便会出现以下指令提示：(Repair filesystem)1#;</p>
-<p>3.、于提示后输入”<code>e2fsck -y /dev/</code>你的分区″，再按”键入(Enter)”，便可检查档案系统；</p>
-<p>4、系统即会自动进行修复并于画面显示修复进度；</p>
-<p>5、完成后键入”<strong>exit</strong>”，再按输入键，重新启动系统。</p>
-<p>如果以上方法没用 使用下面步骤：</p>
-<p>注释掉/etc/fstab内，有问题的挂载项，这里可以看出应该是/dev/data/data1分区表出了问题。注释掉reboot后可以看系统是否可以正常启动</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032108286.png"></p>
-<h4 id="xfs-文件系统损坏修复-fscheck（补充，未使用到）"><a href="#xfs-文件系统损坏修复-fscheck（补充，未使用到）" class="headerlink" title="xfs 文件系统损坏修复 fscheck（补充，未使用到）"></a>xfs 文件系统损坏修复 fscheck（补充，未使用到）</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">需要先进行mount查找挂载路径，unmount将其卸载
+                <h1 id="Xtrabackup备份与恢复"><a href="#Xtrabackup备份与恢复" class="headerlink" title="Xtrabackup备份与恢复"></a>Xtrabackup备份与恢复</h1><h2 id="一、Xtrabackup介绍"><a href="#一、Xtrabackup介绍" class="headerlink" title="一、Xtrabackup介绍"></a>一、Xtrabackup介绍</h2><p>Percona-xtrabackup是 Percona公司开发的一个用于MySQL数据库物理热备的备份工具，支持MySQL、Percona server和MariaDB，开源免费，是目前较为受欢迎的主流备份工具。xtrabackup只能备份innoDB和xtraDB两种数据引擎的表，而不能备份MyISAM数据表。</p>
+<p>MySQL冷备、mysqldump、MySQL热拷贝都无法实现对数据库进行增量备份。在实际生产环境中增量备份是非常实用的，如果数据大于50G或100G，存储空间足够的情况下，可以每天进行完整备份，如果每天产生的数据量较大，需要定制数据备份策略。例如每周实用完整备份，周一到周六实用增量备份。而Percona-Xtrabackup就是为了实现增量备份而出现的一款主流备份工具，</p>
+<p>xtrabackup包含两个主要的工具，即xtrabackup和innobackupex，二者区别如下：</p>
+<p>（1）xtrabackup只能备份innodb和xtradb两种引擎的表，而不能备份myisam引擎的表；</p>
+<p>（2）innobackupex是一个封装了xtrabackup的Perl脚本，支持同时备份innodb和myisam，但在对myisam备份时需要加一个全局的读锁。还有就是myisam不支持增量备份</p>
+<h2 id="二、Xtrabackup优点"><a href="#二、Xtrabackup优点" class="headerlink" title="二、Xtrabackup优点"></a>二、Xtrabackup优点</h2><p>（1）备份速度快，物理备份可靠</p>
+<p>（2）备份过程不会打断正在执行的事务（无需锁表）</p>
+<p>（3）能够基于压缩等功能节约磁盘空间和流量</p>
+<p>（4）自动备份校验</p>
+<p>（5）还原速度快</p>
+<p>（6）可以流传将备份传输到另外一台机器上</p>
+<p>（7）在不增加服务器负载的情况备份数据</p>
+<h2 id="三、xtrabackup的安装部署以及备份恢复实现"><a href="#三、xtrabackup的安装部署以及备份恢复实现" class="headerlink" title="三、xtrabackup的安装部署以及备份恢复实现"></a>三、xtrabackup的安装部署以及备份恢复实现</h2><hr>
+<h3 id="1、xtrabackup的安装"><a href="#1、xtrabackup的安装" class="headerlink" title="1、xtrabackup的安装"></a>1、xtrabackup的安装</h3><p>可以选择rpm包方式安装，也可以下载源码包编译安装</p>
+<p>官网地址：</p>
+<p><a target="_blank" rel="noopener" href="https://www.percona.com/downloads/">Percona Software Downloads</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#yum：</span>
+<span class="token comment">#安装percona依赖库</span>
+yum <span class="token function">install</span> <span class="token operator">&lt;</span>https://repo.percona.com/yum/percona-release-latest.noarch.rpm<span class="token operator">&gt;</span>
+<span class="token comment">#查看可安装版本</span>
+yum list <span class="token operator">|</span> <span class="token function">grep</span> percona-xtrabackup
+<span class="token comment"># 5.6、5.7安装24的</span>
+yum <span class="token function">install</span> -y percona-xtrabackup-24
+<span class="token comment"># 8.0安装80的</span>
+yum <span class="token function">install</span> -y percona-xtrabackup-80
 
-<span class="token number">1</span>、用xfs_repair /dev/data/data1          <span class="token comment">#进行修复 修复成功进入4，失败进入下一步</span>
+<span class="token comment">#RPM</span>
+<span class="token function">wget</span> <span class="token operator">&lt;</span>https://www.percona.com/downloads/XtraBackup/Percona-XtraBackup-2.4.9/binary/redhat/7/x86_64/percona-xtrabackup-24-2.4.9-1.el7.x86_64.rpm<span class="token operator">&gt;</span>
+yum <span class="token function">install</span> -y percona-xtrabackup-24-2.4.9-1.el7.x86_64.rpm 
+<span class="token function">rpm</span> -qa <span class="token operator">|</span><span class="token function">grep</span> xtrabackup
+percona-xtrabackup-24-2.4.9-1.el7.x86_64
 
-<span class="token number">2</span>、执行xfs_repair -L /dev/data/data1     <span class="token comment">#进行修复 修复成功进入4，失败进入下一步</span>
+Xtrabackup中主要包含两个工具：
+xtrabackup：是用于热备innodb，xtradb表中数据的工具，不能备份其他类型的表，也不能备份数据表结构；
+innobackupex：是将xtrabackup进行封装的perl脚本，提供了备份myisam表的能力。
+常用选项:  
+   --host     指定主机
+   --user     指定用户名
+   --password    指定密码
+   --port     指定端口
+   --databases     指定数据库
+   --incremental    创建增量备份
+   --incremental-basedir   指定包含完全备份的目录
+   --incremental-dir      指定包含增量备份的目录   
+   --apply-log        对备份进行预处理操作             
+     一般情况下，在备份完成后，数据尚且不能用于恢复操作，因为备份的数据中可能会包含尚未提交的事务或已经提交但尚未同步至数据文件中的事务。因此，此时数据文件仍处理不一致状态。“准备”的主要作用正是通过回滚未提交的事务及同步已经提交的事务至数据文件也使得数据文件处于一致性状态。
+   --redo-only      不回滚未提交事务
+   --copy-back     恢复备份目录
+ 
+ 
+ 
+装完xtrabackup后，生成以下几个工具
+<span class="token punctuation">[</span>root@localhost bin<span class="token punctuation">]</span><span class="token comment"># ./xb</span>
+xbcloud        xbcloud_osenv  xbcrypt        xbiff          xbrlapi        xbstream
+ 
+xbcloud和xbcloud_osenv是xtrabackup新的高级特性：云备份；
+xbcrypt也是新的特性，加密备份集；
+xbstream是xtrabackup的流数据功能，通过流数据功能，可将备份内容打包并传给管道后的压缩工具进行压缩；
+xtrabackup是主程序；
+innobackupex在以前是一个perl脚本，会调用xtrabackup这个二进制工具，从xtrabackup <span class="token number">2.3</span>开始，该工具使用C语言进行了重写，当前它是xtabackup二进制工具的一个软连接，但是实际的使用方法却不同，并且在以后的版本中会删除该工具。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token number">3</span>、文件彻底损坏，使用工具或找专员进行修复
+<p>使用innobackupex备份时，其会调用xtrabackup备份所有的InnoDB表，复制所有关于表结构定义的相关文件(.frm)、以及MyISAM、MERGE、CSV和ARCHIVE表的相关文件，同时还会备份触发器和数据库配置信息相关的文件，这些文件会被保存到一个以时间命名的目录当中。在备份的同时，innobackupex还会在备份目录中创建如下文件：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>xtrabackup_checkpoints -- 备份类型<span class="token punctuation">(</span>如完全或增量<span class="token punctuation">)</span>、备份状态<span class="token punctuation">(</span>如是否已经为prepared状态<span class="token punctuation">)</span>和LSN<span class="token punctuation">(</span>日志序列号<span class="token punctuation">)</span>范围信息：
+ 
+每个InnoDB页<span class="token punctuation">(</span>通常为16k大小<span class="token punctuation">)</span>
+都会包含一个日志序列号，即LSN，LSN是整个数据库系统的系统版本号，每个页面相关的LSN能够表明此页面最近是如何发生改变的。
+ 
+<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>xtrabackup_binlog_info  --  mysql服务器当前正在使用的二进制日志文件及备份这一刻位置二进制日志时间的位置。
+ 
+<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>xtrabackup_binlog_pos_innodb  --  二进制日志文件及用于InnoDB或XtraDB表的二进制日志文件的当前position。
+ 
+<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>xtrabackup_binary  --  备份中用到的xtrabackup的可执行文件；
+ 
+<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>backup-my.cnf  --  备份命令用到的配置选项信息：
+ 
+在使用innobackupex进行备份时，还可以使用--no-timestamp选项来阻止命令自动创建一个以时间命名的目录：如此一来，innobackupex命令将会创建一个BACKUP-DIR目录来存储备份数据。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token number">4</span>、使用xfs_check /dev/data/data1          <span class="token comment">#查看修复是否成功 修复成功便可以挂载，失败进入2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>注意：备份时需启动MySQL,恢复时需关闭MySQL,清空mysql数据目录且不能重新初始化,恢复数据后应该立即进行一次完全备份</strong></p>
+<h3 id="2、xtrabackup全量备份与恢复"><a href="#2、xtrabackup全量备份与恢复" class="headerlink" title="2、xtrabackup全量备份与恢复"></a>2、xtrabackup全量备份与恢复</h3><h4 id="全量备份："><a href="#全量备份：" class="headerlink" title="全量备份："></a>全量备份：</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">备份：
+innobackupex --defaults-file<span class="token operator">=</span>/etc/my.cnf --user<span class="token operator">=</span>DBUSER --password<span class="token operator">=</span>DBUSERPASS  /path/to/BACKUP-DIR/
+<span class="token comment">#比如我/path/to/BACKUP-DIR/指定：/home/dpan/mysql/bak</span>
+<span class="token comment">#生成目录为：/home/dpan/mysql/bak/2022-05-06_17-53-17</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="磁盘彻底损坏无法恢复"><a href="#磁盘彻底损坏无法恢复" class="headerlink" title="磁盘彻底损坏无法恢复"></a>磁盘彻底损坏无法恢复</h2><h3 id="数据恢复工具-Testdisk"><a href="#数据恢复工具-Testdisk" class="headerlink" title="数据恢复工具-Testdisk"></a>数据恢复工具-Testdisk</h3><ul>
-<li><p>Testdisk</p>
-<p>参考文档：</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zafu/p/11406525.html">testdisk修复磁盘文件</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/luckywang1103/article/details/80975164">开源工具TestDisk数据恢复方法_luckywang1103的博客-CSDN博客_testdisk</a></p>
-<p>下载地址：<a target="_blank" rel="noopener" href="https://www.cgsecurity.org/wiki/TestDisk_Download">https://www.cgsecurity.org/wiki/TestDisk_Download</a></p>
-</li>
-</ul>
-<h4 id="下载地址："><a href="#下载地址：" class="headerlink" title="下载地址："></a>下载地址：</h4><p><a target="_blank" rel="noopener" href="https://www.cgsecurity.org/wiki/TestDisk_Download">TestDisk Download</a></p>
-<p><strong>Testdisk</strong> 是一个强大的免费的跨平台的数据恢复工具，根据它的<a target="_blank" rel="noopener" href="https://www.cgsecurity.org/wiki/TestDisk">官网</a> 上的简介，这款软件主要被设计用于恢复丢失的分区以及修复那些由于人为或者病毒等原因导致分区表错误而无法启动系统的问题</p>
-<blockquote>
-<p>使用 TestDisk 的重点:</p>
-</blockquote>
-<blockquote>
-<p>用 方向键 和 上一页/下一页 按键在TestDisk 中导航。</p>
-</blockquote>
-<blockquote>
-<p>然后, 按Enter 键确认你的选择.</p>
-</blockquote>
-<blockquote>
-<p>若要返回前一页或者退出TestDisk, 按 q (Quit) 键。</p>
-</blockquote>
-<blockquote>
-<p>若要在 TestDisk 下保存修改,按 y (Yes) 或者 Enter 键来确认</p>
-</blockquote>
-<blockquote>
-<p>如果确实要把分区信息写入主引导记录（MBR），应该选择 “Write” 选项并按 Enter 键。</p>
-</blockquote>
-<h4 id="1、安装"><a href="#1、安装" class="headerlink" title="1、安装"></a>1、安装</h4><p>下载后解压安装，使用脚本程序进入工具</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032108251.png"></p>
-<h4 id="2、使用"><a href="#2、使用" class="headerlink" title="2、使用"></a>2、使用</h4><p>创建一个*.log文件存储运行TestDisk时的信息。（会在当前目录）</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032109880.png"></p>
-<p>选择你要恢复数据的分区，也可以选择整个硬盘</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032110199.png"></p>
-<p>选择分区的类型</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032110923.png"></p>
-<p>选择”<strong>Analyse</strong>”选项</p>
-<p>TestDisk对当前分区的结构进行分析，按回车键确认</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032110643.png"></p>
-<h4 id="3、罗列分区结构"><a href="#3、罗列分区结构" class="headerlink" title="3、罗列分区结构"></a>3、罗列分区结构</h4><p>存在两个1，主分区指向同一个部分或者是不可用的分区表入口。存在1个可用的扩展分区，和一个丢失的逻辑分区。</p>
-<p><code>P </code>代表主分区，<code>L </code>代表逻辑分区 <code>E </code>代表扩展分区 <code>D </code>表示已经删除的分区</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032110613.png"></p>
-<h4 id="4、磁盘分析"><a href="#4、磁盘分析" class="headerlink" title="4、磁盘分析"></a>4、磁盘分析</h4><p>按<strong>Quick Search</strong>磁盘分析 根据所选分区大小花费时间不一样</p>
-<p>选择”<strong>Quick Search</strong>”进行下一步</p>
-<p>这时请注意你按下的每一个键，很可能按错回到前面Quick Rearch 的界面，又需要等待漫长的数据分析过程。</p>
-<p>按回车进行下一步</p>
-<p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032111344.png"></p>
-<h4 id="5、等待分析结束"><a href="#5、等待分析结束" class="headerlink" title="5、等待分析结束"></a>5、等待分析结束</h4><p><img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032111600.png"></p>
-<p>找到你所要恢复数据的分区，按“<strong>P</strong>”进入文件列表，” <strong>:</strong> ”选择所要恢复的文件夹，”<strong>c</strong>”拷贝到自己的地址中，我是新加了一块盘，拷到了新加的盘中，u盘应该是”/media/udisk”,移动硬盘是”/run/media/disk”</p>
-<p>当把你想要恢复的数据全部拷贝完之后，按”q”退出程序</p>
-<p>最后，十分感谢<a target="_blank" rel="noopener" href="https://zhangguanzhang.github.io/">张馆长</a>的帮助，磁盘才得以恢复</p>
+<p>可能存在的报错：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">xtrabackup: Error: --defaults-file must be specified first on the <span class="token builtin class-name">command</span> line
+
+<span class="token comment">#--defaults-file=/etc/my.cnf参数必须写在最前面</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="全量恢复："><a href="#全量恢复：" class="headerlink" title="全量恢复："></a>全量恢复：</h4><p><strong>注意：恢复不用启动mysql,mysql需要关闭状态</strong></p>
+<p>如果B库要恢复A库的备份，则需要B库删除原有的数据，例如：/usr/local/mysql/data</p>
+<p>配置my.cnf的数据目录路径，否则会报错，需要和A一致</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#一般情况下，在备份完成后，数据尚且不能用于恢复操作，因为备份的数据中可能会包含尚未提交的事务或者已经提交但尚未同步至数据文件中的事务。因此，此时数据文件仍处于不一致状态。"准备"的主要作用正是通过回滚未提交的事务及同步已经提交的事务至数据文件也使用得数据文件处于一致性状态。</span>
+
+<span class="token comment">#innobackupex命令的--apply-log选项可用于实现上述功能，如下面的命令：</span>
+
+恢复：
+innobackupex --apply-log /home/dpan/mysql/bak/2022-05-06_17-53-17
+innobackupex --copy-back   /home/dpan/mysql/bak/2022-05-06_17-53-17
+
+<span class="token comment">#completed OK!　　#看到completed OK就是恢复正常了</span>
+<span class="token comment">#ll /home/dpan/mysql/data/ ##根据实际data路径填写，在B上查看数据目录，可以看到数据已经恢复，但是属主会有问题，需要进行修改</span>
+
+<span class="token function">chown</span> mysql:mysql /home/dpan/mysql/data/ <span class="token comment">#根据实际data路径填写</span>
+
+systemctl start mysqld <span class="token comment">#启动mysql</span>
+
+mysql -uroot -p -e <span class="token string">"show databases;"</span>　　<span class="token comment">#查看数据，是否恢复</span>
+
+<span class="token punctuation">[</span>root@localhost test<span class="token punctuation">]</span><span class="token comment"># mysql -usimple -p -e "show databases;"</span>
+Enter password: 
++--------------------+
+<span class="token operator">|</span> Database           <span class="token operator">|</span>
++--------------------+
+<span class="token operator">|</span> information_schema <span class="token operator">|</span>
+<span class="token operator">|</span> bitbucketdb        <span class="token operator">|</span>
+<span class="token operator">|</span> confluencedb       <span class="token operator">|</span>
+<span class="token operator">|</span> ferry              <span class="token operator">|</span>
+<span class="token operator">|</span> jira               <span class="token operator">|</span>
+<span class="token operator">|</span> jumpserver         <span class="token operator">|</span>
+<span class="token operator">|</span> jumpserver_2022    <span class="token operator">|</span>
+<span class="token operator">|</span> mindoc_db          <span class="token operator">|</span>
+<span class="token operator">|</span> mysql              <span class="token operator">|</span>
+<span class="token operator">|</span> performance_schema <span class="token operator">|</span>
+<span class="token operator">|</span> ranzhi             <span class="token operator">|</span>
+<span class="token operator">|</span> simpleim           <span class="token operator">|</span>
+<span class="token operator">|</span> simpletotal        <span class="token operator">|</span>
+<span class="token operator">|</span> sys                <span class="token operator">|</span>
+<span class="token operator">|</span> zdoo               <span class="token operator">|</span>
+<span class="token operator">|</span> zentao             <span class="token operator">|</span>
++--------------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3、xtrabackup增量备份与恢复"><a href="#3、xtrabackup增量备份与恢复" class="headerlink" title="3、xtrabackup增量备份与恢复"></a>3、xtrabackup增量备份与恢复</h3><p>暂时没有实际需求，等有需求再实践</p>
 
                 
             </div>
@@ -576,7 +615,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yushui1995.github.io/2022/05/03/ci-pan-de-shu-ju-hui-fu/">https://yushui1995.github.io/2022/05/03/ci-pan-de-shu-ju-hui-fu/</a>
+                    <a href="https://yushui1995.github.io/2022/05/06/xtrabackup-bei-fen-yu-hui-fu/">https://yushui1995.github.io/2022/05/06/xtrabackup-bei-fen-yu-hui-fu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -614,12 +653,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%B3%BB%E7%BB%9F/">
-                                    <span class="chip bg-color">系统</span>
+                                <a href="/tags/%E5%B7%A5%E5%85%B7/">
+                                    <span class="chip bg-color">工具</span>
                                 </a>
                             
-                                <a href="/tags/linux/">
-                                    <span class="chip bg-color">linux</span>
+                                <a href="/tags/mysql/">
+                                    <span class="chip bg-color">mysql</span>
                                 </a>
                             
                         </div>
@@ -1059,68 +1098,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
-            <div class="card">
-                <a href="/2022/05/04/reids-ji-qun-slots-que-shi-xiu-fu/">
-                    <div class="card-image">
-                        
-                        <img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032121798.png" class="responsive-img" alt="Reids集群slots缺失修复">
-                        
-                        <span class="card-title">Reids集群slots缺失修复</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-04
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/redis/" class="post-category">
-                                    redis
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/redis/">
-                        <span class="chip bg-color">redis</span>
-                    </a>
-                    
-                    <a href="/tags/%E4%BF%AE%E5%A4%8D/">
-                        <span class="chip bg-color">修复</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2022/05/03/ci-pan-de-shu-ju-hui-fu/">
+                <a href="/2022/05/06/xtrabackup-bei-fen-yu-hui-fu/">
                     <div class="card-image">
                         
-                        <img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032121798.png" class="responsive-img" alt="磁盘的数据恢复">
+                        <img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032121798.png" class="responsive-img" alt="Xtrabackup备份与恢复">
                         
-                        <span class="card-title">磁盘的数据恢复</span>
+                        <span class="card-title">Xtrabackup备份与恢复</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1131,14 +1119,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-03
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-06
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%B3%BB%E7%BB%9F/" class="post-category">
-                                    系统
+                            <a href="/categories/%E5%B7%A5%E5%85%B7/" class="post-category">
+                                    工具
                                 </a>
                             
                             
@@ -1149,12 +1137,64 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%B3%BB%E7%BB%9F/">
-                        <span class="chip bg-color">系统</span>
+                    <a href="/tags/%E5%B7%A5%E5%85%B7/">
+                        <span class="chip bg-color">工具</span>
                     </a>
                     
-                    <a href="/tags/linux/">
-                        <span class="chip bg-color">linux</span>
+                    <a href="/tags/mysql/">
+                        <span class="chip bg-color">mysql</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/05/05/rabbitmq-she-zhi-lu-jing-qian-zhui/">
+                    <div class="card-image">
+                        
+                        <img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032121798.png" class="responsive-img" alt="Rabbitmq设置路径前缀">
+                        
+                        <span class="card-title">Rabbitmq设置路径前缀</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/rabbitmq/" class="post-category">
+                                    rabbitmq
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/rabbitmq/">
+                        <span class="chip bg-color">rabbitmq</span>
+                    </a>
+                    
+                    <a href="/tags/nginx/">
+                        <span class="chip bg-color">nginx</span>
                     </a>
                     
                 </div>

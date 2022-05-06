@@ -6,7 +6,7 @@
   <link href="https://yushui1995.github.io/atom.xml" rel="self"/>
   
   <link href="https://yushui1995.github.io/"/>
-  <updated>2022-05-05T13:22:36.577Z</updated>
+  <updated>2022-05-06T13:44:43.451Z</updated>
   <id>https://yushui1995.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Xtrabackup备份与恢复</title>
+    <link href="https://yushui1995.github.io/2022/05/06/xtrabackup-bei-fen-yu-hui-fu/"/>
+    <id>https://yushui1995.github.io/2022/05/06/xtrabackup-bei-fen-yu-hui-fu/</id>
+    <published>2022-05-06T13:36:48.000Z</published>
+    <updated>2022-05-06T13:44:43.451Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Xtrabackup备份与恢复&quot;&gt;&lt;a href=&quot;#Xtrabackup备份与恢复&quot; class=&quot;headerlink&quot; title=&quot;Xtrabackup备份与恢复&quot;&gt;&lt;/a&gt;Xtrabackup备份与恢复&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="工具" scheme="https://yushui1995.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="工具" scheme="https://yushui1995.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+    <category term="mysql" scheme="https://yushui1995.github.io/tags/mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>Rabbitmq设置路径前缀</title>

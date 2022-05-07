@@ -6,7 +6,7 @@
   <link href="https://yushui1995.github.io/atom.xml" rel="self"/>
   
   <link href="https://yushui1995.github.io/"/>
-  <updated>2022-05-06T13:44:43.451Z</updated>
+  <updated>2022-05-07T13:25:12.205Z</updated>
   <id>https://yushui1995.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mysql 主从/双主同步</title>
+    <link href="https://yushui1995.github.io/2022/05/07/mysql-zhu-cong-shuang-zhu-tong-bu/"/>
+    <id>https://yushui1995.github.io/2022/05/07/mysql-zhu-cong-shuang-zhu-tong-bu/</id>
+    <published>2022-05-07T13:09:10.000Z</published>
+    <updated>2022-05-07T13:25:12.205Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Mysql-主从-双主同步&quot;&gt;&lt;a href=&quot;#Mysql-主从-双主同步&quot; class=&quot;headerlink&quot; title=&quot;Mysql 主从/双主同步&quot;&gt;&lt;/a&gt;Mysql 主从/双主同步&lt;/h1&gt;&lt;h1 id=&quot;主从同步&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="mysql" scheme="https://yushui1995.github.io/categories/mysql/"/>
+    
+    
+    <category term="mysql" scheme="https://yushui1995.github.io/tags/mysql/"/>
+    
+    <category term="同步" scheme="https://yushui1995.github.io/tags/%E5%90%8C%E6%AD%A5/"/>
+    
+  </entry>
   
   <entry>
     <title>Xtrabackup备份与恢复</title>
@@ -37,9 +64,9 @@
     <category term="工具" scheme="https://yushui1995.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
-    <category term="工具" scheme="https://yushui1995.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
-    
     <category term="mysql" scheme="https://yushui1995.github.io/tags/mysql/"/>
+    
+    <category term="工具" scheme="https://yushui1995.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   

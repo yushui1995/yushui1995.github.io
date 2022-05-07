@@ -4,8 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Xtrabackup备份与恢复, ">
-    <meta name="description" content="Xtrabackup备份与恢复一、Xtrabackup介绍Percona-xtrabackup是 Percona公司开发的一个用于MySQL数据库物理热备的备份工具，支持MySQL、Percona server和MariaDB，开源免费，是">
+    <meta name="keywords" content="Mysql 主从/双主同步, ">
+    <meta name="description" content="Mysql 主从/双主同步主从同步一、准备阶段:#共3台服务器，2台安装mysql，1台nginx（主从同步不用nginx，双主需要nginx）
+#这里默认mysqlA为主库（有数据），mysqlB为从库（无数据），mysqlA无数据库也是">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +20,7 @@
 
     
 
-    <title>Xtrabackup备份与恢复 | </title>
+    <title>Mysql 主从/双主同步 | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -273,7 +274,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Xtrabackup备份与恢复</h1>
+                    <h1 class="description center-align post-title">Mysql 主从/双主同步</h1>
                 </div>
             </div>
         </div>
@@ -393,8 +394,8 @@
                                 <span class="chip bg-color">mysql</span>
                             </a>
                         
-                            <a href="/tags/%E5%B7%A5%E5%85%B7/">
-                                <span class="chip bg-color">工具</span>
+                            <a href="/tags/%E5%90%8C%E6%AD%A5/">
+                                <span class="chip bg-color">同步</span>
                             </a>
                         
                     </div>
@@ -405,8 +406,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%B7%A5%E5%85%B7/" class="post-category">
-                                工具
+                            <a href="/categories/mysql/" class="post-category">
+                                mysql
                             </a>
                         
                     </div>
@@ -418,7 +419,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-06
+                    2022-05-07
                 </div>
                 
 
@@ -427,14 +428,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    985
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    4 分
                 </div>
                 
 
@@ -457,138 +458,197 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Xtrabackup备份与恢复"><a href="#Xtrabackup备份与恢复" class="headerlink" title="Xtrabackup备份与恢复"></a>Xtrabackup备份与恢复</h1><h2 id="一、Xtrabackup介绍"><a href="#一、Xtrabackup介绍" class="headerlink" title="一、Xtrabackup介绍"></a>一、Xtrabackup介绍</h2><p>Percona-xtrabackup是 Percona公司开发的一个用于MySQL数据库物理热备的备份工具，支持MySQL、Percona server和MariaDB，开源免费，是目前较为受欢迎的主流备份工具。xtrabackup只能备份innoDB和xtraDB两种数据引擎的表，而不能备份MyISAM数据表。</p>
-<p>MySQL冷备、mysqldump、MySQL热拷贝都无法实现对数据库进行增量备份。在实际生产环境中增量备份是非常实用的，如果数据大于50G或100G，存储空间足够的情况下，可以每天进行完整备份，如果每天产生的数据量较大，需要定制数据备份策略。例如每周实用完整备份，周一到周六实用增量备份。而Percona-Xtrabackup就是为了实现增量备份而出现的一款主流备份工具，</p>
-<p>xtrabackup包含两个主要的工具，即xtrabackup和innobackupex，二者区别如下：</p>
-<p>（1）xtrabackup只能备份innodb和xtradb两种引擎的表，而不能备份myisam引擎的表；</p>
-<p>（2）innobackupex是一个封装了xtrabackup的Perl脚本，支持同时备份innodb和myisam，但在对myisam备份时需要加一个全局的读锁。还有就是myisam不支持增量备份</p>
-<h2 id="二、Xtrabackup优点"><a href="#二、Xtrabackup优点" class="headerlink" title="二、Xtrabackup优点"></a>二、Xtrabackup优点</h2><p>（1）备份速度快，物理备份可靠</p>
-<p>（2）备份过程不会打断正在执行的事务（无需锁表）</p>
-<p>（3）能够基于压缩等功能节约磁盘空间和流量</p>
-<p>（4）自动备份校验</p>
-<p>（5）还原速度快</p>
-<p>（6）可以流传将备份传输到另外一台机器上</p>
-<p>（7）在不增加服务器负载的情况备份数据</p>
-<h2 id="三、xtrabackup的安装部署以及备份恢复实现"><a href="#三、xtrabackup的安装部署以及备份恢复实现" class="headerlink" title="三、xtrabackup的安装部署以及备份恢复实现"></a>三、xtrabackup的安装部署以及备份恢复实现</h2><hr>
-<h3 id="1、xtrabackup的安装"><a href="#1、xtrabackup的安装" class="headerlink" title="1、xtrabackup的安装"></a>1、xtrabackup的安装</h3><p>可以选择rpm包方式安装，也可以下载源码包编译安装</p>
-<p>官网地址：</p>
-<p><a target="_blank" rel="noopener" href="https://www.percona.com/downloads/">Percona Software Downloads</a></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#yum：</span>
-<span class="token comment">#安装percona依赖库</span>
-yum <span class="token function">install</span> <span class="token operator">&lt;</span>https://repo.percona.com/yum/percona-release-latest.noarch.rpm<span class="token operator">&gt;</span>
-<span class="token comment">#查看可安装版本</span>
-yum list <span class="token operator">|</span> <span class="token function">grep</span> percona-xtrabackup
-<span class="token comment"># 5.6、5.7安装24的</span>
-yum <span class="token function">install</span> -y percona-xtrabackup-24
-<span class="token comment"># 8.0安装80的</span>
-yum <span class="token function">install</span> -y percona-xtrabackup-80
+                <h1 id="Mysql-主从-双主同步"><a href="#Mysql-主从-双主同步" class="headerlink" title="Mysql 主从/双主同步"></a>Mysql 主从/双主同步</h1><h1 id="主从同步"><a href="#主从同步" class="headerlink" title="主从同步"></a>主从同步</h1><h2 id="一、准备阶段"><a href="#一、准备阶段" class="headerlink" title="一、准备阶段:"></a>一、准备阶段:</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#共3台服务器，2台安装mysql，1台nginx（主从同步不用nginx，双主需要nginx）</span>
+<span class="token comment">#这里默认mysqlA为主库（有数据），mysqlB为从库（无数据），mysqlA无数据库也是可以的</span>
+mysqlA    mysqlB     nginx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<span class="token comment">#RPM</span>
-<span class="token function">wget</span> <span class="token operator">&lt;</span>https://www.percona.com/downloads/XtraBackup/Percona-XtraBackup-2.4.9/binary/redhat/7/x86_64/percona-xtrabackup-24-2.4.9-1.el7.x86_64.rpm<span class="token operator">&gt;</span>
-yum <span class="token function">install</span> -y percona-xtrabackup-24-2.4.9-1.el7.x86_64.rpm 
-<span class="token function">rpm</span> -qa <span class="token operator">|</span><span class="token function">grep</span> xtrabackup
-percona-xtrabackup-24-2.4.9-1.el7.x86_64
+<h2 id="二、登录mysqlA和mysqlB修改-my-cnf-配置"><a href="#二、登录mysqlA和mysqlB修改-my-cnf-配置" class="headerlink" title="二、登录mysqlA和mysqlB修改 my.cnf 配置"></a>二、登录mysqlA和mysqlB修改 my.cnf 配置</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">server_id <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token comment">#这个配置不能 重复，可以随意命名 为了方便顺序起  mysqlA id 1   mysqlA id 2</span>
 
-Xtrabackup中主要包含两个工具：
-xtrabackup：是用于热备innodb，xtradb表中数据的工具，不能备份其他类型的表，也不能备份数据表结构；
-innobackupex：是将xtrabackup进行封装的perl脚本，提供了备份myisam表的能力。
-常用选项:  
-   --host     指定主机
-   --user     指定用户名
-   --password    指定密码
-   --port     指定端口
-   --databases     指定数据库
-   --incremental    创建增量备份
-   --incremental-basedir   指定包含完全备份的目录
-   --incremental-dir      指定包含增量备份的目录   
-   --apply-log        对备份进行预处理操作             
-     一般情况下，在备份完成后，数据尚且不能用于恢复操作，因为备份的数据中可能会包含尚未提交的事务或已经提交但尚未同步至数据文件中的事务。因此，此时数据文件仍处理不一致状态。“准备”的主要作用正是通过回滚未提交的事务及同步已经提交的事务至数据文件也使得数据文件处于一致性状态。
-   --redo-only      不回滚未提交事务
-   --copy-back     恢复备份目录
- 
- 
- 
-装完xtrabackup后，生成以下几个工具
-<span class="token punctuation">[</span>root@localhost bin<span class="token punctuation">]</span><span class="token comment"># ./xb</span>
-xbcloud        xbcloud_osenv  xbcrypt        xbiff          xbrlapi        xbstream
- 
-xbcloud和xbcloud_osenv是xtrabackup新的高级特性：云备份；
-xbcrypt也是新的特性，加密备份集；
-xbstream是xtrabackup的流数据功能，通过流数据功能，可将备份内容打包并传给管道后的压缩工具进行压缩；
-xtrabackup是主程序；
-innobackupex在以前是一个perl脚本，会调用xtrabackup这个二进制工具，从xtrabackup <span class="token number">2.3</span>开始，该工具使用C语言进行了重写，当前它是xtabackup二进制工具的一个软连接，但是实际的使用方法却不同，并且在以后的版本中会删除该工具。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">#开启bin日志</span>
 
-<p>使用innobackupex备份时，其会调用xtrabackup备份所有的InnoDB表，复制所有关于表结构定义的相关文件(.frm)、以及MyISAM、MERGE、CSV和ARCHIVE表的相关文件，同时还会备份触发器和数据库配置信息相关的文件，这些文件会被保存到一个以时间命名的目录当中。在备份的同时，innobackupex还会在备份目录中创建如下文件：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>xtrabackup_checkpoints -- 备份类型<span class="token punctuation">(</span>如完全或增量<span class="token punctuation">)</span>、备份状态<span class="token punctuation">(</span>如是否已经为prepared状态<span class="token punctuation">)</span>和LSN<span class="token punctuation">(</span>日志序列号<span class="token punctuation">)</span>范围信息：
- 
-每个InnoDB页<span class="token punctuation">(</span>通常为16k大小<span class="token punctuation">)</span>
-都会包含一个日志序列号，即LSN，LSN是整个数据库系统的系统版本号，每个页面相关的LSN能够表明此页面最近是如何发生改变的。
- 
-<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>xtrabackup_binlog_info  --  mysql服务器当前正在使用的二进制日志文件及备份这一刻位置二进制日志时间的位置。
- 
-<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>xtrabackup_binlog_pos_innodb  --  二进制日志文件及用于InnoDB或XtraDB表的二进制日志文件的当前position。
- 
-<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>xtrabackup_binary  --  备份中用到的xtrabackup的可执行文件；
- 
-<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>backup-my.cnf  --  备份命令用到的配置选项信息：
- 
-在使用innobackupex进行备份时，还可以使用--no-timestamp选项来阻止命令自动创建一个以时间命名的目录：如此一来，innobackupex命令将会创建一个BACKUP-DIR目录来存储备份数据。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+log-bin<span class="token operator">=</span> mysql-bin
 
-<p><strong>注意：备份时需启动MySQL,恢复时需关闭MySQL,清空mysql数据目录且不能重新初始化,恢复数据后应该立即进行一次完全备份</strong></p>
-<h3 id="2、xtrabackup全量备份与恢复"><a href="#2、xtrabackup全量备份与恢复" class="headerlink" title="2、xtrabackup全量备份与恢复"></a>2、xtrabackup全量备份与恢复</h3><h4 id="全量备份："><a href="#全量备份：" class="headerlink" title="全量备份："></a>全量备份：</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">备份：
-innobackupex --defaults-file<span class="token operator">=</span>/etc/my.cnf --user<span class="token operator">=</span>DBUSER --password<span class="token operator">=</span>DBUSERPASS  /path/to/BACKUP-DIR/
-<span class="token comment">#比如我/path/to/BACKUP-DIR/指定：/home/dpan/mysql/bak</span>
-<span class="token comment">#生成目录为：/home/dpan/mysql/bak/2022-05-06_17-53-17</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">#开启bin日志级别 有三种 我常用 row 行级别 更详细日志</span>
+binlog-format<span class="token operator">=</span>ROW
 
-<p>可能存在的报错：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">xtrabackup: Error: --defaults-file must be specified first on the <span class="token builtin class-name">command</span> line
+<span class="token comment">#忽略 需要同步的表 #也可以配置 只同步的表 replicate-do-db=test</span>
+replicate-ignore-db<span class="token operator">=</span>mysql
+replicate-ignore-db<span class="token operator">=</span>sys
+replicate-ignore-db<span class="token operator">=</span>information_schema
+replicate-ignore-db<span class="token operator">=</span>performance_schema
 
-<span class="token comment">#--defaults-file=/etc/my.cnf参数必须写在最前面</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">#双主都是0，可读写，1是可读</span>
+read-only<span class="token operator">=</span><span class="token number">0</span>
+<span class="token assign-left variable">relay_log</span><span class="token operator">=</span>mysql-relay-bin
+log-slave-updates<span class="token operator">=</span>on
 
-<h4 id="全量恢复："><a href="#全量恢复：" class="headerlink" title="全量恢复："></a>全量恢复：</h4><p><strong>注意：恢复不用启动mysql,mysql需要关闭状态</strong></p>
-<p>如果B库要恢复A库的备份，则需要B库删除原有的数据，例如：/usr/local/mysql/data</p>
-<p>配置my.cnf的数据目录路径，否则会报错，需要和A一致</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#一般情况下，在备份完成后，数据尚且不能用于恢复操作，因为备份的数据中可能会包含尚未提交的事务或者已经提交但尚未同步至数据文件中的事务。因此，此时数据文件仍处于不一致状态。"准备"的主要作用正是通过回滚未提交的事务及同步已经提交的事务至数据文件也使用得数据文件处于一致性状态。</span>
+<span class="token comment">##初始id值mysqlA为 1 ，mysqlA为 2</span>
+auto-increment-offset<span class="token operator">=</span><span class="token number">1</span>
 
-<span class="token comment">#innobackupex命令的--apply-log选项可用于实现上述功能，如下面的命令：</span>
+<span class="token comment">##自增步幅度 2，因为负载2台所以这边设置2，根据自己的要求</span>
+auto-increment-increment<span class="token operator">=</span><span class="token number">2</span>
 
-恢复：
-innobackupex --apply-log /home/dpan/mysql/bak/2022-05-06_17-53-17
-innobackupex --copy-back   /home/dpan/mysql/bak/2022-05-06_17-53-17
+<span class="token comment">#注意：如果这个参数不同，可能会存在问题</span>
+<span class="token assign-left variable">lower_case_table_names</span><span class="token operator">=</span><span class="token number">0</span>  <span class="token comment">#表明区分大小写</span>
+<span class="token assign-left variable">lower_case_table_names</span><span class="token operator">=</span><span class="token number">1</span>  <span class="token comment">#表名不区分大小写</span>
 
-<span class="token comment">#completed OK!　　#看到completed OK就是恢复正常了</span>
-<span class="token comment">#ll /home/dpan/mysql/data/ ##根据实际data路径填写，在B上查看数据目录，可以看到数据已经恢复，但是属主会有问题，需要进行修改</span>
+<span class="token comment">#选择增加配置： slave-skip-errors=all  #跳过所有错误</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token function">chown</span> mysql:mysql /home/dpan/mysql/data/ <span class="token comment">#根据实际data路径填写</span>
+<p>完整配置参考：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#mysqlA配置</span>
+server_id <span class="token operator">=</span> <span class="token number">1</span>
+log-bin<span class="token operator">=</span> mysql-bin
+binlog-format<span class="token operator">=</span>ROW
+replicate-ignore-db<span class="token operator">=</span>mysql
+replicate-ignore-db<span class="token operator">=</span>sys
+replicate-ignore-db<span class="token operator">=</span>information_schema
+replicate-ignore-db<span class="token operator">=</span>performance_schema
+<span class="token comment">#slave-skip-errors=all</span>
 
-systemctl start mysqld <span class="token comment">#启动mysql</span>
+read-only<span class="token operator">=</span><span class="token number">0</span>
+<span class="token assign-left variable">relay_log</span><span class="token operator">=</span>mysql-relay-bin
+log-slave-updates<span class="token operator">=</span>on
+auto-increment-offset<span class="token operator">=</span><span class="token number">1</span>
+auto-increment-increment<span class="token operator">=</span><span class="token number">2</span>
 
-mysql -uroot -p -e <span class="token string">"show databases;"</span>　　<span class="token comment">#查看数据，是否恢复</span>
+<span class="token comment">#mysqlB配置</span>
+server_id <span class="token operator">=</span> <span class="token number">2</span>
+log-bin<span class="token operator">=</span> mysql-bin
+binlog-format<span class="token operator">=</span>ROW
+replicate-ignore-db<span class="token operator">=</span>mysql
+replicate-ignore-db<span class="token operator">=</span>sys
+replicate-ignore-db<span class="token operator">=</span>information_schema
+replicate-ignore-db<span class="token operator">=</span>performance_schema
+<span class="token comment">#slave-skip-errors=all</span>
 
-<span class="token punctuation">[</span>root@localhost test<span class="token punctuation">]</span><span class="token comment"># mysql -usimple -p -e "show databases;"</span>
-Enter password: 
-+--------------------+
-<span class="token operator">|</span> Database           <span class="token operator">|</span>
-+--------------------+
-<span class="token operator">|</span> information_schema <span class="token operator">|</span>
-<span class="token operator">|</span> bitbucketdb        <span class="token operator">|</span>
-<span class="token operator">|</span> confluencedb       <span class="token operator">|</span>
-<span class="token operator">|</span> ferry              <span class="token operator">|</span>
-<span class="token operator">|</span> jira               <span class="token operator">|</span>
-<span class="token operator">|</span> jumpserver         <span class="token operator">|</span>
-<span class="token operator">|</span> jumpserver_2022    <span class="token operator">|</span>
-<span class="token operator">|</span> mindoc_db          <span class="token operator">|</span>
-<span class="token operator">|</span> mysql              <span class="token operator">|</span>
-<span class="token operator">|</span> performance_schema <span class="token operator">|</span>
-<span class="token operator">|</span> ranzhi             <span class="token operator">|</span>
-<span class="token operator">|</span> simpleim           <span class="token operator">|</span>
-<span class="token operator">|</span> simpletotal        <span class="token operator">|</span>
-<span class="token operator">|</span> sys                <span class="token operator">|</span>
-<span class="token operator">|</span> zdoo               <span class="token operator">|</span>
-<span class="token operator">|</span> zentao             <span class="token operator">|</span>
-+--------------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+read-only<span class="token operator">=</span><span class="token number">0</span>
+<span class="token assign-left variable">relay_log</span><span class="token operator">=</span>mysql-relay-bin
+log-slave-updates<span class="token operator">=</span>on
+auto-increment-offset<span class="token operator">=</span><span class="token number">2</span>
+auto-increment-increment<span class="token operator">=</span><span class="token number">2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="3、xtrabackup增量备份与恢复"><a href="#3、xtrabackup增量备份与恢复" class="headerlink" title="3、xtrabackup增量备份与恢复"></a>3、xtrabackup增量备份与恢复</h3><p>暂时没有实际需求，等有需求再实践</p>
+<h2 id="三、重启两台数据库"><a href="#三、重启两台数据库" class="headerlink" title="三、重启两台数据库"></a>三、重启两台数据库</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">systemctl restart mysql
+<span class="token comment">#在挂载的data目录里面有mysql-bin.index和类似命名mysql-bin.0000001表示开启日志成功</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h2 id="四、开始同步"><a href="#四、开始同步" class="headerlink" title="四、开始同步"></a>四、开始同步</h2><p><strong>注意 ：开启同步操作必须先优先从库读主库</strong></p>
+<p><strong>举例：mysqlA (数据有) mysqlB(数据没有) 则必须先操作B库，去读 A库的日志同步，否侧 数据 会全部丢失</strong></p>
+<p>登录  mysqlA</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mysql -u root -p
+mysql<span class="token operator">&gt;</span> show master status<span class="token punctuation">;</span>
+mysql<span class="token operator">&gt;</span> show master status<span class="token punctuation">;</span>
++------------------+----------+--------------+------------------+-------------------+
+<span class="token operator">|</span> File             <span class="token operator">|</span> Position <span class="token operator">|</span> Binlog_Do_DB <span class="token operator">|</span> Binlog_Ignore_DB <span class="token operator">|</span> Executed_Gtid_Set <span class="token operator">|</span>
++------------------+----------+--------------+------------------+-------------------+
+<span class="token operator">|</span> mysql-bin.000022 <span class="token operator">|</span> <span class="token number">55789429</span> <span class="token operator">|</span>              <span class="token operator">|</span>                  <span class="token operator">|</span>                   <span class="token operator">|</span>
++------------------+----------+--------------+------------------+-------------------+
+
+<span class="token comment">##需要记录,然后登录 mysqlB开启同步操作</span>
+<span class="token function">file</span>   mysql-bin.000022    pos  <span class="token number">55789429</span> <span class="token comment">#根据实际填写</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>登录mysqlB</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#读取远程bin日志开启同步</span>
+
+mysql<span class="token operator">&gt;</span> change master to <span class="token assign-left variable">master_host</span><span class="token operator">=</span><span class="token string">'mysqlA的ip'</span>,  <span class="token assign-left variable">master_port</span><span class="token operator">=</span><span class="token number">3306</span>, <span class="token assign-left variable">master_user</span><span class="token operator">=</span><span class="token string">'root'</span>,  <span class="token assign-left variable">master_password</span><span class="token operator">=</span><span class="token string">'Simple@01!'</span>,  <span class="token assign-left variable">master_log_file</span><span class="token operator">=</span><span class="token string">'mysql-bin.000022'</span>,  <span class="token assign-left variable">master_log_pos</span><span class="token operator">=</span><span class="token number">55789429</span> <span class="token punctuation">;</span>
+Query OK, <span class="token number">0</span> rows affected, <span class="token number">2</span> warnings <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+mysql<span class="token operator">&gt;</span> start slave<span class="token punctuation">;</span>
+Query OK, <span class="token number">0</span> rows affected <span class="token punctuation">(</span><span class="token number">0.01</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment">#查看是否成功</span>
+mysql<span class="token operator">&gt;</span> show slave status<span class="token punctuation">\</span><span class="token punctuation">\</span>G
+*************************** <span class="token number">1</span>. row ***************************
+               Slave_IO_State: Waiting <span class="token keyword">for</span> master to send event
+                  Master_Host: <span class="token number">192.168</span>.10.115
+                  Master_User: simple
+                  Master_Port: <span class="token number">3306</span>
+                Connect_Retry: <span class="token number">60</span>
+              Master_Log_File: mysql-bin.000022
+          Read_Master_Log_Pos: <span class="token number">45299492</span>
+               Relay_Log_File: mysql-relay-bin.000004
+                Relay_Log_Pos: <span class="token number">55236</span>
+        Relay_Master_Log_File: mysql-bin.000022
+             Slave_IO_Running: Yes   <span class="token comment">#看这个状态 yes为成功</span>
+            Slave_SQL_Running: Yes   <span class="token comment">#看这个状态 yes为成功</span>
+              Replicate_Do_DB: 
+          Replicate_Ignore_DB: mysql,sys,information_schema,performance_schema
+           Replicate_Do_Table: 
+       Replicate_Ignore_Table: 
+      Replicate_Wild_Do_Table: 
+  Replicate_Wild_Ignore_Table: 
+                   Last_Errno: <span class="token number">0</span>
+                   Last_Error: 
+                 Skip_Counter: <span class="token number">0</span>
+          Exec_Master_Log_Pos: <span class="token number">45299492</span>
+              Relay_Log_Space: <span class="token number">55443</span>
+              Until_Condition: None
+               Until_Log_File: 
+                Until_Log_Pos: <span class="token number">0</span>
+           Master_SSL_Allowed: No
+           Master_SSL_CA_File: 
+           Master_SSL_CA_Path: 
+              Master_SSL_Cert: 
+            Master_SSL_Cipher: 
+               Master_SSL_Key: 
+        Seconds_Behind_Master: <span class="token number">0</span>
+Master_SSL_Verify_Server_Cert: No
+                Last_IO_Errno: <span class="token number">0</span>
+                Last_IO_Error: 
+               Last_SQL_Errno: <span class="token number">0</span>
+               Last_SQL_Error: 
+  Replicate_Ignore_Server_Ids: 
+             Master_Server_Id: <span class="token number">115</span>
+                  Master_UUID: a22728a4-9520-11ec-96f4-0050568d79d0
+             Master_Info_File: /home/dpan/mysqldata/master.info
+                    SQL_Delay: <span class="token number">0</span>
+          SQL_Remaining_Delay: NULL
+      Slave_SQL_Running_State: Slave has <span class="token builtin class-name">read</span> all relay log<span class="token punctuation">;</span> waiting <span class="token keyword">for</span> <span class="token function">more</span> updates <span class="token comment">#查看这个状态,有没有报错信息</span>
+           Master_Retry_Count: <span class="token number">86400</span>
+                  Master_Bind: 
+      Last_IO_Error_Timestamp: 
+     Last_SQL_Error_Timestamp: 
+               Master_SSL_Crl: 
+           Master_SSL_Crlpath: 
+           Retrieved_Gtid_Set: 
+            Executed_Gtid_Set: 
+                Auto_Position: <span class="token number">0</span>
+         Replicate_Rewrite_DB: 
+                 Channel_Name: 
+           Master_TLS_Version: 
+<span class="token number">1</span> row <span class="token keyword">in</span> <span class="token builtin class-name">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>至此主从已经搭建完毕，可以在mysqlA添加删除或者修改一条数据，看mysqlB是否实时更新。</strong></p>
+<h1 id="双主同步"><a href="#双主同步" class="headerlink" title="双主同步"></a>双主同步</h1><p>需要mysqlA读mysqlB的日志，命令一样这边就不写明了</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#在mysqlB读取</span>
+mysql<span class="token operator">&gt;</span> show master status<span class="token punctuation">;</span>
+
+<span class="token comment">#登录mysqlA</span>
+mysql<span class="token operator">&gt;</span> change master to <span class="token assign-left variable">master_host</span><span class="token operator">=</span><span class="token string">'mysqlB的ip'</span>,  <span class="token assign-left variable">master_port</span><span class="token operator">=</span><span class="token number">3306</span>, <span class="token assign-left variable">master_user</span><span class="token operator">=</span><span class="token string">'root'</span>,  <span class="token assign-left variable">master_password</span><span class="token operator">=</span><span class="token string">'Simple@01!'</span>,  <span class="token assign-left variable">master_log_file</span><span class="token operator">=</span><span class="token string">'mysql-bin.000001'</span>,  <span class="token assign-left variable">master_log_pos</span><span class="token operator">=</span><span class="token number">154</span><span class="token punctuation">;</span> <span class="token comment">#根据实际情况</span>
+start slave<span class="token punctuation">;</span>
+Query OK, <span class="token number">0</span> rows affected <span class="token punctuation">(</span><span class="token number">0.01</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>现在双主已经搭建完毕</p>
+<h2 id="nginx负载"><a href="#nginx负载" class="headerlink" title="nginx负载"></a>nginx负载</h2><p>现在就可以用nginx 做负载，登录nginx服务器修改配置</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">stream  <span class="token punctuation">{</span>
+    upstream mysql <span class="token punctuation">{</span>
+        <span class="token comment">##负载 下面的 数据库</span>
+        server mysqlA的ip:3306 <span class="token assign-left variable">max_fails</span><span class="token operator">=</span><span class="token number">3</span> <span class="token assign-left variable">fail_timeout</span><span class="token operator">=</span>30s<span class="token punctuation">;</span>
+        server mysqlB的ip:3306 <span class="token assign-left variable">max_fails</span><span class="token operator">=</span><span class="token number">3</span> <span class="token assign-left variable">fail_timeout</span><span class="token operator">=</span>30s<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    server <span class="token punctuation">{</span>
+        <span class="token comment">## 负载端口</span>
+        listen <span class="token number">3306</span><span class="token punctuation">;</span>
+        proxy_connect_timeout 30s<span class="token punctuation">;</span>
+        proxy_timeout 120s<span class="token punctuation">;</span>
+        proxy_pass mysql<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">#重载</span>
+nginx -s reload<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>数据库双主负载搭建成功</p>
 
                 
             </div>
@@ -615,7 +675,7 @@ Enter password:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yushui1995.github.io/2022/05/06/xtrabackup-bei-fen-yu-hui-fu/">https://yushui1995.github.io/2022/05/06/xtrabackup-bei-fen-yu-hui-fu/</a>
+                    <a href="https://yushui1995.github.io/2022/05/07/mysql-zhu-cong-shuang-zhu-tong-bu/">https://yushui1995.github.io/2022/05/07/mysql-zhu-cong-shuang-zhu-tong-bu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -657,8 +717,8 @@ Enter password:
                                     <span class="chip bg-color">mysql</span>
                                 </a>
                             
-                                <a href="/tags/%E5%B7%A5%E5%85%B7/">
-                                    <span class="chip bg-color">工具</span>
+                                <a href="/tags/%E5%90%8C%E6%AD%A5/">
+                                    <span class="chip bg-color">同步</span>
                                 </a>
                             
                         </div>
@@ -1098,9 +1158,10 @@ Enter password:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/05/07/mysql-zhu-cong-shuang-zhu-tong-bu/">
                     <div class="card-image">
@@ -1117,9 +1178,9 @@ Enter password:
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1132,6 +1193,7 @@ Enter password:
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1154,12 +1216,12 @@ Enter password:
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/05/rabbitmq-she-zhi-lu-jing-qian-zhui/">
+                <a href="/2022/05/06/xtrabackup-bei-fen-yu-hui-fu/">
                     <div class="card-image">
                         
-                        <img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032121798.png" class="responsive-img" alt="Rabbitmq设置路径前缀">
+                        <img src="https://raw.githubusercontent.com/yushui1995/img/main/202205032121798.png" class="responsive-img" alt="Xtrabackup备份与恢复">
                         
-                        <span class="card-title">Rabbitmq设置路径前缀</span>
+                        <span class="card-title">Xtrabackup备份与恢复</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1170,14 +1232,14 @@ Enter password:
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-06
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/rabbitmq/" class="post-category">
-                                    rabbitmq
+                            <a href="/categories/%E5%B7%A5%E5%85%B7/" class="post-category">
+                                    工具
                                 </a>
                             
                             
@@ -1187,12 +1249,12 @@ Enter password:
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/rabbitmq/">
-                        <span class="chip bg-color">rabbitmq</span>
+                    <a href="/tags/mysql/">
+                        <span class="chip bg-color">mysql</span>
                     </a>
                     
-                    <a href="/tags/nginx/">
-                        <span class="chip bg-color">nginx</span>
+                    <a href="/tags/%E5%B7%A5%E5%85%B7/">
+                        <span class="chip bg-color">工具</span>
                     </a>
                     
                 </div>

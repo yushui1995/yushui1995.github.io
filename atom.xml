@@ -6,7 +6,7 @@
   <link href="https://yushui1995.github.io/atom.xml" rel="self"/>
   
   <link href="https://yushui1995.github.io/"/>
-  <updated>2022-05-07T14:38:39.693Z</updated>
+  <updated>2022-05-08T13:09:12.194Z</updated>
   <id>https://yushui1995.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>github一些技巧</title>
+    <link href="https://yushui1995.github.io/2022/05/08/github-yi-xie-ji-qiao/"/>
+    <id>https://yushui1995.github.io/2022/05/08/github-yi-xie-ji-qiao/</id>
+    <published>2022-05-08T12:55:05.000Z</published>
+    <updated>2022-05-08T13:09:12.194Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;代码跳转：&quot;&gt;&lt;a href=&quot;#代码跳转：&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="github" scheme="https://yushui1995.github.io/categories/github/"/>
+    
+    
+    <category term="github" scheme="https://yushui1995.github.io/tags/github/"/>
+    
+  </entry>
   
   <entry>
     <title>Mysql 主从/双主同步</title>
@@ -64,9 +89,9 @@
     <category term="工具" scheme="https://yushui1995.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
-    <category term="mysql" scheme="https://yushui1995.github.io/tags/mysql/"/>
-    
     <category term="工具" scheme="https://yushui1995.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+    <category term="mysql" scheme="https://yushui1995.github.io/tags/mysql/"/>
     
   </entry>
   
@@ -75,7 +100,7 @@
     <link href="https://yushui1995.github.io/2022/05/05/rabbitmq-she-zhi-lu-jing-qian-zhui/"/>
     <id>https://yushui1995.github.io/2022/05/05/rabbitmq-she-zhi-lu-jing-qian-zhui/</id>
     <published>2022-05-05T13:09:32.000Z</published>
-    <updated>2022-05-07T14:39:07.502Z</updated>
+    <updated>2022-05-07T15:36:21.675Z</updated>
     
     
       

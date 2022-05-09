@@ -6,7 +6,7 @@
   <link href="https://yushui1995.github.io/atom.xml" rel="self"/>
   
   <link href="https://yushui1995.github.io/"/>
-  <updated>2022-05-08T17:49:33.980Z</updated>
+  <updated>2022-05-09T12:04:26.869Z</updated>
   <id>https://yushui1995.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>redis问题汇总</title>
+    <link href="https://yushui1995.github.io/2022/05/09/redis-wen-ti-hui-zong/"/>
+    <id>https://yushui1995.github.io/2022/05/09/redis-wen-ti-hui-zong/</id>
+    <published>2022-05-09T12:02:09.000Z</published>
+    <updated>2022-05-09T12:04:26.869Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;启动警告合集&quot;&gt;&lt;a href=&quot;#启动警告合集&quot; class=&quot;headerlink&quot; title=&quot;启动警告合集&quot;&gt;&lt;/a&gt;启动警告合集&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="redis" scheme="https://yushui1995.github.io/categories/redis/"/>
+    
+    
+    <category term="redis" scheme="https://yushui1995.github.io/tags/redis/"/>
+    
+    <category term="报错&amp;警告" scheme="https://yushui1995.github.io/tags/%E6%8A%A5%E9%94%99-%E8%AD%A6%E5%91%8A/"/>
+    
+  </entry>
   
   <entry>
     <title>github一些技巧</title>
@@ -46,7 +73,7 @@
     <link href="https://yushui1995.github.io/2022/05/07/mysql-zhu-cong-shuang-zhu-tong-bu/"/>
     <id>https://yushui1995.github.io/2022/05/07/mysql-zhu-cong-shuang-zhu-tong-bu/</id>
     <published>2022-05-07T13:09:10.000Z</published>
-    <updated>2022-05-07T14:38:39.693Z</updated>
+    <updated>2022-05-09T12:06:25.714Z</updated>
     
     
       
@@ -89,9 +116,9 @@
     <category term="工具" scheme="https://yushui1995.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
-    <category term="工具" scheme="https://yushui1995.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
-    
     <category term="mysql" scheme="https://yushui1995.github.io/tags/mysql/"/>
+    
+    <category term="工具" scheme="https://yushui1995.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   

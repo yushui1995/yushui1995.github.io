@@ -531,8 +531,8 @@ auto-increment-increment<span class="token operator">=</span><span class="token 
 <h2 id="三、重启两台数据库"><a href="#三、重启两台数据库" class="headerlink" title="三、重启两台数据库"></a>三、重启两台数据库</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">systemctl restart mysql
 <span class="token comment">#在挂载的data目录里面有mysql-bin.index和类似命名mysql-bin.0000001表示开启日志成功</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<h2 id="四、开始同步"><a href="#四、开始同步" class="headerlink" title="四、开始同步"></a>四、开始同步</h2><p><strong>注意 ：开启同步操作必须先优先从库读主库</strong></p>
-<p><strong>举例：mysqlA (数据有) mysqlB(数据没有) 则必须先操作B库，去读 A库的日志同步，否侧 数据 会全部丢失</strong></p>
+<h2 id="四、开始同步"><a href="#四、开始同步" class="headerlink" title="四、开始同步"></a>四、开始同步</h2><p><font color="#dd0000"><strong>注意 ：开启同步操作必须先优先从库读主库</strong></font> </p>
+<p><font color="#dd0000"><strong>举例：mysqlA (数据有) mysqlB(数据没有) 则必须先操作B库，去读 A库的日志同步，否侧 数据 会全部丢失</strong></font> </p>
 <p>登录  mysqlA</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mysql -u root -p
 mysql<span class="token operator">&gt;</span> show master status<span class="token punctuation">;</span>
@@ -1243,12 +1243,12 @@ nginx -s reload<span aria-hidden="true" class="line-numbers-rows"><span></span><
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%B7%A5%E5%85%B7/">
-                        <span class="chip bg-color">工具</span>
-                    </a>
-                    
                     <a href="/tags/mysql/">
                         <span class="chip bg-color">mysql</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%B7%A5%E5%85%B7/">
+                        <span class="chip bg-color">工具</span>
                     </a>
                     
                 </div>
@@ -1385,7 +1385,7 @@ nginx -s reload<span aria-hidden="true" class="line-numbers-rows"><span></span><
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">5.8k</span>
+                        class="white-color">6.1k</span>
             
             
             

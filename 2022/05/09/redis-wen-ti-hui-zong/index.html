@@ -4,16 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="github一些技巧, ">
-    <meta name="description" content="代码跳转：
-下载到本地
-在线vscode：仓库详情界面按下&#34;。&#34;键，
-
-
-
-在线运行项目在项目地址前加上gitpod.io/#/前缀
-内置环境，python go npm docker等等
-https://github.com/nginx/">
+    <meta name="keywords" content="redis问题汇总, ">
+    <meta name="description" content="启动警告合集1、WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lo">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -27,7 +19,7 @@ https://github.com/nginx/">
 
     
 
-    <title>github一些技巧 | </title>
+    <title>redis问题汇总 | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -281,7 +273,7 @@ https://github.com/nginx/">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">github一些技巧</h1>
+                    <h1 class="description center-align post-title">redis问题汇总</h1>
                 </div>
             </div>
         </div>
@@ -397,8 +389,12 @@ https://github.com/nginx/">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/github/">
-                                <span class="chip bg-color">github</span>
+                            <a href="/tags/redis/">
+                                <span class="chip bg-color">redis</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%8A%A5%E9%94%99-%E8%AD%A6%E5%91%8A/">
+                                <span class="chip bg-color">报错&amp;警告</span>
                             </a>
                         
                     </div>
@@ -409,8 +405,8 @@ https://github.com/nginx/">
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/github/" class="post-category">
-                                github
+                            <a href="/categories/redis/" class="post-category">
+                                redis
                             </a>
                         
                     </div>
@@ -422,7 +418,7 @@ https://github.com/nginx/">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-08
+                    2022-05-09
                 </div>
                 
 
@@ -431,7 +427,7 @@ https://github.com/nginx/">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    66
+                    210
                 </div>
                 
 
@@ -461,19 +457,15 @@ https://github.com/nginx/">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="代码跳转："><a href="#代码跳转：" class="headerlink" title="代码跳转："></a>代码跳转：</h2><ol>
-<li>下载到本地</li>
-<li>在线vscode：仓库详情界面按下<code>"。"</code>键，</li>
-</ol>
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205082057461.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205082057192.png"></p>
-<h2 id="在线运行项目"><a href="#在线运行项目" class="headerlink" title="在线运行项目"></a>在线运行项目</h2><p>在项目地址前加上<code>gitpod.io/#/</code>前缀</p>
-<p>内置环境，python go npm docker等等</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/nginx/nginx">https://github.com/nginx/nginx</a> —&gt; <a target="_blank" rel="noopener" href="https://gitpod.io/#/github.com/nginx/nginx">https://gitpod.io/#/github.com/nginx/nginx</a></p>
-<p>登陆：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205082107688.png"></p>
-<p>运行：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205082107997.png"></p>
+                <h1 id="启动警告合集"><a href="#启动警告合集" class="headerlink" title="启动警告合集"></a>启动警告合集</h1><h2 id="1、WARNING-The-TCP-backlog-setting-of-511-cannot-be-enforced-because-proc-sys-net-core-somaxconn-is-set-to-the-lower-value-of-128"><a href="#1、WARNING-The-TCP-backlog-setting-of-511-cannot-be-enforced-because-proc-sys-net-core-somaxconn-is-set-to-the-lower-value-of-128" class="headerlink" title="1、WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128."></a>1、WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.</h2><h3 id="TCP积压值过小问题"><a href="#TCP积压值过小问题" class="headerlink" title="TCP积压值过小问题"></a>TCP积压值过小问题</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"net.core.somaxconn = 1024"</span> <span class="token operator">&gt;&gt;</span> /etc/sysctl.conf
+sysctl -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="2、WARNING-overcommit-memory-is-set-to-0-Background-save-may-fail-under-low-memory-condition-To-fix-this-issue-add-‘vm-overcommit-memory-1’-to-etc-sysctl-conf-and-then-reboot-or-run-the-command-‘sysctl-vm-overcommit-memory-1’-for-this-to-take-effect"><a href="#2、WARNING-overcommit-memory-is-set-to-0-Background-save-may-fail-under-low-memory-condition-To-fix-this-issue-add-‘vm-overcommit-memory-1’-to-etc-sysctl-conf-and-then-reboot-or-run-the-command-‘sysctl-vm-overcommit-memory-1’-for-this-to-take-effect" class="headerlink" title="2、WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add ‘vm.overcommit_memory = 1’ to /etc/sysctl.conf and then reboot or run the command ‘sysctl vm.overcommit_memory=1’ for this to take effect."></a>2、WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add ‘vm.overcommit_memory = 1’ to /etc/sysctl.conf and then reboot or run the command ‘sysctl vm.overcommit_memory=1’ for this to take effect.</h3><h3 id="解决内存方面问题"><a href="#解决内存方面问题" class="headerlink" title="解决内存方面问题"></a>解决内存方面问题</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"vm.overcommit_memory = 1"</span> <span class="token operator">&gt;&gt;</span> /etc/sysctl.conf
+sysctl -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="3、WARNING-you-have-Transparent-Huge-Pages-THP-support-enabled-in-your-kernel-This-will-create-latency-and-memory-usage-issues-with-Redis-To-fix-this-issue-run-the-command-‘echo-never-gt-sys-kernel-mm-transparent-hugepage-enabled’-as-root-and-add-it-to-your-etc-rc-local-in-order-to-retain-the-setting-after-a-reboot-Redis-must-be-restarted-after-THP-is-disabled"><a href="#3、WARNING-you-have-Transparent-Huge-Pages-THP-support-enabled-in-your-kernel-This-will-create-latency-and-memory-usage-issues-with-Redis-To-fix-this-issue-run-the-command-‘echo-never-gt-sys-kernel-mm-transparent-hugepage-enabled’-as-root-and-add-it-to-your-etc-rc-local-in-order-to-retain-the-setting-after-a-reboot-Redis-must-be-restarted-after-THP-is-disabled" class="headerlink" title="3、WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command ‘echo never > /sys/kernel/mm/transparent_hugepage/enabled’ as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled."></a>3、WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command ‘echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled’ as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">'echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled'</span> <span class="token operator">&gt;&gt;</span> /etc/rc.local<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>内核中启用了透明的大页面THP,reboot重启后生效</p>
 
                 
             </div>
@@ -500,7 +492,7 @@ https://github.com/nginx/">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yushui1995.github.io/2022/05/08/github-yi-xie-ji-qiao/">https://yushui1995.github.io/2022/05/08/github-yi-xie-ji-qiao/</a>
+                    <a href="https://yushui1995.github.io/2022/05/09/redis-wen-ti-hui-zong/">https://yushui1995.github.io/2022/05/09/redis-wen-ti-hui-zong/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -538,8 +530,12 @@ https://github.com/nginx/">
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/github/">
-                                    <span class="chip bg-color">github</span>
+                                <a href="/tags/redis/">
+                                    <span class="chip bg-color">redis</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%8A%A5%E9%94%99-%E8%AD%A6%E5%91%8A/">
+                                    <span class="chip bg-color">报错&amp;警告</span>
                                 </a>
                             
                         </div>
@@ -979,9 +975,10 @@ https://github.com/nginx/">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/05/09/redis-wen-ti-hui-zong/">
                     <div class="card-image">
@@ -998,9 +995,9 @@ https://github.com/nginx/">
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1013,6 +1010,7 @@ https://github.com/nginx/">
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1035,12 +1033,12 @@ https://github.com/nginx/">
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/07/mysql-zhu-cong-shuang-zhu-tong-bu/">
+                <a href="/2022/05/08/github-yi-xie-ji-qiao/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="Mysql 主从/双主同步">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="github一些技巧">
                         
-                        <span class="card-title">Mysql 主从/双主同步</span>
+                        <span class="card-title">github一些技巧</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1051,14 +1049,14 @@ https://github.com/nginx/">
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-08
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/mysql/" class="post-category">
-                                    mysql
+                            <a href="/categories/github/" class="post-category">
+                                    github
                                 </a>
                             
                             
@@ -1068,12 +1066,8 @@ https://github.com/nginx/">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/mysql/">
-                        <span class="chip bg-color">mysql</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%90%8C%E6%AD%A5/">
-                        <span class="chip bg-color">同步</span>
+                    <a href="/tags/github/">
+                        <span class="chip bg-color">github</span>
                     </a>
                     
                 </div>

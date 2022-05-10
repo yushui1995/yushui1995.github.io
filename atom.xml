@@ -6,7 +6,7 @@
   <link href="https://yushui1995.github.io/atom.xml" rel="self"/>
   
   <link href="https://yushui1995.github.io/"/>
-  <updated>2022-05-09T12:04:26.869Z</updated>
+  <updated>2022-05-10T12:49:55.766Z</updated>
   <id>https://yushui1995.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>firewalld备忘</title>
+    <link href="https://yushui1995.github.io/2022/05/10/firewalld-bei-wang/"/>
+    <id>https://yushui1995.github.io/2022/05/10/firewalld-bei-wang/</id>
+    <published>2022-05-10T12:48:03.000Z</published>
+    <updated>2022-05-10T12:49:55.766Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;CentOS7 中使用 firewall-cmd 配置只允许指定ip访问本机的指定端口&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;1、启用firewalld&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-none&quot;&gt;&lt;code</summary>
+        
+      
+    
+    
+    
+    <category term="系统" scheme="https://yushui1995.github.io/categories/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="firewalld" scheme="https://yushui1995.github.io/tags/firewalld/"/>
+    
+  </entry>
   
   <entry>
     <title>redis问题汇总</title>
@@ -116,9 +143,9 @@
     <category term="工具" scheme="https://yushui1995.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
-    <category term="工具" scheme="https://yushui1995.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
-    
     <category term="mysql" scheme="https://yushui1995.github.io/tags/mysql/"/>
+    
+    <category term="工具" scheme="https://yushui1995.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   

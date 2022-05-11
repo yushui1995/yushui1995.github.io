@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>运维规范-自用</title>
+      <link href="/2022/05/11/yun-wei-gui-fan-zi-yong/"/>
+      <url>/2022/05/11/yun-wei-gui-fan-zi-yong/</url>
+      
+        <content type="html"><![CDATA[<h1 id="公司运维管理规范"><a href="#公司运维管理规范" class="headerlink" title="公司运维管理规范"></a>公司运维管理规范</h1><h3 id="1、获取部署资源信息"><a href="#1、获取部署资源信息" class="headerlink" title="1、获取部署资源信息"></a>1、获取部署资源信息</h3><p>1、登录工单系统，先看一下给的资源情况，是否符合部署条件，若有问题即使和项目联系解决，不要盲目进行部署</p><p>2、依次登录服务器，查看服务器状态，有没有无法登录，密码错误等情况及时反馈</p><p>3、修改初始密码</p><p>4、挂载硬盘，修改dns</p><h3 id="2、部署流程"><a href="#2、部署流程" class="headerlink" title="2、部署流程"></a>2、部署流程</h3><p>1、先确定好部署架构再进行部署</p><p>2、服务器初始化（通过脚本）</p><p>3、安装中间件、基础环境（一般采取工单系统的版本）</p><p>4、项目数据库迁移（开发本地测试库迁移至线上数据库）</p><p>5、jenkins构建（根据工单的git进行构建）</p><p>6、修改配置、启动项目（根据日志、端口验证项目状态）</p><p>7、nginx转发（转发后验证地址状态，访问的接口状态）</p><p>8、填写工单内容（填写转发后地址，交由项目进行访问、测试）</p><p>9、至此部署流程结束</p><h3 id="3、自动化"><a href="#3、自动化" class="headerlink" title="3、自动化"></a>3、自动化</h3><p>1、确认客户是否给ssh端口</p><p>有ssh端口：通过jenkins内置ssh将包推送，结合脚本进行自动更新部署（可以结合ansible）</p><p>无ssh端口：通过agent工具通过curl命令，结合脚本进行自动更新部署（可以结合ansible）</p><p>2、自动推送更新</p><p>测试、确认自动更新脚本没有语法错误，没有问题后，结合jenkins完成进行整体更新流程测试</p><h3 id="4、监控"><a href="#4、监控" class="headerlink" title="4、监控"></a>4、监控</h3><p>1、将项目地址进行web监控，微服务架构由开发提供接口地址，对接口地址进行监控</p><p>2、利用zabbix或prometheus对服务器资源进行监控</p><h3 id="5、文档"><a href="#5、文档" class="headerlink" title="5、文档"></a>5、文档</h3><p>1、将部署的详细情况，部署细节记录在公司文档中</p><p>2、整理项目给与的服务器文档和服务器部署文档单独归档至文件服务器，便于以后查找</p><p>3、常州、扬州、盐城大地区在企业微信形成表格</p><h1 id="故障处理规范"><a href="#故障处理规范" class="headerlink" title="故障处理规范"></a>故障处理规范</h1><h3 id="1、基本原则"><a href="#1、基本原则" class="headerlink" title="1、基本原则"></a>1、基本原则</h3><p> 在故障处理过程中采取的所有手段和行动，一切以恢复业务为最高优先级。</p><h3 id="2、流程机制"><a href="#2、流程机制" class="headerlink" title="2、流程机制"></a>2、流程机制</h3><blockquote><p>1、组员根据zabbix或其他途径知道某个业务出现问题，根据地区、业务对应负责的组员进行处理</p><p>2、对于故障进行基本判断，如果问题和恢复过程非常明确，以优先恢复业务优先</p><p>3、若问题无法快速定位，存在难点或影响范围较大，由组长介入协助解决</p><p>4、若问题牵扯较多无法找到故障点，由经理介入协助解决，并通知技术支持部对客户发出公告，直至故障完全解决</p></blockquote><h3 id="3、事后总结"><a href="#3、事后总结" class="headerlink" title="3、事后总结"></a>3、事后总结</h3><p>每次事故，需要在事故记录系统中详细填写故障时间，内容，涉及人员，解决流程，便于查找、总结</p><p>每次故障事后需自我反思：</p><blockquote><p>一：故障原因有哪些？</p><p>二：我们做什么，怎么做才能确保下次不会再出现类似故障？</p><p>三：当时如果我们做了什么，可以用更短的时间恢复业务？</p></blockquote><h1 id="项目更新规范"><a href="#项目更新规范" class="headerlink" title="项目更新规范"></a>项目更新规范</h1><h3 id="1、更新时间"><a href="#1、更新时间" class="headerlink" title="1、更新时间"></a>1、更新时间</h3><blockquote><p>1、5.30下班后：正常项目统一更新时间</p><p>2、12.30后：轻微紧急项目，下午需要实现需求或下午需要演示的项目</p><p>3、需要立即更新：紧急的项目，需要开发经过项目的允许，如线上较大项目需通知技术支持部对客户发出公告，确保项目正常访问（可能存在回滚情况，预留时间要长一些）</p></blockquote><h3 id="2、更新流程"><a href="#2、更新流程" class="headerlink" title="2、更新流程"></a>2、更新流程</h3><blockquote><p>1、首先和开发、项目沟通好更新时间，更新内容，必要时让开发提供项目访问地址便于精确定位</p><p>2、如果开发、项目说的含糊不清可以拒绝更新，弄清楚再更新，避免更新错误问题</p><p>3、若自己不知道更新的项目、服务器地址等信息，由组长介入协助更新，不可盲目更新</p></blockquote><h3 id="3、更新验证"><a href="#3、更新验证" class="headerlink" title="3、更新验证"></a>3、更新验证</h3><blockquote><p>1、查看开发给的包，或者自动构建的包的实际大小和线上包的大小，是否有明显区别</p><p>2、查看包的日期是不是今天的</p><p>3、更新后查看项目访问地址是否可以正常访问</p><p>4、如果页面或接口报错，及时查看后台日志解决报错</p><p>5、自查结束后，告知对应的开发，由开发进行测试</p></blockquote><h1 id="密码使用规范"><a href="#密码使用规范" class="headerlink" title="密码使用规范"></a>密码使用规范</h1><h3 id="1、密码示例"><a href="#1、密码示例" class="headerlink" title="1、密码示例"></a>1、密码示例</h3><p>项目所涉及的密码不可使用弱密码 </p><blockquote><p>使用数字+英文字母+特殊符号，总长度不小于10字符</p><p>错误示例：123456  simple  simple123  </p><p>正确示例：Simple@01!  Simple@2022!   Simple_app@2022!</p></blockquote><h3 id="2、密码修改"><a href="#2、密码修改" class="headerlink" title="2、密码修改"></a>2、密码修改</h3><p>密码如果需修改，必须按照上述规范，开发或者别人要求使用弱密码应当拒绝</p><h1 id="端口使用规范"><a href="#端口使用规范" class="headerlink" title="端口使用规范"></a>端口使用规范</h1><h3 id="1、项目端口"><a href="#1、项目端口" class="headerlink" title="1、项目端口"></a>1、项目端口</h3><blockquote><p>tomcat:</p></blockquote><p>server.xml端口修改规范</p><pre class="line-numbers language-none"><code class="language-none">&lt;Server port="1xxxx" shutdown="SHUTDOWN"&lt;Connector port="xxxx" protocol="HTTP/1.1"&lt;Connector port="2xxxx" protocol="org.apache.coyote.http11.Http11AprProtocol"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>示例：</p><pre class="line-numbers language-none"><code class="language-none">&lt;Server port="18180" shutdown="SHUTDOWN"&lt;Connector port="8180" protocol="HTTP/1.1"&lt;Connector port="28180" protocol="org.apache.coyote.http11.Http11AprProtocol"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><blockquote><p>微服务:</p></blockquote><pre class="line-numbers language-none"><code class="language-none">业务使用8开头 8180 8280框架使用7开头 7772 7777<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h1 id="Jenkins规范"><a href="#Jenkins规范" class="headerlink" title="Jenkins规范"></a>Jenkins规范</h1><h3 id="1、权限设置"><a href="#1、权限设置" class="headerlink" title="1、权限设置"></a>1、权限设置</h3><p>jenkins指定项目对指定开发人员开放，不得随意将管理员用户密码等信息告知他人，若开发有更新需求可单独配置项目的更新、取消权限</p><h3 id="2、jenkins命名规范"><a href="#2、jenkins命名规范" class="headerlink" title="2、jenkins命名规范"></a>2、jenkins命名规范</h3><blockquote><p>&lt;地区 + 项目名称 - 备注信息&gt; 已便于其他人员快速定位对应的项目</p><p>示例：</p><p>常州xxx-线上docker版</p><p>常州xxx-mysql测试版</p></blockquote><h3 id="3、jenkins描述"><a href="#3、jenkins描述" class="headerlink" title="3、jenkins描述"></a>3、jenkins描述</h3><p> 需要写，项目未转发的访问地址，和转发后的访问地址，还有是否自动部署的标注</p><blockquote><p>示例：</p></blockquote><pre class="line-numbers language-none"><code class="language-none">自动部署http://192.168.206.133:8280/zhbg/login.shtml   转发前https://zhzl.api.czssq.net/zhbg/login.shtml    转发后<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h3 id="4、项目、脚本存放路径"><a href="#4、项目、脚本存放路径" class="headerlink" title="4、项目、脚本存放路径"></a>4、项目、脚本存放路径</h3><p>目录使用大写，若docker部署使用_DOCKER后缀，以便运维人员进行区分</p><blockquote><p>/home/dpan/simplesoft/apps/XXX</p><p>示例：</p><p>tomcat部署：</p><p>/home/dpan/simplesoft/apps/SHFL_CZ</p><p>docker部署：</p><p>/home/dpan/simplesoft/apps/SHFL_CZ_DOCKER</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 规范 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 自用 </tag>
+            
+            <tag> 规范 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>firewalld备忘</title>
       <link href="/2022/05/10/firewalld-bei-wang/"/>
       <url>/2022/05/10/firewalld-bei-wang/</url>
@@ -124,9 +151,9 @@
       
         <tags>
             
-            <tag> mysql </tag>
-            
             <tag> 工具 </tag>
+            
+            <tag> mysql </tag>
             
         </tags>
       

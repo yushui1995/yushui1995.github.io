@@ -6,7 +6,7 @@
   <link href="https://yushui1995.github.io/atom.xml" rel="self"/>
   
   <link href="https://yushui1995.github.io/"/>
-  <updated>2022-05-11T13:17:59.988Z</updated>
+  <updated>2022-05-12T12:27:44.272Z</updated>
   <id>https://yushui1995.github.io/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>shell面试题</title>
+    <link href="https://yushui1995.github.io/2022/05/12/shell-mian-shi-ti/"/>
+    <id>https://yushui1995.github.io/2022/05/12/shell-mian-shi-ti/</id>
+    <published>2022-05-12T12:23:59.000Z</published>
+    <updated>2022-05-12T12:27:44.272Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;shel面试题&quot;&gt;&lt;a href=&quot;#shel面试题&quot; class=&quot;headerlink&quot; title=&quot;shel面试题&quot;&gt;&lt;/a&gt;shel面试题&lt;/h1&gt;&lt;p&gt;持续记录一些面试题&lt;/p&gt;
+&lt;h1 id=&quot;1、变量&quot;&gt;&lt;a href=&quot;#1、变量&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="shell" scheme="https://yushui1995.github.io/categories/shell/"/>
+    
+    
+    <category term="shell" scheme="https://yushui1995.github.io/tags/shell/"/>
+    
+    <category term="题目" scheme="https://yushui1995.github.io/tags/%E9%A2%98%E7%9B%AE/"/>
+    
+  </entry>
+  
+  <entry>
     <title>运维规范-自用</title>
     <link href="https://yushui1995.github.io/2022/05/11/yun-wei-gui-fan-zi-yong/"/>
     <id>https://yushui1995.github.io/2022/05/11/yun-wei-gui-fan-zi-yong/</id>
     <published>2022-05-11T13:14:49.000Z</published>
-    <updated>2022-05-11T13:17:59.988Z</updated>
+    <updated>2022-05-11T15:33:59.671Z</updated>
     
     
       
@@ -170,9 +198,9 @@
     <category term="工具" scheme="https://yushui1995.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
-    <category term="工具" scheme="https://yushui1995.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
-    
     <category term="mysql" scheme="https://yushui1995.github.io/tags/mysql/"/>
+    
+    <category term="工具" scheme="https://yushui1995.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   

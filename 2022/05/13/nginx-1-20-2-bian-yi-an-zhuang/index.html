@@ -4,11 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="运维规范-自用, ">
-    <meta name="description" content="公司运维管理规范1、获取部署资源信息1、登录工单系统，先看一下给的资源情况，是否符合部署条件，若有问题即使和项目联系解决，不要盲目进行部署
-2、依次登录服务器，查看服务器状态，有没有无法登录，密码错误等情况及时反馈
-3、修改初始密码
-4、挂">
+    <meta name="keywords" content="Nginx 1.20.2 编译安装, ">
+    <meta name="description" content="Nginx 1.20.2 编译安装+nginx_upstream_check_module1、下载nginx官网：http://nginx.org/
+直接下载：wget http://nginx.org/download/nginx-1.2">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +20,7 @@
 
     
 
-    <title>运维规范-自用 | </title>
+    <title>Nginx 1.20.2 编译安装 | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -276,7 +274,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">运维规范-自用</h1>
+                    <h1 class="description center-align post-title">Nginx 1.20.2 编译安装</h1>
                 </div>
             </div>
         </div>
@@ -392,12 +390,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E8%87%AA%E7%94%A8/">
-                                <span class="chip bg-color">自用</span>
+                            <a href="/tags/nginx/">
+                                <span class="chip bg-color">nginx</span>
                             </a>
                         
-                            <a href="/tags/%E8%A7%84%E8%8C%83/">
-                                <span class="chip bg-color">规范</span>
+                            <a href="/tags/%E9%83%A8%E7%BD%B2/">
+                                <span class="chip bg-color">部署</span>
                             </a>
                         
                     </div>
@@ -408,8 +406,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E8%A7%84%E8%8C%83/" class="post-category">
-                                规范
+                            <a href="/categories/nginx/" class="post-category">
+                                nginx
                             </a>
                         
                     </div>
@@ -421,7 +419,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-11
+                    2022-05-13
                 </div>
                 
 
@@ -430,14 +428,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.6k
+                    361
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    2 分
                 </div>
                 
 
@@ -460,117 +458,80 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="公司运维管理规范"><a href="#公司运维管理规范" class="headerlink" title="公司运维管理规范"></a>公司运维管理规范</h1><h3 id="1、获取部署资源信息"><a href="#1、获取部署资源信息" class="headerlink" title="1、获取部署资源信息"></a>1、获取部署资源信息</h3><p>1、登录工单系统，先看一下给的资源情况，是否符合部署条件，若有问题即使和项目联系解决，不要盲目进行部署</p>
-<p>2、依次登录服务器，查看服务器状态，有没有无法登录，密码错误等情况及时反馈</p>
-<p>3、修改初始密码</p>
-<p>4、挂载硬盘，修改dns</p>
-<h3 id="2、部署流程"><a href="#2、部署流程" class="headerlink" title="2、部署流程"></a>2、部署流程</h3><p>1、先确定好部署架构再进行部署</p>
-<p>2、服务器初始化（通过脚本）</p>
-<p>3、安装中间件、基础环境（一般采取工单系统的版本）</p>
-<p>4、项目数据库迁移（开发本地测试库迁移至线上数据库）</p>
-<p>5、jenkins构建（根据工单的git进行构建）</p>
-<p>6、修改配置、启动项目（根据日志、端口验证项目状态）</p>
-<p>7、nginx转发（转发后验证地址状态，访问的接口状态）</p>
-<p>8、填写工单内容（填写转发后地址，交由项目进行访问、测试）</p>
-<p>9、至此部署流程结束</p>
-<h3 id="3、自动化"><a href="#3、自动化" class="headerlink" title="3、自动化"></a>3、自动化</h3><p>1、确认客户是否给ssh端口</p>
-<p>有ssh端口：通过jenkins内置ssh将包推送，结合脚本进行自动更新部署（可以结合ansible）</p>
-<p>无ssh端口：通过agent工具通过curl命令，结合脚本进行自动更新部署（可以结合ansible）</p>
-<p>2、自动推送更新</p>
-<p>测试、确认自动更新脚本没有语法错误，没有问题后，结合jenkins完成进行整体更新流程测试</p>
-<h3 id="4、监控"><a href="#4、监控" class="headerlink" title="4、监控"></a>4、监控</h3><p>1、将项目地址进行web监控，微服务架构由开发提供接口地址，对接口地址进行监控</p>
-<p>2、利用zabbix或prometheus对服务器资源进行监控</p>
-<h3 id="5、文档"><a href="#5、文档" class="headerlink" title="5、文档"></a>5、文档</h3><p>1、将部署的详细情况，部署细节记录在公司文档中</p>
-<p>2、整理项目给与的服务器文档和服务器部署文档单独归档至文件服务器，便于以后查找</p>
-<p>3、常州、扬州、盐城大地区在企业微信形成表格</p>
-<h1 id="故障处理规范"><a href="#故障处理规范" class="headerlink" title="故障处理规范"></a>故障处理规范</h1><h3 id="1、基本原则"><a href="#1、基本原则" class="headerlink" title="1、基本原则"></a>1、基本原则</h3><p> 在故障处理过程中采取的所有手段和行动，一切以恢复业务为最高优先级。</p>
-<h3 id="2、流程机制"><a href="#2、流程机制" class="headerlink" title="2、流程机制"></a>2、流程机制</h3><blockquote>
-<p>1、组员根据zabbix或其他途径知道某个业务出现问题，根据地区、业务对应负责的组员进行处理</p>
-<p>2、对于故障进行基本判断，如果问题和恢复过程非常明确，以优先恢复业务优先</p>
-<p>3、若问题无法快速定位，存在难点或影响范围较大，由组长介入协助解决</p>
-<p>4、若问题牵扯较多无法找到故障点，由经理介入协助解决，并通知技术支持部对客户发出公告，直至故障完全解决</p>
-</blockquote>
-<h3 id="3、事后总结"><a href="#3、事后总结" class="headerlink" title="3、事后总结"></a>3、事后总结</h3><p>每次事故，需要在事故记录系统中详细填写故障时间，内容，涉及人员，解决流程，便于查找、总结</p>
-<p>每次故障事后需自我反思：</p>
-<blockquote>
-<p>一：故障原因有哪些？</p>
-<p>二：我们做什么，怎么做才能确保下次不会再出现类似故障？</p>
-<p>三：当时如果我们做了什么，可以用更短的时间恢复业务？</p>
-</blockquote>
-<h1 id="项目更新规范"><a href="#项目更新规范" class="headerlink" title="项目更新规范"></a>项目更新规范</h1><h3 id="1、更新时间"><a href="#1、更新时间" class="headerlink" title="1、更新时间"></a>1、更新时间</h3><blockquote>
-<p>1、5.30下班后：正常项目统一更新时间</p>
-<p>2、12.30后：轻微紧急项目，下午需要实现需求或下午需要演示的项目</p>
-<p>3、需要立即更新：紧急的项目，需要开发经过项目的允许，如线上较大项目需通知技术支持部对客户发出公告，确保项目正常访问（可能存在回滚情况，预留时间要长一些）</p>
-</blockquote>
-<h3 id="2、更新流程"><a href="#2、更新流程" class="headerlink" title="2、更新流程"></a>2、更新流程</h3><blockquote>
-<p>1、首先和开发、项目沟通好更新时间，更新内容，必要时让开发提供项目访问地址便于精确定位</p>
-<p>2、如果开发、项目说的含糊不清可以拒绝更新，弄清楚再更新，避免更新错误问题</p>
-<p>3、若自己不知道更新的项目、服务器地址等信息，由组长介入协助更新，不可盲目更新</p>
-</blockquote>
-<h3 id="3、更新验证"><a href="#3、更新验证" class="headerlink" title="3、更新验证"></a>3、更新验证</h3><blockquote>
-<p>1、查看开发给的包，或者自动构建的包的实际大小和线上包的大小，是否有明显区别</p>
-<p>2、查看包的日期是不是今天的</p>
-<p>3、更新后查看项目访问地址是否可以正常访问</p>
-<p>4、如果页面或接口报错，及时查看后台日志解决报错</p>
-<p>5、自查结束后，告知对应的开发，由开发进行测试</p>
-</blockquote>
-<h1 id="密码使用规范"><a href="#密码使用规范" class="headerlink" title="密码使用规范"></a>密码使用规范</h1><h3 id="1、密码示例"><a href="#1、密码示例" class="headerlink" title="1、密码示例"></a>1、密码示例</h3><p>项目所涉及的密码不可使用弱密码 </p>
-<blockquote>
-<p>使用数字+英文字母+特殊符号，总长度不小于10字符</p>
-<p>错误示例：123456  simple  simple123  </p>
-<p>正确示例：Simple@01!  Simple@2022!   Simple_app@2022!</p>
-</blockquote>
-<h3 id="2、密码修改"><a href="#2、密码修改" class="headerlink" title="2、密码修改"></a>2、密码修改</h3><p>密码如果需修改，必须按照上述规范，开发或者别人要求使用弱密码应当拒绝</p>
-<h1 id="端口使用规范"><a href="#端口使用规范" class="headerlink" title="端口使用规范"></a>端口使用规范</h1><h3 id="1、项目端口"><a href="#1、项目端口" class="headerlink" title="1、项目端口"></a>1、项目端口</h3><blockquote>
-<p>tomcat:</p>
-</blockquote>
-<p>server.xml端口修改规范</p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;Server port="1xxxx" shutdown="SHUTDOWN"
+                <h1 id="Nginx-1-20-2-编译安装-nginx-upstream-check-module"><a href="#Nginx-1-20-2-编译安装-nginx-upstream-check-module" class="headerlink" title="Nginx 1.20.2 编译安装+nginx_upstream_check_module"></a>Nginx 1.20.2 编译安装+nginx_upstream_check_module</h1><h2 id="1、下载nginx"><a href="#1、下载nginx" class="headerlink" title="1、下载nginx"></a>1、下载nginx</h2><p>官网：<a target="_blank" rel="noopener" href="http://nginx.org/">http://nginx.org/</a></p>
+<p>直接下载：wget <a target="_blank" rel="noopener" href="http://nginx.org/download/nginx-1.20.2.tar.gz">http://nginx.org/download/nginx-1.20.2.tar.gz</a></p>
+<h2 id="2、下载nginx-upstream-check-module"><a href="#2、下载nginx-upstream-check-module" class="headerlink" title="2、下载nginx_upstream_check_module"></a>2、下载nginx_upstream_check_module</h2><p>wget <a target="_blank" rel="noopener" href="https://github.com/yaoweibin/nginx_upstream_check_module/archive/refs/heads/master.zip">https://github.com/yaoweibin/nginx_upstream_check_module/archive/refs/heads/master.zip</a></p>
+<h2 id="3、下载依赖、安装"><a href="#3、下载依赖、安装" class="headerlink" title="3、下载依赖、安装"></a>3、下载依赖、安装</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#依赖安装</span>
+yum <span class="token operator">-</span>y install patch openssl openssl<span class="token operator">-</span>devel gcc<span class="token operator">-</span>c<span class="token operator">+</span><span class="token operator">+</span>  gcc zlib pcre
+<span class="token comment">#解压至/usr/local</span>
+tar <span class="token operator">-</span>zxvf nginx<span class="token operator">-</span><span class="token number">1.20</span><span class="token number">.2</span><span class="token punctuation">.</span>tar<span class="token punctuation">.</span>gz <span class="token operator">-</span>C <span class="token operator">/</span>usr<span class="token operator">/</span>local
+unzip nginx_upstream_check_module<span class="token operator">-</span>master<span class="token punctuation">.</span><span class="token builtin">zip</span> <span class="token operator">-</span>d <span class="token operator">/</span>usr<span class="token operator">/</span>local
 
-&lt;Connector port="xxxx" protocol="HTTP/1.1"
+<span class="token comment">#编译</span>
+cd <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>nginx<span class="token operator">-</span><span class="token number">1.20</span><span class="token number">.2</span>
+patch <span class="token operator">-</span>p1 <span class="token operator">&lt;</span> <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>nginx_upstream_check_module<span class="token operator">-</span>master<span class="token operator">/</span>check_1<span class="token punctuation">.</span><span class="token number">20.1</span><span class="token operator">+</span><span class="token punctuation">.</span>patch  <span class="token comment">#打补丁</span>
 
-&lt;Connector port="2xxxx" protocol="org.apache.coyote.http11.Http11AprProtocol"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">.</span><span class="token operator">/</span>configure <span class="token operator">-</span><span class="token operator">-</span>prefix<span class="token operator">=</span><span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>nginx <span class="token operator">-</span><span class="token operator">-</span>add<span class="token operator">-</span>module<span class="token operator">=</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">/</span>nginx_upstream_check_module<span class="token operator">-</span>master
 
-<p>示例：</p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;Server port="18180" shutdown="SHUTDOWN"
+make <span class="token operator">&amp;</span><span class="token operator">&amp;</span> make install
 
-&lt;Connector port="8180" protocol="HTTP/1.1"
+<span class="token comment">#增加软连接</span>
+ln <span class="token operator">-</span>s <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>nginx<span class="token operator">/</span>sbin<span class="token operator">/</span>nginx <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span><span class="token builtin">bin</span><span class="token operator">/</span>
 
-&lt;Connector port="28180" protocol="org.apache.coyote.http11.Http11AprProtocol"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">#创建日志目录</span>
+mkdir <span class="token operator">-</span>p  <span class="token operator">/</span>var<span class="token operator">/</span>log<span class="token operator">/</span>nginx
 
-<blockquote>
-<p>微服务:</p>
-</blockquote>
-<pre class="line-numbers language-none"><code class="language-none">业务使用8开头 8180 8280
-框架使用7开头 7772 7777<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<span class="token comment">#建立conf目录</span>
+mkdir <span class="token operator">-</span>p <span class="token operator">/</span>etc<span class="token operator">/</span>nginx<span class="token operator">/</span>conf<span class="token punctuation">.</span>d<span class="token operator">/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h2 id="4、修改nginx-conf"><a href="#4、修改nginx-conf" class="headerlink" title="4、修改nginx.conf"></a>4、修改nginx.conf</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">vim <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>nginx<span class="token operator">/</span>conf<span class="token operator">/</span>nginx<span class="token punctuation">.</span>conf
+user              nginx<span class="token punctuation">;</span>
+worker_processes  <span class="token number">4</span><span class="token punctuation">;</span>
+worker_rlimit_nofile <span class="token number">65535</span><span class="token punctuation">;</span>
+error_log         <span class="token operator">/</span>var<span class="token operator">/</span>log<span class="token operator">/</span>nginx<span class="token operator">/</span>error<span class="token punctuation">.</span>log warn<span class="token punctuation">;</span>
+pid               <span class="token operator">/</span>var<span class="token operator">/</span>run<span class="token operator">/</span>nginx<span class="token punctuation">.</span>pid<span class="token punctuation">;</span>
 
+events <span class="token punctuation">{</span>
+worker_connections  <span class="token number">32000</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<h1 id="Jenkins规范"><a href="#Jenkins规范" class="headerlink" title="Jenkins规范"></a>Jenkins规范</h1><h3 id="1、权限设置"><a href="#1、权限设置" class="headerlink" title="1、权限设置"></a>1、权限设置</h3><p>jenkins指定项目对指定开发人员开放，不得随意将管理员用户密码等信息告知他人，若开发有更新需求可单独配置项目的更新、取消权限</p>
-<h3 id="2、jenkins命名规范"><a href="#2、jenkins命名规范" class="headerlink" title="2、jenkins命名规范"></a>2、jenkins命名规范</h3><blockquote>
-<p>&lt;地区 + 项目名称 - 备注信息&gt; 已便于其他人员快速定位对应的项目</p>
-<p>示例：</p>
-<p>常州xxx-线上docker版</p>
-<p>常州xxx-mysql测试版</p>
-</blockquote>
-<h3 id="3、jenkins描述"><a href="#3、jenkins描述" class="headerlink" title="3、jenkins描述"></a>3、jenkins描述</h3><p> 需要写，项目未转发的访问地址，和转发后的访问地址，还有是否自动部署的标注</p>
-<blockquote>
-<p>示例：</p>
-</blockquote>
-<pre class="line-numbers language-none"><code class="language-none">自动部署
-http://192.168.206.133:8280/zhbg/login.shtml   转发前
-https://zhzl.api.czssq.net/zhbg/login.shtml    转发后<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+http <span class="token punctuation">{</span>
+include                        mime<span class="token punctuation">.</span>types<span class="token punctuation">;</span>
+default_type                   application<span class="token operator">/</span>octet<span class="token operator">-</span>stream<span class="token punctuation">;</span>
+log_format                     main <span class="token string">'$remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" "$http_x_forwarded_for"'</span><span class="token punctuation">;</span>
+access_log                     <span class="token operator">/</span>var<span class="token operator">/</span>log<span class="token operator">/</span>nginx<span class="token operator">/</span>access<span class="token punctuation">.</span>log main<span class="token punctuation">;</span>
+sendfile                       on<span class="token punctuation">;</span>
+keepalive_timeout              65s<span class="token punctuation">;</span>
+include                        <span class="token operator">/</span>etc<span class="token operator">/</span>nginx<span class="token operator">/</span>conf<span class="token punctuation">.</span>d<span class="token operator">/</span><span class="token operator">*</span><span class="token punctuation">.</span>conf<span class="token punctuation">;</span>
+server_tokens                  off<span class="token punctuation">;</span>
+server_names_hash_max_size     <span class="token number">512</span><span class="token punctuation">;</span>
+server_names_hash_bucket_size  <span class="token number">128</span><span class="token punctuation">;</span>
+client_header_buffer_size      32k<span class="token punctuation">;</span>
+large_client_header_buffers    <span class="token number">4</span> 32k<span class="token punctuation">;</span>
+gzip                           on<span class="token punctuation">;</span>
+gzip_disable                   msie6<span class="token punctuation">;</span>
+gzip_min_length                1k<span class="token punctuation">;</span>
+gzip_comp_level                <span class="token number">9</span><span class="token punctuation">;</span>
+gzip_buffers                   <span class="token number">4</span> 16k<span class="token punctuation">;</span>
+gzip_http_version              <span class="token number">1.1</span><span class="token punctuation">;</span>
+gzip_proxied                   <span class="token builtin">any</span><span class="token punctuation">;</span>
+gzip_vary                      on<span class="token punctuation">;</span>
+gzip_types                     text<span class="token operator">/</span>plain text<span class="token operator">/</span>css text<span class="token operator">/</span>xml text<span class="token operator">/</span>javascript text<span class="token operator">/</span>x<span class="token operator">-</span>component application<span class="token operator">/</span>json application<span class="token operator">/</span>javascript application<span class="token operator">/</span>xml application<span class="token operator">/</span>xhtml<span class="token operator">+</span>xml application<span class="token operator">/</span>xml<span class="token operator">+</span>rss application<span class="token operator">/</span>rss<span class="token operator">+</span>xml application<span class="token operator">/</span>atom<span class="token operator">+</span>xml application<span class="token operator">/</span>x<span class="token operator">-</span>font<span class="token operator">-</span>ttf application<span class="token operator">/</span>x<span class="token operator">-</span>web<span class="token operator">-</span>app<span class="token operator">-</span>manifest<span class="token operator">+</span>json font<span class="token operator">/</span>opentype image<span class="token operator">/</span>svg<span class="token operator">+</span>xml image<span class="token operator">/</span>x<span class="token operator">-</span>icon<span class="token punctuation">;</span>
+fastcgi_buffer_size            64k<span class="token punctuation">;</span>
+fastcgi_buffers                <span class="token number">4</span> 64k<span class="token punctuation">;</span>
+fastcgi_busy_buffers_size      128k<span class="token punctuation">;</span>
+fastcgi_temp_file_write_size   256k<span class="token punctuation">;</span>
+client_max_body_size           100m<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<h3 id="4、项目、脚本存放路径"><a href="#4、项目、脚本存放路径" class="headerlink" title="4、项目、脚本存放路径"></a>4、项目、脚本存放路径</h3><p>目录使用大写，若docker部署使用_DOCKER后缀，以便运维人员进行区分</p>
-<blockquote>
-<p>/home/dpan/simplesoft/apps/XXX</p>
-<p>示例：</p>
-<p>tomcat部署：</p>
-<p>/home/dpan/simplesoft/apps/SHFL_CZ</p>
-<p>docker部署：</p>
-<p>/home/dpan/simplesoft/apps/SHFL_CZ_DOCKER</p>
-</blockquote>
+<span class="token comment">#启动nginx</span>
+cd <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>nginx<span class="token operator">/</span>sbin
+<span class="token punctuation">.</span><span class="token operator">/</span>nginx <span class="token operator">-</span>c <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>nginx<span class="token operator">/</span>conf<span class="token operator">/</span>nginx<span class="token punctuation">.</span>conf <span class="token comment">#不推荐这样启动，选择systemctl管理</span>
 
+<span class="token comment">#查看版本号</span>
+nginx <span class="token operator">-</span>v<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="5、systemctl管理"><a href="#5、systemctl管理" class="headerlink" title="5、systemctl管理"></a>5、systemctl管理</h2>
                 
             </div>
             <hr/>
@@ -596,7 +557,7 @@ https://zhzl.api.czssq.net/zhbg/login.shtml    转发后<span aria-hidden="true"
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yushui1995.github.io/2022/05/11/yun-wei-gui-fan-zi-yong/">https://yushui1995.github.io/2022/05/11/yun-wei-gui-fan-zi-yong/</a>
+                    <a href="https://yushui1995.github.io/2022/05/13/nginx-1-20-2-bian-yi-an-zhuang/">https://yushui1995.github.io/2022/05/13/nginx-1-20-2-bian-yi-an-zhuang/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -634,12 +595,12 @@ https://zhzl.api.czssq.net/zhbg/login.shtml    转发后<span aria-hidden="true"
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E8%87%AA%E7%94%A8/">
-                                    <span class="chip bg-color">自用</span>
+                                <a href="/tags/nginx/">
+                                    <span class="chip bg-color">nginx</span>
                                 </a>
                             
-                                <a href="/tags/%E8%A7%84%E8%8C%83/">
-                                    <span class="chip bg-color">规范</span>
+                                <a href="/tags/%E9%83%A8%E7%BD%B2/">
+                                    <span class="chip bg-color">部署</span>
                                 </a>
                             
                         </div>
@@ -1079,9 +1040,63 @@ https://zhzl.api.czssq.net/zhbg/login.shtml    转发后<span aria-hidden="true"
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2022/05/13/nginx-1-20-2-bian-yi-an-zhuang/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="Nginx 1.20.2 编译安装">
+                        
+                        <span class="card-title">Nginx 1.20.2 编译安装</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/nginx/" class="post-category">
+                                    nginx
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/nginx/">
+                        <span class="chip bg-color">nginx</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%83%A8%E7%BD%B2/">
+                        <span class="chip bg-color">部署</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2022/05/12/shell-mian-shi-ti/">
                     <div class="card-image">
@@ -1098,9 +1113,9 @@ https://zhzl.api.czssq.net/zhbg/login.shtml    转发后<span aria-hidden="true"
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1122,54 +1137,6 @@ https://zhzl.api.czssq.net/zhbg/login.shtml    转发后<span aria-hidden="true"
                     
                     <a href="/tags/%E9%A2%98%E7%9B%AE/">
                         <span class="chip bg-color">题目</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/05/10/firewalld-bei-wang/">
-                    <div class="card-image">
-                        
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="firewalld备忘">
-                        
-                        <span class="card-title">firewalld备忘</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-10
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E7%B3%BB%E7%BB%9F/" class="post-category">
-                                    系统
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/firewalld/">
-                        <span class="chip bg-color">firewalld</span>
                     </a>
                     
                 </div>

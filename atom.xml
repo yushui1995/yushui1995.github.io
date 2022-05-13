@@ -6,7 +6,7 @@
   <link href="https://yushui1995.github.io/atom.xml" rel="self"/>
   
   <link href="https://yushui1995.github.io/"/>
-  <updated>2022-05-12T12:44:40.021Z</updated>
+  <updated>2022-05-13T13:19:38.706Z</updated>
   <id>https://yushui1995.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Nginx 1.20.2 编译安装</title>
+    <link href="https://yushui1995.github.io/2022/05/13/nginx-1-20-2-bian-yi-an-zhuang/"/>
+    <id>https://yushui1995.github.io/2022/05/13/nginx-1-20-2-bian-yi-an-zhuang/</id>
+    <published>2022-05-13T13:18:38.000Z</published>
+    <updated>2022-05-13T13:19:38.706Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Nginx-1-20-2-编译安装-nginx-upstream-check-module&quot;&gt;&lt;a href=&quot;#Nginx-1-20-2-编译安装-nginx-upstream-check-module&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="nginx" scheme="https://yushui1995.github.io/categories/nginx/"/>
+    
+    
+    <category term="nginx" scheme="https://yushui1995.github.io/tags/nginx/"/>
+    
+    <category term="部署" scheme="https://yushui1995.github.io/tags/%E9%83%A8%E7%BD%B2/"/>
+    
+  </entry>
+  
+  <entry>
     <title>shell面试题</title>
     <link href="https://yushui1995.github.io/2022/05/12/shell-mian-shi-ti/"/>
     <id>https://yushui1995.github.io/2022/05/12/shell-mian-shi-ti/</id>
     <published>2022-05-12T12:23:59.000Z</published>
-    <updated>2022-05-12T12:44:40.021Z</updated>
+    <updated>2022-05-12T12:52:37.795Z</updated>
     
     
       
@@ -29,7 +56,7 @@
         
         
     <summary type="html">&lt;h1 id=&quot;shel面试题&quot;&gt;&lt;a href=&quot;#shel面试题&quot; class=&quot;headerlink&quot; title=&quot;shel面试题&quot;&gt;&lt;/a&gt;shel面试题&lt;/h1&gt;&lt;p&gt;持续记录一些面试题&lt;/p&gt;
-&lt;h1 id=&quot;1、变量&quot;&gt;&lt;a href=&quot;#1、变量&quot;</summary>
+&lt;h2 id=&quot;1、变量&quot;&gt;&lt;a href=&quot;#1、变量&quot;</summary>
         
       
     
@@ -225,9 +252,9 @@
     <category term="rabbitmq" scheme="https://yushui1995.github.io/categories/rabbitmq/"/>
     
     
-    <category term="rabbitmq" scheme="https://yushui1995.github.io/tags/rabbitmq/"/>
-    
     <category term="nginx" scheme="https://yushui1995.github.io/tags/nginx/"/>
+    
+    <category term="rabbitmq" scheme="https://yushui1995.github.io/tags/rabbitmq/"/>
     
   </entry>
   

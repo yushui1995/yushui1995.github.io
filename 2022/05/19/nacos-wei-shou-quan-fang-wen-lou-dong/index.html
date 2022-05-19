@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="redis问题汇总, ">
-    <meta name="description" content="启动警告合集1、WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lo">
+    <meta name="keywords" content="nacos未授权访问漏洞, ">
+    <meta name="description" content="NACOS漏洞问题及修复(CVE-2021-29441)1、漏洞详情：未授权访问漏洞，是在攻击者没有获取到登录权限或未授权的情况下，或者不需要输入密码，即可通过直接输入网站控制台主页面地址，或者不允许查看的链接便可进行访问，同时进行操作该系">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@
 
     
 
-    <title>redis问题汇总 | </title>
+    <title>nacos未授权访问漏洞 | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -273,7 +273,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">redis问题汇总</h1>
+                    <h1 class="description center-align post-title">nacos未授权访问漏洞</h1>
                 </div>
             </div>
         </div>
@@ -389,12 +389,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/redis/">
-                                <span class="chip bg-color">redis</span>
+                            <a href="/tags/nacos/">
+                                <span class="chip bg-color">nacos</span>
                             </a>
                         
-                            <a href="/tags/%E6%8A%A5%E9%94%99-%E8%AD%A6%E5%91%8A/">
-                                <span class="chip bg-color">报错&amp;警告</span>
+                            <a href="/tags/%E6%BC%8F%E6%B4%9E/">
+                                <span class="chip bg-color">漏洞</span>
                             </a>
                         
                     </div>
@@ -405,8 +405,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/redis/" class="post-category">
-                                redis
+                            <a href="/categories/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/" class="post-category">
+                                漏洞修复
                             </a>
                         
                     </div>
@@ -418,7 +418,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-09
+                    2022-05-19
                 </div>
                 
 
@@ -427,14 +427,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    210
+                    636
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -457,16 +457,67 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="启动警告合集"><a href="#启动警告合集" class="headerlink" title="启动警告合集"></a>启动警告合集</h1><h2 id="1、WARNING-The-TCP-backlog-setting-of-511-cannot-be-enforced-because-proc-sys-net-core-somaxconn-is-set-to-the-lower-value-of-128"><a href="#1、WARNING-The-TCP-backlog-setting-of-511-cannot-be-enforced-because-proc-sys-net-core-somaxconn-is-set-to-the-lower-value-of-128" class="headerlink" title="1、WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128."></a>1、WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.</h2><h3 id="TCP积压值过小问题"><a href="#TCP积压值过小问题" class="headerlink" title="TCP积压值过小问题"></a>TCP积压值过小问题</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"net.core.somaxconn = 1024"</span> <span class="token operator">&gt;&gt;</span> /etc/sysctl.conf
-sysctl -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+                <h1 id="NACOS漏洞问题及修复-CVE-2021-29441"><a href="#NACOS漏洞问题及修复-CVE-2021-29441" class="headerlink" title="NACOS漏洞问题及修复(CVE-2021-29441)"></a>NACOS漏洞问题及修复(CVE-2021-29441)</h1><h2 id="1、漏洞详情："><a href="#1、漏洞详情：" class="headerlink" title="1、漏洞详情："></a>1、漏洞详情：</h2><p>未授权访问漏洞，是在攻击者没有获取到登录权限或未授权的情况下，或者不需要输入密码，即可通过直接输入网站控制台主页面地址，或者不允许查看的链接便可进行访问，同时进行操作该系统</p>
+<p><strong>影响范围为1.4.1版本之前的<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=nacos&amp;spm=1001.2101.3001.7020">nacos</a></strong></p>
+<h2 id="2、漏洞复现："><a href="#2、漏洞复现：" class="headerlink" title="2、漏洞复现："></a>2、漏洞复现：</h2><h3 id="访问用户列表界面"><a href="#访问用户列表界面" class="headerlink" title="访问用户列表界面"></a>访问用户列表界面</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost ~<span class="token punctuation">]</span><span class="token comment"># curl XGET '&lt;http://127.0.0.1:8848/nacos/v1/auth/users?pageNo=1&amp;pageSize=9&gt;' -H 'User-Agent: Nacos-Server'</span>
+<span class="token punctuation">{</span><span class="token string">"totalCount"</span>:1,<span class="token string">"pageNumber"</span>:1,<span class="token string">"pagesAvailable"</span>:1,<span class="token string">"pageItems"</span>:<span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">"username"</span><span class="token builtin class-name">:</span><span class="token string">"nacos"</span>,<span class="token string">"password"</span><span class="token builtin class-name">:</span><span class="token string">"<span class="token variable">$2a</span><span class="token variable">$10</span><span class="token variable">$EuWPZHzz32dJN7jexM34MOeYirDdFAZm2kuWj7VEOJhhZkDrxfvUu</span>"</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">[</span>root@localhost ~<span class="token punctuation">]</span><span class="token comment">#</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<h3 id="2、WARNING-overcommit-memory-is-set-to-0-Background-save-may-fail-under-low-memory-condition-To-fix-this-issue-add-‘vm-overcommit-memory-1’-to-etc-sysctl-conf-and-then-reboot-or-run-the-command-‘sysctl-vm-overcommit-memory-1’-for-this-to-take-effect"><a href="#2、WARNING-overcommit-memory-is-set-to-0-Background-save-may-fail-under-low-memory-condition-To-fix-this-issue-add-‘vm-overcommit-memory-1’-to-etc-sysctl-conf-and-then-reboot-or-run-the-command-‘sysctl-vm-overcommit-memory-1’-for-this-to-take-effect" class="headerlink" title="2、WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add ‘vm.overcommit_memory = 1’ to /etc/sysctl.conf and then reboot or run the command ‘sysctl vm.overcommit_memory=1’ for this to take effect."></a>2、WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add ‘vm.overcommit_memory = 1’ to /etc/sysctl.conf and then reboot or run the command ‘sysctl vm.overcommit_memory=1’ for this to take effect.</h3><h3 id="解决内存方面问题"><a href="#解决内存方面问题" class="headerlink" title="解决内存方面问题"></a>解决内存方面问题</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"vm.overcommit_memory = 1"</span> <span class="token operator">&gt;&gt;</span> /etc/sysctl.conf
-sysctl -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="添加新用户"><a href="#添加新用户" class="headerlink" title="添加新用户"></a>添加新用户</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost conf<span class="token punctuation">]</span><span class="token comment"># curl -XPOST '&lt;http://127.0.0.1:8848/nacos/v1/auth/users?username=czdx&amp;password=2022SecCZ_czdx@2022&gt;' -H 'User-Agent: Nacos-Server'</span>
+<span class="token punctuation">{</span><span class="token string">"code"</span>:200,<span class="token string">"message"</span><span class="token builtin class-name">:</span><span class="token string">"create user ok!"</span>,<span class="token string">"data"</span>:null<span class="token punctuation">}</span>
 
-<h3 id="3、WARNING-you-have-Transparent-Huge-Pages-THP-support-enabled-in-your-kernel-This-will-create-latency-and-memory-usage-issues-with-Redis-To-fix-this-issue-run-the-command-‘echo-never-gt-sys-kernel-mm-transparent-hugepage-enabled’-as-root-and-add-it-to-your-etc-rc-local-in-order-to-retain-the-setting-after-a-reboot-Redis-must-be-restarted-after-THP-is-disabled"><a href="#3、WARNING-you-have-Transparent-Huge-Pages-THP-support-enabled-in-your-kernel-This-will-create-latency-and-memory-usage-issues-with-Redis-To-fix-this-issue-run-the-command-‘echo-never-gt-sys-kernel-mm-transparent-hugepage-enabled’-as-root-and-add-it-to-your-etc-rc-local-in-order-to-retain-the-setting-after-a-reboot-Redis-must-be-restarted-after-THP-is-disabled" class="headerlink" title="3、WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command ‘echo never > /sys/kernel/mm/transparent_hugepage/enabled’ as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled."></a>3、WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command ‘echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled’ as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">'echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled'</span> <span class="token operator">&gt;&gt;</span> /etc/rc.local<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<span class="token comment">#再次查看 czdx用户已经被添加</span>
+<span class="token punctuation">[</span>root@localhost conf<span class="token punctuation">]</span><span class="token comment"># curl XGET '&lt;http://127.0.0.1:8848/nacos/v1/auth/users?pageNo=1&amp;pageSize=9&gt;' -H 'User-Agent: Nacos-Server'</span>
+<span class="token punctuation">{</span><span class="token string">"totalCount"</span>:2,<span class="token string">"pageNumber"</span>:1,<span class="token string">"pagesAvailable"</span>:1,<span class="token string">"pageItems"</span>:<span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">"username"</span><span class="token builtin class-name">:</span><span class="token string">"czdx"</span>,<span class="token string">"password"</span><span class="token builtin class-name">:</span><span class="token string">"<span class="token variable">$2a</span><span class="token variable">$10</span><span class="token variable">$xSWgJpl</span>/TSvr0JnEE5KshePTU0ITB3sTlw8q.b8qzCSBuRBy7Iyn."</span><span class="token punctuation">}</span>,<span class="token punctuation">{</span><span class="token string">"username"</span><span class="token builtin class-name">:</span><span class="token string">"nacos"</span>,<span class="token string">"password"</span><span class="token builtin class-name">:</span><span class="token string">"<span class="token variable">$2a</span><span class="token variable">$10</span><span class="token variable">$EuWPZHzz32dJN7jexM34MOeYirDdFAZm2kuWj7VEOJhhZkDrxfvUu</span>"</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>内核中启用了透明的大页面THP,reboot重启后生效</p>
+<h3 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost conf<span class="token punctuation">]</span><span class="token comment"># curl -XDELETE &lt;http://127.0.0.1:8848/nacos/v1/auth/users&gt; -d "username=qwe&amp;newPassword=2022SecCZ_czdx@2022"</span>
+<span class="token punctuation">{</span><span class="token string">"code"</span>:200,<span class="token string">"message"</span><span class="token builtin class-name">:</span><span class="token string">"delete user ok!"</span>,<span class="token string">"data"</span>:null<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
+<h2 id="3、解决方法："><a href="#3、解决方法：" class="headerlink" title="3、解决方法："></a>3、解决方法：</h2><h3 id="升级nacos"><a href="#升级nacos" class="headerlink" title="升级nacos"></a>升级nacos</h3><p>下载1.4.1以上版本或者直接使用最新版本</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/alibaba/nacos/releases">Releases · alibaba/nacos</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205192126496.png"></p>
+<h3 id="安装nacos"><a href="#安装nacos" class="headerlink" title="安装nacos"></a>安装nacos</h3><p>在新的nacos文件中，在conf目录下，找到数据库升级脚本1.4.0-ipv6_support-update.sql，在nacos配置库中执行该脚本(3.0系统中数据库名应该是jdlh-config)</p>
+<p>修改conf目录下的application.properties文件，把原有nacos的数据源迁移到新的nacos配置中</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205192126121.png"></p>
+<p>注意以下新增配置：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205192127601.png"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">修改nacos.core.auth.enabled配置为 <span class="token boolean">true</span>
+
+修改nacos.core.auth.server.identity.key和nacos.core.auth.server.identity.value值为自定义值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="测试效果"><a href="#测试效果" class="headerlink" title="测试效果"></a>测试效果</h3><p>修改完配置后重启nacos，测试效果</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost conf<span class="token punctuation">]</span><span class="token comment"># curl XGET '&lt;http://127.0.0.1:8848/nacos/v1/auth/users?pageNo=1&amp;pageSize=9&gt;' -H 'User-Agent: Nacos-Server'</span>
+<span class="token punctuation">{</span><span class="token string">"timestamp"</span><span class="token builtin class-name">:</span><span class="token string">"2022-05-19T14:08:40.106+08:00"</span>,<span class="token string">"status"</span>:403,<span class="token string">"error"</span><span class="token builtin class-name">:</span><span class="token string">"Forbidden"</span>,<span class="token string">"message"</span><span class="token builtin class-name">:</span><span class="token string">"unknown user!"</span>,<span class="token string">"path"</span><span class="token builtin class-name">:</span><span class="token string">"/nacos/v1/auth/users"</span><span class="token punctuation">}</span><span class="token punctuation">[</span>root@localhost conf<span class="token punctuation">]</span><span class="token comment">#</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h2 id="4、修改项目配置"><a href="#4、修改项目配置" class="headerlink" title="4、修改项目配置"></a>4、修改项目配置</h2><p>把项目中各个工程的bootstrap.yml中cloud.nacos层级下添加username和password</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># Tomcat</span>
+server:
+  port: <span class="token number">8077</span>
+
+<span class="token comment"># Spring</span>
+spring:
+  application:
+    <span class="token comment"># 应用名称</span>
+    name: simple-test
+  profiles:
+    <span class="token comment"># 环境配置</span>
+    active: dev
+  cloud:
+    nacos:
+      username: nacos
+      password: Simple@2022<span class="token operator">!</span>
+      discovery:
+        <span class="token comment"># 服务注册地址</span>
+        server-addr: <span class="token number">172.18</span>.16.59:8848
+        namespace: b56778f3-2e9f-4645-91c9-2808ffbf6dd9
+      config:
+        <span class="token comment"># 配置中心地址</span>
+        server-addr: <span class="token number">172.18</span>.16.59:8848
+        <span class="token comment"># 配置文件格式</span>
+        file-extension: yml
+        <span class="token comment"># 共享配置</span>
+        shared-dataids: application-<span class="token variable">${spring.profiles.active}</span><span class="token builtin class-name">.</span><span class="token variable">${spring.cloud.nacos.config.file-extension}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="至此漏洞修复结束"><a href="#至此漏洞修复结束" class="headerlink" title="至此漏洞修复结束"></a>至此漏洞修复结束</h2>
                 
             </div>
             <hr/>
@@ -492,7 +543,7 @@ sysctl -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yushui1995.github.io/2022/05/09/redis-wen-ti-hui-zong/">https://yushui1995.github.io/2022/05/09/redis-wen-ti-hui-zong/</a>
+                    <a href="https://yushui1995.github.io/2022/05/19/nacos-wei-shou-quan-fang-wen-lou-dong/">https://yushui1995.github.io/2022/05/19/nacos-wei-shou-quan-fang-wen-lou-dong/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -530,12 +581,12 @@ sysctl -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/redis/">
-                                    <span class="chip bg-color">redis</span>
+                                <a href="/tags/nacos/">
+                                    <span class="chip bg-color">nacos</span>
                                 </a>
                             
-                                <a href="/tags/%E6%8A%A5%E9%94%99-%E8%AD%A6%E5%91%8A/">
-                                    <span class="chip bg-color">报错&amp;警告</span>
+                                <a href="/tags/%E6%BC%8F%E6%B4%9E/">
+                                    <span class="chip bg-color">漏洞</span>
                                 </a>
                             
                         </div>
@@ -975,16 +1026,17 @@ sysctl -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/05/10/firewalld-bei-wang/">
+                <a href="/2022/05/19/nacos-wei-shou-quan-fang-wen-lou-dong/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="firewalld备忘">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="nacos未授权访问漏洞">
                         
-                        <span class="card-title">firewalld备忘</span>
+                        <span class="card-title">nacos未授权访问漏洞</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -994,26 +1046,31 @@ sysctl -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%B3%BB%E7%BB%9F/" class="post-category">
-                                    系统
+                            <a href="/categories/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/" class="post-category">
+                                    漏洞修复
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/firewalld/">
-                        <span class="chip bg-color">firewalld</span>
+                    <a href="/tags/nacos/">
+                        <span class="chip bg-color">nacos</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%BC%8F%E6%B4%9E/">
+                        <span class="chip bg-color">漏洞</span>
                     </a>
                     
                 </div>
@@ -1027,12 +1084,12 @@ sysctl -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/08/github-yi-xie-ji-qiao/">
+                <a href="/2022/05/13/nginx-1-20-2-bian-yi-an-zhuang/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="github一些技巧">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="Nginx 1.20.2 编译安装">
                         
-                        <span class="card-title">github一些技巧</span>
+                        <span class="card-title">Nginx 1.20.2 编译安装</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1043,14 +1100,14 @@ sysctl -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-13
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/github/" class="post-category">
-                                    github
+                            <a href="/categories/nginx/" class="post-category">
+                                    nginx
                                 </a>
                             
                             
@@ -1060,8 +1117,12 @@ sysctl -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/github/">
-                        <span class="chip bg-color">github</span>
+                    <a href="/tags/nginx/">
+                        <span class="chip bg-color">nginx</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%83%A8%E7%BD%B2/">
+                        <span class="chip bg-color">部署</span>
                     </a>
                     
                 </div>

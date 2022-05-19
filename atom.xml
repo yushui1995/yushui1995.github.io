@@ -6,7 +6,7 @@
   <link href="https://yushui1995.github.io/atom.xml" rel="self"/>
   
   <link href="https://yushui1995.github.io/"/>
-  <updated>2022-05-13T13:19:38.706Z</updated>
+  <updated>2022-05-19T13:29:24.502Z</updated>
   <id>https://yushui1995.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>nacos未授权访问漏洞</title>
+    <link href="https://yushui1995.github.io/2022/05/19/nacos-wei-shou-quan-fang-wen-lou-dong/"/>
+    <id>https://yushui1995.github.io/2022/05/19/nacos-wei-shou-quan-fang-wen-lou-dong/</id>
+    <published>2022-05-19T13:24:00.000Z</published>
+    <updated>2022-05-19T13:29:24.502Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;NACOS漏洞问题及修复-CVE-2021-29441&quot;&gt;&lt;a href=&quot;#NACOS漏洞问题及修复-CVE-2021-29441&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="漏洞修复" scheme="https://yushui1995.github.io/categories/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/"/>
+    
+    
+    <category term="nacos" scheme="https://yushui1995.github.io/tags/nacos/"/>
+    
+    <category term="漏洞" scheme="https://yushui1995.github.io/tags/%E6%BC%8F%E6%B4%9E/"/>
+    
+  </entry>
   
   <entry>
     <title>Nginx 1.20.2 编译安装</title>

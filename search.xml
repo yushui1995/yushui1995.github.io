@@ -313,9 +313,9 @@
       
         <tags>
             
-            <tag> nginx </tag>
-            
             <tag> rabbitmq </tag>
+            
+            <tag> nginx </tag>
             
         </tags>
       

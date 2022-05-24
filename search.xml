@@ -8,9 +8,23 @@
       <link href="/2022/05/24/jiang-yi-ge-san-t-de-ying-pan-zuo-cheng-lvm/"/>
       <url>/2022/05/24/jiang-yi-ge-san-t-de-ying-pan-zuo-cheng-lvm/</url>
       
-        <content type="html"><![CDATA[<h1 id="将一个三T的硬盘做成LVM"><a href="#将一个三T的硬盘做成LVM" class="headerlink" title="将一个三T的硬盘做成LVM"></a>将一个三T的硬盘做成LVM</h1><p>解决方案</p><blockquote><p>增加磁盘 -&gt; 初始化物理卷 -&gt; 扩容卷组 -&gt; 扩容逻辑卷</p></blockquote><p><strong>因为fdisk不能创建大于2T的分区，创建大分区得用parted</strong></p><p>parted将硬盘进行分区：</p><blockquote><p>查看磁盘信息，这里将vdc进行分区</p></blockquote><pre class="line-numbers language-text" data-language="text"><code class="language-text">[root@ftp 05]# lsblkNAME            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTsr0              11:0    1 1024M  0 rom  vda             252:0    0   40G  0 disk ├─vda1          252:1    0    1G  0 part /boot└─vda2          252:2    0   39G  0 part   ├─centos-root 253:0    0   35G  0 lvm  /  └─centos-swap 253:1    0    4G  0 lvm  [SWAP]vdb             252:16   0    2T  0 disk /home/dpanvdc             252:32   0    3T  0 disk <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><blockquote><p>parted /dev/vdc</p></blockquote><pre class="line-numbers language-text" data-language="text"><code class="language-text">[root@ftp 05]# parted /dev/vdcGNU Parted 3.1Using /dev/vdcWelcome to GNU Parted! Type 'help' to view a list of commands.(parted) p                                                                Model: Virtio Block Device (virtblk)Disk /dev/vdc: 3299GBSector size (logical/physical): 512B/512BPartition Table: msdosDisk Flags: Number  Start  End  Size  Type  File system  Flags(parted) mklabel                                                          New disk label type? gpt                                                  Warning: The existing disk label on /dev/vdc will be destroyed and all data on this disk will be lost. Do you want to continue?Yes/No? yes                                                               (parted) p                                                                Model: Virtio Block Device (virtblk)Disk /dev/vdc: 3299GBSector size (logical/physical): 512B/512BPartition Table: gptDisk Flags: Number  Start  End  Size  File system  Name  Flags(parted) mkpart primary 4096s 100%(parted) p                                                                Model: Virtio Block Device (virtblk)Disk /dev/vdc: 3299GBSector size (logical/physical): 512B/512BPartition Table: gptDisk Flags: Number  Start   End     Size    File system  Name     Flags 1      2097kB  3299GB  3299GB               primary#这里已经分区完成了(parted) toggle 1 lvm        #打个标签                                             (parted) p                                                                Model: Virtio Block Device (virtblk)Disk /dev/vdc: 3299GBSector size (logical/physical): 512B/512BPartition Table: gptDisk Flags: Number  Start   End     Size    File system  Name     Flags 1      2097kB  3299GB  3299GB               primary  lvm(parted) quit                                                             Information: You may need to update /etc/fstab.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205242259258.png"></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="将一个三T的硬盘分区并做LVM"><a href="#将一个三T的硬盘分区并做LVM" class="headerlink" title="将一个三T的硬盘分区并做LVM"></a>将一个三T的硬盘分区并做LVM</h1><p>解决方案</p><blockquote><p>增加磁盘 -&gt; 初始化物理卷 -&gt; 扩容卷组 -&gt; 扩容逻辑卷</p></blockquote><p><strong>因为fdisk不能创建大于2T的分区，创建大分区得用parted</strong></p><p>parted将硬盘进行分区：</p><blockquote><p>查看磁盘信息，这里将vdc进行分区</p></blockquote><pre class="line-numbers language-text" data-language="text"><code class="language-text">[root@ftp 05]# lsblkNAME            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTsr0              11:0    1 1024M  0 rom  vda             252:0    0   40G  0 disk ├─vda1          252:1    0    1G  0 part /boot└─vda2          252:2    0   39G  0 part   ├─centos-root 253:0    0   35G  0 lvm  /  └─centos-swap 253:1    0    4G  0 lvm  [SWAP]vdb             252:16   0    2T  0 disk /home/dpanvdc             252:32   0    3T  0 disk <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><blockquote><p>parted /dev/vdc</p></blockquote><pre class="line-numbers language-text" data-language="text"><code class="language-text">[root@ftp 05]# parted /dev/vdcGNU Parted 3.1Using /dev/vdcWelcome to GNU Parted! Type 'help' to view a list of commands.(parted) p                                                                Model: Virtio Block Device (virtblk)Disk /dev/vdc: 3299GBSector size (logical/physical): 512B/512BPartition Table: msdosDisk Flags: Number  Start  End  Size  Type  File system  Flags(parted) mklabel                                                          New disk label type? gpt                                                  Warning: The existing disk label on /dev/vdc will be destroyed and all data on this disk will be lost. Do you want to continue?Yes/No? yes                                                               (parted) p                                                                Model: Virtio Block Device (virtblk)Disk /dev/vdc: 3299GBSector size (logical/physical): 512B/512BPartition Table: gptDisk Flags: Number  Start  End  Size  File system  Name  Flags(parted) mkpart primary 4096s 100%(parted) p                                                                Model: Virtio Block Device (virtblk)Disk /dev/vdc: 3299GBSector size (logical/physical): 512B/512BPartition Table: gptDisk Flags: Number  Start   End     Size    File system  Name     Flags 1      2097kB  3299GB  3299GB               primary#这里已经分区完成了(parted) toggle 1 lvm        #打个标签                                             (parted) p                                                                Model: Virtio Block Device (virtblk)Disk /dev/vdc: 3299GBSector size (logical/physical): 512B/512BPartition Table: gptDisk Flags: Number  Start   End     Size    File system  Name     Flags 1      2097kB  3299GB  3299GB               primary  lvm(parted) quit                                                             Information: You may need to update /etc/fstab.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><pre class="line-numbers language-none"><code class="language-none">#使用命令查看#lsblk<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205242310696.png"></p><p>分区完成。下面进行LVM操作，创建相应的PV VG LV</p><p>LVM相关操作，参考<a href="https://yushui1995.github.io/2022/05/24/lvm-guan-li/">LVM管理</a>进行后续操作</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#完成效果如图</span><span class="token comment">#df -h</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205242259258.png"></p>]]></content>
       
       
+      <categories>
+          
+          <category> LVM </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 分区 </tag>
+            
+            <tag> 系统 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -33,9 +47,9 @@
       
         <tags>
             
-            <tag> LVM </tag>
-            
             <tag> 系统 </tag>
+            
+            <tag> LVM </tag>
             
         </tags>
       
@@ -299,9 +313,9 @@
       
         <tags>
             
-            <tag> rabbitmq </tag>
-            
             <tag> nginx </tag>
+            
+            <tag> rabbitmq </tag>
             
         </tags>
       

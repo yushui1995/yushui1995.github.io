@@ -5,14 +5,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="将一个三T的硬盘做成LVM, ">
-    <meta name="description" content="将一个三T的硬盘做成LVM解决方案
+    <meta name="description" content="将一个三T的硬盘分区并做LVM解决方案
 
 增加磁盘 -&amp;gt; 初始化物理卷 -&amp;gt; 扩容卷组 -&amp;gt; 扩容逻辑卷
 
 因为fdisk不能创建大于2T的分区，创建大分区得用parted
 parted将硬盘进行分区：
 
-查看磁盘信息，这里将">
+查看磁盘信息，这">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -39,9 +39,9 @@ parted将硬盘进行分区：
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.4.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
 </head>
 
 
@@ -394,12 +394,29 @@ parted将硬盘进行分区：
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%88%86%E5%8C%BA/">
+                                <span class="chip bg-color">分区</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%B3%BB%E7%BB%9F/">
+                                <span class="chip bg-color">系统</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/LVM/" class="post-category">
+                                LVM
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -417,7 +434,7 @@ parted将硬盘进行分区：
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    378
+                    430
                 </div>
                 
 
@@ -447,7 +464,7 @@ parted将硬盘进行分区：
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="将一个三T的硬盘做成LVM"><a href="#将一个三T的硬盘做成LVM" class="headerlink" title="将一个三T的硬盘做成LVM"></a>将一个三T的硬盘做成LVM</h1><p>解决方案</p>
+                <h1 id="将一个三T的硬盘分区并做LVM"><a href="#将一个三T的硬盘分区并做LVM" class="headerlink" title="将一个三T的硬盘分区并做LVM"></a>将一个三T的硬盘分区并做LVM</h1><p>解决方案</p>
 <blockquote>
 <p>增加磁盘 -&gt; 初始化物理卷 -&gt; 扩容卷组 -&gt; 扩容逻辑卷</p>
 </blockquote>
@@ -524,9 +541,14 @@ Number  Start   End     Size    File system  Name     Flags
 Information: You may need to update /etc/fstab.
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<pre class="line-numbers language-none"><code class="language-none">#使用命令查看
+#lsblk<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-
-
+<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205242310696.png"></p>
+<p>分区完成。下面进行LVM操作，创建相应的PV VG LV</p>
+<p>LVM相关操作，参考<a href="https://yushui1995.github.io/2022/05/24/lvm-guan-li/">LVM管理</a>进行后续操作</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#完成效果如图</span>
+<span class="token comment">#df -h</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205242259258.png"></p>
 
@@ -592,7 +614,15 @@ Information: You may need to update /etc/fstab.
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E5%88%86%E5%8C%BA/">
+                                    <span class="chip bg-color">分区</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%B3%BB%E7%BB%9F/">
+                                    <span class="chip bg-color">系统</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -1055,13 +1085,29 @@ Information: You may need to update /etc/fstab.
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            yushui1995
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/LVM/" class="post-category">
+                                    LVM
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%88%86%E5%8C%BA/">
+                        <span class="chip bg-color">分区</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%B3%BB%E7%BB%9F/">
+                        <span class="chip bg-color">系统</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -1105,12 +1151,12 @@ Information: You may need to update /etc/fstab.
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/LVM/">
-                        <span class="chip bg-color">LVM</span>
-                    </a>
-                    
                     <a href="/tags/%E7%B3%BB%E7%BB%9F/">
                         <span class="chip bg-color">系统</span>
+                    </a>
+                    
+                    <a href="/tags/LVM/">
+                        <span class="chip bg-color">LVM</span>
                     </a>
                     
                 </div>
@@ -1247,7 +1293,7 @@ Information: You may need to update /etc/fstab.
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">10.2k</span>
+                        class="white-color">10.3k</span>
             
             
             

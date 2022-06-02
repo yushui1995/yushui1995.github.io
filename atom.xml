@@ -6,7 +6,7 @@
   <link href="https://yushui1995.github.io/atom.xml" rel="self"/>
   
   <link href="https://yushui1995.github.io/"/>
-  <updated>2022-05-24T15:12:27.951Z</updated>
+  <updated>2022-06-02T15:09:24.226Z</updated>
   <id>https://yushui1995.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>nginx调优参数</title>
+    <link href="https://yushui1995.github.io/2022/06/02/nginx-diao-you-can-shu/"/>
+    <id>https://yushui1995.github.io/2022/06/02/nginx-diao-you-can-shu/</id>
+    <published>2022-06-02T15:06:24.000Z</published>
+    <updated>2022-06-02T15:09:24.226Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre class=&quot;line-numbers language-bash&quot; data-language=&quot;bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;net.ipv4.ip_local_port_range&lt;span class=&quot;token</summary>
+        
+      
+    
+    
+    
+    <category term="nginx" scheme="https://yushui1995.github.io/categories/nginx/"/>
+    
+    
+    <category term="nginx" scheme="https://yushui1995.github.io/tags/nginx/"/>
+    
+    <category term="配置" scheme="https://yushui1995.github.io/tags/%E9%85%8D%E7%BD%AE/"/>
+    
+  </entry>
   
   <entry>
     <title>将一个三T的硬盘做成LVM</title>
@@ -333,9 +360,9 @@
     <category term="rabbitmq" scheme="https://yushui1995.github.io/categories/rabbitmq/"/>
     
     
-    <category term="rabbitmq" scheme="https://yushui1995.github.io/tags/rabbitmq/"/>
-    
     <category term="nginx" scheme="https://yushui1995.github.io/tags/nginx/"/>
+    
+    <category term="rabbitmq" scheme="https://yushui1995.github.io/tags/rabbitmq/"/>
     
   </entry>
   

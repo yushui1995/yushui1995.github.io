@@ -430,14 +430,14 @@ net.core.netdev_max_ba">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.1k
+                    2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    7 分
                 </div>
                 
 
@@ -554,36 +554,7 @@ client_header_timeout 4k<span class="token punctuation">;</span>
 <span class="token number">8</span>、rtsig_signo  <span class="token comment">#设置Nginx在rtsig 模式使用的两个信号中的第一个，第二个信号是在第一个信号的编号上加1.</span>
 <span class="token number">9</span>、rtsig_overflow <span class="token comment">#这些参数指定如何处理rtsig队列溢出。当溢出发生在nginx清空rtsig队列时，它们将连续调用poll()和 rtsig.poll()来处理未完成的事件，直到rtsig被排空以防止新的溢出，当溢出处理完毕，nginx再次启用rtsig模式，rtsig_overflow_events specifies指定经过poll()的事件数，默认为16，rtsig_overflow_test指定poll()处理多少事件后nginx将排空rtsig队列，默认值为32，rtsig_overflow_threshold只能运行在Linux 2.4.x内核下，在排空rtsig队列前nginx检查内核以确定队列是怎样被填满的。默认值为1/10，“rtsig_overflow_threshold 3”意为1/3。</span>
 
-
-nginx配置参数优化
-修改配置文件：
-<span class="token comment"># vi /usr/loca/nginx-1.6.2/conf/nginx.conf</span>
-user  nginx nginx<span class="token punctuation">;</span>
-worker_processes  auto<span class="token punctuation">;</span>
-
-events <span class="token punctuation">{</span>
-    worker_connections  <span class="token number">65535</span><span class="token punctuation">;</span>
-    use epoll<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-proxy_buffering off<span class="token punctuation">;</span>
-    proxy_connect_timeout       3s<span class="token punctuation">;</span>
-    proxy_ignore_client_abort on<span class="token punctuation">;</span>
-    proxy_read_timeout          120s<span class="token punctuation">;</span>
-    proxy_send_timeout          120s<span class="token punctuation">;</span>
-    sendfile        on<span class="token punctuation">;</span>
-    tcp_nopush     on<span class="token punctuation">;</span>
-    client_max_body_size 20m<span class="token punctuation">;</span>
-    keepalive_timeout  <span class="token number">65</span> <span class="token number">60</span><span class="token punctuation">;</span>  <span class="token comment">#后面的60为发送给客户端应答报文头部中显示的超时时间设置为60s：如不设置客户端将不显示超时时间。</span>
-    client_body_buffer_size  1024k<span class="token punctuation">;</span>
-        proxy_buffer_size        64k<span class="token punctuation">;</span>
-        proxy_buffers            <span class="token number">32</span> 32k<span class="token punctuation">;</span>
-        proxy_busy_buffers_size 128k<span class="token punctuation">;</span>
-        proxy_temp_file_write_size 64k<span class="token punctuation">;</span>
-<span class="token function">gzip</span>  on<span class="token punctuation">;</span>
-   gzip_min_length  <span class="token number">1000</span><span class="token punctuation">;</span>
-   gzip_buffers     <span class="token number">4</span> 8k<span class="token punctuation">;</span>
-   gzip_types       text/plain application/x-javascript text/css application/xml text/javascript<span class="token punctuation">;</span>
-   gzip_vary on<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
                 
@@ -1094,17 +1065,16 @@ proxy_buffering off<span class="token punctuation">;</span>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/06/02/nginx-diao-you-can-shu/">
+                <a href="/2022/06/20/guan-yu-mysql-de-general-log/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="nginx调优参数">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="关于mysql的general_log">
                         
-                        <span class="card-title">nginx调优参数</span>
+                        <span class="card-title">关于mysql的general_log</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1114,27 +1084,26 @@ proxy_buffering off<span class="token punctuation">;</span>
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-02
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-20
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/nginx/" class="post-category">
-                                    nginx
+                            <a href="/categories/mysql/" class="post-category">
+                                    mysql
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/nginx/">
-                        <span class="chip bg-color">nginx</span>
+                    <a href="/tags/mysql/">
+                        <span class="chip bg-color">mysql</span>
                     </a>
                     
                     <a href="/tags/%E9%85%8D%E7%BD%AE/">
@@ -1327,7 +1296,7 @@ proxy_buffering off<span class="token punctuation">;</span>
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">12.4k</span>
+                        class="white-color">13.5k</span>
             
             
             

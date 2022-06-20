@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Xtrabackup备份与恢复, ">
-    <meta name="description" content="Xtrabackup备份与恢复一、Xtrabackup介绍Percona-xtrabackup是 Percona公司开发的一个用于MySQL数据库物理热备的备份工具，支持MySQL、Percona server和MariaDB，开源免费，是">
+    <meta name="keywords" content="关于mysql的general_log, ">
+    <meta name="description" content="在默认情况下，MySQL是不会打开general log的，这个log里面会记录MySQL所有的SQL语句，不管是查询语句，还是DML语句，还是DDL语句，还是DCL语句，这些语句统统都会被记录在general log文件中。就连我们连接和">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@
 
     
 
-    <title>Xtrabackup备份与恢复 | </title>
+    <title>关于mysql的general_log | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -273,7 +273,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Xtrabackup备份与恢复</h1>
+                    <h1 class="description center-align post-title">关于mysql的general_log</h1>
                 </div>
             </div>
         </div>
@@ -393,8 +393,8 @@
                                 <span class="chip bg-color">mysql</span>
                             </a>
                         
-                            <a href="/tags/%E5%B7%A5%E5%85%B7/">
-                                <span class="chip bg-color">工具</span>
+                            <a href="/tags/%E9%85%8D%E7%BD%AE/">
+                                <span class="chip bg-color">配置</span>
                             </a>
                         
                     </div>
@@ -405,8 +405,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%B7%A5%E5%85%B7/" class="post-category">
-                                工具
+                            <a href="/categories/mysql/" class="post-category">
+                                mysql
                             </a>
                         
                     </div>
@@ -418,7 +418,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-06
+                    2022-06-20
                 </div>
                 
 
@@ -427,14 +427,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    4 分
                 </div>
                 
 
@@ -457,138 +457,102 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Xtrabackup备份与恢复"><a href="#Xtrabackup备份与恢复" class="headerlink" title="Xtrabackup备份与恢复"></a>Xtrabackup备份与恢复</h1><h2 id="一、Xtrabackup介绍"><a href="#一、Xtrabackup介绍" class="headerlink" title="一、Xtrabackup介绍"></a>一、Xtrabackup介绍</h2><p>Percona-xtrabackup是 Percona公司开发的一个用于MySQL数据库物理热备的备份工具，支持MySQL、Percona server和MariaDB，开源免费，是目前较为受欢迎的主流备份工具。xtrabackup只能备份innoDB和xtraDB两种数据引擎的表，而不能备份MyISAM数据表。</p>
-<p>MySQL冷备、mysqldump、MySQL热拷贝都无法实现对数据库进行增量备份。在实际生产环境中增量备份是非常实用的，如果数据大于50G或100G，存储空间足够的情况下，可以每天进行完整备份，如果每天产生的数据量较大，需要定制数据备份策略。例如每周实用完整备份，周一到周六实用增量备份。而Percona-Xtrabackup就是为了实现增量备份而出现的一款主流备份工具，</p>
-<p>xtrabackup包含两个主要的工具，即xtrabackup和innobackupex，二者区别如下：</p>
-<p>（1）xtrabackup只能备份innodb和xtradb两种引擎的表，而不能备份myisam引擎的表；</p>
-<p>（2）innobackupex是一个封装了xtrabackup的Perl脚本，支持同时备份innodb和myisam，但在对myisam备份时需要加一个全局的读锁。还有就是myisam不支持增量备份</p>
-<h2 id="二、Xtrabackup优点"><a href="#二、Xtrabackup优点" class="headerlink" title="二、Xtrabackup优点"></a>二、Xtrabackup优点</h2><p>（1）备份速度快，物理备份可靠</p>
-<p>（2）备份过程不会打断正在执行的事务（无需锁表）</p>
-<p>（3）能够基于压缩等功能节约磁盘空间和流量</p>
-<p>（4）自动备份校验</p>
-<p>（5）还原速度快</p>
-<p>（6）可以流传将备份传输到另外一台机器上</p>
-<p>（7）在不增加服务器负载的情况备份数据</p>
-<h2 id="三、xtrabackup的安装部署以及备份恢复实现"><a href="#三、xtrabackup的安装部署以及备份恢复实现" class="headerlink" title="三、xtrabackup的安装部署以及备份恢复实现"></a>三、xtrabackup的安装部署以及备份恢复实现</h2><hr>
-<h3 id="1、xtrabackup的安装"><a href="#1、xtrabackup的安装" class="headerlink" title="1、xtrabackup的安装"></a>1、xtrabackup的安装</h3><p>可以选择rpm包方式安装，也可以下载源码包编译安装</p>
-<p>官网地址：</p>
-<p><a target="_blank" rel="noopener" href="https://www.percona.com/downloads/">Percona Software Downloads</a></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#yum：</span>
-<span class="token comment">#安装percona依赖库</span>
-yum <span class="token function">install</span> <span class="token operator">&lt;</span>https://repo.percona.com/yum/percona-release-latest.noarch.rpm<span class="token operator">&gt;</span>
-<span class="token comment">#查看可安装版本</span>
-yum list <span class="token operator">|</span> <span class="token function">grep</span> percona-xtrabackup
-<span class="token comment"># 5.6、5.7安装24的</span>
-yum <span class="token function">install</span> -y percona-xtrabackup-24
-<span class="token comment"># 8.0安装80的</span>
-yum <span class="token function">install</span> -y percona-xtrabackup-80
+                <p><strong>在默认情况下，MySQL是不会打开general log的，这个log里面会记录MySQL所有的SQL语句，不管是查询语句，还是DML语句，还是DDL语句，还是DCL语句，这些语句统统都会被记录在general log文件中。就连我们连接和断开MySQL数据库的这些语句。</strong></p>
+<p>MySQL会把它收到的所有SQL语句按照接收的顺序依次记录在general log中。我们需要注意的是，这里接受的SQL语句的顺序，并不等于SQL语句就是按照这个接受的顺序来执行，因为有的时候，一些SQL可能需要等待其他锁被释放后才会被真正的执行，SQL语句的执行顺序是和binlog中的顺序是相匹配的。</p>
+<p>假如我们执行一个select查询语句，在binlog中不会记录这样的SQL语句，但是在general log中就会记录这个select查询语句。</p>
+<p>General_log默认不开启的原因有两个：</p>
+<blockquote>
+<p>日志将会非常大，对磁盘是一个很大的压力。因为所有的操作都会被记录下来。 对MySQL数据的性能有一定的影响。</p>
+</blockquote>
+<p>所以，我们一般不会开启这个general log记录的功能，只有在排查某些错误的时候，才会临时打开一下，等到debug完成之后，再把它关闭。</p>
+<h2 id="general-log的参数"><a href="#general-log的参数" class="headerlink" title="general_log的参数"></a>general_log的参数</h2><p>general log的参数主要有以下几个：</p>
+<blockquote>
+<p>genral_log：用于控制是否开启general log。等于0表示关闭，等于1表示开启。默认是0。</p>
+</blockquote>
+<blockquote>
+<p>general_log_file：general log日志的文件名是什么，如果不配置这个参数的话，默认会以MySQL服务器的hostname作为general log日志的文件名称，具体文件为：<hostname>.log，general log日志的存放路径。如果不指定，则默认放在datadir参数所指定的目录下。也可以在这个参数中指定具体的路径+名称。</hostname></p>
+</blockquote>
+<blockquote>
+<p>log_output：general log输出的方式，是输出表中，还是保存到文件中。这个参数的取值范围为：table，或者file。默认是保存到file文件中。这个参数是和慢查询日志是共用的，慢查询的日志是记录在表中还是只记录在文件中，也是用这个参数来控制。如果配置为table，就会把慢查询日志和general log日志都写在mysql.geneal_log表中。如果这个参数配置为table,file则表示即写入表中，也写入日志文件中，两个地方都写入日志。</p>
+</blockquote>
+<p>在开启了general log的前提下，如果在某个session连接中，不想让此次操作的所有SQL被记录在general log中，则可以在session中执行set session sql_log_off=on就可以关闭当前session的操作被记录在general log中。</p>
+<h2 id="如何永久开启-general-log"><a href="#如何永久开启-general-log" class="headerlink" title="如何永久开启 general_log"></a><strong>如何永久开启 general_log</strong></h2><p>如果在配置文件中永久开启：</p>
+<pre class="line-numbers language-none"><code class="language-none">[mysqld]
+general_log=1
+general_log_file=/home/mysql_general_log.log  #自定义
+log_output='FILE'                             #FILE 或者 TABLE              <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token comment">#RPM</span>
-<span class="token function">wget</span> <span class="token operator">&lt;</span>https://www.percona.com/downloads/XtraBackup/Percona-XtraBackup-2.4.9/binary/redhat/7/x86_64/percona-xtrabackup-24-2.4.9-1.el7.x86_64.rpm<span class="token operator">&gt;</span>
-yum <span class="token function">install</span> -y percona-xtrabackup-24-2.4.9-1.el7.x86_64.rpm 
-<span class="token function">rpm</span> -qa <span class="token operator">|</span><span class="token function">grep</span> xtrabackup
-percona-xtrabackup-24-2.4.9-1.el7.x86_64
+<h2 id="在SQL命令行中临时开启"><a href="#在SQL命令行中临时开启" class="headerlink" title="在SQL命令行中临时开启"></a>在SQL命令行中临时开启</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">mysql<span class="token operator">&gt;</span> show variables like <span class="token string">'general_log'</span><span class="token punctuation">;</span> <span class="token operator">-</span><span class="token operator">-</span> 查看日志是否开启
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">|</span> Variable_name <span class="token operator">|</span> Value <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">|</span> general_log   <span class="token operator">|</span> OFF   <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token number">1</span> row <span class="token keyword">in</span> <span class="token builtin">set</span> <span class="token punctuation">(</span><span class="token number">0.02</span> sec<span class="token punctuation">)</span>
 
-Xtrabackup中主要包含两个工具：
-xtrabackup：是用于热备innodb，xtradb表中数据的工具，不能备份其他类型的表，也不能备份数据表结构；
-innobackupex：是将xtrabackup进行封装的perl脚本，提供了备份myisam表的能力。
-常用选项:  
-   --host     指定主机
-   --user     指定用户名
-   --password    指定密码
-   --port     指定端口
-   --databases     指定数据库
-   --incremental    创建增量备份
-   --incremental-basedir   指定包含完全备份的目录
-   --incremental-dir      指定包含增量备份的目录   
-   --apply-log        对备份进行预处理操作             
-     一般情况下，在备份完成后，数据尚且不能用于恢复操作，因为备份的数据中可能会包含尚未提交的事务或已经提交但尚未同步至数据文件中的事务。因此，此时数据文件仍处理不一致状态。“准备”的主要作用正是通过回滚未提交的事务及同步已经提交的事务至数据文件也使得数据文件处于一致性状态。
-   --redo-only      不回滚未提交事务
-   --copy-back     恢复备份目录
- 
- 
- 
-装完xtrabackup后，生成以下几个工具
-<span class="token punctuation">[</span>root@localhost bin<span class="token punctuation">]</span><span class="token comment"># ./xb</span>
-xbcloud        xbcloud_osenv  xbcrypt        xbiff          xbrlapi        xbstream
- 
-xbcloud和xbcloud_osenv是xtrabackup新的高级特性：云备份；
-xbcrypt也是新的特性，加密备份集；
-xbstream是xtrabackup的流数据功能，通过流数据功能，可将备份内容打包并传给管道后的压缩工具进行压缩；
-xtrabackup是主程序；
-innobackupex在以前是一个perl脚本，会调用xtrabackup这个二进制工具，从xtrabackup <span class="token number">2.3</span>开始，该工具使用C语言进行了重写，当前它是xtabackup二进制工具的一个软连接，但是实际的使用方法却不同，并且在以后的版本中会删除该工具。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+mysql<span class="token operator">&gt;</span>
+mysql<span class="token operator">&gt;</span> show variables like <span class="token string">'general_log_file'</span><span class="token punctuation">;</span> <span class="token operator">-</span><span class="token operator">-</span> 看看日志文件保存位置
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">|</span> Variable_name    <span class="token operator">|</span> Value                   <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">|</span> general_log_file <span class="token operator">|</span> <span class="token operator">/</span>var<span class="token operator">/</span>lib<span class="token operator">/</span>mysql<span class="token operator">/</span>test<span class="token punctuation">.</span>log <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token number">1</span> row <span class="token keyword">in</span> <span class="token builtin">set</span> <span class="token punctuation">(</span><span class="token number">0.02</span> sec<span class="token punctuation">)</span>
 
-<p>使用innobackupex备份时，其会调用xtrabackup备份所有的InnoDB表，复制所有关于表结构定义的相关文件(.frm)、以及MyISAM、MERGE、CSV和ARCHIVE表的相关文件，同时还会备份触发器和数据库配置信息相关的文件，这些文件会被保存到一个以时间命名的目录当中。在备份的同时，innobackupex还会在备份目录中创建如下文件：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>xtrabackup_checkpoints -- 备份类型<span class="token punctuation">(</span>如完全或增量<span class="token punctuation">)</span>、备份状态<span class="token punctuation">(</span>如是否已经为prepared状态<span class="token punctuation">)</span>和LSN<span class="token punctuation">(</span>日志序列号<span class="token punctuation">)</span>范围信息：
- 
-每个InnoDB页<span class="token punctuation">(</span>通常为16k大小<span class="token punctuation">)</span>
-都会包含一个日志序列号，即LSN，LSN是整个数据库系统的系统版本号，每个页面相关的LSN能够表明此页面最近是如何发生改变的。
- 
-<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>xtrabackup_binlog_info  --  mysql服务器当前正在使用的二进制日志文件及备份这一刻位置二进制日志时间的位置。
- 
-<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>xtrabackup_binlog_pos_innodb  --  二进制日志文件及用于InnoDB或XtraDB表的二进制日志文件的当前position。
- 
-<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>xtrabackup_binary  --  备份中用到的xtrabackup的可执行文件；
- 
-<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>backup-my.cnf  --  备份命令用到的配置选项信息：
- 
-在使用innobackupex进行备份时，还可以使用--no-timestamp选项来阻止命令自动创建一个以时间命名的目录：如此一来，innobackupex命令将会创建一个BACKUP-DIR目录来存储备份数据。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+mysql<span class="token operator">&gt;</span>
+mysql<span class="token operator">&gt;</span> show variables like <span class="token string">'log_output'</span><span class="token punctuation">;</span> <span class="token operator">-</span><span class="token operator">-</span> 看看日志输出类型 table或<span class="token builtin">file</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">|</span> Variable_name <span class="token operator">|</span> Value      <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token operator">|</span> log_output    <span class="token operator">|</span> FILE<span class="token punctuation">,</span>TABLE <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">+</span>
+<span class="token number">1</span> row <span class="token keyword">in</span> <span class="token builtin">set</span> <span class="token punctuation">(</span><span class="token number">0.01</span> sec<span class="token punctuation">)</span>
 
-<p><strong>注意：备份时需启动MySQL,恢复时需关闭MySQL,清空mysql数据目录且不能重新初始化,恢复数据后应该立即进行一次完全备份</strong></p>
-<h3 id="2、xtrabackup全量备份与恢复"><a href="#2、xtrabackup全量备份与恢复" class="headerlink" title="2、xtrabackup全量备份与恢复"></a>2、xtrabackup全量备份与恢复</h3><h4 id="全量备份："><a href="#全量备份：" class="headerlink" title="全量备份："></a>全量备份：</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">备份：
-innobackupex --defaults-file<span class="token operator">=</span>/etc/my.cnf --user<span class="token operator">=</span>DBUSER --password<span class="token operator">=</span>DBUSERPASS  /path/to/BACKUP-DIR/
-<span class="token comment">#比如我/path/to/BACKUP-DIR/指定：/home/dpan/mysql/bak</span>
-<span class="token comment">#生成目录为：/home/dpan/mysql/bak/2022-05-06_17-53-17</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">#设置日志输出方式为文件(如果设置log_output=table的话，则日志结果会记录到名为gengera_log的表中，这表的默认引擎都是CSV)：</span>
 
-<p>可能存在的报错：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">xtrabackup: Error: --defaults-file must be specified first on the <span class="token builtin class-name">command</span> line
+mysql<span class="token operator">&gt;</span><span class="token builtin">set</span> <span class="token keyword">global</span> log_output<span class="token operator">=</span><span class="token builtin">file</span><span class="token punctuation">;</span>
 
-<span class="token comment">#--defaults-file=/etc/my.cnf参数必须写在最前面</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">#设置general log的日志文件路径：</span>
 
-<h4 id="全量恢复："><a href="#全量恢复：" class="headerlink" title="全量恢复："></a>全量恢复：</h4><p><strong>注意：恢复不用启动mysql,mysql需要关闭状态</strong></p>
-<p>如果B库要恢复A库的备份，则需要B库删除原有的数据，例如：/usr/local/mysql/data</p>
-<p>配置my.cnf的数据目录路径，否则会报错，需要和A一致</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#一般情况下，在备份完成后，数据尚且不能用于恢复操作，因为备份的数据中可能会包含尚未提交的事务或者已经提交但尚未同步至数据文件中的事务。因此，此时数据文件仍处于不一致状态。"准备"的主要作用正是通过回滚未提交的事务及同步已经提交的事务至数据文件也使用得数据文件处于一致性状态。</span>
+mysql<span class="token operator">&gt;</span><span class="token builtin">set</span> <span class="token keyword">global</span> general_log_file<span class="token operator">=</span><span class="token string">'/tmp/general.log'</span><span class="token punctuation">;</span>
 
-<span class="token comment">#innobackupex命令的--apply-log选项可用于实现上述功能，如下面的命令：</span>
+<span class="token comment">#开启general log：</span>
 
-恢复：
-innobackupex --apply-log /home/dpan/mysql/bak/2022-05-06_17-53-17
-innobackupex --copy-back   /home/dpan/mysql/bak/2022-05-06_17-53-17
+mysql<span class="token operator">&gt;</span><span class="token builtin">set</span> <span class="token keyword">global</span> general_log<span class="token operator">=</span>on<span class="token punctuation">;</span>
 
-<span class="token comment">#completed OK!　　#看到completed OK就是恢复正常了</span>
-<span class="token comment">#ll /home/dpan/mysql/data/ ##根据实际data路径填写，在B上查看数据目录，可以看到数据已经恢复，但是属主会有问题，需要进行修改</span>
+Query OK<span class="token punctuation">,</span> <span class="token number">0</span> rows affected <span class="token punctuation">(</span><span class="token number">0.02</span> sec<span class="token punctuation">)</span>
 
-<span class="token function">chown</span> mysql:mysql /home/dpan/mysql/data/ <span class="token comment">#根据实际data路径填写</span>
+<span class="token comment">#关闭general log：</span>
 
-systemctl start mysqld <span class="token comment">#启动mysql</span>
+mysql<span class="token operator">&gt;</span><span class="token builtin">set</span> <span class="token keyword">global</span> general_log<span class="token operator">=</span>off<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-mysql -uroot -p -e <span class="token string">"show databases;"</span>　　<span class="token comment">#查看数据，是否恢复</span>
+<h2 id="清理general-log"><a href="#清理general-log" class="headerlink" title="清理general_log"></a>清理<strong>general_log</strong></h2><p>清除<strong>general_log日志时不能rm -rf直接将日志删除，直接删除日志不会自动生成，除非重启mysqls实例，正确的清除方法是：</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">echo <span class="token string">""</span> <span class="token operator">&gt;</span> <span class="token operator">**</span>general_log <span class="token comment">#使用重定向的方法清理**</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<span class="token punctuation">[</span>root@localhost test<span class="token punctuation">]</span><span class="token comment"># mysql -usimple -p -e "show databases;"</span>
-Enter password: 
-+--------------------+
-<span class="token operator">|</span> Database           <span class="token operator">|</span>
-+--------------------+
-<span class="token operator">|</span> information_schema <span class="token operator">|</span>
-<span class="token operator">|</span> bitbucketdb        <span class="token operator">|</span>
-<span class="token operator">|</span> confluencedb       <span class="token operator">|</span>
-<span class="token operator">|</span> ferry              <span class="token operator">|</span>
-<span class="token operator">|</span> jira               <span class="token operator">|</span>
-<span class="token operator">|</span> jumpserver         <span class="token operator">|</span>
-<span class="token operator">|</span> jumpserver_2022    <span class="token operator">|</span>
-<span class="token operator">|</span> mindoc_db          <span class="token operator">|</span>
-<span class="token operator">|</span> mysql              <span class="token operator">|</span>
-<span class="token operator">|</span> performance_schema <span class="token operator">|</span>
-<span class="token operator">|</span> ranzhi             <span class="token operator">|</span>
-<span class="token operator">|</span> simpleim           <span class="token operator">|</span>
-<span class="token operator">|</span> simpletotal        <span class="token operator">|</span>
-<span class="token operator">|</span> sys                <span class="token operator">|</span>
-<span class="token operator">|</span> zdoo               <span class="token operator">|</span>
-<span class="token operator">|</span> zentao             <span class="token operator">|</span>
-+--------------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="日志切割脚本"><a href="#日志切割脚本" class="headerlink" title="日志切割脚本"></a>日志切割脚本</h2><p>如需debug或查询某一时间段日志，使用日志切割脚本实现</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+<span class="token assign-left variable">A</span><span class="token operator">=</span>/home/epan/general_log    <span class="token comment">###文件夹路径</span>
+<span class="token assign-left variable">logname</span><span class="token operator">=</span>general.log         <span class="token comment">###日志名称</span>
+<span class="token assign-left variable">date_dir</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">date</span> +%Y%m%d<span class="token variable">`</span></span>                                 <span class="token comment">###按小时分割</span>
+<span class="token assign-left variable">tag</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">date</span> +%Y%m%d%H --date<span class="token operator">=</span><span class="token string">"-1 hour"</span><span class="token variable">`</span></span>                   <span class="token comment">###分割出来的减1小时</span>
+<span class="token comment">#这句用于判断，当时间为凌晨00：00时，将date_dri设为昨天</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable"><span class="token variable">`</span><span class="token function">date</span> +%H<span class="token variable">`</span></span>"</span> <span class="token operator">=</span> <span class="token string">"00"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>                        <span class="token comment">###判断是否为00点</span>
+  <span class="token assign-left variable">date_dir</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">date</span> -d <span class="token string">"yesterday"</span> +%Y%m%d<span class="token variable">`</span></span>                <span class="token comment">###遇到00点时，时间更改为昨天</span>
+<span class="token keyword">fi</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span>  -z <span class="token string">"<span class="token variable">$A</span>/<span class="token variable">$logname</span>"</span> <span class="token punctuation">]</span>                                 <span class="token comment">###判断gif.log是否为空</span>
+        <span class="token keyword">then</span>
+        <span class="token builtin class-name">exit</span> <span class="token number">0</span>                                          <span class="token comment">###为空退出</span>
+<span class="token keyword">fi</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span>  -n <span class="token string">"<span class="token variable">$A</span>/<span class="token variable">$logname</span>"</span> <span class="token punctuation">]</span>                                 <span class="token comment">###判断gif.log是否不为空</span>
+        <span class="token keyword">then</span>
+        <span class="token function">cp</span> <span class="token variable">$A</span>/<span class="token variable">$logname</span> <span class="token variable">$A</span>/general_<span class="token variable">${tag}</span>.log            <span class="token comment">###不为空执行复制，复制</span>
+A到B.小时.log
+        <span class="token operator">&gt;</span> <span class="token variable">$A</span>/<span class="token variable">$logname</span>                                   <span class="token comment">###清空A</span>
+        <span class="token builtin class-name">exit</span> <span class="token number">0</span>
+<span class="token keyword">fi</span>
 
-<h3 id="3、xtrabackup增量备份与恢复"><a href="#3、xtrabackup增量备份与恢复" class="headerlink" title="3、xtrabackup增量备份与恢复"></a>3、xtrabackup增量备份与恢复</h3><p>暂时没有实际需求，等有需求再实践</p>
+<span class="token comment">#配合crontab实现每小时切割日志</span>
+* */1 * * * <span class="token function">sh</span> /home/epan/general_log/splie.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -615,7 +579,7 @@ Enter password:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yushui1995.github.io/2022/05/06/xtrabackup-bei-fen-yu-hui-fu/">https://yushui1995.github.io/2022/05/06/xtrabackup-bei-fen-yu-hui-fu/</a>
+                    <a href="https://yushui1995.github.io/2022/06/20/guan-yu-mysql-de-general-log/">https://yushui1995.github.io/2022/06/20/guan-yu-mysql-de-general-log/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -657,8 +621,8 @@ Enter password:
                                     <span class="chip bg-color">mysql</span>
                                 </a>
                             
-                                <a href="/tags/%E5%B7%A5%E5%85%B7/">
-                                    <span class="chip bg-color">工具</span>
+                                <a href="/tags/%E9%85%8D%E7%BD%AE/">
+                                    <span class="chip bg-color">配置</span>
                                 </a>
                             
                         </div>
@@ -1098,16 +1062,17 @@ Enter password:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/05/07/mysql-zhu-cong-shuang-zhu-tong-bu/">
+                <a href="/2022/06/20/guan-yu-mysql-de-general-log/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="Mysql 主从/双主同步">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="关于mysql的general_log">
                         
-                        <span class="card-title">Mysql 主从/双主同步</span>
+                        <span class="card-title">关于mysql的general_log</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1117,9 +1082,9 @@ Enter password:
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1132,6 +1097,7 @@ Enter password:
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1139,8 +1105,8 @@ Enter password:
                         <span class="chip bg-color">mysql</span>
                     </a>
                     
-                    <a href="/tags/%E5%90%8C%E6%AD%A5/">
-                        <span class="chip bg-color">同步</span>
+                    <a href="/tags/%E9%85%8D%E7%BD%AE/">
+                        <span class="chip bg-color">配置</span>
                     </a>
                     
                 </div>
@@ -1154,12 +1120,12 @@ Enter password:
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/05/rabbitmq-she-zhi-lu-jing-qian-zhui/">
+                <a href="/2022/06/02/nginx-diao-you-can-shu/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="Rabbitmq设置路径前缀">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="nginx调优参数">
                         
-                        <span class="card-title">Rabbitmq设置路径前缀</span>
+                        <span class="card-title">nginx调优参数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1170,14 +1136,14 @@ Enter password:
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-02
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/rabbitmq/" class="post-category">
-                                    rabbitmq
+                            <a href="/categories/nginx/" class="post-category">
+                                    nginx
                                 </a>
                             
                             
@@ -1187,12 +1153,12 @@ Enter password:
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/rabbitmq/">
-                        <span class="chip bg-color">rabbitmq</span>
-                    </a>
-                    
                     <a href="/tags/nginx/">
                         <span class="chip bg-color">nginx</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%85%8D%E7%BD%AE/">
+                        <span class="chip bg-color">配置</span>
                     </a>
                     
                 </div>

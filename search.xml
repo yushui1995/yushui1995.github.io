@@ -446,9 +446,9 @@
       
         <tags>
             
-            <tag> rabbitmq </tag>
-            
             <tag> nginx </tag>
+            
+            <tag> rabbitmq </tag>
             
         </tags>
       

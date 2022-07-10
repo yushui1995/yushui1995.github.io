@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="redis问题汇总, ">
-    <meta name="description" content="启动警告合集1、WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lo">
+    <meta name="keywords" content="修改 jenkins 主目录, ">
+    <meta name="description" content="修改 jenkins 主目录一．通过yum安装或者rpm包安装的本安装方式会生成一个/etc/sysconfig/jenkins文件，默认主目录是/var/lib/Jenkins。只需要修改此配置文件，然后重启jenkins服务，即可更改主">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@
 
     
 
-    <title>redis问题汇总 | </title>
+    <title>修改 jenkins 主目录 | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -273,7 +273,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">redis问题汇总</h1>
+                    <h1 class="description center-align post-title">修改 jenkins 主目录</h1>
                 </div>
             </div>
         </div>
@@ -389,12 +389,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/redis/">
-                                <span class="chip bg-color">redis</span>
-                            </a>
-                        
-                            <a href="/tags/%E6%8A%A5%E9%94%99-%E8%AD%A6%E5%91%8A/">
-                                <span class="chip bg-color">报错&amp;警告</span>
+                            <a href="/tags/jenkins/">
+                                <span class="chip bg-color">jenkins</span>
                             </a>
                         
                     </div>
@@ -405,8 +401,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/redis/" class="post-category">
-                                redis
+                            <a href="/categories/jenkins/" class="post-category">
+                                jenkins
                             </a>
                         
                     </div>
@@ -418,7 +414,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-09
+                    2022-07-10
                 </div>
                 
 
@@ -427,7 +423,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    210
+                    261
                 </div>
                 
 
@@ -457,15 +453,55 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="启动警告合集"><a href="#启动警告合集" class="headerlink" title="启动警告合集"></a>启动警告合集</h1><h2 id="1、WARNING-The-TCP-backlog-setting-of-511-cannot-be-enforced-because-proc-sys-net-core-somaxconn-is-set-to-the-lower-value-of-128"><a href="#1、WARNING-The-TCP-backlog-setting-of-511-cannot-be-enforced-because-proc-sys-net-core-somaxconn-is-set-to-the-lower-value-of-128" class="headerlink" title="1、WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128."></a>1、WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.</h2><h3 id="TCP积压值过小问题"><a href="#TCP积压值过小问题" class="headerlink" title="TCP积压值过小问题"></a>TCP积压值过小问题</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"net.core.somaxconn = 1024"</span> <span class="token operator">&gt;&gt;</span> /etc/sysctl.conf
-sysctl -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+                <h1 id="修改-jenkins-主目录"><a href="#修改-jenkins-主目录" class="headerlink" title="修改 jenkins 主目录"></a>修改 jenkins 主目录</h1><h2 id="一．通过yum安装或者rpm包安装的"><a href="#一．通过yum安装或者rpm包安装的" class="headerlink" title="一．通过yum安装或者rpm包安装的"></a><strong>一．通过yum安装或者rpm包安装的</strong></h2><p>本安装方式会生成一个/etc/sysconfig/jenkins文件，默认主目录是/var/lib/Jenkins。只需要修改此配置文件，然后重启jenkins服务，即可更改主目录。此处我们以更改为/home/jenkins为例。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">停止jenkins服务
 
-<h3 id="2、WARNING-overcommit-memory-is-set-to-0-Background-save-may-fail-under-low-memory-condition-To-fix-this-issue-add-‘vm-overcommit-memory-1’-to-etc-sysctl-conf-and-then-reboot-or-run-the-command-‘sysctl-vm-overcommit-memory-1’-for-this-to-take-effect"><a href="#2、WARNING-overcommit-memory-is-set-to-0-Background-save-may-fail-under-low-memory-condition-To-fix-this-issue-add-‘vm-overcommit-memory-1’-to-etc-sysctl-conf-and-then-reboot-or-run-the-command-‘sysctl-vm-overcommit-memory-1’-for-this-to-take-effect" class="headerlink" title="2、WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add ‘vm.overcommit_memory = 1’ to /etc/sysctl.conf and then reboot or run the command ‘sysctl vm.overcommit_memory=1’ for this to take effect."></a>2、WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add ‘vm.overcommit_memory = 1’ to /etc/sysctl.conf and then reboot or run the command ‘sysctl vm.overcommit_memory=1’ for this to take effect.</h3><h3 id="解决内存方面问题"><a href="#解决内存方面问题" class="headerlink" title="解决内存方面问题"></a>解决内存方面问题</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"vm.overcommit_memory = 1"</span> <span class="token operator">&gt;&gt;</span> /etc/sysctl.conf
-sysctl -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<span class="token function">service</span> jenkins stop
 
-<h3 id="3、WARNING-you-have-Transparent-Huge-Pages-THP-support-enabled-in-your-kernel-This-will-create-latency-and-memory-usage-issues-with-Redis-To-fix-this-issue-run-the-command-‘echo-never-gt-sys-kernel-mm-transparent-hugepage-enabled’-as-root-and-add-it-to-your-etc-rc-local-in-order-to-retain-the-setting-after-a-reboot-Redis-must-be-restarted-after-THP-is-disabled"><a href="#3、WARNING-you-have-Transparent-Huge-Pages-THP-support-enabled-in-your-kernel-This-will-create-latency-and-memory-usage-issues-with-Redis-To-fix-this-issue-run-the-command-‘echo-never-gt-sys-kernel-mm-transparent-hugepage-enabled’-as-root-and-add-it-to-your-etc-rc-local-in-order-to-retain-the-setting-after-a-reboot-Redis-must-be-restarted-after-THP-is-disabled" class="headerlink" title="3、WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command ‘echo never > /sys/kernel/mm/transparent_hugepage/enabled’ as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled."></a>3、WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command ‘echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled’ as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">'echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled'</span> <span class="token operator">&gt;&gt;</span> /etc/rc.local<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+备份主目录数据
 
-<p>内核中启用了透明的大页面THP,reboot重启后生效</p>
+<span class="token function">tar</span> -zcvf /backup/jenkins.tar.gz /var/lib/jenkins
+
+迁移旧主目录数据到新主目录
+
+<span class="token function">tar</span> -zxvf /backup/jenkins.tar.gz -C /home/jenkins
+
+编辑配置文件
+
+<span class="token function">vim</span> /etc/sysconfig/Jenkins
+
+改为变更后的目录
+
+<span class="token assign-left variable">JENKINS_HOME</span><span class="token operator">=</span><span class="token string">"/home/jenkins"</span>
+
+更改目录属主
+
+<span class="token function">chown</span> -R jenkins.jenkins /home/jenkins
+
+重启
+
+<span class="token function">service</span> jenkins restart<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="二．通过tomcat方式进行安装的"><a href="#二．通过tomcat方式进行安装的" class="headerlink" title="二．通过tomcat方式进行安装的"></a><strong>二．通过tomcat方式进行安装的</strong></h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a><strong>方法一</strong></h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">打开tomcat的bin目录，编辑catalina.sh文件。
+
+在<span class="token comment"># OS specific support. $var _must_ be set to either true or false.上面添加：</span>
+
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">JENKINS_HOME</span><span class="token operator">=</span><span class="token string">"/home/jenkins"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a><strong>方法二</strong></h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">在启动Web容器之前设置JENKINS_HOME环境变量.
+
+编辑profile文件：vi /etc/profile
+
+在文件最后加入
+
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">JENKINS_HOME</span><span class="token operator">=</span>/home/Jenkins
+
+使配置文件生效
+
+<span class="token builtin class-name">source</span> /etc/profile
+
+完成记得重启tomcat<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -492,7 +528,7 @@ sysctl -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yushui1995.github.io/2022/05/09/redis-wen-ti-hui-zong/">https://yushui1995.github.io/2022/05/09/redis-wen-ti-hui-zong/</a>
+                    <a href="https://yushui1995.github.io/2022/07/10/xiu-gai-jenkins-zhu-mu-lu/">https://yushui1995.github.io/2022/07/10/xiu-gai-jenkins-zhu-mu-lu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -530,12 +566,8 @@ sysctl -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/redis/">
-                                    <span class="chip bg-color">redis</span>
-                                </a>
-                            
-                                <a href="/tags/%E6%8A%A5%E9%94%99-%E8%AD%A6%E5%91%8A/">
-                                    <span class="chip bg-color">报错&amp;警告</span>
+                                <a href="/tags/jenkins/">
+                                    <span class="chip bg-color">jenkins</span>
                                 </a>
                             
                         </div>
@@ -979,12 +1011,12 @@ sysctl -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/05/10/firewalld-bei-wang/">
+                <a href="/2022/07/10/jenkins-ban-ben-sheng-ji/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="firewalld备忘">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="jenkins版本升级">
                         
-                        <span class="card-title">firewalld备忘</span>
+                        <span class="card-title">jenkins版本升级</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -995,14 +1027,14 @@ sysctl -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-10
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-10
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%B3%BB%E7%BB%9F/" class="post-category">
-                                    系统
+                            <a href="/categories/jenkins/" class="post-category">
+                                    jenkins
                                 </a>
                             
                             
@@ -1012,8 +1044,12 @@ sysctl -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/firewalld/">
-                        <span class="chip bg-color">firewalld</span>
+                    <a href="/tags/jenkins/">
+                        <span class="chip bg-color">jenkins</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7/">
+                        <span class="chip bg-color">版本升级</span>
                     </a>
                     
                 </div>
@@ -1027,12 +1063,12 @@ sysctl -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/08/github-yi-xie-ji-qiao/">
+                <a href="/2022/06/20/guan-yu-mysql-de-general-log/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="github一些技巧">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="关于mysql的general_log">
                         
-                        <span class="card-title">github一些技巧</span>
+                        <span class="card-title">关于mysql的general_log</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1043,14 +1079,14 @@ sysctl -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-20
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/github/" class="post-category">
-                                    github
+                            <a href="/categories/mysql/" class="post-category">
+                                    mysql
                                 </a>
                             
                             
@@ -1060,8 +1096,12 @@ sysctl -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/github/">
-                        <span class="chip bg-color">github</span>
+                    <a href="/tags/mysql/">
+                        <span class="chip bg-color">mysql</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%85%8D%E7%BD%AE/">
+                        <span class="chip bg-color">配置</span>
                     </a>
                     
                 </div>

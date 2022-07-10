@@ -6,7 +6,7 @@
   <link href="https://yushui1995.github.io/atom.xml" rel="self"/>
   
   <link href="https://yushui1995.github.io/"/>
-  <updated>2022-06-20T13:25:54.417Z</updated>
+  <updated>2022-07-10T14:40:42.370Z</updated>
   <id>https://yushui1995.github.io/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>jenkins版本升级</title>
+    <link href="https://yushui1995.github.io/2022/07/10/jenkins-ban-ben-sheng-ji/"/>
+    <id>https://yushui1995.github.io/2022/07/10/jenkins-ban-ben-sheng-ji/</id>
+    <published>2022-07-10T14:31:13.000Z</published>
+    <updated>2022-07-10T14:40:42.370Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;jenkins版本升级&quot;&gt;&lt;a href=&quot;#jenkins版本升级&quot; class=&quot;headerlink&quot; title=&quot;jenkins版本升级&quot;&gt;&lt;/a&gt;jenkins版本升级&lt;/h1&gt;&lt;h1 id=&quot;jenkins版本过低&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="jenkins" scheme="https://yushui1995.github.io/categories/jenkins/"/>
+    
+    
+    <category term="jenkins" scheme="https://yushui1995.github.io/tags/jenkins/"/>
+    
+    <category term="版本升级" scheme="https://yushui1995.github.io/tags/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>修改 jenkins 主目录</title>
+    <link href="https://yushui1995.github.io/2022/07/10/xiu-gai-jenkins-zhu-mu-lu/"/>
+    <id>https://yushui1995.github.io/2022/07/10/xiu-gai-jenkins-zhu-mu-lu/</id>
+    <published>2022-07-10T14:27:33.000Z</published>
+    <updated>2022-07-10T14:30:27.245Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;修改-jenkins-主目录&quot;&gt;&lt;a href=&quot;#修改-jenkins-主目录&quot; class=&quot;headerlink&quot; title=&quot;修改 jenkins 主目录&quot;&gt;&lt;/a&gt;修改 jenkins 主目录&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="jenkins" scheme="https://yushui1995.github.io/categories/jenkins/"/>
+    
+    
+    <category term="jenkins" scheme="https://yushui1995.github.io/tags/jenkins/"/>
+    
+  </entry>
   
   <entry>
     <title>关于mysql的general_log</title>
@@ -387,9 +439,9 @@
     <category term="rabbitmq" scheme="https://yushui1995.github.io/categories/rabbitmq/"/>
     
     
-    <category term="rabbitmq" scheme="https://yushui1995.github.io/tags/rabbitmq/"/>
-    
     <category term="nginx" scheme="https://yushui1995.github.io/tags/nginx/"/>
+    
+    <category term="rabbitmq" scheme="https://yushui1995.github.io/tags/rabbitmq/"/>
     
   </entry>
   

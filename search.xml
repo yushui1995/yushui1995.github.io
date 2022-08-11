@@ -4,6 +4,87 @@
   
     
     <entry>
+      <title>Nginx漏洞&amp;报错合集</title>
+      <link href="/2022/08/11/nginx-lou-dong-xiu-fu-he-ji/"/>
+      <url>/2022/08/11/nginx-lou-dong-xiu-fu-he-ji/</url>
+      
+        <content type="html"><![CDATA[<h2 id="一、检测到隐藏目录"><a href="#一、检测到隐藏目录" class="headerlink" title="一、检测到隐藏目录"></a>一、检测到隐藏目录</h2><p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202208112033058.png"></p><h3 id="解决方法：对禁止的资源发布“404-Not-Found”响应状态代码，或者将其完全除去"><a href="#解决方法：对禁止的资源发布“404-Not-Found”响应状态代码，或者将其完全除去" class="headerlink" title="解决方法：对禁止的资源发布“404 - Not Found”响应状态代码，或者将其完全除去"></a>解决方法：对禁止的资源发布“404 - Not Found”响应状态代码，或者将其完全除去</h3><p>打开配置文件,修改配置：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> /etc/nginx/nginx.conferror_page <span class="token number">403</span> <span class="token operator">=</span><span class="token number">404</span> /404.html<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h2 id="二、nginx静态资源文件无法访问，403-forbidden错误"><a href="#二、nginx静态资源文件无法访问，403-forbidden错误" class="headerlink" title="二、nginx静态资源文件无法访问，403 forbidden错误"></a>二、nginx静态资源文件无法访问，403 forbidden错误</h2><h3 id="解决方法：检查之后发现是程序创建的文件夹没有访问权限导致的图片无法访问"><a href="#解决方法：检查之后发现是程序创建的文件夹没有访问权限导致的图片无法访问" class="headerlink" title="解决方法：检查之后发现是程序创建的文件夹没有访问权限导致的图片无法访问"></a>解决方法：检查之后发现是程序创建的文件夹没有访问权限导致的图片无法访问</h3><p>打开配置文件,修改配置：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> /etc/nginx/nginx.confuser  root<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> nginx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> nginx </tag>
+            
+            <tag> 报错&amp;告警 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>mysql初始化的问题</title>
+      <link href="/2022/08/11/mysql-chu-shi-hua-de-wen-ti/"/>
+      <url>/2022/08/11/mysql-chu-shi-hua-de-wen-ti/</url>
+      
+        <content type="html"><![CDATA[<h1 id="mysql-初始化问题"><a href="#mysql-初始化问题" class="headerlink" title="mysql 初始化问题"></a>mysql 初始化问题</h1><h1 id="1、mysql-install-db初始化"><a href="#1、mysql-install-db初始化" class="headerlink" title="1、mysql_install_db初始化"></a>1、mysql_install_db初始化</h1><p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202208112026723.png"></p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@test3 bin<span class="token punctuation">]</span><span class="token comment"># ./mysql_install_db --user=mysql --basedir=/home/dpan/soft/mysql/mysql --datadir=/home/dpan/soft/mysql/data/</span><span class="token number">2021</span>-05-14 <span class="token number">15</span>:32:04 <span class="token punctuation">[</span>WARNING<span class="token punctuation">]</span> mysql_install_db is deprecated. Please consider switching to mysqld --initialize<span class="token number">2021</span>-05-14 <span class="token number">15</span>:32:09 <span class="token punctuation">[</span>WARNING<span class="token punctuation">]</span> The bootstrap log isn't empty:<span class="token number">2021</span>-05-14 <span class="token number">15</span>:32:09 <span class="token punctuation">[</span>WARNING<span class="token punctuation">]</span> <span class="token number">2021</span>-05-14T07:32:04.892924Z <span class="token number">0</span> <span class="token punctuation">[</span>Warning<span class="token punctuation">]</span> --bootstrap is deprecated. Please consider using --initialize instead<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>mysql_install_db 命令已经是弃用的，建议切换到mysqld –initialize命令</p><pre class="line-numbers language-css" data-language="css"><code class="language-css">mysql_install_db会把密码生成在/root/.mysql_secret<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h1 id="2、mysqld初始化"><a href="#2、mysqld初始化" class="headerlink" title="2、mysqld初始化"></a>2、mysqld初始化</h1><p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202208112027224.png"></p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./mysqld --initialize --user<span class="token operator">=</span>mysql --basedir<span class="token operator">=</span>/home/dpan/soft/mysql/mysql --datadir<span class="token operator">=</span>/home/dpan/soft/mysql/data/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><strong>这种方式会将初始密码显示出来，妥善保管</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> mysql </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mysql </tag>
+            
+            <tag> 报错&amp;告警 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>rabbit关于hosts的报错</title>
+      <link href="/2022/08/11/rabbit-guan-yu-hosts-de-bao-cuo/"/>
+      <url>/2022/08/11/rabbit-guan-yu-hosts-de-bao-cuo/</url>
+      
+        <content type="html"><![CDATA[<h1 id="rabbitmq-hosts报错"><a href="#rabbitmq-hosts报错" class="headerlink" title="rabbitmq hosts报错"></a>rabbitmq hosts报错</h1><h3 id="起因："><a href="#起因：" class="headerlink" title="起因："></a><strong>起因：</strong></h3><p>平日rabbitmq都已经脚本花来安装，今天安装的时候发现发现了异常报错，心里很疑惑，平日的脚本怎么突然出现了状况。</p><h3 id="报错如下"><a href="#报错如下" class="headerlink" title="报错如下"></a>报错如下</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@rabbit-api-001 ~<span class="token punctuation">]</span><span class="token comment"># rabbitmqctl list_users</span>Error: unable to perform an operation on <span class="token function">node</span> ‘rabbit@rabbit-api-001’. Please see diagnostics information and suggestions below.Most common reasons <span class="token keyword">for</span> this are:<span class="token assign-left variable">DIAGNOSTICS</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span>attempted to contact: <span class="token punctuation">[</span>‘rabbit@rabbit-api-001’<span class="token punctuation">]</span>rabbit@rabbit-api-001:  * connected to epmd <span class="token punctuation">(</span>port <span class="token number">4369</span><span class="token punctuation">)</span> on rabbit-api-001  * <span class="token function">node</span> rabbit@rabbit-api-001 up, ‘rabbit’ application runningCurrent <span class="token function">node</span> details:* <span class="token function">node</span> name: ‘rabbitmqcli66@rabbit-api-001’* effective user’s home directory: /var/lib/rabbitmq* Erlang cookie hash: <span class="token assign-left variable">PQXNPBxSq3gugPGiKks0lQ</span><span class="token operator">==</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="翻译："><a href="#翻译：" class="headerlink" title="翻译："></a>翻译：</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token number">1.</span>目标节点是无法访问的（例如，主机名解析问题，TCP连接或防火墙问题）<span class="token number">2</span><span class="token punctuation">.</span>CLI工具无法通过服务器进行身份验证（例如，CLI工具的Erlang cookie与服务器不匹配）<span class="token number">3.</span>目标节点没有运行按照rabbitmq给我们的建议，依次尝试<span class="token operator">**</span><span class="token number">1.</span>主机名解析问题<span class="token operator">**</span>，给自己的<span class="token operator">/</span>etc<span class="token operator">/</span>host文件配上ip和主机名，xxx就是报错提示<span class="token string">'rabbit@xxx'</span>的xxxecho <span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span> xxx<span class="token operator">&gt;&gt;</span> <span class="token operator">/</span>etc<span class="token operator">/</span>host<span class="token number">2</span><span class="token punctuation">.</span>TCP连接问题，即网络问题ping一下rabbitmq所在服务器的地址<span class="token number">3.</span>防火墙问题，查看防火墙是否关闭，如果没有关闭，则关闭防火墙，指令如下，我报错的原因就是防火墙没有关闭systemctl status firewalldsystemctl stop firewalld<span class="token number">4</span><span class="token punctuation">.</span>cookie问题，确保计算机中erlang<span class="token punctuation">.</span>cookie文件是一致的，具体路径记不得了，大家都是固态硬盘，直接搜索即可<span class="token number">5</span><span class="token punctuation">.</span>rabbitmq没有启动成功，重启rabbitmq，不要用后台启动的方式启动，直接启动，看看有没有真的启动成功<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h3><p>排查后是主机名解析导致，将本机ip 写入hosts即可</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@rabbit-api-001 ~<span class="token punctuation">]</span><span class="token comment"># vi /etc/hosts</span>x.x.x.x rabbit-api-001<span class="token comment">#重启后解决</span>systemctl restart rabbitmq-server<span class="token punctuation">[</span>root@rabbit-api-001 ~<span class="token punctuation">]</span><span class="token comment"># rabbitmqctl list_users  #不会报错了</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> rabbitmq </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 报错&amp;告警 </tag>
+            
+            <tag> rabbitmq </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>前端相关依赖部署</title>
       <link href="/2022/07/10/qian-duan-xiang-guan-yi-lai-bu-shu/"/>
       <url>/2022/07/10/qian-duan-xiang-guan-yi-lai-bu-shu/</url>

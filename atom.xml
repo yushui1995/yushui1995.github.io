@@ -6,7 +6,7 @@
   <link href="https://yushui1995.github.io/atom.xml" rel="self"/>
   
   <link href="https://yushui1995.github.io/"/>
-  <updated>2022-07-10T15:31:42.900Z</updated>
+  <updated>2022-08-11T12:37:48.128Z</updated>
   <id>https://yushui1995.github.io/</id>
   
   <author>
@@ -15,6 +15,87 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Nginx漏洞&amp;报错合集</title>
+    <link href="https://yushui1995.github.io/2022/08/11/nginx-lou-dong-xiu-fu-he-ji/"/>
+    <id>https://yushui1995.github.io/2022/08/11/nginx-lou-dong-xiu-fu-he-ji/</id>
+    <published>2022-08-11T12:29:46.000Z</published>
+    <updated>2022-08-11T12:37:48.128Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、检测到隐藏目录&quot;&gt;&lt;a href=&quot;#一、检测到隐藏目录&quot; class=&quot;headerlink&quot; title=&quot;一、检测到隐藏目录&quot;&gt;&lt;/a&gt;一、检测到隐藏目录&lt;/h2&gt;&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="nginx" scheme="https://yushui1995.github.io/categories/nginx/"/>
+    
+    
+    <category term="nginx" scheme="https://yushui1995.github.io/tags/nginx/"/>
+    
+    <category term="报错&amp;告警" scheme="https://yushui1995.github.io/tags/%E6%8A%A5%E9%94%99-%E5%91%8A%E8%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql初始化的问题</title>
+    <link href="https://yushui1995.github.io/2022/08/11/mysql-chu-shi-hua-de-wen-ti/"/>
+    <id>https://yushui1995.github.io/2022/08/11/mysql-chu-shi-hua-de-wen-ti/</id>
+    <published>2022-08-11T12:25:53.000Z</published>
+    <updated>2022-08-11T12:29:11.121Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;mysql-初始化问题&quot;&gt;&lt;a href=&quot;#mysql-初始化问题&quot; class=&quot;headerlink&quot; title=&quot;mysql 初始化问题&quot;&gt;&lt;/a&gt;mysql 初始化问题&lt;/h1&gt;&lt;h1 id=&quot;1、mysql-install-db初始化&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="mysql" scheme="https://yushui1995.github.io/categories/mysql/"/>
+    
+    
+    <category term="mysql" scheme="https://yushui1995.github.io/tags/mysql/"/>
+    
+    <category term="报错&amp;告警" scheme="https://yushui1995.github.io/tags/%E6%8A%A5%E9%94%99-%E5%91%8A%E8%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>rabbit关于hosts的报错</title>
+    <link href="https://yushui1995.github.io/2022/08/11/rabbit-guan-yu-hosts-de-bao-cuo/"/>
+    <id>https://yushui1995.github.io/2022/08/11/rabbit-guan-yu-hosts-de-bao-cuo/</id>
+    <published>2022-08-11T12:15:32.000Z</published>
+    <updated>2022-08-11T12:24:28.855Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;rabbitmq-hosts报错&quot;&gt;&lt;a href=&quot;#rabbitmq-hosts报错&quot; class=&quot;headerlink&quot; title=&quot;rabbitmq hosts报错&quot;&gt;&lt;/a&gt;rabbitmq hosts报错&lt;/h1&gt;&lt;h3 id=&quot;起因：&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="rabbitmq" scheme="https://yushui1995.github.io/categories/rabbitmq/"/>
+    
+    
+    <category term="报错&amp;告警" scheme="https://yushui1995.github.io/tags/%E6%8A%A5%E9%94%99-%E5%91%8A%E8%AD%A6/"/>
+    
+    <category term="rabbitmq" scheme="https://yushui1995.github.io/tags/rabbitmq/"/>
+    
+  </entry>
   
   <entry>
     <title>前端相关依赖部署</title>
@@ -469,61 +550,6 @@
     <category term="nginx" scheme="https://yushui1995.github.io/tags/nginx/"/>
     
     <category term="rabbitmq" scheme="https://yushui1995.github.io/tags/rabbitmq/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Reids集群slots缺失修复</title>
-    <link href="https://yushui1995.github.io/2022/05/04/reids-ji-qun-slots-que-shi-xiu-fu/"/>
-    <id>https://yushui1995.github.io/2022/05/04/reids-ji-qun-slots-que-shi-xiu-fu/</id>
-    <published>2022-05-04T15:12:14.000Z</published>
-    <updated>2022-05-07T14:39:02.536Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Reids集群slots报错总结&quot;&gt;&lt;a href=&quot;#Reids集群slots报错总结&quot; class=&quot;headerlink&quot; title=&quot;Reids集群slots报错总结&quot;&gt;&lt;/a&gt;Reids集群slots报错总结&lt;/h1&gt;&lt;h3</summary>
-        
-      
-    
-    
-    
-    <category term="redis" scheme="https://yushui1995.github.io/categories/redis/"/>
-    
-    
-    <category term="redis" scheme="https://yushui1995.github.io/tags/redis/"/>
-    
-    <category term="修复" scheme="https://yushui1995.github.io/tags/%E4%BF%AE%E5%A4%8D/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>磁盘的数据恢复</title>
-    <link href="https://yushui1995.github.io/2022/05/03/ci-pan-de-shu-ju-hui-fu/"/>
-    <id>https://yushui1995.github.io/2022/05/03/ci-pan-de-shu-ju-hui-fu/</id>
-    <published>2022-05-03T12:06:46.000Z</published>
-    <updated>2022-05-07T15:31:21.546Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;磁盘的数据恢复&quot;&gt;&lt;a href=&quot;#磁盘的数据恢复&quot; class=&quot;headerlink&quot; title=&quot;磁盘的数据恢复&quot;&gt;&lt;/a&gt;磁盘的数据恢复&lt;/h1&gt;&lt;hr&gt;
-&lt;h3 id=&quot;起因：&quot;&gt;&lt;a href=&quot;#起因：&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="系统" scheme="https://yushui1995.github.io/categories/%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-    <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
-    
-    <category term="linux" scheme="https://yushui1995.github.io/tags/linux/"/>
     
   </entry>
   

@@ -4,8 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="LVM管理, ">
-    <meta name="description" content="LVM简介LVM是 Logical Volume Manager（逻辑卷管理）的简写，它是Linux环境下对磁盘分区进行管理的一种机制。LVM将一个或多个磁盘分区（PV）虚拟为一个卷组（VG），相当于一个大的硬盘，我们可以在上面划分一些逻辑">
+    <meta name="keywords" content="mysql初始化的问题, ">
+    <meta name="description" content="mysql 初始化问题1、mysql_install_db初始化
+[root@test3 bin]# ./mysql_install_db --user=mysql --basedir=/home/dpan/soft/mysql/mysql">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +20,7 @@
 
     
 
-    <title>LVM管理 | </title>
+    <title>mysql初始化的问题 | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -273,7 +274,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">LVM管理</h1>
+                    <h1 class="description center-align post-title">mysql初始化的问题</h1>
                 </div>
             </div>
         </div>
@@ -389,12 +390,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/LVM/">
-                                <span class="chip bg-color">LVM</span>
+                            <a href="/tags/mysql/">
+                                <span class="chip bg-color">mysql</span>
                             </a>
                         
-                            <a href="/tags/%E7%B3%BB%E7%BB%9F/">
-                                <span class="chip bg-color">系统</span>
+                            <a href="/tags/%E6%8A%A5%E9%94%99-%E5%91%8A%E8%AD%A6/">
+                                <span class="chip bg-color">报错&amp;告警</span>
                             </a>
                         
                     </div>
@@ -405,8 +406,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/LVM/" class="post-category">
-                                LVM
+                            <a href="/categories/mysql/" class="post-category">
+                                mysql
                             </a>
                         
                     </div>
@@ -418,7 +419,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-24
+                    2022-08-11
                 </div>
                 
 
@@ -427,14 +428,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    715
+                    148
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
 
@@ -457,72 +458,19 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="LVM简介"><a href="#LVM简介" class="headerlink" title="LVM简介"></a>LVM简介</h2><p>LVM是 Logical Volume Manager（逻辑卷管理）的简写，它是Linux环境下对磁盘分区进行管理的一种机制。LVM将一个或多个磁盘分区（PV）虚拟为一个卷组（VG），相当于一个大的硬盘，我们可以在上面划分一些逻辑卷（LV）。当卷组的空间不够使用时，可以将新的磁盘分区加入进来。我们还可以从卷组剩余空间上划分一些空间给空间不够用的逻辑卷使用。</p>
-<h3 id="1、查看硬盘状态"><a href="#1、查看硬盘状态" class="headerlink" title="1、查看硬盘状态"></a>1、查看硬盘状态</h3><p>查看到这块新盘为/dev/vdb：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># fdisk -l</span>
+                <h1 id="mysql-初始化问题"><a href="#mysql-初始化问题" class="headerlink" title="mysql 初始化问题"></a>mysql 初始化问题</h1><h1 id="1、mysql-install-db初始化"><a href="#1、mysql-install-db初始化" class="headerlink" title="1、mysql_install_db初始化"></a>1、mysql_install_db初始化</h1><p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202208112026723.png"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@test3 bin<span class="token punctuation">]</span><span class="token comment"># ./mysql_install_db --user=mysql --basedir=/home/dpan/soft/mysql/mysql --datadir=/home/dpan/soft/mysql/data/</span>
+<span class="token number">2021</span>-05-14 <span class="token number">15</span>:32:04 <span class="token punctuation">[</span>WARNING<span class="token punctuation">]</span> mysql_install_db is deprecated. Please consider switching to mysqld --initialize
+<span class="token number">2021</span>-05-14 <span class="token number">15</span>:32:09 <span class="token punctuation">[</span>WARNING<span class="token punctuation">]</span> The bootstrap log isn't empty:
+<span class="token number">2021</span>-05-14 <span class="token number">15</span>:32:09 <span class="token punctuation">[</span>WARNING<span class="token punctuation">]</span> <span class="token number">2021</span>-05-14T07:32:04.892924Z <span class="token number">0</span> <span class="token punctuation">[</span>Warning<span class="token punctuation">]</span> --bootstrap is deprecated. Please consider using --initialize instead<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token comment">#lsblk       #列出所有可用块设备的信息</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>mysql_install_db 命令已经是弃用的，建议切换到mysqld –initialize命令</p>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">mysql_install_db会把密码生成在/root/.mysql_secret<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205242220910.png"></p>
-<h3 id="2、对新盘分区"><a href="#2、对新盘分区" class="headerlink" title="2、对新盘分区"></a>2、对新盘分区</h3><p>使用 fdisk 命令对新盘进行分区，这里建立了一个主分区/dev/vdb1，大小8GB，最后使用 partprobe 命令重新读取分区表：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># fdisk /dev/vdb</span>
-<span class="token comment"># partprobe</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h1 id="2、mysqld初始化"><a href="#2、mysqld初始化" class="headerlink" title="2、mysqld初始化"></a>2、mysqld初始化</h1><p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202208112027224.png"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./mysqld --initialize --user<span class="token operator">=</span>mysql --basedir<span class="token operator">=</span>/home/dpan/soft/mysql/mysql --datadir<span class="token operator">=</span>/home/dpan/soft/mysql/data/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205242222567.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205242223550.png"></p>
-<p>在分区的过程中，注意设置格式为8e，这是LVM的分区格式。</p>
-<h3 id="3、创建物理卷（PV）"><a href="#3、创建物理卷（PV）" class="headerlink" title="3、创建物理卷（PV）"></a>3、创建物理卷（PV）</h3><p>使用 pvcreate 命令创建物理卷，pvdisplay 查看物理卷信息：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># pvcreate /dev/vdb1</span>
-<span class="token comment"># pvdisplay</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205242226784.png"></p>
-<h3 id="4、将PV加入卷组（VG）"><a href="#4、将PV加入卷组（VG）" class="headerlink" title="4、将PV加入卷组（VG）"></a>4、将PV加入卷组（VG）</h3><p>使用 vgdisplay 查看卷组信息，下图显示卷组名为centos，空闲大小为0：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># vgcreate centos /dev/vdb1 (若之前没建过，则建一下)</span>
-<span class="token comment"># vgdisplay</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205242226655.png"></p>
-<p>使用 vgextend 命令把/dev/vdb1加入到centos：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># vgextend centos /dev/vdb1</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205242227195.png"></p>
-<p>我们重新查看一下卷组信息，发现空闲空间为8GB，说明/dev/vdb1已经成功加入进来：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205242227770.png"></p>
-<h3 id="5、创建逻辑卷（LV）"><a href="#5、创建逻辑卷（LV）" class="headerlink" title="5、创建逻辑卷（LV）"></a>5、创建逻辑卷（LV）</h3><p>使用 lvcreate 命令从卷组里划分一个新的逻辑卷，这里创建了名称为newlv，大小4GB的逻辑卷分区；使用lvdisplay 查看逻辑卷信息：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">shell<span class="token comment"># lvcreate -L 4G -n newlv centos</span>
-shell<span class="token comment"># lvdisplay</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205242233148.png"></p>
-<p>我们再查看一下卷组信息，卷组剩余4GB空间了：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205242233894.png"></p>
-<h3 id="6、格式化逻辑卷并挂载"><a href="#6、格式化逻辑卷并挂载" class="headerlink" title="6、格式化逻辑卷并挂载"></a>6、格式化逻辑卷并挂载</h3><p>新逻辑卷经过格式化就可以挂载到系统里存储数据了。使用 mkfs.xfs 格式化为CentOS7的xfs文件系统：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">shell<span class="token comment"># mkfs.xfs /dev/centos/newlv</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205242234689.png">挂载到/mnt目录下（你可以挂载到自己需要的目录下)，挂载后看到容量为4GB：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">shell<span class="token comment"># mount -t xfs /dev/centos/newlv /data/</span>
-shell<span class="token comment"># df -Th</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205242235634.png"></p>
-<p>设置开机自动挂载，编辑 /etc/fstab 文件，加入最后一行：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">/dev/centos/newlv       /data                    xfs     defaults        <span class="token number">1</span> <span class="token number">2</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205242236583.png"></p>
-<h3 id="7、逻辑卷扩容"><a href="#7、逻辑卷扩容" class="headerlink" title="7、逻辑卷扩容"></a>7、逻辑卷扩容</h3><p>使用 lvextend 命令进行逻辑卷扩容。我把所有剩余空间都分配给了newlv，增大到了8GB，如下图：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">shell<span class="token comment"># lvextend -l +100%FREE /dev/centos/newlv</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205242237704.png"></p>
-<p>使用 xfs_growfs 命令在线调整xfs格式文件系统大小（CentOS6使用resize2fs）：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">shell<span class="token comment"># xfs_growfs /dev/centos/newlv</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205242237737.png"></p>
-<p>最后我们看到逻辑卷分区已经动态扩容到了8GB：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205242239649.png"></p>
-<h3 id="错误收集："><a href="#错误收集：" class="headerlink" title="错误收集："></a>错误收集：</h3><p>问题一：vg若出现这种报错</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@ftp 05<span class="token punctuation">]</span><span class="token comment"># vgdisplay</span>
-  WARNING: Device <span class="token keyword">for</span> PV cohZEd-5DsO-WJSd-d8R0-En0M-mL2I-NCA1qo not found or rejected by a filter.
-  Couldn't <span class="token function">find</span> device with uuid cohZEd-5DsO-WJSd-d8R0-En0M-mL2I-NCA1qo.
-  
-  解决：vgreduce --removemissing VGname<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<p><strong>这种方式会将初始密码显示出来，妥善保管</strong></p>
 
                 
             </div>
@@ -549,7 +497,7 @@ shell<span class="token comment"># df -Th</span><span aria-hidden="true" class="
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yushui1995.github.io/2022/05/24/lvm-guan-li/">https://yushui1995.github.io/2022/05/24/lvm-guan-li/</a>
+                    <a href="https://yushui1995.github.io/2022/08/11/mysql-chu-shi-hua-de-wen-ti/">https://yushui1995.github.io/2022/08/11/mysql-chu-shi-hua-de-wen-ti/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -587,12 +535,12 @@ shell<span class="token comment"># df -Th</span><span aria-hidden="true" class="
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/LVM/">
-                                    <span class="chip bg-color">LVM</span>
+                                <a href="/tags/mysql/">
+                                    <span class="chip bg-color">mysql</span>
                                 </a>
                             
-                                <a href="/tags/%E7%B3%BB%E7%BB%9F/">
-                                    <span class="chip bg-color">系统</span>
+                                <a href="/tags/%E6%8A%A5%E9%94%99-%E5%91%8A%E8%AD%A6/">
+                                    <span class="chip bg-color">报错&amp;告警</span>
                                 </a>
                             
                         </div>
@@ -1036,12 +984,12 @@ shell<span class="token comment"># df -Th</span><span aria-hidden="true" class="
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/05/24/jiang-yi-ge-san-t-de-ying-pan-zuo-cheng-lvm/">
+                <a href="/2022/08/11/nginx-lou-dong-xiu-fu-he-ji/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="将一个三T的硬盘做成LVM">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="Nginx漏洞&amp;报错合集">
                         
-                        <span class="card-title">将一个三T的硬盘做成LVM</span>
+                        <span class="card-title">Nginx漏洞&amp;报错合集</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1052,14 +1000,14 @@ shell<span class="token comment"># df -Th</span><span aria-hidden="true" class="
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-24
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-08-11
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/LVM/" class="post-category">
-                                    LVM
+                            <a href="/categories/nginx/" class="post-category">
+                                    nginx
                                 </a>
                             
                             
@@ -1069,12 +1017,12 @@ shell<span class="token comment"># df -Th</span><span aria-hidden="true" class="
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%B3%BB%E7%BB%9F/">
-                        <span class="chip bg-color">系统</span>
+                    <a href="/tags/nginx/">
+                        <span class="chip bg-color">nginx</span>
                     </a>
                     
-                    <a href="/tags/%E5%88%86%E5%8C%BA/">
-                        <span class="chip bg-color">分区</span>
+                    <a href="/tags/%E6%8A%A5%E9%94%99-%E5%91%8A%E8%AD%A6/">
+                        <span class="chip bg-color">报错&amp;告警</span>
                     </a>
                     
                 </div>
@@ -1088,12 +1036,12 @@ shell<span class="token comment"># df -Th</span><span aria-hidden="true" class="
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/19/nacos-wei-shou-quan-fang-wen-lou-dong/">
+                <a href="/2022/08/11/rabbit-guan-yu-hosts-de-bao-cuo/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="nacos未授权访问漏洞">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="rabbit关于hosts的报错">
                         
-                        <span class="card-title">nacos未授权访问漏洞</span>
+                        <span class="card-title">rabbit关于hosts的报错</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1104,14 +1052,14 @@ shell<span class="token comment"># df -Th</span><span aria-hidden="true" class="
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-11
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/" class="post-category">
-                                    漏洞修复
+                            <a href="/categories/rabbitmq/" class="post-category">
+                                    rabbitmq
                                 </a>
                             
                             
@@ -1121,12 +1069,12 @@ shell<span class="token comment"># df -Th</span><span aria-hidden="true" class="
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/nacos/">
-                        <span class="chip bg-color">nacos</span>
+                    <a href="/tags/%E6%8A%A5%E9%94%99-%E5%91%8A%E8%AD%A6/">
+                        <span class="chip bg-color">报错&amp;告警</span>
                     </a>
                     
-                    <a href="/tags/%E6%BC%8F%E6%B4%9E/">
-                        <span class="chip bg-color">漏洞</span>
+                    <a href="/tags/rabbitmq/">
+                        <span class="chip bg-color">rabbitmq</span>
                     </a>
                     
                 </div>

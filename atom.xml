@@ -6,7 +6,7 @@
   <link href="https://yushui1995.github.io/atom.xml" rel="self"/>
   
   <link href="https://yushui1995.github.io/"/>
-  <updated>2022-08-11T12:37:48.128Z</updated>
+  <updated>2022-09-14T13:14:16.138Z</updated>
   <id>https://yushui1995.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>系统漏洞修复shell脚本</title>
+    <link href="https://yushui1995.github.io/2022/09/14/xi-tong-lou-dong-xiu-fu-shell-jiao-ben/"/>
+    <id>https://yushui1995.github.io/2022/09/14/xi-tong-lou-dong-xiu-fu-shell-jiao-ben/</id>
+    <published>2022-09-14T13:12:01.000Z</published>
+    <updated>2022-09-14T13:14:16.138Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre class=&quot;line-numbers language-bash&quot; data-language=&quot;bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token shebang</summary>
+        
+      
+    
+    
+    
+    <category term="漏洞修复" scheme="https://yushui1995.github.io/categories/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/"/>
+    
+    
+    <category term="漏洞修复" scheme="https://yushui1995.github.io/tags/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/"/>
+    
+    <category term="shell" scheme="https://yushui1995.github.io/tags/shell/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Nginx漏洞&amp;报错合集</title>
     <link href="https://yushui1995.github.io/2022/08/11/nginx-lou-dong-xiu-fu-he-ji/"/>
     <id>https://yushui1995.github.io/2022/08/11/nginx-lou-dong-xiu-fu-he-ji/</id>
     <published>2022-08-11T12:29:46.000Z</published>
-    <updated>2022-08-11T12:37:48.128Z</updated>
+    <updated>2022-09-14T13:14:32.239Z</updated>
     
     
       
@@ -39,7 +66,7 @@
     
     <category term="nginx" scheme="https://yushui1995.github.io/tags/nginx/"/>
     
-    <category term="报错&amp;告警" scheme="https://yushui1995.github.io/tags/%E6%8A%A5%E9%94%99-%E5%91%8A%E8%AD%A6/"/>
+    <category term="报错&amp;警告" scheme="https://yushui1995.github.io/tags/%E6%8A%A5%E9%94%99-%E8%AD%A6%E5%91%8A/"/>
     
   </entry>
   
@@ -91,9 +118,9 @@
     <category term="rabbitmq" scheme="https://yushui1995.github.io/categories/rabbitmq/"/>
     
     
-    <category term="报错&amp;告警" scheme="https://yushui1995.github.io/tags/%E6%8A%A5%E9%94%99-%E5%91%8A%E8%AD%A6/"/>
-    
     <category term="rabbitmq" scheme="https://yushui1995.github.io/tags/rabbitmq/"/>
+    
+    <category term="报错&amp;告警" scheme="https://yushui1995.github.io/tags/%E6%8A%A5%E9%94%99-%E5%91%8A%E8%AD%A6/"/>
     
   </entry>
   
@@ -289,7 +316,7 @@
     <link href="https://yushui1995.github.io/2022/05/19/nacos-wei-shou-quan-fang-wen-lou-dong/"/>
     <id>https://yushui1995.github.io/2022/05/19/nacos-wei-shou-quan-fang-wen-lou-dong/</id>
     <published>2022-05-19T13:24:00.000Z</published>
-    <updated>2022-05-19T13:29:24.502Z</updated>
+    <updated>2022-09-14T13:15:06.899Z</updated>
     
     
       
@@ -307,7 +334,7 @@
     
     <category term="nacos" scheme="https://yushui1995.github.io/tags/nacos/"/>
     
-    <category term="漏洞" scheme="https://yushui1995.github.io/tags/%E6%BC%8F%E6%B4%9E/"/>
+    <category term="漏洞修复" scheme="https://yushui1995.github.io/tags/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/"/>
     
   </entry>
   
@@ -441,9 +468,9 @@
     <category term="redis" scheme="https://yushui1995.github.io/categories/redis/"/>
     
     
-    <category term="redis" scheme="https://yushui1995.github.io/tags/redis/"/>
-    
     <category term="报错&amp;警告" scheme="https://yushui1995.github.io/tags/%E6%8A%A5%E9%94%99-%E8%AD%A6%E5%91%8A/"/>
+    
+    <category term="redis" scheme="https://yushui1995.github.io/tags/redis/"/>
     
   </entry>
   
@@ -523,33 +550,6 @@
     <category term="mysql" scheme="https://yushui1995.github.io/tags/mysql/"/>
     
     <category term="工具" scheme="https://yushui1995.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Rabbitmq设置路径前缀</title>
-    <link href="https://yushui1995.github.io/2022/05/05/rabbitmq-she-zhi-lu-jing-qian-zhui/"/>
-    <id>https://yushui1995.github.io/2022/05/05/rabbitmq-she-zhi-lu-jing-qian-zhui/</id>
-    <published>2022-05-05T13:09:32.000Z</published>
-    <updated>2022-05-07T15:36:21.675Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;rabbtimq设置前缀&quot;&gt;&lt;a href=&quot;#rabbtimq设置前缀&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="rabbitmq" scheme="https://yushui1995.github.io/categories/rabbitmq/"/>
-    
-    
-    <category term="nginx" scheme="https://yushui1995.github.io/tags/nginx/"/>
-    
-    <category term="rabbitmq" scheme="https://yushui1995.github.io/tags/rabbitmq/"/>
     
   </entry>
   

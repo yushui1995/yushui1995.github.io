@@ -4,9 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Nginx 1.20.2 编译安装, ">
-    <meta name="description" content="Nginx 1.20.2 编译安装+nginx_upstream_check_module1、下载nginx官网：http://nginx.org/
-直接下载：wget http://nginx.org/download/nginx-1.2">
+    <meta name="keywords" content="系统漏洞修复shell脚本, ">
+    <meta name="description" content="#!/bin/bash
+
+#######################################################
+#1.增加审计用户 设置密码 设置权限
+###############################">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +23,7 @@
 
     
 
-    <title>Nginx 1.20.2 编译安装 | </title>
+    <title>系统漏洞修复shell脚本 | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -274,7 +277,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Nginx 1.20.2 编译安装</h1>
+                    <h1 class="description center-align post-title">系统漏洞修复shell脚本</h1>
                 </div>
             </div>
         </div>
@@ -390,12 +393,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/nginx/">
-                                <span class="chip bg-color">nginx</span>
+                            <a href="/tags/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/">
+                                <span class="chip bg-color">漏洞修复</span>
                             </a>
                         
-                            <a href="/tags/%E9%83%A8%E7%BD%B2/">
-                                <span class="chip bg-color">部署</span>
+                            <a href="/tags/shell/">
+                                <span class="chip bg-color">shell</span>
                             </a>
                         
                     </div>
@@ -406,8 +409,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/nginx/" class="post-category">
-                                nginx
+                            <a href="/categories/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/" class="post-category">
+                                漏洞修复
                             </a>
                         
                     </div>
@@ -419,7 +422,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-13
+                    2022-09-14
                 </div>
                 
 
@@ -428,14 +431,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    361
+                    953
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    5 分
                 </div>
                 
 
@@ -458,80 +461,217 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Nginx-1-20-2-编译安装-nginx-upstream-check-module"><a href="#Nginx-1-20-2-编译安装-nginx-upstream-check-module" class="headerlink" title="Nginx 1.20.2 编译安装+nginx_upstream_check_module"></a>Nginx 1.20.2 编译安装+nginx_upstream_check_module</h1><h2 id="1、下载nginx"><a href="#1、下载nginx" class="headerlink" title="1、下载nginx"></a>1、下载nginx</h2><p>官网：<a target="_blank" rel="noopener" href="http://nginx.org/">http://nginx.org/</a></p>
-<p>直接下载：wget <a target="_blank" rel="noopener" href="http://nginx.org/download/nginx-1.20.2.tar.gz">http://nginx.org/download/nginx-1.20.2.tar.gz</a></p>
-<h2 id="2、下载nginx-upstream-check-module"><a href="#2、下载nginx-upstream-check-module" class="headerlink" title="2、下载nginx_upstream_check_module"></a>2、下载nginx_upstream_check_module</h2><p>wget <a target="_blank" rel="noopener" href="https://github.com/yaoweibin/nginx_upstream_check_module/archive/refs/heads/master.zip">https://github.com/yaoweibin/nginx_upstream_check_module/archive/refs/heads/master.zip</a></p>
-<h2 id="3、下载依赖、安装"><a href="#3、下载依赖、安装" class="headerlink" title="3、下载依赖、安装"></a>3、下载依赖、安装</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#依赖安装</span>
-yum <span class="token operator">-</span>y install patch openssl openssl<span class="token operator">-</span>devel gcc<span class="token operator">-</span>c<span class="token operator">+</span><span class="token operator">+</span>  gcc zlib pcre
-<span class="token comment">#解压至/usr/local</span>
-tar <span class="token operator">-</span>zxvf nginx<span class="token operator">-</span><span class="token number">1.20</span><span class="token number">.2</span><span class="token punctuation">.</span>tar<span class="token punctuation">.</span>gz <span class="token operator">-</span>C <span class="token operator">/</span>usr<span class="token operator">/</span>local
-unzip nginx_upstream_check_module<span class="token operator">-</span>master<span class="token punctuation">.</span><span class="token builtin">zip</span> <span class="token operator">-</span>d <span class="token operator">/</span>usr<span class="token operator">/</span>local
+                <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
 
-<span class="token comment">#编译</span>
-cd <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>nginx<span class="token operator">-</span><span class="token number">1.20</span><span class="token number">.2</span>
-patch <span class="token operator">-</span>p1 <span class="token operator">&lt;</span> <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>nginx_upstream_check_module<span class="token operator">-</span>master<span class="token operator">/</span>check_1<span class="token punctuation">.</span><span class="token number">20.1</span><span class="token operator">+</span><span class="token punctuation">.</span>patch  <span class="token comment">#打补丁</span>
+<span class="token comment">#######################################################</span>
+<span class="token comment">#1.增加审计用户 设置密码 设置权限</span>
+<span class="token comment">#######################################################</span>
+<span class="token assign-left variable">password</span><span class="token operator">=</span><span class="token string">'Simple@2022!'</span>
 
-<span class="token punctuation">.</span><span class="token operator">/</span>configure <span class="token operator">-</span><span class="token operator">-</span>prefix<span class="token operator">=</span><span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>nginx <span class="token operator">-</span><span class="token operator">-</span>add<span class="token operator">-</span>module<span class="token operator">=</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">/</span>nginx_upstream_check_module<span class="token operator">-</span>master
+<span class="token function">useradd</span> shenji
+<span class="token builtin class-name">echo</span> <span class="token variable">$password</span> <span class="token operator">|</span> <span class="token function">passwd</span> shenji --stdin <span class="token operator">&gt;</span> /dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"已修改shenji密码"</span>
+<span class="token function">chmod</span> -v u+w /etc/sudoers
+<span class="token function">cat</span> <span class="token operator">&gt;&gt;</span> /etc/sudoers <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+shenji ALL = (root) NOPASSWD: /usr/bin/cat , /usr/bin/less , /usr/bin/more , /usr/bin/tail , /usr/bin/head
+EOF</span>
 
-make <span class="token operator">&amp;</span><span class="token operator">&amp;</span> make install
 
-<span class="token comment">#增加软连接</span>
-ln <span class="token operator">-</span>s <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>nginx<span class="token operator">/</span>sbin<span class="token operator">/</span>nginx <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span><span class="token builtin">bin</span><span class="token operator">/</span>
+<span class="token comment">#######################################################</span>
+<span class="token comment">#2.umask参数由022修改为027</span>
+<span class="token comment">#######################################################</span>
+<span class="token function">sed</span> -i <span class="token string">'swumask.*022wumask 027wg'</span> /etc/profile
 
-<span class="token comment">#创建日志目录</span>
-mkdir <span class="token operator">-</span>p  <span class="token operator">/</span>var<span class="token operator">/</span>log<span class="token operator">/</span>nginx
+<span class="token builtin class-name">echo</span> <span class="token string">"已修改umask"</span>
 
-<span class="token comment">#建立conf目录</span>
-mkdir <span class="token operator">-</span>p <span class="token operator">/</span>etc<span class="token operator">/</span>nginx<span class="token operator">/</span>conf<span class="token punctuation">.</span>d<span class="token operator">/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">#######################################################</span>
+<span class="token comment">#3.su权限</span>
+<span class="token comment">#######################################################</span>
+<span class="token function">cat</span> <span class="token operator">&gt;&gt;</span> /etc/pam.d/su <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+auth            required        pam_wheel.so use_uid
+EOF</span>
 
-<h2 id="4、修改nginx-conf"><a href="#4、修改nginx-conf" class="headerlink" title="4、修改nginx.conf"></a>4、修改nginx.conf</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">vim <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>nginx<span class="token operator">/</span>conf<span class="token operator">/</span>nginx<span class="token punctuation">.</span>conf
-user              nginx<span class="token punctuation">;</span>
-worker_processes  <span class="token number">4</span><span class="token punctuation">;</span>
-worker_rlimit_nofile <span class="token number">65535</span><span class="token punctuation">;</span>
-error_log         <span class="token operator">/</span>var<span class="token operator">/</span>log<span class="token operator">/</span>nginx<span class="token operator">/</span>error<span class="token punctuation">.</span>log warn<span class="token punctuation">;</span>
-pid               <span class="token operator">/</span>var<span class="token operator">/</span>run<span class="token operator">/</span>nginx<span class="token punctuation">.</span>pid<span class="token punctuation">;</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"已修改su权限"</span>
+<span class="token comment">#######################################################</span>
+<span class="token comment">#4.配置口令有效期策略</span>
+<span class="token comment">#######################################################</span>
+<span class="token comment">#sed -i 'swPASS_MAX_DAYS.*99999wPASS_MAX_DAYS   90wg' /etc/login.defs</span>
+<span class="token comment">#sed -i 'swPASS_MIN_DAYS.*0wPASS_MAX_DAYS   80wg' /etc/login.defs</span>
+<span class="token comment">#sed -i 'swPASS_MIN_LEN.*5wPASS_MAX_DAYS   10wg' /etc/login.defs</span>
+<span class="token comment">#sed -i 'swPASS_WARN_AGE.*7wPASS_MAX_DAYS   30wg' /etc/login.defs</span>
 
-events <span class="token punctuation">{</span>
-worker_connections  <span class="token number">32000</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+<span class="token function">cat</span> <span class="token operator">&gt;</span>  /etc/login.defs <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+#
+# Please note that the parameters in this configuration file control the
+# behavior of the tools from the shadow-utils component. None of these
+# tools uses the PAM mechanism, and the utilities that use PAM (such as the
+# passwd command) should therefore be configured elsewhere. Refer to
+# /etc/pam.d/system-auth for more information.
+#
 
-http <span class="token punctuation">{</span>
-include                        mime<span class="token punctuation">.</span>types<span class="token punctuation">;</span>
-default_type                   application<span class="token operator">/</span>octet<span class="token operator">-</span>stream<span class="token punctuation">;</span>
-log_format                     main <span class="token string">'$remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" "$http_x_forwarded_for"'</span><span class="token punctuation">;</span>
-access_log                     <span class="token operator">/</span>var<span class="token operator">/</span>log<span class="token operator">/</span>nginx<span class="token operator">/</span>access<span class="token punctuation">.</span>log main<span class="token punctuation">;</span>
-sendfile                       on<span class="token punctuation">;</span>
-keepalive_timeout              65s<span class="token punctuation">;</span>
-include                        <span class="token operator">/</span>etc<span class="token operator">/</span>nginx<span class="token operator">/</span>conf<span class="token punctuation">.</span>d<span class="token operator">/</span><span class="token operator">*</span><span class="token punctuation">.</span>conf<span class="token punctuation">;</span>
-server_tokens                  off<span class="token punctuation">;</span>
-server_names_hash_max_size     <span class="token number">512</span><span class="token punctuation">;</span>
-server_names_hash_bucket_size  <span class="token number">128</span><span class="token punctuation">;</span>
-client_header_buffer_size      32k<span class="token punctuation">;</span>
-large_client_header_buffers    <span class="token number">4</span> 32k<span class="token punctuation">;</span>
-gzip                           on<span class="token punctuation">;</span>
-gzip_disable                   msie6<span class="token punctuation">;</span>
-gzip_min_length                1k<span class="token punctuation">;</span>
-gzip_comp_level                <span class="token number">9</span><span class="token punctuation">;</span>
-gzip_buffers                   <span class="token number">4</span> 16k<span class="token punctuation">;</span>
-gzip_http_version              <span class="token number">1.1</span><span class="token punctuation">;</span>
-gzip_proxied                   <span class="token builtin">any</span><span class="token punctuation">;</span>
-gzip_vary                      on<span class="token punctuation">;</span>
-gzip_types                     text<span class="token operator">/</span>plain text<span class="token operator">/</span>css text<span class="token operator">/</span>xml text<span class="token operator">/</span>javascript text<span class="token operator">/</span>x<span class="token operator">-</span>component application<span class="token operator">/</span>json application<span class="token operator">/</span>javascript application<span class="token operator">/</span>xml application<span class="token operator">/</span>xhtml<span class="token operator">+</span>xml application<span class="token operator">/</span>xml<span class="token operator">+</span>rss application<span class="token operator">/</span>rss<span class="token operator">+</span>xml application<span class="token operator">/</span>atom<span class="token operator">+</span>xml application<span class="token operator">/</span>x<span class="token operator">-</span>font<span class="token operator">-</span>ttf application<span class="token operator">/</span>x<span class="token operator">-</span>web<span class="token operator">-</span>app<span class="token operator">-</span>manifest<span class="token operator">+</span>json font<span class="token operator">/</span>opentype image<span class="token operator">/</span>svg<span class="token operator">+</span>xml image<span class="token operator">/</span>x<span class="token operator">-</span>icon<span class="token punctuation">;</span>
-fastcgi_buffer_size            64k<span class="token punctuation">;</span>
-fastcgi_buffers                <span class="token number">4</span> 64k<span class="token punctuation">;</span>
-fastcgi_busy_buffers_size      128k<span class="token punctuation">;</span>
-fastcgi_temp_file_write_size   256k<span class="token punctuation">;</span>
-client_max_body_size           100m<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+# *REQUIRED*
+#   Directory where mailboxes reside, _or_ name of file, relative to the
+#   home directory.  If you _do_ define both, MAIL_DIR takes precedence.
+#   QMAIL_DIR is for Qmail
+#
+#QMAIL_DIR      Maildir
+MAIL_DIR        /var/spool/mail
+#MAIL_FILE      .mail
 
-<span class="token comment">#启动nginx</span>
-cd <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>nginx<span class="token operator">/</span>sbin
-<span class="token punctuation">.</span><span class="token operator">/</span>nginx <span class="token operator">-</span>c <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>nginx<span class="token operator">/</span>conf<span class="token operator">/</span>nginx<span class="token punctuation">.</span>conf <span class="token comment">#不推荐这样启动，选择systemctl管理</span>
+# Password aging controls:
+#
+#       PASS_MAX_DAYS   Maximum number of days a password may be used.
+#       PASS_MIN_DAYS   Minimum number of days allowed between password changes.
+#       PASS_MIN_LEN    Minimum acceptable password length.
+#       PASS_WARN_AGE   Number of days warning given before a password expires.
+#
+PASS_MAX_DAYS   180
+PASS_MIN_DAYS   80
+PASS_MIN_LEN    10
+PASS_WARN_AGE   30
+#
+# Min/max values for automatic uid selection in useradd
+#
+UID_MIN                  1000
+UID_MAX                 60000
+# System accounts
+SYS_UID_MIN               201
+SYS_UID_MAX               999
 
-<span class="token comment">#查看版本号</span>
-nginx <span class="token operator">-</span>v<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+#
+# Min/max values for automatic gid selection in groupadd
+#
+GID_MIN                  1000
+GID_MAX                 60000
+# System accounts
+SYS_GID_MIN               201
+SYS_GID_MAX               999
 
-<h2 id="5、systemctl管理"><a href="#5、systemctl管理" class="headerlink" title="5、systemctl管理"></a>5、systemctl管理</h2>
+#
+# If defined, this command is run when removing a user.
+# It should remove any at/cron/print jobs etc. owned by
+# the user to be removed (passed as the first argument).
+#
+#USERDEL_CMD    /usr/sbin/userdel_local
+
+#
+# If useradd should create home directories for users by default
+# On RH systems, we do. This option is overridden with the -m flag on
+# useradd command line.
+#
+CREATE_HOME     yes
+# The permission mask is initialized to this value. If not specified,
+# the permission mask will be initialized to 022.
+UMASK           077
+
+# This enables userdel to remove user groups if no members exist.
+#
+USERGROUPS_ENAB yes
+
+# Use SHA512 to encrypt password.
+ENCRYPT_METHOD SHA512
+EOF</span>
+
+<span class="token function">cat</span> <span class="token operator">&gt;</span> /etc/pam.d/system-auth <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+#%PAM-1.0
+# This file is auto-generated.
+# User changes will be destroyed the next time authconfig is run.
+auth required pam_tally2.so deny=3 unlock_time=300 even_deny_root root_unlock_time=300
+
+account required pam_tally2.so
+auth        required      pam_env.so
+auth        required      pam_faildelay.so delay=2000000
+auth        sufficient    pam_fprintd.so
+auth        sufficient    pam_unix.so nullok try_first_pass
+auth        requisite     pam_succeed_if.so uid &gt;= 1000 quiet_success
+auth        required      pam_deny.so
+
+account     required      pam_unix.so
+account     sufficient    pam_localuser.so
+account     sufficient    pam_succeed_if.so uid &lt; 1000 quiet
+account     required      pam_permit.so
+
+password    requisite     pam_pwquality.so try_first_pass local_users_only retry=3 authtok_type=
+password    sufficient    pam_unix.so sha512 shadow nullok try_first_pass use_authtok
+password    required      pam_deny.so
+
+session     optional      pam_keyinit.so revoke
+session     required      pam_limits.so
+-session     optional      pam_systemd.so
+session     [success=1 default=ignore] pam_succeed_if.so service in crond quiet use_uid
+session     required      pam_unix.so
+password requisite pam_cracklib.so retry=3 difok=3 minlen=10 ucredit=-1 lcredit=-2 dcredit=-1 ocredit=-1
+EOF</span>
+
+<span class="token builtin class-name">echo</span> <span class="token string">"已修改口令有效期策略"</span>
+
+<span class="token comment">#######################################################</span>
+<span class="token comment">#5.配置登录失败处理策略</span>
+<span class="token comment">#######################################################</span>
+<span class="token function">cat</span> <span class="token operator">&gt;</span> /etc/pam.d/system-auth <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+#%PAM-1.0
+# This file is auto-generated.
+# User changes will be destroyed the next time authconfig is run.
+auth required pam_tally2.so deny=3 unlock_time=300 even_deny_root root_unlock_time=300
+account required pam_tally2.so                          
+auth        required      pam_env.so
+auth        required      pam_faildelay.so delay=2000000
+auth        sufficient    pam_fprintd.so
+auth        sufficient    pam_unix.so nullok try_first_pass
+auth        requisite     pam_succeed_if.so uid &gt;= 1000 quiet_success
+auth        required      pam_deny.so
+
+account     required      pam_unix.so
+account     sufficient    pam_localuser.so
+account     sufficient    pam_succeed_if.so uid &lt; 1000 quiet
+account     required      pam_permit.so
+
+password    requisite     pam_pwquality.so try_first_pass local_users_only retry=3 authtok_type=
+password    sufficient    pam_unix.so sha512 shadow nullok try_first_pass use_authtok
+password    required      pam_deny.so
+
+session     optional      pam_keyinit.so revoke
+session     required      pam_limits.so
+-session     optional      pam_systemd.so
+session     [success=1 default=ignore] pam_succeed_if.so service in crond quiet use_uid
+session     required      pam_unix.so
+EOF</span>
+
+<span class="token builtin class-name">echo</span> <span class="token string">"已修改配置登录失败处理策略"</span>
+
+
+<span class="token comment">#######################################################</span>
+<span class="token comment">#6.日志备份</span>
+<span class="token comment">#######################################################</span>
+<span class="token function">mkdir</span> /home/dpan/log
+<span class="token function">touch</span> /home/dpan/log/logback.sh
+<span class="token function">cat</span> <span class="token operator">&gt;&gt;</span> /home/dpan/log/logback.sh <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+
+cd /home/dpan/log
+tar -zcf messages_<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y%m%d<span class="token variable">)</span></span>.zip /var/log/messages
+
+tar -zcf secure_<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y%m%d<span class="token variable">)</span></span>.zip /var/log/secure
+
+tar -zcf audit_<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y%m%d<span class="token variable">)</span></span>.zip /var/log/audit/audit.log
+
+tar -zcf nginx_access_<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y%m%d<span class="token variable">)</span></span>.zip /var/log/nginx/access.log
+
+tar -zcf nginx_error_<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y%m%d<span class="token variable">)</span></span>.zip /var/log/nginx/error.log
+
+tar -zcf nginx_8081_<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y%m%d<span class="token variable">)</span></span>.zip /etc/nginx/conf.d/8081.conf
+
+tar -zcf nginx_default__<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y%m%d<span class="token variable">)</span></span>.zip /etc/nginx/conf.d/default.conf
+EOF</span>
+
+<span class="token function">chmod</span> +x /home/dpan/log/logback.sh
+
+<span class="token function">cat</span> <span class="token operator">&gt;&gt;</span>/var/spool/cron/root <span class="token operator">&lt;&lt;</span><span class="token string">EOF 
+30 23 * * * sh /home/dpan/log/logback.sh
+EOF</span>
+
+<span class="token builtin class-name">echo</span> <span class="token string">"已修改日志备份"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
                 
             </div>
             <hr/>
@@ -557,7 +697,7 @@ nginx <span class="token operator">-</span>v<span aria-hidden="true" class="line
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yushui1995.github.io/2022/05/13/nginx-1-20-2-bian-yi-an-zhuang/">https://yushui1995.github.io/2022/05/13/nginx-1-20-2-bian-yi-an-zhuang/</a>
+                    <a href="https://yushui1995.github.io/2022/09/14/xi-tong-lou-dong-xiu-fu-shell-jiao-ben/">https://yushui1995.github.io/2022/09/14/xi-tong-lou-dong-xiu-fu-shell-jiao-ben/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -595,12 +735,12 @@ nginx <span class="token operator">-</span>v<span aria-hidden="true" class="line
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/nginx/">
-                                    <span class="chip bg-color">nginx</span>
+                                <a href="/tags/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/">
+                                    <span class="chip bg-color">漏洞修复</span>
                                 </a>
                             
-                                <a href="/tags/%E9%83%A8%E7%BD%B2/">
-                                    <span class="chip bg-color">部署</span>
+                                <a href="/tags/shell/">
+                                    <span class="chip bg-color">shell</span>
                                 </a>
                             
                         </div>
@@ -1040,16 +1180,17 @@ nginx <span class="token operator">-</span>v<span aria-hidden="true" class="line
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/05/19/nacos-wei-shou-quan-fang-wen-lou-dong/">
+                <a href="/2022/09/14/xi-tong-lou-dong-xiu-fu-shell-jiao-ben/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="nacos未授权访问漏洞">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="系统漏洞修复shell脚本">
                         
-                        <span class="card-title">nacos未授权访问漏洞</span>
+                        <span class="card-title">系统漏洞修复shell脚本</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1059,9 +1200,9 @@ nginx <span class="token operator">-</span>v<span aria-hidden="true" class="line
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-14
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1074,15 +1215,16 @@ nginx <span class="token operator">-</span>v<span aria-hidden="true" class="line
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/nacos/">
-                        <span class="chip bg-color">nacos</span>
-                    </a>
-                    
                     <a href="/tags/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/">
                         <span class="chip bg-color">漏洞修复</span>
+                    </a>
+                    
+                    <a href="/tags/shell/">
+                        <span class="chip bg-color">shell</span>
                     </a>
                     
                 </div>
@@ -1096,12 +1238,12 @@ nginx <span class="token operator">-</span>v<span aria-hidden="true" class="line
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/12/shell-mian-shi-ti/">
+                <a href="/2022/08/11/nginx-lou-dong-xiu-fu-he-ji/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="shell面试题">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="Nginx漏洞&amp;报错合集">
                         
-                        <span class="card-title">shell面试题</span>
+                        <span class="card-title">Nginx漏洞&amp;报错合集</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1112,14 +1254,14 @@ nginx <span class="token operator">-</span>v<span aria-hidden="true" class="line
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-11
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/shell/" class="post-category">
-                                    shell
+                            <a href="/categories/nginx/" class="post-category">
+                                    nginx
                                 </a>
                             
                             
@@ -1129,12 +1271,12 @@ nginx <span class="token operator">-</span>v<span aria-hidden="true" class="line
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/shell/">
-                        <span class="chip bg-color">shell</span>
+                    <a href="/tags/nginx/">
+                        <span class="chip bg-color">nginx</span>
                     </a>
                     
-                    <a href="/tags/%E9%A2%98%E7%9B%AE/">
-                        <span class="chip bg-color">题目</span>
+                    <a href="/tags/%E6%8A%A5%E9%94%99-%E8%AD%A6%E5%91%8A/">
+                        <span class="chip bg-color">报错&amp;警告</span>
                     </a>
                     
                 </div>

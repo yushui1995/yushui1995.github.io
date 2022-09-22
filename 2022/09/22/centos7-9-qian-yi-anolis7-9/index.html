@@ -464,7 +464,7 @@ https://mirrors.openanolis.">
 <p><a target="_blank" rel="noopener" href="https://openanolis.cn/sig/migration/doc/451732372594279514">https://openanolis.cn/sig/migration/doc/451732372594279514</a></p>
 <p>官方镜像：</p>
 <p><a target="_blank" rel="noopener" href="https://mirrors.openanolis.cn/anolis/">https://mirrors.openanolis.cn/anolis/</a></p>
-<h2 id="1、迁移注意事项"><a href="#1、迁移注意事项" class="headerlink" title="1、迁移注意事项"></a><strong>1、迁移注意事项</strong></h2><p>Anolis OS 7生态上和依赖管理上保持跟CentOS7.x兼容，<a target="_blank" rel="noopener" href="http://一键式迁移脚本centos2anolis.py/">一键式迁移脚本centos2anolis.py</a>，实现CentOS7.x到Anolis OS 7的平滑迁移。</p>
+<h2 id="1、迁移注意事项"><a href="#1、迁移注意事项" class="headerlink" title="1、迁移注意事项"></a><strong>1、迁移注意事项</strong></h2><p>Anolis OS 7生态上和依赖管理上保持跟CentOS7.x兼容，一键式迁移脚本centos2anolis.py，实现CentOS7.x到Anolis OS 7的平滑迁移。</p>
 <p>使用迁移脚本前需要注意如下事项：</p>
 <ul>
 <li>迁移涉及到软件包的重新安装，是不可逆过程，执行迁移前务必做好系统备份。</li>
@@ -474,7 +474,7 @@ https://mirrors.openanolis.">
 <li>迁移脚本提供了Anolis OS repo访问加速的功能，如果访问Anolis OS官方repo速度较慢，可以通过-s选项进行加速访问。</li>
 <li>Anolis OS 不提供i686架构的软件包，如您系统上安装了CentOS的i686架构的软件包，则无法正常迁移。</li>
 </ul>
-<h2 id="2、部署迁移工具"><a href="#2、部署迁移工具" class="headerlink" title="2、部署迁移工具"></a>2、部署迁移工具</h2><h3 id="一、-从本地-yum-源安装迁移工具"><a href="#一、-从本地-yum-源安装迁移工具" class="headerlink" title="一、 从本地 yum 源安装迁移工具"></a><strong>一、 从本地 yum 源安装迁移工具</strong></h3><p>如果待迁移系统无法访问龙蜥 mirror，首先建议在内网搭建一套本地yum源 ，然后通过本地源安装迁移工具。假设本地源地址为 <a target="_blank" rel="noopener" href="http://local.repo.com/anolis">http://local.repo.com/anolis</a> ， 则下载迁移工具软件源：</p>
+<h2 id="2、部署迁移工具"><a href="#2、部署迁移工具" class="headerlink" title="2、部署迁移工具"></a>2、部署迁移工具</h2><h3 id="一、-从本地-yum-源安装迁移工具"><a href="#一、-从本地-yum-源安装迁移工具" class="headerlink" title="一、 从本地 yum 源安装迁移工具"></a><strong>一、 从本地 yum 源安装迁移工具</strong></h3><p>如果待迁移系统无法访问龙蜥 mirror，首先建议在内网搭建一套本地yum源 ，然后通过本地源安装迁移工具。</p>
 <ul>
 <li><p>搭建内网yum源</p>
 <p>一、搭建部署nginx(注意关闭firewalld和selinux)</p>
@@ -1223,12 +1223,12 @@ REDHAT_SUPPORT_PRODUCT_VERSION="7"<span aria-hidden="true" class="line-numbers-r
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/">
-                        <span class="chip bg-color">漏洞修复</span>
-                    </a>
-                    
                     <a href="/tags/shell/">
                         <span class="chip bg-color">shell</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/">
+                        <span class="chip bg-color">漏洞修复</span>
                     </a>
                     
                 </div>

@@ -562,7 +562,7 @@ server <span class="token punctuation">{</span>
 
 
 
-<h1 id="3-迁移执行"><a href="#3-迁移执行" class="headerlink" title="3 迁移执行"></a>3 迁移执行</h1><h3 id="选项一-使用本地-yum-源执行迁移"><a href="#选项一-使用本地-yum-源执行迁移" class="headerlink" title="选项一 使用本地 yum 源执行迁移"></a>选项一 使用本地 yum 源执行迁移</h3><p>在无法接入到互联网时，可以使用本地源迁移系统。</p>
+<h2 id="3、-迁移执行"><a href="#3、-迁移执行" class="headerlink" title="3、 迁移执行"></a>3、 迁移执行</h2><h3 id="一、使用本地-yum-源执行迁移"><a href="#一、使用本地-yum-源执行迁移" class="headerlink" title="一、使用本地 yum 源执行迁移"></a>一、使用本地 yum 源执行迁移</h3><p>在无法接入到互联网时，可以使用本地源迁移系统。</p>
 <ol>
 <li>在运行工具之前，新建或者编辑Anolis仓库的repo文件：/etc/yum.repos.d/switch-to-anolis.repo (注意，请确保文件名为 switch-to-anolis.repo), 将对应的 repo baseurl 地址改成本地源 repo 地址， 譬如，假设本地源地址为 <a href="https://gitee.com/link?target=http://local.repo.com/anolis">http://local.repo.com/anolis</a> , 则配置文件如下</li>
 </ol>
@@ -599,7 +599,7 @@ enabled=1<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
 <p>上述命令是默认迁移到带 ANCK 内核的龙蜥OS，如果你想迁移到带 RHCK 内核的龙蜥OS请执行下面的命令进行迁移</p>
 <pre class="line-numbers language-none"><code class="language-none">centos2anolis.py -l --rhck<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h3 id="选项二-使用社区-yum-源执行迁移-依赖网络"><a href="#选项二-使用社区-yum-源执行迁移-依赖网络" class="headerlink" title="选项二 使用社区 yum 源执行迁移(依赖网络)"></a>选项二 使用社区 yum 源执行迁移(依赖网络)</h3><p>直接执行下述命令即可</p>
+<h3 id="二、使用社区-yum-源执行迁移-依赖网络"><a href="#二、使用社区-yum-源执行迁移-依赖网络" class="headerlink" title="二、使用社区 yum 源执行迁移(依赖网络)"></a>二、使用社区 yum 源执行迁移(依赖网络)</h3><p>直接执行下述命令即可</p>
 <pre class="line-numbers language-none"><code class="language-none">centos2anolis.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>上述命令是默认迁移到带 ANCK 内核的龙蜥OS，如果你想迁移到带 RHCK 内核的龙蜥OS请执行下面的命令进行迁移</p>
@@ -607,7 +607,7 @@ enabled=1<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
 
 <p>迁移完成后，系统会提示如下信息，表示迁移成功，重启即可进入Anolis OS系统</p>
 <p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202209222053938.png"></p>
-<h1 id="4-迁移后验证"><a href="#4-迁移后验证" class="headerlink" title="4 迁移后验证"></a>4 迁移后验证</h1><p>查看OS版本：</p>
+<h2 id="4、迁移后验证"><a href="#4、迁移后验证" class="headerlink" title="4、迁移后验证"></a>4、迁移后验证</h2><p>查看OS版本：</p>
 <pre class="line-numbers language-none"><code class="language-none"># cat /etc/os-release
 NAME="Anolis OS"
 VERSION="7.9"

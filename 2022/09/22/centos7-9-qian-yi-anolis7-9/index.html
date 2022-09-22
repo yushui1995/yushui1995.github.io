@@ -4,15 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="将一个三T的硬盘做成LVM, ">
-    <meta name="description" content="将一个三T的硬盘分区并做LVM解决方案
-
-增加磁盘 -&amp;gt; 初始化物理卷 -&amp;gt; 扩容卷组 -&amp;gt; 扩容逻辑卷
-
-因为fdisk不能创建大于2T的分区，创建大分区得用parted
-parted将硬盘进行分区：
-
-查看磁盘信息，这">
+    <meta name="keywords" content="centos7.9迁移anolis7.9, ">
+    <meta name="description" content="centos7.9迁移升级anolis7.9官方社区：
+https://openanolis.cn/sig/migration/doc/451732372594279514
+官方镜像：
+https://mirrors.openanolis.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -26,7 +22,7 @@ parted将硬盘进行分区：
 
     
 
-    <title>将一个三T的硬盘做成LVM | </title>
+    <title>centos7.9迁移anolis7.9 | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -280,7 +276,7 @@ parted将硬盘进行分区：
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">将一个三T的硬盘做成LVM</h1>
+                    <h1 class="description center-align post-title">centos7.9迁移anolis7.9</h1>
                 </div>
             </div>
         </div>
@@ -396,12 +392,12 @@ parted将硬盘进行分区：
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%B3%BB%E7%BB%9F/">
-                                <span class="chip bg-color">系统</span>
+                            <a href="/tags/%E8%BF%81%E7%A7%BB/">
+                                <span class="chip bg-color">迁移</span>
                             </a>
                         
-                            <a href="/tags/%E5%88%86%E5%8C%BA/">
-                                <span class="chip bg-color">分区</span>
+                            <a href="/tags/anolis/">
+                                <span class="chip bg-color">anolis</span>
                             </a>
                         
                     </div>
@@ -412,8 +408,8 @@ parted将硬盘进行分区：
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/LVM/" class="post-category">
-                                LVM
+                            <a href="/categories/anolis/" class="post-category">
+                                anolis
                             </a>
                         
                     </div>
@@ -425,7 +421,7 @@ parted将硬盘进行分区：
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-24
+                    2022-09-22
                 </div>
                 
 
@@ -434,14 +430,14 @@ parted将硬盘进行分区：
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    430
+                    1.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    6 分
                 </div>
                 
 
@@ -464,93 +460,169 @@ parted将硬盘进行分区：
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="将一个三T的硬盘分区并做LVM"><a href="#将一个三T的硬盘分区并做LVM" class="headerlink" title="将一个三T的硬盘分区并做LVM"></a>将一个三T的硬盘分区并做LVM</h1><p>解决方案</p>
-<blockquote>
-<p>增加磁盘 -&gt; 初始化物理卷 -&gt; 扩容卷组 -&gt; 扩容逻辑卷</p>
-</blockquote>
-<p><strong>因为fdisk不能创建大于2T的分区，创建大分区得用parted</strong></p>
-<p>parted将硬盘进行分区：</p>
-<blockquote>
-<p>查看磁盘信息，这里将vdc进行分区</p>
-</blockquote>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">[root@ftp 05]# lsblk
-NAME            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sr0              11:0    1 1024M  0 rom  
-vda             252:0    0   40G  0 disk 
-├─vda1          252:1    0    1G  0 part /boot
-└─vda2          252:2    0   39G  0 part 
-  ├─centos-root 253:0    0   35G  0 lvm  /
-  └─centos-swap 253:1    0    4G  0 lvm  [SWAP]
-vdb             252:16   0    2T  0 disk /home/dpan
-vdc             252:32   0    3T  0 disk 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <h1 id="centos7-9迁移升级anolis7-9"><a href="#centos7-9迁移升级anolis7-9" class="headerlink" title="centos7.9迁移升级anolis7.9"></a>centos7.9迁移升级anolis7.9</h1><p>官方社区：</p>
+<p><a target="_blank" rel="noopener" href="https://openanolis.cn/sig/migration/doc/451732372594279514">https://openanolis.cn/sig/migration/doc/451732372594279514</a></p>
+<p>官方镜像：</p>
+<p><a target="_blank" rel="noopener" href="https://mirrors.openanolis.cn/anolis/">https://mirrors.openanolis.cn/anolis/</a></p>
+<h2 id="1、迁移注意事项"><a href="#1、迁移注意事项" class="headerlink" title="1、迁移注意事项"></a><strong>1、迁移注意事项</strong></h2><p>Anolis OS 7生态上和依赖管理上保持跟CentOS7.x兼容，<a target="_blank" rel="noopener" href="http://一键式迁移脚本centos2anolis.py/">一键式迁移脚本centos2anolis.py</a>，实现CentOS7.x到Anolis OS 7的平滑迁移。</p>
+<p>使用迁移脚本前需要注意如下事项：</p>
+<ul>
+<li>迁移涉及到软件包的重新安装，是不可逆过程，执行迁移前务必做好系统备份。</li>
+<li>迁移过程涉及到访问Anolis OS的官方repo，需要确保待迁移环境网络能够正常访问Anolis OS repo。</li>
+<li><font color="#dd0000">需要使用root用户执行</font>。</li>
+<li>迁移过程依赖于yum，确保yum组件能够正常运行。</li>
+<li>迁移脚本提供了Anolis OS repo访问加速的功能，如果访问Anolis OS官方repo速度较慢，可以通过-s选项进行加速访问。</li>
+<li>Anolis OS 不提供i686架构的软件包，如您系统上安装了CentOS的i686架构的软件包，则无法正常迁移。</li>
+</ul>
+<h2 id="2、部署迁移工具"><a href="#2、部署迁移工具" class="headerlink" title="2、部署迁移工具"></a>2、部署迁移工具</h2><h3 id="一、-从本地-yum-源安装迁移工具"><a href="#一、-从本地-yum-源安装迁移工具" class="headerlink" title="一、 从本地 yum 源安装迁移工具"></a><strong>一、 从本地 yum 源安装迁移工具</strong></h3><p>如果待迁移系统无法访问龙蜥 mirror，首先建议在内网搭建一套本地yum源 ，然后通过本地源安装迁移工具。假设本地源地址为 <a target="_blank" rel="noopener" href="http://local.repo.com/anolis">http://local.repo.com/anolis</a> ， 则下载迁移工具软件源：</p>
+<ul>
+<li><p>搭建内网yum源</p>
+<p>一、搭建部署nginx(注意关闭firewalld和selinux)</p>
+<p>这里作为演示，服务器ip：192.168.10.22，在/home/dpan新建anolis目录作为yum的源目录</p>
+<p>二、配置nginx.conf的配置</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># vi /etc/nginx/conf.d/nginx.conf</span>
+<span class="token comment"># /home/dpan/anolis作为源目录</span>
 
-<blockquote>
-<p>parted /dev/vdc</p>
-</blockquote>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">[root@ftp 05]# parted /dev/vdc
-GNU Parted 3.1
-Using /dev/vdc
-Welcome to GNU Parted! Type 'help' to view a list of commands.
-(parted) p                                                                
-Model: Virtio Block Device (virtblk)
-Disk /dev/vdc: 3299GB
-Sector size (logical/physical): 512B/512B
-Partition Table: msdos
-Disk Flags: 
+server <span class="token punctuation">{</span>
+    listen       <span class="token number">80</span><span class="token punctuation">;</span>
+    server_name  localhost<span class="token punctuation">;</span>
+        root   /home/dpan<span class="token punctuation">;</span>
+    error_page   <span class="token number">500</span> <span class="token number">502</span> <span class="token number">503</span> <span class="token number">504</span>  /50x.html<span class="token punctuation">;</span>
+    location /anolis <span class="token punctuation">{</span>
+        autoindex on<span class="token punctuation">;</span>
+        autoindex_exact_size off<span class="token punctuation">;</span>
+        autoindex_localtime on<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-Number  Start  End  Size  Type  File system  Flags
+<p>根据需要将所需资源放入目录：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">RSYNC_PASSWORD</span><span class="token operator">=</span>Rsync@2020 <span class="token function">rsync</span> -avz rsync://rsync_user@rsync.openanolis.cn/anolis/migration /home/dpan/anolis
+<span class="token assign-left variable">RSYNC_PASSWORD</span><span class="token operator">=</span>Rsync@2020 <span class="token function">rsync</span> -avz rsync://rsync_user@rsync.openanolis.cn/anolis/7.9 /home/dpan/anolis<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-(parted) mklabel                                                          
-New disk label type? gpt                                                  
-Warning: The existing disk label on /dev/vdc will be destroyed and all data on this disk will be lost. Do you want to continue?
-Yes/No? yes                                                               
-(parted) p                                                                
-Model: Virtio Block Device (virtblk)
-Disk /dev/vdc: 3299GB
-Sector size (logical/physical): 512B/512B
-Partition Table: gpt
-Disk Flags: 
+<p>新建anolis.repo放入/etc/yum.repo.d</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># vi /etc/yum.repos.d/anolis.repo</span>
 
-Number  Start  End  Size  File system  Name  Flags
+<span class="token punctuation">[</span>anolis<span class="token punctuation">]</span>
+<span class="token assign-left variable">name</span><span class="token operator">=</span>anolis
+<span class="token assign-left variable">baseurl</span><span class="token operator">=</span>http://192.168.10.22/anolis       
+<span class="token assign-left variable">enabled</span><span class="token operator">=</span><span class="token number">1</span>        
+<span class="token assign-left variable">gpgcheck</span><span class="token operator">=</span><span class="token number">0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-(parted) mkpart primary 4096s 100%
-(parted) p                                                                
-Model: Virtio Block Device (virtblk)
-Disk /dev/vdc: 3299GB
-Sector size (logical/physical): 512B/512B
-Partition Table: gpt
-Disk Flags: 
+<p>浏览器访问：<a target="_blank" rel="noopener" href="http://192.168.10.22/anolis">http://192.168.10.22/anolis</a> 检测是否搭建完成</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202209222053586.png"></p>
+<h3 id="其他无法访问互联网机器运行以下命令："><a href="#其他无法访问互联网机器运行以下命令：" class="headerlink" title="其他无法访问互联网机器运行以下命令："></a>其他无法访问互联网机器运行以下命令：</h3></li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">wget</span> http://local.repo.com/anolis/migration/anolis-migration.repo -O /etc/yum.repos.d/anolis-migration.repo
 
-Number  Start   End     Size    File system  Name     Flags
- 1      2097kB  3299GB  3299GB               primary
-#这里已经分区完成了
+<span class="token comment"># 参考配置：</span>
+<span class="token comment">#wget  http://192.168.10.22/anolis/migration/anolis-migration.repo -O /etc/yum.repos.d/anolis-migration.repo</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-(parted) toggle 1 lvm        #打个标签                                             
-(parted) p                                                                
-Model: Virtio Block Device (virtblk)
-Disk /dev/vdc: 3299GB
-Sector size (logical/physical): 512B/512B
-Partition Table: gpt
-Disk Flags: 
+<p>然后执行下述命令将 /etc/yum.repos.d/anolis-migration.repo 里面的baseurl地址替换为本地源地址。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 替换其他节点的anolis-migration.repo配置</span>
+<span class="token function">sed</span> -i <span class="token string">"s#baseurl=https://mirrors.openanolis.cn/#baseurl=http://local.repo.com/#"</span>/etc/yum.repos.d/anolis-migration.repo
+<span class="token function">sed</span> -i <span class="token string">"s#gpgkey=https://mirrors.openanolis.cn/#gpgkey=http://local.repo.com/#"</span> /etc/yum.repos.d/anolis-migration.repo
 
-Number  Start   End     Size    File system  Name     Flags
- 1      2097kB  3299GB  3299GB               primary  lvm
+<span class="token comment"># 参考命令：</span>
+<span class="token comment">#sed -i "s#baseurl=https://mirrors.openanolis.cn/#baseurl=http://192.168.10.22/#" /etc/yum.repos.d/anolis-migration.repo</span>
+<span class="token comment">#sed -i "s#gpgkey=https://mirrors.openanolis.cn/#gpgkey=http://http://192.168.10.22/#" /etc/yum.repos.d/anolis-migration.repo</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-(parted) quit                                                             
-Information: You may need to update /etc/fstab.
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li><p>anolis-migration.repo参考配置</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># Anolis OS migration repo</span>
 
-<pre class="line-numbers language-none"><code class="language-none">#使用命令查看
-#lsblk<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<span class="token punctuation">[</span>migration<span class="token punctuation">]</span>
+<span class="token assign-left variable">name</span><span class="token operator">=</span>Anolis OS - migration repo
+<span class="token assign-left variable">baseurl</span><span class="token operator">=</span>http://192.168.10.22/anolis/migration/<span class="token variable">$basearch</span>/os/
+<span class="token assign-left variable">gpgcheck</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token assign-left variable">gpgkey</span><span class="token operator">=</span>http://192.168.10.22/anolis/RPM-GPG-KEY-ANOLIS
+<span class="token assign-left variable">enabled</span><span class="token operator">=</span><span class="token number">1</span>
 
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205242310696.png"></p>
-<p>分区完成。下面进行LVM操作，创建相应的PV VG LV</p>
-<p>LVM相关操作，参考<a href="https://yushui1995.github.io/2022/05/24/lvm-guan-li/">LVM管理</a>进行后续操作</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#完成效果如图</span>
-<span class="token comment">#df -h</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<span class="token punctuation">[</span>migration-debug<span class="token punctuation">]</span>
+<span class="token assign-left variable">name</span><span class="token operator">=</span>Anolis OS - migration debug repo
+<span class="token assign-left variable">baseurl</span><span class="token operator">=</span>http://192.168.10.22/anolis/migration/<span class="token variable">$basearch</span>/debug/
+<span class="token assign-left variable">gpgcheck</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token assign-left variable">gpgkey</span><span class="token operator">=</span>http://192.168.10.22/anolis/RPM-GPG-KEY-ANOLIS
+<span class="token assign-left variable">enabled</span><span class="token operator">=</span><span class="token number">0</span>
 
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205242259258.png"></p>
+<span class="token punctuation">[</span>migration-source<span class="token punctuation">]</span>
+<span class="token assign-left variable">name</span><span class="token operator">=</span>Anolis OS - migration <span class="token builtin class-name">source</span> repo
+<span class="token assign-left variable">baseurl</span><span class="token operator">=</span>http://192.168.10.22/anolis/migration/source/
+<span class="token assign-left variable">gpgcheck</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token assign-left variable">gpgkey</span><span class="token operator">=</span>http://192.168.10.22/anolis/RPM-GPG-KEY-ANOLIS
+<span class="token assign-left variable">enabled</span><span class="token operator">=</span><span class="token number">0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<p>安装迁移工具centos2anolis：</p>
+<pre class="line-numbers language-none"><code class="language-none">yum -y install centos2anolis<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="二、-从社区-yum-源安装迁移工具-依赖网络"><a href="#二、-从社区-yum-源安装迁移工具-依赖网络" class="headerlink" title="二、 从社区 yum 源安装迁移工具(依赖网络)"></a>二、 从社区 yum 源安装迁移工具(依赖网络)</h3><p>如果待迁移系统可以联网，则下载迁移工具软件源：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">wget</span> https://mirrors.openanolis.cn/anolis/migration/anolis-migration.repo -O /etc/yum.repos.d/anolis-migration.repo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>安装迁移工具centos2anolis：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yum -y <span class="token function">install</span> centos2anolis<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h1 id="3-迁移执行"><a href="#3-迁移执行" class="headerlink" title="3 迁移执行"></a>3 迁移执行</h1><h3 id="选项一-使用本地-yum-源执行迁移"><a href="#选项一-使用本地-yum-源执行迁移" class="headerlink" title="选项一 使用本地 yum 源执行迁移"></a>选项一 使用本地 yum 源执行迁移</h3><p>在无法接入到互联网时，可以使用本地源迁移系统。</p>
+<ol>
+<li>在运行工具之前，新建或者编辑Anolis仓库的repo文件：/etc/yum.repos.d/switch-to-anolis.repo (注意，请确保文件名为 switch-to-anolis.repo), 将对应的 repo baseurl 地址改成本地源 repo 地址， 譬如，假设本地源地址为 <a href="https://gitee.com/link?target=http://local.repo.com/anolis">http://local.repo.com/anolis</a> , 则配置文件如下</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">[an7_baseos]
+name=AnolisOS-7 - BaseOS
+baseurl=http://local.repo.com/anolis/7.9/os/$basearch/os
+gpgcheck=0
+enabled=1
+
+[an7_updates]
+name=AnolisOS-7 - Updates
+baseurl=http://local.repo.com/anolis/7.9/updates/$basearch/os
+gpgcheck=0
+enabled=1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>参考配置：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>an7_baseos<span class="token punctuation">]</span>
+<span class="token assign-left variable">name</span><span class="token operator">=</span>AnolisOS-7 - BaseOS
+<span class="token assign-left variable">baseurl</span><span class="token operator">=</span>http://192.168.10.22/anolis/7.9/os/<span class="token variable">$basearch</span>/os
+<span class="token assign-left variable">gpgcheck</span><span class="token operator">=</span><span class="token number">0</span>
+<span class="token assign-left variable">enabled</span><span class="token operator">=</span><span class="token number">1</span>
+
+<span class="token punctuation">[</span>an7_updates<span class="token punctuation">]</span>
+<span class="token assign-left variable">name</span><span class="token operator">=</span>AnolisOS-7 - Updates
+<span class="token assign-left variable">baseurl</span><span class="token operator">=</span>http://192.168.10.22/anolis/7.9/updates/<span class="token variable">$basearch</span>/os
+<span class="token assign-left variable">gpgcheck</span><span class="token operator">=</span><span class="token number">0</span>
+<span class="token assign-left variable">enabled</span><span class="token operator">=</span><span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol>
+<li>执行下面命令进行迁移</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">centos2anolis.py -l<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>上述命令是默认迁移到带 ANCK 内核的龙蜥OS，如果你想迁移到带 RHCK 内核的龙蜥OS请执行下面的命令进行迁移</p>
+<pre class="line-numbers language-none"><code class="language-none">centos2anolis.py -l --rhck<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="选项二-使用社区-yum-源执行迁移-依赖网络"><a href="#选项二-使用社区-yum-源执行迁移-依赖网络" class="headerlink" title="选项二 使用社区 yum 源执行迁移(依赖网络)"></a>选项二 使用社区 yum 源执行迁移(依赖网络)</h3><p>直接执行下述命令即可</p>
+<pre class="line-numbers language-none"><code class="language-none">centos2anolis.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>上述命令是默认迁移到带 ANCK 内核的龙蜥OS，如果你想迁移到带 RHCK 内核的龙蜥OS请执行下面的命令进行迁移</p>
+<pre class="line-numbers language-none"><code class="language-none">centos2anolis.py --rhck<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>迁移完成后，系统会提示如下信息，表示迁移成功，重启即可进入Anolis OS系统</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202209222053938.png"></p>
+<h1 id="4-迁移后验证"><a href="#4-迁移后验证" class="headerlink" title="4 迁移后验证"></a>4 迁移后验证</h1><p>查看OS版本：</p>
+<pre class="line-numbers language-none"><code class="language-none"># cat /etc/os-release
+NAME="Anolis OS"
+VERSION="7.9"
+ID="anolis"
+ID_LIKE="rhel fedora centos"
+VERSION_ID="7.9"
+PRETTY_NAME="Anolis OS 7.9"
+ANSI_COLOR="0;31"
+HOME_URL="https://openanolis.cn/"
+BUG_REPORT_URL="https://bugs.openanolis.cn/"
+
+CENTOS_MANTISBT_PROJECT="CentOS-7"
+CENTOS_MANTISBT_PROJECT_VERSION="7"
+REDHAT_SUPPORT_PRODUCT="centos"
+REDHAT_SUPPORT_PRODUCT_VERSION="7"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -577,7 +649,7 @@ Information: You may need to update /etc/fstab.
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yushui1995.github.io/2022/05/24/jiang-yi-ge-san-t-de-ying-pan-zuo-cheng-lvm/">https://yushui1995.github.io/2022/05/24/jiang-yi-ge-san-t-de-ying-pan-zuo-cheng-lvm/</a>
+                    <a href="https://yushui1995.github.io/2022/09/22/centos7-9-qian-yi-anolis7-9/">https://yushui1995.github.io/2022/09/22/centos7-9-qian-yi-anolis7-9/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -615,12 +687,12 @@ Information: You may need to update /etc/fstab.
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%B3%BB%E7%BB%9F/">
-                                    <span class="chip bg-color">系统</span>
+                                <a href="/tags/%E8%BF%81%E7%A7%BB/">
+                                    <span class="chip bg-color">迁移</span>
                                 </a>
                             
-                                <a href="/tags/%E5%88%86%E5%8C%BA/">
-                                    <span class="chip bg-color">分区</span>
+                                <a href="/tags/anolis/">
+                                    <span class="chip bg-color">anolis</span>
                                 </a>
                             
                         </div>
@@ -1060,16 +1132,17 @@ Information: You may need to update /etc/fstab.
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/06/02/nginx-diao-you-can-shu/">
+                <a href="/2022/09/22/centos7-9-qian-yi-anolis7-9/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="nginx调优参数">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="centos7.9迁移anolis7.9">
                         
-                        <span class="card-title">nginx调优参数</span>
+                        <span class="card-title">centos7.9迁移anolis7.9</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1079,30 +1152,31 @@ Information: You may need to update /etc/fstab.
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-02
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/nginx/" class="post-category">
-                                    nginx
+                            <a href="/categories/anolis/" class="post-category">
+                                    anolis
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/nginx/">
-                        <span class="chip bg-color">nginx</span>
+                    <a href="/tags/%E8%BF%81%E7%A7%BB/">
+                        <span class="chip bg-color">迁移</span>
                     </a>
                     
-                    <a href="/tags/%E9%85%8D%E7%BD%AE/">
-                        <span class="chip bg-color">配置</span>
+                    <a href="/tags/anolis/">
+                        <span class="chip bg-color">anolis</span>
                     </a>
                     
                 </div>
@@ -1116,12 +1190,12 @@ Information: You may need to update /etc/fstab.
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/24/lvm-guan-li/">
+                <a href="/2022/09/14/xi-tong-lou-dong-xiu-fu-shell-jiao-ben/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="LVM管理">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="系统漏洞修复shell脚本">
                         
-                        <span class="card-title">LVM管理</span>
+                        <span class="card-title">系统漏洞修复shell脚本</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1132,14 +1206,14 @@ Information: You may need to update /etc/fstab.
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-14
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/LVM/" class="post-category">
-                                    LVM
+                            <a href="/categories/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/" class="post-category">
+                                    漏洞修复
                                 </a>
                             
                             
@@ -1149,12 +1223,12 @@ Information: You may need to update /etc/fstab.
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/LVM/">
-                        <span class="chip bg-color">LVM</span>
+                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/">
+                        <span class="chip bg-color">漏洞修复</span>
                     </a>
                     
-                    <a href="/tags/%E7%B3%BB%E7%BB%9F/">
-                        <span class="chip bg-color">系统</span>
+                    <a href="/tags/shell/">
+                        <span class="chip bg-color">shell</span>
                     </a>
                     
                 </div>

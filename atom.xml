@@ -6,7 +6,7 @@
   <link href="https://yushui1995.github.io/atom.xml" rel="self"/>
   
   <link href="https://yushui1995.github.io/"/>
-  <updated>2022-09-14T13:14:16.138Z</updated>
+  <updated>2022-09-22T12:55:04.572Z</updated>
   <id>https://yushui1995.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>centos7.9迁移anolis7.9</title>
+    <link href="https://yushui1995.github.io/2022/09/22/centos7-9-qian-yi-anolis7-9/"/>
+    <id>https://yushui1995.github.io/2022/09/22/centos7-9-qian-yi-anolis7-9/</id>
+    <published>2022-09-22T12:49:50.000Z</published>
+    <updated>2022-09-22T12:55:04.572Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;centos7-9迁移升级anolis7-9&quot;&gt;&lt;a href=&quot;#centos7-9迁移升级anolis7-9&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="anolis" scheme="https://yushui1995.github.io/categories/anolis/"/>
+    
+    
+    <category term="迁移" scheme="https://yushui1995.github.io/tags/%E8%BF%81%E7%A7%BB/"/>
+    
+    <category term="anolis" scheme="https://yushui1995.github.io/tags/anolis/"/>
+    
+  </entry>
   
   <entry>
     <title>系统漏洞修复shell脚本</title>
@@ -523,33 +550,6 @@
     <category term="mysql" scheme="https://yushui1995.github.io/tags/mysql/"/>
     
     <category term="同步" scheme="https://yushui1995.github.io/tags/%E5%90%8C%E6%AD%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Xtrabackup备份与恢复</title>
-    <link href="https://yushui1995.github.io/2022/05/06/xtrabackup-bei-fen-yu-hui-fu/"/>
-    <id>https://yushui1995.github.io/2022/05/06/xtrabackup-bei-fen-yu-hui-fu/</id>
-    <published>2022-05-06T13:36:48.000Z</published>
-    <updated>2022-05-07T14:38:48.782Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Xtrabackup备份与恢复&quot;&gt;&lt;a href=&quot;#Xtrabackup备份与恢复&quot; class=&quot;headerlink&quot; title=&quot;Xtrabackup备份与恢复&quot;&gt;&lt;/a&gt;Xtrabackup备份与恢复&lt;/h1&gt;&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="工具" scheme="https://yushui1995.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-    
-    <category term="mysql" scheme="https://yushui1995.github.io/tags/mysql/"/>
-    
-    <category term="工具" scheme="https://yushui1995.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   

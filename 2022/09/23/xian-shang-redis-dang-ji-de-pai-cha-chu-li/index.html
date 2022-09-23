@@ -4,14 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="前端相关依赖部署, ">
-    <meta name="description" content="手动安装npm#下载地址：&amp;lt;https://nodejs.org/en/download/&amp;gt;
+    <meta name="keywords" content="线上redis宕机的排查处理-快照持久化, ">
+    <meta name="description" content="线上redis宕机的排查处理-快照持久化一、过程早上看到监控，后面了解到由于开发大批量的同步数据，才导致redis节点宕机了，线上redis部署在3台服务器，6个节点采用3主3从
 
-#放入linux目录后，解压包
-tar zxvf node-v16.13.2-linux-x64.tar.gz
-
-#配置环境变量
-v">
+二、排查连接到线上服务器开始排查，查看进程，发现对应端口的">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -25,7 +21,7 @@ v">
 
     
 
-    <title>前端相关依赖部署 | </title>
+    <title>线上redis宕机的排查处理-快照持久化 | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -279,7 +275,7 @@ v">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">前端相关依赖部署</h1>
+                    <h1 class="description center-align post-title">线上redis宕机的排查处理-快照持久化</h1>
                 </div>
             </div>
         </div>
@@ -395,12 +391,12 @@ v">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E9%83%A8%E7%BD%B2/">
-                                <span class="chip bg-color">部署</span>
+                            <a href="/tags/redis/">
+                                <span class="chip bg-color">redis</span>
                             </a>
                         
-                            <a href="/tags/%E5%89%8D%E7%AB%AF/">
-                                <span class="chip bg-color">前端</span>
+                            <a href="/tags/%E6%8A%A5%E9%94%99-%E5%91%8A%E8%AD%A6/">
+                                <span class="chip bg-color">报错&amp;告警</span>
                             </a>
                         
                     </div>
@@ -411,8 +407,8 @@ v">
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E9%83%A8%E7%BD%B2/" class="post-category">
-                                部署
+                            <a href="/categories/redis/" class="post-category">
+                                redis
                             </a>
                         
                     </div>
@@ -424,7 +420,7 @@ v">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-07-10
+                    2022-09-23
                 </div>
                 
 
@@ -433,14 +429,14 @@ v">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    149
+                    1.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    6 分
                 </div>
                 
 
@@ -463,38 +459,115 @@ v">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="手动安装npm"><a href="#手动安装npm" class="headerlink" title="手动安装npm"></a><strong>手动安装npm</strong></h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#下载地址：&lt;https://nodejs.org/en/download/&gt;</span>
+                <h1 id="线上redis宕机的排查处理-快照持久化"><a href="#线上redis宕机的排查处理-快照持久化" class="headerlink" title="线上redis宕机的排查处理-快照持久化"></a>线上redis宕机的排查处理-快照持久化</h1><h2 id="一、过程"><a href="#一、过程" class="headerlink" title="一、过程"></a>一、过程</h2><p>早上看到监控，后面了解到由于开发大批量的同步数据，才导致redis节点宕机了，线上redis部署在3台服务器，6个节点采用3主3从</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202209232143573.png"></p>
+<h2 id="二、排查"><a href="#二、排查" class="headerlink" title="二、排查"></a>二、排查</h2><p>连接到线上服务器开始排查，查看进程，发现对应端口的进程已经没有了，直接重启了对应节点的redis</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./redis-server /home/dpan/soft/redis-5.0.10/cluster-conf/6380/redis.conf <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<span class="token comment">#放入linux目录后，解压包</span>
-<span class="token function">tar</span> zxvf node-v16.13.2-linux-x64.tar.gz
+<p>然后发现，redis的两个节点都挂掉了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202209232142712.png"></p>
+<p>然后查看对应的运行日志，发现到这里就卡住了</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token number">12361</span>:C <span class="token number">23</span> Sep <span class="token number">2022</span> <span class="token number">10</span>:27:27.604 <span class="token comment"># oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo</span>
+<span class="token number">12361</span>:C <span class="token number">23</span> Sep <span class="token number">2022</span> <span class="token number">10</span>:27:27.604 <span class="token comment"># Redis version=5.0.10, bits=64, commit=00000000, modified=0, pid=12361, just started</span>
+<span class="token number">12361</span>:C <span class="token number">23</span> Sep <span class="token number">2022</span> <span class="token number">10</span>:27:27.604 <span class="token comment"># Configuration loaded</span>
+<span class="token number">12361</span>:M <span class="token number">23</span> Sep <span class="token number">2022</span> <span class="token number">10</span>:27:27.605 * Increased maximum number of <span class="token function">open</span> files to <span class="token number">10032</span> <span class="token punctuation">(</span>it was originally <span class="token builtin class-name">set</span> to <span class="token number">1024</span><span class="token punctuation">)</span>.
+<span class="token number">12361</span>:M <span class="token number">23</span> Sep <span class="token number">2022</span> <span class="token number">10</span>:27:27.606 * Node configuration loaded, I'm 9bb67931114d794bc2cbd2d30eb0d8c4fcd8ca84
+<span class="token number">12361</span>:M <span class="token number">23</span> Sep <span class="token number">2022</span> <span class="token number">10</span>:27:27.607 * Running <span class="token assign-left variable">mode</span><span class="token operator">=</span>cluster, <span class="token assign-left variable">port</span><span class="token operator">=</span><span class="token number">6381</span>.
+<span class="token number">12361</span>:M <span class="token number">23</span> Sep <span class="token number">2022</span> <span class="token number">10</span>:27:27.607 <span class="token comment"># Server initialized</span>
+<span class="token number">12361</span>:M <span class="token number">23</span> Sep <span class="token number">2022</span> <span class="token number">10</span>:27:27.608 * Reading RDB preamble from AOF file<span class="token punctuation">..</span>.
+<span class="token number">12361</span>:M <span class="token number">23</span> Sep <span class="token number">2022</span> <span class="token number">10</span>:28:12.122 * Reading the remaining AOF tail<span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token comment">#配置环境变量</span>
-<span class="token function">vi</span> /etc/profile
-<span class="token punctuation">..</span>.
-<span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span>:/home/dpan/soft/node-v16.13.2-linux-x64/bin
+<p>排查后发现启动一个节点居然占用内存10G多，2个节点自然是无法启动的，只能启一个节点，这显然是不正常的，以为修改redis启动内存可以解决这个问题，后来发现没有用</p>
+<p><strong>因为在Redis中持久化的方式有两种，一种是快照持久化，一种是AOF持久化</strong></p>
+<p><strong>快照持久化也叫RDB持久化方式。就是通过拍摄快照的方式来实现持久化，将某个时间的内存数据存储在一个rdb文件中。在redis服务重新启动的时候会加载rdb文件中的数据</strong></p>
+<h2 id="三、处理"><a href="#三、处理" class="headerlink" title="三、处理"></a>三、处理</h2><p>redis中的快照持久化默认是开启的，在redis.conf配置文件中有相关的配置选项</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">################################ SNAPSHOTTING  ################################</span>
+<span class="token comment">#</span>
+<span class="token comment"># Save the DB on disk:</span>
+<span class="token comment">#</span>
+<span class="token comment">#   save &lt;seconds&gt; &lt;changes&gt;</span>
+<span class="token comment">#</span>
+<span class="token comment">#   Will save the DB if both the given number of seconds and the given</span>
+<span class="token comment">#   number of write operations against the DB occurred.</span>
+<span class="token comment">#</span>
+<span class="token comment">#   In the example below the behaviour will be to save:</span>
+<span class="token comment">#   after 900 sec (15 min) if at least 1 key changed</span>
+<span class="token comment">#   after 300 sec (5 min) if at least 10 keys changed</span>
+<span class="token comment">#   after 60 sec if at least 10000 keys changed</span>
+<span class="token comment">#</span>
+<span class="token comment">#   Note: you can disable saving completely by commenting out all "save" lines.</span>
+<span class="token comment">#</span>
+<span class="token comment">#   It is also possible to remove all the previously configured save</span>
+<span class="token comment">#   points by adding a save directive with a single empty string argument</span>
+<span class="token comment">#   like in the following example:</span>
+<span class="token comment">#</span>
+<span class="token comment">#   save ""</span>
 
-<span class="token comment">#刷新环境变量</span>
-<span class="token builtin class-name">source</span> /etc/profile
+save <span class="token number">900</span> <span class="token number">1</span>   <span class="token comment">#900秒内至少有1个key被更改就执行快照</span>
+save <span class="token number">300</span> <span class="token number">10</span>  <span class="token comment">#300内描述至少有10个key被更改就执行快照</span>
+save <span class="token number">60</span> <span class="token number">10000</span>  <span class="token comment">#60秒内至少有10000个key被更改就执行快照</span>
 
-<span class="token comment">#查看版本</span>
-<span class="token function">npm</span> -v
-<span class="token function">node</span> -v<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># By default Redis will stop accepting writes if RDB snapshots are enabled</span>
+<span class="token comment"># (at least one save point) and the latest background save failed.</span>
+<span class="token comment"># This will make the user aware (in a hard way) that data is not persisting</span>
+<span class="token comment"># on disk properly, otherwise chances are that no one will notice and some</span>
+<span class="token comment"># disaster will happen.</span>
+<span class="token comment">#</span>
+<span class="token comment"># If the background saving process will start working again Redis will</span>
+<span class="token comment"># automatically allow writes again.</span>
+<span class="token comment">#</span>
+<span class="token comment"># However if you have setup your proper monitoring of the Redis server</span>
+<span class="token comment"># and persistence, you may want to disable this feature so that Redis will</span>
+<span class="token comment"># continue to work as usual even if there are problems with disk,</span>
+<span class="token comment"># permissions, and so forth.</span>
+stop-writes-on-bgsave-error <span class="token function">yes</span> <span class="token comment">#拍摄快照失败是否继续执行写命令</span>
 
-<h3 id="yum安装npm"><a href="#yum安装npm" class="headerlink" title="yum安装npm"></a><strong>yum安装npm</strong></h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">curl <span class="token operator">-</span><span class="token operator">-</span>silent <span class="token operator">-</span><span class="token operator">-</span>location <span class="token operator">&lt;</span>https<span class="token punctuation">:</span><span class="token operator">//</span>rpm<span class="token punctuation">.</span>nodesource<span class="token punctuation">.</span>com<span class="token operator">/</span>setup_10<span class="token punctuation">.</span>x<span class="token operator">&gt;</span> <span class="token operator">|</span> bash <span class="token operator">-</span>
-yum install <span class="token operator">-</span>y nodejs<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<span class="token comment"># Compress string objects using LZF when dump .rdb databases?</span>
+<span class="token comment"># For default that's set to 'yes' as it's almost always a win.</span>
+<span class="token comment"># If you want to save some CPU in the saving child set it to 'no' but</span>
+<span class="token comment"># the dataset will likely be bigger if you have compressible values or keys.</span>
+rdbcompression <span class="token function">yes</span> <span class="token comment">#是否对快照文件进行压缩</span>
 
-<h3 id="安装cnpm"><a href="#安装cnpm" class="headerlink" title="安装cnpm"></a><strong>安装cnpm</strong></h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#安装cnpm</span>
-<span class="token function">npm</span> <span class="token function">install</span> -g cnpm --registry<span class="token operator">=</span>https://registry.npm.taobao.org<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<span class="token comment"># Since version 5 of RDB a CRC64 checksum is placed at the end of the file.</span>
+<span class="token comment"># This makes the format more resistant to corruption but there is a performance</span>
+<span class="token comment"># hit to pay (around 10%) when saving and loading RDB files, so you can disable it</span>
+<span class="token comment"># for maximum performances.</span>
+<span class="token comment">#</span>
+<span class="token comment"># RDB files created with checksum disabled have a checksum of zero that will</span>
+<span class="token comment"># tell the loading code to skip the check.</span>
+rdbchecksum <span class="token function">yes</span> <span class="token comment">#是否进行数据校验</span>
 
-<h3 id="npm升级"><a href="#npm升级" class="headerlink" title="npm升级*"></a><strong>npm升级</strong>*</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#安装npm升级工具</span>
-npm install <span class="token operator">-</span>g n
- 
-<span class="token comment">#安装最近的稳定版本</span>
-n stable<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># The filename where to dump the DB</span>
+dbfilename dump.rdb <span class="token comment">#快照文件存储的名称</span>
+<span class="token comment"># The working directory.</span>
+<span class="token comment">#</span>
+<span class="token comment"># The DB will be written inside this directory, with the filename specified</span>
+<span class="token comment"># above using the 'dbfilename' configuration directive.</span>
+<span class="token comment">#</span>
+<span class="token comment"># The Append Only File will also be created inside this directory.</span>
+<span class="token comment">#</span>
+<span class="token comment"># Note that you must specify a directory here, not a file name.</span>
+<span class="token function">dir</span> ./ <span class="token comment">#快照文件存储的位置</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="vue安装"><a href="#vue安装" class="headerlink" title="vue安装"></a><strong>vue安装</strong></h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#下载执行版本</span>
-<span class="token function">npm</span> <span class="token function">install</span> -g @vue/cli@4.5.15<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>快照文件默认会和conf文件在统计目录，名称为dump.rdb</p>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><blockquote>
+<p>优点<br>RDB文件是一个很简洁的单文件，它保存了某个时间点的Redis数据，很适合用于做备份。你可以设定一个时间点对RDB文件进行归档，这样就能在需要的时候很轻易的把数据恢复到不同的版本。<br>RDB很适合用于灾备。单文件很方便就能传输到远程的服务器上。<br>RDB的性能很好，需要进行持久化时，主进程会fork一个子进程出来，然后把持久化的工作交给子进程，自己不会有相关的I/O操作。<br>比起AOF，在数据量比较大的情况下，RDB的启动速度更快。</p>
+</blockquote>
+<blockquote>
+<p>缺点<br>RDB容易造成数据的丢失。假设每5分钟保存一次快照，如果Redis因为某些原因不能正常工作，那么从上次产生快照到Redis出现问题这段时间的数据就会丢失了。<br>RDB使用fork()产生子进程进行数据的持久化，如果数据比较大的话可能就会花费点时间，造成Redis停止服务几毫秒。如果数据量很大且CPU性能不是很好的时候，停止服务的时间甚至会到1秒</p>
+</blockquote>
+<h3 id="配置里禁用持久化快照"><a href="#配置里禁用持久化快照" class="headerlink" title="配置里禁用持久化快照"></a>配置里禁用持久化快照</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#1.在redis.conf配置文件中注释掉所有的save配置</span>
+<span class="token comment">#2.在最后一条save配置追加吃命令</span>
+save <span class="token string">""</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
+<p>最后解决方法：禁用快照持久化，并且删除dump.rdb，然后重启所有节点的redis服务</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./redis-server /home/dpan/soft/redis-5.0.10/cluster-conf/6380/redis.conf <span class="token operator">&amp;</span>
+./redis-server /home/dpan/soft/redis-5.0.10/cluster-conf/6381/redis.conf <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="四、恢复"><a href="#四、恢复" class="headerlink" title="四、恢复"></a>四、恢复</h2><p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202209232143777.png"></p>
 
                 
             </div>
@@ -521,7 +594,7 @@ n stable<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yushui1995.github.io/2022/07/10/qian-duan-xiang-guan-yi-lai-bu-shu/">https://yushui1995.github.io/2022/07/10/qian-duan-xiang-guan-yi-lai-bu-shu/</a>
+                    <a href="https://yushui1995.github.io/2022/09/23/xian-shang-redis-dang-ji-de-pai-cha-chu-li/">https://yushui1995.github.io/2022/09/23/xian-shang-redis-dang-ji-de-pai-cha-chu-li/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -559,12 +632,12 @@ n stable<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E9%83%A8%E7%BD%B2/">
-                                    <span class="chip bg-color">部署</span>
+                                <a href="/tags/redis/">
+                                    <span class="chip bg-color">redis</span>
                                 </a>
                             
-                                <a href="/tags/%E5%89%8D%E7%AB%AF/">
-                                    <span class="chip bg-color">前端</span>
+                                <a href="/tags/%E6%8A%A5%E9%94%99-%E5%91%8A%E8%AD%A6/">
+                                    <span class="chip bg-color">报错&amp;告警</span>
                                 </a>
                             
                         </div>
@@ -1004,16 +1077,17 @@ n stable<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/08/11/rabbit-guan-yu-hosts-de-bao-cuo/">
+                <a href="/2022/09/23/xian-shang-redis-dang-ji-de-pai-cha-chu-li/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="rabbit关于hosts的报错">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="线上redis宕机的排查处理-快照持久化">
                         
-                        <span class="card-title">rabbit关于hosts的报错</span>
+                        <span class="card-title">线上redis宕机的排查处理-快照持久化</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1023,26 +1097,27 @@ n stable<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-08-11
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-23
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/rabbitmq/" class="post-category">
-                                    rabbitmq
+                            <a href="/categories/redis/" class="post-category">
+                                    redis
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/rabbitmq/">
-                        <span class="chip bg-color">rabbitmq</span>
+                    <a href="/tags/redis/">
+                        <span class="chip bg-color">redis</span>
                     </a>
                     
                     <a href="/tags/%E6%8A%A5%E9%94%99-%E5%91%8A%E8%AD%A6/">
@@ -1060,12 +1135,12 @@ n stable<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/07/10/jenkins-ban-ben-sheng-ji/">
+                <a href="/2022/09/22/centos7-9-qian-yi-anolis7-9/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="jenkins版本升级">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="centos7.9迁移anolis7.9">
                         
-                        <span class="card-title">jenkins版本升级</span>
+                        <span class="card-title">centos7.9迁移anolis7.9</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1076,14 +1151,14 @@ n stable<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-22
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/jenkins/" class="post-category">
-                                    jenkins
+                            <a href="/categories/anolis/" class="post-category">
+                                    anolis
                                 </a>
                             
                             
@@ -1093,12 +1168,12 @@ n stable<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/jenkins/">
-                        <span class="chip bg-color">jenkins</span>
+                    <a href="/tags/%E8%BF%81%E7%A7%BB/">
+                        <span class="chip bg-color">迁移</span>
                     </a>
                     
-                    <a href="/tags/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7/">
-                        <span class="chip bg-color">版本升级</span>
+                    <a href="/tags/anolis/">
+                        <span class="chip bg-color">anolis</span>
                     </a>
                     
                 </div>

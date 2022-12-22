@@ -6,7 +6,7 @@
   <link href="https://yushui1995.github.io/atom.xml" rel="self"/>
   
   <link href="https://yushui1995.github.io/"/>
-  <updated>2022-09-23T13:44:43.287Z</updated>
+  <updated>2022-12-22T15:10:29.177Z</updated>
   <id>https://yushui1995.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>监控-grafana</title>
+    <link href="https://yushui1995.github.io/2022/12/22/jian-kong-grafana/"/>
+    <id>https://yushui1995.github.io/2022/12/22/jian-kong-grafana/</id>
+    <published>2022-12-22T15:02:28.000Z</published>
+    <updated>2022-12-22T15:10:29.177Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;下载&quot;&gt;&lt;a href=&quot;#下载&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="监控" scheme="https://yushui1995.github.io/categories/%E7%9B%91%E6%8E%A7/"/>
+    
+    
+    <category term="图形化" scheme="https://yushui1995.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%8C%96/"/>
+    
+    <category term="grafana" scheme="https://yushui1995.github.io/tags/grafana/"/>
+    
+  </entry>
   
   <entry>
     <title>线上redis宕机的排查处理-快照持久化</title>
@@ -525,31 +552,6 @@
     <category term="报错&amp;警告" scheme="https://yushui1995.github.io/tags/%E6%8A%A5%E9%94%99-%E8%AD%A6%E5%91%8A/"/>
     
     <category term="redis" scheme="https://yushui1995.github.io/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>github一些技巧</title>
-    <link href="https://yushui1995.github.io/2022/05/08/github-yi-xie-ji-qiao/"/>
-    <id>https://yushui1995.github.io/2022/05/08/github-yi-xie-ji-qiao/</id>
-    <published>2022-05-08T12:55:05.000Z</published>
-    <updated>2022-05-08T17:49:33.980Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;代码跳转：&quot;&gt;&lt;a href=&quot;#代码跳转：&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="github" scheme="https://yushui1995.github.io/categories/github/"/>
-    
-    
-    <category term="github" scheme="https://yushui1995.github.io/tags/github/"/>
     
   </entry>
   

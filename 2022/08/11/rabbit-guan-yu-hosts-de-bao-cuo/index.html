@@ -33,9 +33,9 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.4.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
 </head>
 
 
@@ -473,7 +473,7 @@ rabbit@rabbit-api-001:  * connected to epmd <span class="token punctuation">(</s
 
 Current <span class="token function">node</span> details:* <span class="token function">node</span> name: ‘rabbitmqcli66@rabbit-api-001’* effective user’s home directory: /var/lib/rabbitmq* Erlang cookie hash: <span class="token assign-left variable">PQXNPBxSq3gugPGiKks0lQ</span><span class="token operator">==</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="翻译："><a href="#翻译：" class="headerlink" title="翻译："></a>翻译：</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token number">1.</span>目标节点是无法访问的（例如，主机名解析问题，TCP连接或防火墙问题）
+<h3 id="翻译："><a href="#翻译：" class="headerlink" title="翻译："></a>翻译：</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token number">1.</span>目标节点是无法访问的（例如，主机名解析问题<span class="token punctuation">,</span>STCP连接或防火墙问题）
 
 <span class="token number">2</span><span class="token punctuation">.</span>CLI工具无法通过服务器进行身份验证（例如，CLI工具的Erlang cookie与服务器不匹配）
 
@@ -499,7 +499,7 @@ x.x.x.x rabbit-api-001
 <span class="token comment">#重启后解决</span>
 systemctl restart rabbitmq-server
 
-<span class="token punctuation">[</span>root@rabbit-api-001 ~<span class="token punctuation">]</span><span class="token comment"># rabbitmqctl list_users  #不会报错了</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">[</span>root@rabbit-api-001 ~<span class="token punctuation">]</span><span class="token comment"># rabbitmqctl list_users   #不会报错了</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
                 

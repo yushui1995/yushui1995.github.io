@@ -8,7 +8,7 @@
       <link href="/2022/12/22/jian-kong-grafana/"/>
       <url>/2022/12/22/jian-kong-grafana/</url>
       
-        <content type="html"><![CDATA[<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>官方下载地址：<code>https://github.com/prometheus/prometheus/releases</code></p><p>根据需要下载对应tar包</p><p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202212222307303.png"></p><h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> -zxvf grafanaxxxx.tar.gz<span class="token function">mv</span> grafanaxxxx grafana<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#后台启动</span><span class="token builtin class-name">cd</span> bin<span class="token function">nohup</span> ./grafana-server <span class="token operator">&amp;</span><span class="token comment">#systemctl管理</span><span class="token function">vi</span> /usr/lib/systemd/system/grafana.service<span class="token punctuation">[</span>Unit<span class="token punctuation">]</span><span class="token assign-left variable">Description</span><span class="token operator">=</span>grafana<span class="token punctuation">[</span>Service<span class="token punctuation">]</span><span class="token assign-left variable">ExecStart</span><span class="token operator">=</span>/usr/local/grafana/bin/grafana-server  -homepath<span class="token operator">=</span>/usr/local/grafana<span class="token assign-left variable">ExecReload</span><span class="token operator">=</span>/bin/kill  -HUP <span class="token variable">$MAINPID</span><span class="token assign-left variable">KillMode</span><span class="token operator">=</span>process<span class="token assign-left variable">Restart</span><span class="token operator">=</span>on-failure<span class="token punctuation">[</span>Install<span class="token punctuation">]</span><span class="token assign-left variable">WantedBy</span><span class="token operator">=</span>multi-user.target<span class="token comment">#命令</span>systemctl daemon-reload systemctl start grafanasystemctl <span class="token builtin class-name">enable</span> grafanasystemctl stop grafana<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h3><pre class="line-numbers language-none"><code class="language-none">浏览器访问：http://本地ip:3000#第一次进入系统初始用户密码admin / admin#随后自定义密码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+        <content type="html"><![CDATA[<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>官方下载地址：<code>https://github.com/prometheus/prometheus/releases</code></p><p>根据需要下载对应tar包</p><p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202212222307303.png"></p><h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> -zxvf grafanaxxxx.tar.gz<span class="token function">mv</span> grafanaxxxx grafana<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#后台启动</span><span class="token builtin class-name">cd</span> bin<span class="token function">nohup</span> ./grafana-server <span class="token operator">&amp;</span><span class="token comment">#systemctl管理</span><span class="token function">vi</span> /usr/lib/systemd/system/grafana.service<span class="token punctuation">[</span>Unit<span class="token punctuation">]</span><span class="token assign-left variable">Description</span><span class="token operator">=</span>grafana<span class="token punctuation">[</span>Service<span class="token punctuation">]</span><span class="token assign-left variable">ExecStart</span><span class="token operator">=</span>/usr/local/grafana/bin/grafana-server  -homepath<span class="token operator">=</span>/usr/local/grafana<span class="token assign-left variable">ExecReload</span><span class="token operator">=</span>/bin/kill  -HUP <span class="token variable">$MAINPID</span><span class="token assign-left variable">KillMode</span><span class="token operator">=</span>process<span class="token assign-left variable">Restart</span><span class="token operator">=</span>on-failure<span class="token punctuation">[</span>Install<span class="token punctuation">]</span><span class="token assign-left variable">WantedBy</span><span class="token operator">=</span>multi-user.target<span class="token comment">#命令</span>systemctl daemon-reload systemctl start grafanasystemctl <span class="token builtin class-name">enable</span> grafanasystemctl stop grafana<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h3><pre class="line-numbers language-none"><code class="language-none">浏览器访问：http://本地 ip:3000#第一次进入系统初始用户密码admin / admin#随后自定义密码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
       
       
       <categories>
@@ -101,9 +101,9 @@
       
         <tags>
             
-            <tag> shell </tag>
-            
             <tag> 漏洞修复 </tag>
+            
+            <tag> shell </tag>
             
         </tags>
       
@@ -182,9 +182,9 @@
       
         <tags>
             
-            <tag> 报错&amp;告警 </tag>
-            
             <tag> rabbitmq </tag>
+            
+            <tag> 报错&amp;告警 </tag>
             
         </tags>
       
@@ -529,9 +529,9 @@
       
         <tags>
             
-            <tag> 报错&amp;警告 </tag>
-            
             <tag> redis </tag>
+            
+            <tag> 报错&amp;警告 </tag>
             
         </tags>
       

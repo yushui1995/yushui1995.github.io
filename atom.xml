@@ -264,7 +264,7 @@
     <link href="https://yushui1995.github.io/2022/07/10/xiu-gai-jenkins-zhu-mu-lu/"/>
     <id>https://yushui1995.github.io/2022/07/10/xiu-gai-jenkins-zhu-mu-lu/</id>
     <published>2022-07-10T14:27:33.000Z</published>
-    <updated>2022-07-10T14:30:27.245Z</updated>
+    <updated>2023-01-11T14:43:02.505Z</updated>
     
     
       
@@ -289,14 +289,14 @@
     <link href="https://yushui1995.github.io/2022/06/20/guan-yu-mysql-de-general-log/"/>
     <id>https://yushui1995.github.io/2022/06/20/guan-yu-mysql-de-general-log/</id>
     <published>2022-06-20T13:23:23.000Z</published>
-    <updated>2022-06-20T13:25:54.417Z</updated>
+    <updated>2023-01-11T14:43:10.630Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;&lt;strong&gt;在默认情况下，MySQL是不会打开general log的，这个log里面会记录MySQL所有的SQL语句，不管是查询语句，还是DML语句，还是DDL语句，还是DCL语句，这些语句统统都会被记录在general</summary>
+    <summary type="html">&lt;p&gt;&lt;strong&gt;在默认情况下， MySQL是不会打开general log的，这个log里面会记录MySQL所有的SQL语句，不管是查询语句，还是DML语句，还是DDL语句，还是DCL语句，这些语句统统都会被记录在general</summary>
         
       
     

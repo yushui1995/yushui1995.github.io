@@ -662,9 +662,9 @@
       
         <tags>
             
-            <tag> 工具 </tag>
-            
             <tag> mysql </tag>
+            
+            <tag> 工具 </tag>
             
         </tags>
       
@@ -689,9 +689,9 @@
       
         <tags>
             
-            <tag> rabbitmq </tag>
-            
             <tag> nginx </tag>
+            
+            <tag> rabbitmq </tag>
             
         </tags>
       

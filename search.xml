@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>关于root登录时权限报错问题</title>
+      <link href="/2023/02/27/guan-yu-root-deng-lu-shi-quan-xian-bao-cuo-wen-ti/"/>
+      <url>/2023/02/27/guan-yu-root-deng-lu-shi-quan-xian-bao-cuo-wen-ti/</url>
+      
+        <content type="html"><![CDATA[<h3 id="1、故障"><a href="#1、故障" class="headerlink" title="1、故障"></a><strong>1、故障</strong></h3><p>登录显示Permission denied，查看一开始以为是密码有问题，进入单用户模式把密码改成123456了，然后重启，登录还是报Permission denied；后来ssh -v IP查看，密码认证环节已通过，系统有种登录后立马退出的现象</p><h3 id="2、排查"><a href="#2、排查" class="headerlink" title="2、排查"></a>2、排查</h3><p>ssh -vvv IP显示如下：</p><pre class="line-numbers language-none"><code class="language-none">......debug3: channel 0: close_fds r -1 w -1 e 6 c -1debug3: Wrote 32 bytes for a total of 2389debug3: Wrote 64 bytes for a total of 2453Connection to mahavira closed.Transferred: sent 2224, received 2272 bytes, in 0.1 secondsBytes per second: sent 22447.6, received 22932.1debug1: Exit status 254<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>进入单用户模式 修改了root密码发现还是Permission denied</p><p>应该是ssh和pam出现了问题</p><p>继续进入单用户 更改了pam和ssh对应目录赋予777权限</p><p>然后重启，登录正常。</p><h3 id="3、其它问题"><a href="#3、其它问题" class="headerlink" title="3、其它问题"></a>3、其它问题</h3><p>但是ssh服务器无法启动了</p><pre class="line-numbers language-none"><code class="language-none">#使用命令 sshd -t进行检查，发现ssh目录的文件权限不对，不能都用777#权限应保持为：-rw-r--r--. 1 root root     581843 8月  26 2021 moduli-rw-r--r--. 1 root root       2276 8月  26 2021 ssh_config-rw-------  1 root root       3906 2月   2 08:43 sshd_config-rw-r-----  1 root ssh_keys    227 12月 27 17:22 ssh_host_ecdsa_key-rw-r--r--  1 root root        162 12月 27 17:22 ssh_host_ecdsa_key.pub-rw-r-----  1 root ssh_keys    387 12月 27 17:22 ssh_host_ed25519_key-rw-r--r--  1 root root         82 12月 27 17:22 ssh_host_ed25519_key.pub-rw-r-----  1 root ssh_keys   1679 12月 27 17:22 ssh_host_rsa_key-rw-r--r--  1 root root        382 12月 27 17:22 ssh_host_rsa_key.pub、更改对应文件权限后，重启ssh完成修复<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 系统 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 系统 </tag>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux忘记密码的重置方法</title>
+      <link href="/2023/02/27/linux-wang-ji-mi-ma-de-chong-zhi-fang-fa/"/>
+      <url>/2023/02/27/linux-wang-ji-mi-ma-de-chong-zhi-fang-fa/</url>
+      
+        <content type="html"><![CDATA[<h2 id="一、进入编辑模式"><a href="#一、进入编辑模式" class="headerlink" title="一、进入编辑模式"></a>一、进入编辑模式</h2><p>在开启系统后，出现如下界面时，将光标放在第一个上，之后按e，进入编辑模式。</p><p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202302272203727.png"></p><h2 id="二、重启系统"><a href="#二、重启系统" class="headerlink" title="二、重启系统"></a>二、重启系统</h2><p>之后系统还会进入到如下界面，此时按动键盘上下键，大概在倒数第二行末尾的位置找到UTF-8，之后在后面加入rd.break。具体操作如下所示：<br>这是一开始启动的界面：</p><p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202302272203091.png"></p><p>完成上述操作后，键盘Ctrl+x重启。</p><h2 id="三、重挂载"><a href="#三、重挂载" class="headerlink" title="三、重挂载"></a>三、重<a href="https://so.csdn.net/so/search?q=%E6%8C%82%E8%BD%BD&amp;spm=1001.2101.3001.7020">挂载</a></h2><p>重启后会进入到特殊的命令行界面，之后执行命令：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mount</span> -o remount,rw /sysroot<span class="token function">chroot</span> /sysroot<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202302272204527.png"></p><h2 id="四、修改密码"><a href="#四、修改密码" class="headerlink" title="四、修改密码"></a>四、修改密码</h2><p>在完成上述操作后，就可以修改系统密码了</p><p>另提供一条快捷命令</p><pre class="line-numbers language-none"><code class="language-none">echo "123456" |passwd --stdin root<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="五、退出并重启"><a href="#五、退出并重启" class="headerlink" title="五、退出并重启"></a>五、退出并重启</h2><p>在完成上述操作后，就可以退出并重启了，命令是exit和reboot。重启后在输入root密码的时候就可以输入我们之前修改过的root密码了。</p><p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202302272205405.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 系统 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 系统 </tag>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>监控-grafana</title>
       <link href="/2022/12/22/jian-kong-grafana/"/>
       <url>/2022/12/22/jian-kong-grafana/</url>
@@ -608,9 +662,9 @@
       
         <tags>
             
-            <tag> mysql </tag>
-            
             <tag> 工具 </tag>
+            
+            <tag> mysql </tag>
             
         </tags>
       
@@ -635,9 +689,9 @@
       
         <tags>
             
-            <tag> nginx </tag>
-            
             <tag> rabbitmq </tag>
+            
+            <tag> nginx </tag>
             
         </tags>
       

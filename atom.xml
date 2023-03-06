@@ -6,7 +6,7 @@
   <link href="https://yushui1995.github.io/atom.xml" rel="self"/>
   
   <link href="https://yushui1995.github.io/"/>
-  <updated>2023-03-04T15:32:37.214Z</updated>
+  <updated>2023-03-06T13:29:01.334Z</updated>
   <id>https://yushui1995.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://yushui1995.github.io/2023/02/27/guan-yu-root-deng-lu-shi-quan-xian-bao-cuo-wen-ti/"/>
     <id>https://yushui1995.github.io/2023/02/27/guan-yu-root-deng-lu-shi-quan-xian-bao-cuo-wen-ti/</id>
     <published>2023-02-27T14:12:45.000Z</published>
-    <updated>2023-03-04T15:32:37.214Z</updated>
+    <updated>2023-03-06T13:29:01.334Z</updated>
     
     
       
@@ -37,9 +37,9 @@
     <category term="系统" scheme="https://yushui1995.github.io/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-    <category term="linux" scheme="https://yushui1995.github.io/tags/linux/"/>
-    
     <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="linux" scheme="https://yushui1995.github.io/tags/linux/"/>
     
   </entry>
   
@@ -64,9 +64,9 @@
     <category term="系统" scheme="https://yushui1995.github.io/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-    <category term="linux" scheme="https://yushui1995.github.io/tags/linux/"/>
-    
     <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="linux" scheme="https://yushui1995.github.io/tags/linux/"/>
     
   </entry>
   
@@ -440,9 +440,9 @@
     <category term="LVM" scheme="https://yushui1995.github.io/categories/LVM/"/>
     
     
-    <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
-    
     <category term="LVM" scheme="https://yushui1995.github.io/tags/LVM/"/>
+    
+    <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
     
   </entry>
   

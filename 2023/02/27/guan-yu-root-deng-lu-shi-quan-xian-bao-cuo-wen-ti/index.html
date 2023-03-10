@@ -32,9 +32,9 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.4.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
 </head>
 
 
@@ -458,7 +458,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h3 id="1、故障"><a href="#1、故障" class="headerlink" title="1、故障"></a><strong>1、故障</strong></h3><p>登录显示Permission denied，查看一开始以为是密码有问题，进入单用户模式把密码改成123456了，然后重启，登录还是报Permission denied；后来ssh -v IP查看，密码认证环节已通过，系统有种登录后立马退出的现象</p>
-<h3 id="2、排查"><a href="#2、排查" class="headerlink" title="2、排查"></a>2、排查</h3><p>ssh -vvv  IP显示如下：</p>
+<h3 id="2、排查"><a href="#2、排查" class="headerlink" title="2、排查"></a>2、排查</h3><p>ssh -vvv IP显示如下：</p>
 <pre class="line-numbers language-none"><code class="language-none">...
 ...
 debug3: channel 0: close_fds r -1 w -1 e 6 c -1

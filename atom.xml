@@ -6,7 +6,7 @@
   <link href="https://yushui1995.github.io/atom.xml" rel="self"/>
   
   <link href="https://yushui1995.github.io/"/>
-  <updated>2023-04-02T15:52:33.425Z</updated>
+  <updated>2023-04-03T15:07:03.718Z</updated>
   <id>https://yushui1995.github.io/</id>
   
   <author>
@@ -17,11 +17,41 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Windows系统远程桌面连接CentOS7</title>
+    <link href="https://yushui1995.github.io/2023/04/03/windows-xi-tong-yuan-cheng-zhuo-mian-lian-jie-centos7/"/>
+    <id>https://yushui1995.github.io/2023/04/03/windows-xi-tong-yuan-cheng-zhuo-mian-lian-jie-centos7/</id>
+    <published>2023-04-03T15:05:29.000Z</published>
+    <updated>2023-04-03T15:07:03.718Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;开始前请确保你有能上网的主机两部（一个是CentOS7系统，一个是Windows10系统）&lt;/p&gt;
+&lt;p&gt;1、用SSH root用户登录Centos主机；&lt;/p&gt;
+&lt;p&gt;2、检查你的centos是否装了epel库&lt;/p&gt;
+&lt;pre class=&quot;line-numbers</summary>
+        
+      
+    
+    
+    
+    <category term="系统" scheme="https://yushui1995.github.io/categories/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="linux" scheme="https://yushui1995.github.io/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>关于root登录时权限报错问题</title>
     <link href="https://yushui1995.github.io/2023/02/27/guan-yu-root-deng-lu-shi-quan-xian-bao-cuo-wen-ti/"/>
     <id>https://yushui1995.github.io/2023/02/27/guan-yu-root-deng-lu-shi-quan-xian-bao-cuo-wen-ti/</id>
     <published>2023-02-27T14:12:45.000Z</published>
-    <updated>2023-04-02T15:52:33.425Z</updated>
+    <updated>2023-04-03T15:04:28.172Z</updated>
     
     
       
@@ -525,33 +555,6 @@
     <category term="shell" scheme="https://yushui1995.github.io/tags/shell/"/>
     
     <category term="题目" scheme="https://yushui1995.github.io/tags/%E9%A2%98%E7%9B%AE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>运维规范-自用</title>
-    <link href="https://yushui1995.github.io/2022/05/11/yun-wei-gui-fan-zi-yong/"/>
-    <id>https://yushui1995.github.io/2022/05/11/yun-wei-gui-fan-zi-yong/</id>
-    <published>2022-05-11T13:14:49.000Z</published>
-    <updated>2022-05-11T15:33:59.671Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;公司运维管理规范&quot;&gt;&lt;a href=&quot;#公司运维管理规范&quot; class=&quot;headerlink&quot; title=&quot;公司运维管理规范&quot;&gt;&lt;/a&gt;公司运维管理规范&lt;/h1&gt;&lt;h3 id=&quot;1、获取部署资源信息&quot;&gt;&lt;a href=&quot;#1、获取部署资源信息&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="规范" scheme="https://yushui1995.github.io/categories/%E8%A7%84%E8%8C%83/"/>
-    
-    
-    <category term="自用" scheme="https://yushui1995.github.io/tags/%E8%87%AA%E7%94%A8/"/>
-    
-    <category term="规范" scheme="https://yushui1995.github.io/tags/%E8%A7%84%E8%8C%83/"/>
     
   </entry>
   

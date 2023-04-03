@@ -4,10 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="jenkins版本升级, ">
-    <meta name="description" content="jenkins版本升级jenkins版本过低一些插件无法升级，这个时候我们就需要升级jenkins版本
-第一种方法——下拉会在jenkins页面上让我们下载新版本
-第二种方法是去官网上下载war包官网地址：https://www.jenki">
+    <meta name="keywords" content="Windows系统远程桌面连接CentOS7, ">
+    <meta name="description" content="开始前请确保你有能上网的主机两部（一个是CentOS7系统，一个是Windows10系统）
+1、用SSH root用户登录Centos主机；
+2、检查你的centos是否装了epel库
+# rpm -qa | grep epel
+
+如果没有">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +24,7 @@
 
     
 
-    <title>jenkins版本升级 | </title>
+    <title>Windows系统远程桌面连接CentOS7 | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -275,7 +278,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">jenkins版本升级</h1>
+                    <h1 class="description center-align post-title">Windows系统远程桌面连接CentOS7</h1>
                 </div>
             </div>
         </div>
@@ -391,12 +394,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/jenkins/">
-                                <span class="chip bg-color">jenkins</span>
+                            <a href="/tags/%E7%B3%BB%E7%BB%9F/">
+                                <span class="chip bg-color">系统</span>
                             </a>
                         
-                            <a href="/tags/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7/">
-                                <span class="chip bg-color">版本升级</span>
+                            <a href="/tags/linux/">
+                                <span class="chip bg-color">linux</span>
                             </a>
                         
                     </div>
@@ -407,8 +410,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/jenkins/" class="post-category">
-                                jenkins
+                            <a href="/categories/%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                系统
                             </a>
                         
                     </div>
@@ -420,7 +423,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-07-10
+                    2023-04-03
                 </div>
                 
 
@@ -429,7 +432,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    176
+                    338
                 </div>
                 
 
@@ -459,22 +462,42 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="jenkins版本升级"><a href="#jenkins版本升级" class="headerlink" title="jenkins版本升级"></a>jenkins版本升级</h1><h1 id="jenkins版本过低"><a href="#jenkins版本过低" class="headerlink" title="jenkins版本过低"></a>jenkins版本过低</h1><h3 id="一些插件无法升级，这个时候我们就需要升级jenkins版本"><a href="#一些插件无法升级，这个时候我们就需要升级jenkins版本" class="headerlink" title="一些插件无法升级，这个时候我们就需要升级jenkins版本"></a>一些插件无法升级，这个时候我们就需要升级jenkins版本</h3><p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202207102238220.png"></p>
-<h2 id="第一种方法——下拉会在jenkins页面上让我们下载新版本"><a href="#第一种方法——下拉会在jenkins页面上让我们下载新版本" class="headerlink" title="第一种方法——下拉会在jenkins页面上让我们下载新版本"></a>第一种方法——下拉会在jenkins页面上让我们下载新版本</h2><p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202207102239875.png"></p>
-<h2 id="第二种方法是去官网上下载war包"><a href="#第二种方法是去官网上下载war包" class="headerlink" title="第二种方法是去官网上下载war包"></a>第二种方法是去官网上下载war包</h2><p>官网地址：<a target="_blank" rel="noopener" href="https://www.jenkins.io/">https://www.jenkins.io/</a></p>
-<h2 id="1-进入jenkins登录机器，找到jenkins-war"><a href="#1-进入jenkins登录机器，找到jenkins-war" class="headerlink" title="1.进入jenkins登录机器，找到jenkins.war"></a>1.进入jenkins登录机器，找到jenkins.war</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">find</span> / -name  jenkins.war<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <p>开始前请确保你有能上网的主机两部（一个是CentOS7系统，一个是Windows10系统）</p>
+<p>1、用SSH root用户登录Centos主机；</p>
+<p>2、检查你的centos是否装了epel库</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># rpm -qa | grep epel</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h2 id="2-进入该目录把war包移动到其他目录下"><a href="#2-进入该目录把war包移动到其他目录下" class="headerlink" title="2.进入该目录把war包移动到其他目录下"></a>2.进入该目录把war包移动到其他目录下</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /usr/lib/jenkins
-<span class="token function">mv</span> jenkins.war /tmp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>如果没有就安装：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># yum install -y epel-release</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h2 id="3-关闭jenkins服务，并查看jenkins状态"><a href="#3-关闭jenkins服务，并查看jenkins状态" class="headerlink" title="3.关闭jenkins服务，并查看jenkins状态"></a>3.关闭jenkins服务，并查看jenkins状态</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">systemctl stop jenkins
-systemctl status jenkins<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>3、安装xrdp</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># yum install -y xrdp</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h2 id="4-把最新的war包移动到-usr-lib-jenkins目录下"><a href="#4-把最新的war包移动到-usr-lib-jenkins目录下" class="headerlink" title="4.把最新的war包移动到/usr/lib/jenkins目录下"></a>4.把最新的war包移动到/usr/lib/jenkins目录下</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mv</span> jenkins.war /usr/lib/jenkins/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>4、安装tigervnc-server</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># yum install -y tigervnc-server</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h2 id="5-再次启动jenkins"><a href="#5-再次启动jenkins" class="headerlink" title="5.再次启动jenkins"></a>5.再次启动jenkins</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">systemctl start jenkins<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>5、为用户root设置vnc密码</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># vncpasswd root</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h2 id="6-插件中可以看见jenkins版本，是否升级成功"><a href="#6-插件中可以看见jenkins版本，是否升级成功" class="headerlink" title="6.插件中可以看见jenkins版本，是否升级成功"></a>6.插件中可以看见jenkins版本，是否升级成功</h2><p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202207102240392.png"></p>
+<p>6、配置或关闭SELinux</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">查看SELinux状态 命令：
+<span class="token comment"># /usr/sbin/sestatus -v</span>
+
+临时关闭SELinux 命令：
+<span class="token comment"># setenforce 0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>7、关闭防火墙或者不关闭防火墙，打开3389端口命令</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># firewall-cmd --permanent --zone=public --add-port=3389/tcp</span>
+
+<span class="token comment"># firewall-cmd --reload</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>8、启动xrdp服务，并且设置为开机启动</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">启动服务命令：systemctl start xrdp
+
+开机启动命令：systemctl <span class="token builtin class-name">enable</span> xrdp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>9、Win系统下“Win+R”键，在弹出的“运行”框中输入“mstsc“命令，按“确定”，打开Windows远程连接，输入IP地址开始远程连接，在弹出的Xrdp用户验证窗口中输入CentOS7的用户名和密码登录即可</p>
+<h3 id="连接Windows时，远程连接出现-登陆失败：用户账户限制-解决方案"><a href="#连接Windows时，远程连接出现-登陆失败：用户账户限制-解决方案" class="headerlink" title="连接Windows时，远程连接出现 登陆失败：用户账户限制 解决方案"></a><strong>连接Windows时，远程连接出现 登陆失败：用户账户限制 解决方案</strong></h3><p>远程电脑 打开 控制面板–&gt;管理工具–&gt;本地安全策略–&gt;本地策略–&gt;安全选项–&gt;账户：使用空密码的本地账户只允许进行控制台登录  把这项禁用</p>
 
                 
             </div>
@@ -501,7 +524,7 @@ systemctl status jenkins<span aria-hidden="true" class="line-numbers-rows"><span
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yushui1995.github.io/2022/07/10/jenkins-ban-ben-sheng-ji/">https://yushui1995.github.io/2022/07/10/jenkins-ban-ben-sheng-ji/</a>
+                    <a href="https://yushui1995.github.io/2023/04/03/windows-xi-tong-yuan-cheng-zhuo-mian-lian-jie-centos7/">https://yushui1995.github.io/2023/04/03/windows-xi-tong-yuan-cheng-zhuo-mian-lian-jie-centos7/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -539,12 +562,12 @@ systemctl status jenkins<span aria-hidden="true" class="line-numbers-rows"><span
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/jenkins/">
-                                    <span class="chip bg-color">jenkins</span>
+                                <a href="/tags/%E7%B3%BB%E7%BB%9F/">
+                                    <span class="chip bg-color">系统</span>
                                 </a>
                             
-                                <a href="/tags/%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7/">
-                                    <span class="chip bg-color">版本升级</span>
+                                <a href="/tags/linux/">
+                                    <span class="chip bg-color">linux</span>
                                 </a>
                             
                         </div>
@@ -984,16 +1007,17 @@ systemctl status jenkins<span aria-hidden="true" class="line-numbers-rows"><span
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/07/10/qian-duan-xiang-guan-yi-lai-bu-shu/">
+                <a href="/2023/04/03/windows-xi-tong-yuan-cheng-zhuo-mian-lian-jie-centos7/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="前端相关依赖部署">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="Windows系统远程桌面连接CentOS7">
                         
-                        <span class="card-title">前端相关依赖部署</span>
+                        <span class="card-title">Windows系统远程桌面连接CentOS7</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1003,30 +1027,31 @@ systemctl status jenkins<span aria-hidden="true" class="line-numbers-rows"><span
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-03
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E9%83%A8%E7%BD%B2/" class="post-category">
-                                    部署
+                            <a href="/categories/%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    系统
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E9%83%A8%E7%BD%B2/">
-                        <span class="chip bg-color">部署</span>
+                    <a href="/tags/%E7%B3%BB%E7%BB%9F/">
+                        <span class="chip bg-color">系统</span>
                     </a>
                     
-                    <a href="/tags/%E5%89%8D%E7%AB%AF/">
-                        <span class="chip bg-color">前端</span>
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
                     </a>
                     
                 </div>
@@ -1040,12 +1065,12 @@ systemctl status jenkins<span aria-hidden="true" class="line-numbers-rows"><span
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/07/10/xiu-gai-jenkins-zhu-mu-lu/">
+                <a href="/2023/02/27/guan-yu-root-deng-lu-shi-quan-xian-bao-cuo-wen-ti/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="修改 jenkins 主目录">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="关于root登录时权限报错问题">
                         
-                        <span class="card-title">修改 jenkins 主目录</span>
+                        <span class="card-title">关于root登录时权限报错问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1056,14 +1081,14 @@ systemctl status jenkins<span aria-hidden="true" class="line-numbers-rows"><span
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-27
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/jenkins/" class="post-category">
-                                    jenkins
+                            <a href="/categories/%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    系统
                                 </a>
                             
                             
@@ -1073,8 +1098,12 @@ systemctl status jenkins<span aria-hidden="true" class="line-numbers-rows"><span
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/jenkins/">
-                        <span class="chip bg-color">jenkins</span>
+                    <a href="/tags/%E7%B3%BB%E7%BB%9F/">
+                        <span class="chip bg-color">系统</span>
+                    </a>
+                    
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
                     </a>
                     
                 </div>

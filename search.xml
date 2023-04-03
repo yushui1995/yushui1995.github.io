@@ -4,11 +4,38 @@
   
     
     <entry>
+      <title>Windows系统远程桌面连接CentOS7</title>
+      <link href="/2023/04/03/windows-xi-tong-yuan-cheng-zhuo-mian-lian-jie-centos7/"/>
+      <url>/2023/04/03/windows-xi-tong-yuan-cheng-zhuo-mian-lian-jie-centos7/</url>
+      
+        <content type="html"><![CDATA[<p>开始前请确保你有能上网的主机两部（一个是CentOS7系统，一个是Windows10系统）</p><p>1、用SSH root用户登录Centos主机；</p><p>2、检查你的centos是否装了epel库</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># rpm -qa | grep epel</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>如果没有就安装：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># yum install -y epel-release</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>3、安装xrdp</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># yum install -y xrdp</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>4、安装tigervnc-server</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># yum install -y tigervnc-server</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>5、为用户root设置vnc密码</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># vncpasswd root</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>6、配置或关闭SELinux</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">查看SELinux状态 命令：<span class="token comment"># /usr/sbin/sestatus -v</span>临时关闭SELinux 命令：<span class="token comment"># setenforce 0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>7、关闭防火墙或者不关闭防火墙，打开3389端口命令</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># firewall-cmd --permanent --zone=public --add-port=3389/tcp</span><span class="token comment"># firewall-cmd --reload</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>8、启动xrdp服务，并且设置为开机启动</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">启动服务命令：systemctl start xrdp开机启动命令：systemctl <span class="token builtin class-name">enable</span> xrdp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>9、Win系统下“Win+R”键，在弹出的“运行”框中输入“mstsc“命令，按“确定”，打开Windows远程连接，输入IP地址开始远程连接，在弹出的Xrdp用户验证窗口中输入CentOS7的用户名和密码登录即可</p><h3 id="连接Windows时，远程连接出现-登陆失败：用户账户限制-解决方案"><a href="#连接Windows时，远程连接出现-登陆失败：用户账户限制-解决方案" class="headerlink" title="连接Windows时，远程连接出现 登陆失败：用户账户限制 解决方案"></a><strong>连接Windows时，远程连接出现 登陆失败：用户账户限制 解决方案</strong></h3><p>远程电脑 打开 控制面板–&gt;管理工具–&gt;本地安全策略–&gt;本地策略–&gt;安全选项–&gt;账户：使用空密码的本地账户只允许进行控制台登录  把这项禁用</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 系统 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 系统 </tag>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>关于root登录时权限报错问题</title>
       <link href="/2023/02/27/guan-yu-root-deng-lu-shi-quan-xian-bao-cuo-wen-ti/"/>
       <url>/2023/02/27/guan-yu-root-deng-lu-shi-quan-xian-bao-cuo-wen-ti/</url>
       
-        <content type="html"><![CDATA[<h3 id="1、故障"><a href="#1、故障" class="headerlink" title="1、故障"></a><strong>1、故障</strong></h3><p>登录显示Permission denied，查看一开始以为是密码有问题，进入单用户模式把密码改成123456了，然后重启，登录还是报Permission denied；后来ssh -v IP查看，密码认证环节已通过，系统有种登录后立马退出的现象</p><h3 id="2、排查"><a href="#2、排查" class="headerlink" title="2、排查"></a>2、排查</h3><p>ssh -vvv   IP显示如下：</p><pre class="line-numbers language-none"><code class="language-none">......debug3: channel 0: close_fds r -1 w -1 e 6 c -1debug3: Wrote 32 bytes for a total of 2389debug3: Wrote 64 bytes for a total of 2453Connection to mahavira closed.Transferred: sent 2224, received 2272 bytes, in 0.1 secondsBytes per second: sent 22447.6, received 22932.1debug1: Exit status 254<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>进入单用户模式 修改了root密码发现还是Permission denied</p><p>应该是ssh和pam出现了问题</p><p>继续进入单用户 更改了pam和ssh对应目录赋予777权限</p><p>然后重启，登录正常。</p><h3 id="3、其它问题"><a href="#3、其它问题" class="headerlink" title="3、其它问题"></a>3、其它问题</h3><p>但是ssh服务器无法启动了</p><pre class="line-numbers language-none"><code class="language-none">#使用命令 sshd -t进行检查，发现ssh目录的文件权限不对，不能都用777#权限应保持为：-rw-r--r--. 1 root root     581843 8月  26 2021 moduli-rw-r--r--. 1 root root       2276 8月  26 2021 ssh_config-rw-------  1 root root       3906 2月   2 08:43 sshd_config-rw-r-----  1 root ssh_keys    227 12月 27 17:22 ssh_host_ecdsa_key-rw-r--r--  1 root root        162 12月 27 17:22 ssh_host_ecdsa_key.pub-rw-r-----  1 root ssh_keys    387 12月 27 17:22 ssh_host_ed25519_key-rw-r--r--  1 root root         82 12月 27 17:22 ssh_host_ed25519_key.pub-rw-r-----  1 root ssh_keys   1679 12月 27 17:22 ssh_host_rsa_key-rw-r--r--  1 root root        382 12月 27 17:22 ssh_host_rsa_key.pub、更改对应文件权限后，重启ssh完成修复<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+        <content type="html"><![CDATA[<h3 id="1、故障"><a href="#1、故障" class="headerlink" title="1、故障"></a><strong>1、故障</strong></h3><p>登录显示Permission denied，查看一开始以为是密码有问题，进入单用户模式把密码改成123456了，然后重启，登录还是报Permission denied；后来ssh -v IP查看，密码认证环节已通过，系统有种登录后立马退出的现象</p><h3 id="2、排查"><a href="#2、排查" class="headerlink" title="2、排查"></a>2、排查</h3><p>ssh -vvv  IP显示如下：</p><pre class="line-numbers language-none"><code class="language-none">......debug3: channel 0: close_fds r -1 w -1 e 6 c -1debug3: Wrote 32 bytes for a total of 2389debug3: Wrote 64 bytes for a total of 2453Connection to mahavira closed.Transferred: sent 2224, received 2272 bytes, in 0.1 secondsBytes per second: sent 22447.6, received 22932.1debug1: Exit status 254<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>进入单用户模式 修改了root密码发现还是Permission denied</p><p>应该是ssh和pam出现了问题</p><p>继续进入单用户 更改了pam和ssh对应目录赋予777权限</p><p>然后重启，登录正常。</p><h3 id="3、其它问题"><a href="#3、其它问题" class="headerlink" title="3、其它问题"></a>3、其它问题</h3><p>但是ssh服务器无法启动了</p><pre class="line-numbers language-none"><code class="language-none">#使用命令 sshd -t进行检查，发现ssh目录的文件权限不对，不能都用777#权限应保持为：-rw-r--r--. 1 root root     581843 8月  26 2021 moduli-rw-r--r--. 1 root root       2276 8月  26 2021 ssh_config-rw-------  1 root root       3906 2月   2 08:43 sshd_config-rw-r-----  1 root ssh_keys    227 12月 27 17:22 ssh_host_ecdsa_key-rw-r--r--  1 root root        162 12月 27 17:22 ssh_host_ecdsa_key.pub-rw-r-----  1 root ssh_keys    387 12月 27 17:22 ssh_host_ed25519_key-rw-r--r--  1 root root         82 12月 27 17:22 ssh_host_ed25519_key.pub-rw-r-----  1 root ssh_keys   1679 12月 27 17:22 ssh_host_rsa_key-rw-r--r--  1 root root        382 12月 27 17:22 ssh_host_rsa_key.pub、更改对应文件权限后，重启ssh完成修复<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
       
       
       <categories>

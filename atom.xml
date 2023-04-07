@@ -6,7 +6,7 @@
   <link href="https://yushui1995.github.io/atom.xml" rel="self"/>
   
   <link href="https://yushui1995.github.io/"/>
-  <updated>2023-04-03T15:21:14.383Z</updated>
+  <updated>2023-04-07T13:05:33.088Z</updated>
   <id>https://yushui1995.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>sys3md挖矿病毒</title>
+    <link href="https://yushui1995.github.io/2023/04/07/sys3md-wa-kuang-bing-du/"/>
+    <id>https://yushui1995.github.io/2023/04/07/sys3md-wa-kuang-bing-du/</id>
+    <published>2023-04-07T13:02:21.000Z</published>
+    <updated>2023-04-07T13:05:33.088Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一大早起来，发现客户服务器，cpu-100&quot;&gt;&lt;a href=&quot;#一大早起来，发现客户服务器，cpu-100&quot; class=&quot;headerlink&quot; title=&quot;一大早起来，发现客户服务器，cpu</summary>
+        
+      
+    
+    
+    
+    <category term="系统" scheme="https://yushui1995.github.io/categories/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="修复" scheme="https://yushui1995.github.io/tags/%E4%BF%AE%E5%A4%8D/"/>
+    
+  </entry>
   
   <entry>
     <title>关于MySQL的slow_log慢日志</title>
@@ -229,9 +256,9 @@
     <category term="漏洞修复" scheme="https://yushui1995.github.io/categories/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/"/>
     
     
-    <category term="shell" scheme="https://yushui1995.github.io/tags/shell/"/>
-    
     <category term="漏洞修复" scheme="https://yushui1995.github.io/tags/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/"/>
+    
+    <category term="shell" scheme="https://yushui1995.github.io/tags/shell/"/>
     
   </entry>
   
@@ -527,33 +554,6 @@
     <category term="nacos" scheme="https://yushui1995.github.io/tags/nacos/"/>
     
     <category term="漏洞修复" scheme="https://yushui1995.github.io/tags/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Nginx 1.20.2 编译安装</title>
-    <link href="https://yushui1995.github.io/2022/05/13/nginx-1-20-2-bian-yi-an-zhuang/"/>
-    <id>https://yushui1995.github.io/2022/05/13/nginx-1-20-2-bian-yi-an-zhuang/</id>
-    <published>2022-05-13T13:18:38.000Z</published>
-    <updated>2022-05-13T13:19:38.706Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Nginx-1-20-2-编译安装-nginx-upstream-check-module&quot;&gt;&lt;a href=&quot;#Nginx-1-20-2-编译安装-nginx-upstream-check-module&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="nginx" scheme="https://yushui1995.github.io/categories/nginx/"/>
-    
-    
-    <category term="nginx" scheme="https://yushui1995.github.io/tags/nginx/"/>
-    
-    <category term="部署" scheme="https://yushui1995.github.io/tags/%E9%83%A8%E7%BD%B2/"/>
     
   </entry>
   

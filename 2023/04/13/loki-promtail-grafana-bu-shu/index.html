@@ -4,10 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="线上redis宕机的排查处理-快照持久化, ">
-    <meta name="description" content="线上redis宕机的排查处理-快照持久化一、过程早上看到监控，后面了解到由于开发大批量的同步数据，才导致redis节点宕机了，线上redis部署在3台服务器，6个节点采用3主3从
-
-二、排查连接到线上服务器开始排查，查看进程，发现对应端口的">
+    <meta name="keywords" content="Loki+Promtail+Grafana部署, ">
+    <meta name="description" content="官网git ：
+https://github.com/grafana/loki
+官网git：https://github.com/grafana/loki
+参数参考：
+Grafana Loki configuration parameter">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +23,7 @@
 
     
 
-    <title>线上redis宕机的排查处理-快照持久化 | </title>
+    <title>Loki+Promtail+Grafana部署 | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -275,7 +277,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">线上redis宕机的排查处理-快照持久化</h1>
+                    <h1 class="description center-align post-title">Loki+Promtail+Grafana部署</h1>
                 </div>
             </div>
         </div>
@@ -391,12 +393,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/redis/">
-                                <span class="chip bg-color">redis</span>
+                            <a href="/tags/%E7%9B%91%E6%8E%A7/">
+                                <span class="chip bg-color">监控</span>
                             </a>
                         
-                            <a href="/tags/%E6%8A%A5%E9%94%99-%E5%91%8A%E8%AD%A6/">
-                                <span class="chip bg-color">报错&amp;告警</span>
+                            <a href="/tags/grafana/">
+                                <span class="chip bg-color">grafana</span>
                             </a>
                         
                     </div>
@@ -407,8 +409,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/redis/" class="post-category">
-                                redis
+                            <a href="/categories/%E7%9B%91%E6%8E%A7/" class="post-category">
+                                监控
                             </a>
                         
                     </div>
@@ -420,7 +422,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-09-23
+                    2023-04-13
                 </div>
                 
 
@@ -429,14 +431,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.5k
+                    630
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    3 分
                 </div>
                 
 
@@ -459,115 +461,163 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="线上redis宕机的排查处理-快照持久化"><a href="#线上redis宕机的排查处理-快照持久化" class="headerlink" title="线上redis宕机的排查处理-快照持久化"></a>线上redis宕机的排查处理-快照持久化</h1><h2 id="一、过程"><a href="#一、过程" class="headerlink" title="一、过程"></a>一、过程</h2><p>早上看到监控，后面了解到由于开发大批量的同步数据，才导致redis节点宕机了，线上redis部署在3台服务器，6个节点采用3主3从</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202209232143573.png"></p>
-<h2 id="二、排查"><a href="#二、排查" class="headerlink" title="二、排查"></a>二、排查</h2><p>连接到线上服务器开始排查，查看进程，发现对应端口的进程已经没有了，直接重启了对应节点的redis</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./redis-server /home/dpan/soft/redis-5.0.10/cluster-conf/6380/redis.conf <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202304132313111.png" alt="image-20230413231355163">官网git ：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/grafana/loki">https://github.com/grafana/loki</a></p>
+<p>官网git：<a target="_blank" rel="noopener" href="https://github.com/grafana/loki">https://github.com/grafana/loki</a></p>
+<p>参数参考：</p>
+<p><a target="_blank" rel="noopener" href="https://grafana.com/docs/loki/latest/configuration/#use-environment-variables-in-the-configuration">Grafana Loki configuration parameters |  Grafana Loki documentation</a></p>
+<p>日志告警：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/mahj125/article/details/121147289">Loki日志系统告警_mahj125的博客-CSDN博客</a></p>
+<p>接口：</p>
+<p><a target="_blank" rel="noopener" href="https://grafana.com/docs/loki/latest/api/">Grafana Loki HTTP API |  Grafana Loki documentation</a></p>
+<p>准备：一台服务器+安装包(grafana不做讲解)</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#资源包</span>
+<span class="token function">curl</span> -O -L <span class="token string">"&lt;https://github.com/grafana/loki/releases/download/v2.8.0/loki-linux-amd64.zip&gt;"</span>
+<span class="token function">curl</span> -O -L <span class="token string">"&lt;https://github.com/grafana/loki/releases/download/v2.8.0/promtail-linux-amd64.zip&gt;"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<p>然后发现，redis的两个节点都挂掉了</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202209232142712.png"></p>
-<p>然后查看对应的运行日志，发现到这里就卡住了</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token number">12361</span>:C <span class="token number">23</span> Sep <span class="token number">2022</span> <span class="token number">10</span>:27:27.604 <span class="token comment"># oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo</span>
-<span class="token number">12361</span>:C <span class="token number">23</span> Sep <span class="token number">2022</span> <span class="token number">10</span>:27:27.604 <span class="token comment"># Redis version=5.0.10, bits=64, commit=00000000, modified=0, pid=12361, just started</span>
-<span class="token number">12361</span>:C <span class="token number">23</span> Sep <span class="token number">2022</span> <span class="token number">10</span>:27:27.604 <span class="token comment"># Configuration loaded</span>
-<span class="token number">12361</span>:M <span class="token number">23</span> Sep <span class="token number">2022</span> <span class="token number">10</span>:27:27.605 * Increased maximum number of <span class="token function">open</span> files to <span class="token number">10032</span> <span class="token punctuation">(</span>it was originally <span class="token builtin class-name">set</span> to <span class="token number">1024</span><span class="token punctuation">)</span>.
-<span class="token number">12361</span>:M <span class="token number">23</span> Sep <span class="token number">2022</span> <span class="token number">10</span>:27:27.606 * Node configuration loaded, I'm 9bb67931114d794bc2cbd2d30eb0d8c4fcd8ca84
-<span class="token number">12361</span>:M <span class="token number">23</span> Sep <span class="token number">2022</span> <span class="token number">10</span>:27:27.607 * Running <span class="token assign-left variable">mode</span><span class="token operator">=</span>cluster, <span class="token assign-left variable">port</span><span class="token operator">=</span><span class="token number">6381</span>.
-<span class="token number">12361</span>:M <span class="token number">23</span> Sep <span class="token number">2022</span> <span class="token number">10</span>:27:27.607 <span class="token comment"># Server initialized</span>
-<span class="token number">12361</span>:M <span class="token number">23</span> Sep <span class="token number">2022</span> <span class="token number">10</span>:27:27.608 * Reading RDB preamble from AOF file<span class="token punctuation">..</span>.
-<span class="token number">12361</span>:M <span class="token number">23</span> Sep <span class="token number">2022</span> <span class="token number">10</span>:28:12.122 * Reading the remaining AOF tail<span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>一、loki部署</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#</span>
+<span class="token function">mkdir</span> -p loki/<span class="token punctuation">{</span>chunks,rules<span class="token punctuation">}</span>
+<span class="token function">unzip</span> loki-linux-amd64.zip -C loki
+<span class="token function">chmod</span> +x loki-linux-amd64
 
-<p>排查后发现启动一个节点居然占用内存10G多，2个节点自然是无法启动的，只能启一个节点，这显然是不正常的，以为修改redis启动内存可以解决这个问题，后来发现没有用</p>
-<p><strong>因为在Redis中持久化的方式有两种，一种是快照持久化，一种是AOF持久化</strong></p>
-<p><strong>快照持久化也叫RDB持久化方式。就是通过拍摄快照的方式来实现持久化，将某个时间的内存数据存储在一个rdb文件中。在redis服务重新启动的时候会加载rdb文件中的数据</strong></p>
-<h2 id="三、处理"><a href="#三、处理" class="headerlink" title="三、处理"></a>三、处理</h2><p>redis中的快照持久化默认是开启的，在redis.conf配置文件中有相关的配置选项</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">################################ SNAPSHOTTING  ################################</span>
-<span class="token comment">#</span>
-<span class="token comment"># Save the DB on disk:</span>
-<span class="token comment">#</span>
-<span class="token comment">#   save &lt;seconds&gt; &lt;changes&gt;</span>
-<span class="token comment">#</span>
-<span class="token comment">#   Will save the DB if both the given number of seconds and the given</span>
-<span class="token comment">#   number of write operations against the DB occurred.</span>
-<span class="token comment">#</span>
-<span class="token comment">#   In the example below the behaviour will be to save:</span>
-<span class="token comment">#   after 900 sec (15 min) if at least 1 key changed</span>
-<span class="token comment">#   after 300 sec (5 min) if at least 10 keys changed</span>
-<span class="token comment">#   after 60 sec if at least 10000 keys changed</span>
-<span class="token comment">#</span>
-<span class="token comment">#   Note: you can disable saving completely by commenting out all "save" lines.</span>
-<span class="token comment">#</span>
-<span class="token comment">#   It is also possible to remove all the previously configured save</span>
-<span class="token comment">#   points by adding a save directive with a single empty string argument</span>
-<span class="token comment">#   like in the following example:</span>
-<span class="token comment">#</span>
-<span class="token comment">#   save ""</span>
+<span class="token comment">#增加配置文件:与可执行的loki文件同级目录</span>
+<span class="token builtin class-name">cd</span> loki
+<span class="token comment">#vi loki.yaml:</span>
+auth_enabled: <span class="token boolean">false</span>
 
-save <span class="token number">900</span> <span class="token number">1</span>   <span class="token comment">#900秒内至少有1个key被更改就执行快照</span>
-save <span class="token number">300</span> <span class="token number">10</span>  <span class="token comment">#300内描述至少有10个key被更改就执行快照</span>
-save <span class="token number">60</span> <span class="token number">10000</span>  <span class="token comment">#60秒内至少有10000个key被更改就执行快照</span>
+server:
+  http_listen_port: <span class="token number">3100</span>
 
-<span class="token comment"># By default Redis will stop accepting writes if RDB snapshots are enabled</span>
-<span class="token comment"># (at least one save point) and the latest background save failed.</span>
-<span class="token comment"># This will make the user aware (in a hard way) that data is not persisting</span>
-<span class="token comment"># on disk properly, otherwise chances are that no one will notice and some</span>
-<span class="token comment"># disaster will happen.</span>
-<span class="token comment">#</span>
-<span class="token comment"># If the background saving process will start working again Redis will</span>
-<span class="token comment"># automatically allow writes again.</span>
-<span class="token comment">#</span>
-<span class="token comment"># However if you have setup your proper monitoring of the Redis server</span>
-<span class="token comment"># and persistence, you may want to disable this feature so that Redis will</span>
-<span class="token comment"># continue to work as usual even if there are problems with disk,</span>
-<span class="token comment"># permissions, and so forth.</span>
-stop-writes-on-bgsave-error <span class="token function">yes</span> <span class="token comment">#拍摄快照失败是否继续执行写命令</span>
+common:
+  path_prefix: /loki
+  storage:
+    filesystem:
+      chunks_directory: /home/dpan/soft/loki/chunks
+      rules_directory: /home/dpan/soft/root/loki/rules
+  replication_factor: <span class="token number">1</span>
+  ring:
+    instance_addr: <span class="token number">127.0</span>.0.1
+    kvstore:
+      store: inmemory
 
-<span class="token comment"># Compress string objects using LZF when dump .rdb databases?</span>
-<span class="token comment"># For default that's set to 'yes' as it's almost always a win.</span>
-<span class="token comment"># If you want to save some CPU in the saving child set it to 'no' but</span>
-<span class="token comment"># the dataset will likely be bigger if you have compressible values or keys.</span>
-rdbcompression <span class="token function">yes</span> <span class="token comment">#是否对快照文件进行压缩</span>
+schema_config:
+  configs:
+    - from: <span class="token number">2020</span>-10-24
+      store: boltdb-shipper
+      object_store: filesystem
+      schema: v11
+      index:
+        prefix: index_
+        period: 24h
 
-<span class="token comment"># Since version 5 of RDB a CRC64 checksum is placed at the end of the file.</span>
-<span class="token comment"># This makes the format more resistant to corruption but there is a performance</span>
-<span class="token comment"># hit to pay (around 10%) when saving and loading RDB files, so you can disable it</span>
-<span class="token comment"># for maximum performances.</span>
-<span class="token comment">#</span>
-<span class="token comment"># RDB files created with checksum disabled have a checksum of zero that will</span>
-<span class="token comment"># tell the loading code to skip the check.</span>
-rdbchecksum <span class="token function">yes</span> <span class="token comment">#是否进行数据校验</span>
+<span class="token comment">#配置规则使用 不用的情况注释掉避免端口暴露</span>
+<span class="token comment">#ruler:</span>
+<span class="token comment">#  alertmanager_url: &lt;http://10.252.32.99:9093&gt;</span>
 
-<span class="token comment"># The filename where to dump the DB</span>
-dbfilename dump.rdb <span class="token comment">#快照文件存储的名称</span>
-<span class="token comment"># The working directory.</span>
-<span class="token comment">#</span>
-<span class="token comment"># The DB will be written inside this directory, with the filename specified</span>
-<span class="token comment"># above using the 'dbfilename' configuration directive.</span>
-<span class="token comment">#</span>
-<span class="token comment"># The Append Only File will also be created inside this directory.</span>
-<span class="token comment">#</span>
-<span class="token comment"># Note that you must specify a directory here, not a file name.</span>
-<span class="token function">dir</span> ./ <span class="token comment">#快照文件存储的位置</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+limits_config:
+  enforce_metric_name: <span class="token boolean">false</span>
+  reject_old_samples: <span class="token boolean">true</span>
+  reject_old_samples_max_age: 168h
+  ingestion_rate_mb: <span class="token number">30</span>  <span class="token comment">#修改每用户摄入速率限制，即每秒样本量，默认值为4M</span>
+  ingestion_burst_size_mb: <span class="token number">15</span>  <span class="token comment">#修改每用户摄入速率限制，即每秒样本量，默认值为6M</span>
 
-<p>快照文件默认会和conf文件在统计目录，名称为dump.rdb</p>
-<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><blockquote>
-<p>优点<br>RDB文件是一个很简洁的单文件，它保存了某个时间点的Redis数据，很适合用于做备份。你可以设定一个时间点对RDB文件进行归档，这样就能在需要的时候很轻易的把数据恢复到不同的版本。<br>RDB很适合用于灾备。单文件很方便就能传输到远程的服务器上。<br>RDB的性能很好，需要进行持久化时，主进程会fork一个子进程出来，然后把持久化的工作交给子进程，自己不会有相关的I/O操作。<br>比起AOF，在数据量比较大的情况下，RDB的启动速度更快。</p>
-</blockquote>
-<blockquote>
-<p>缺点<br>RDB容易造成数据的丢失。假设每5分钟保存一次快照，如果Redis因为某些原因不能正常工作，那么从上次产生快照到Redis出现问题这段时间的数据就会丢失了。<br>RDB使用fork()产生子进程进行数据的持久化，如果数据比较大的话可能就会花费点时间，造成Redis停止服务几毫秒。如果数据量很大且CPU性能不是很好的时候，停止服务的时间甚至会到1秒</p>
-</blockquote>
-<h3 id="配置里禁用持久化快照"><a href="#配置里禁用持久化快照" class="headerlink" title="配置里禁用持久化快照"></a>配置里禁用持久化快照</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#1.在redis.conf配置文件中注释掉所有的save配置</span>
-<span class="token comment">#2.在最后一条save配置追加吃命令</span>
-save <span class="token string">""</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">#增加服务管理</span>
+<span class="token function">cat</span> <span class="token operator">&lt;&lt;</span><span class="token string">EOF<span class="token bash punctuation"> <span class="token operator">&gt;</span>/etc/systemd/system/loki.service</span>
+[Unit]
+Description=loki server
+Wants=network-online.target
+After=network-online.target
 
-<p>最后解决方法：禁用快照持久化，并且删除dump.rdb，然后重启所有节点的redis服务</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./redis-server /home/dpan/soft/redis-5.0.10/cluster-conf/6380/redis.conf <span class="token operator">&amp;</span>
-./redis-server /home/dpan/soft/redis-5.0.10/cluster-conf/6381/redis.conf <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+[Service]
+ExecStart=/home/dpan/soft/loki/loki-linux-amd64 -config.file=/home/dpan/soft/loki/loki.yaml
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=loki
+[Install]
+WantedBy=default.target
+EOF</span>
 
+<span class="token comment">#启动和自启</span>
+systemctl start loki
+systemctl <span class="token builtin class-name">enable</span> loki<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<p>二、promtail部署</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> promtail
+<span class="token function">unzip</span> promtail-linux-amd64.zip -C promtail
+<span class="token function">chmod</span> +x promtail-linux-amd64
 
-<h2 id="四、恢复"><a href="#四、恢复" class="headerlink" title="四、恢复"></a>四、恢复</h2><p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202209232143777.png"></p>
+<span class="token comment">##增加配置文件:与可执行的loki文件同级目录</span>
+<span class="token builtin class-name">cd</span> promtail
+<span class="token comment">#vi promtail.yaml:</span>
+server:
+  http_listen_port: <span class="token number">9080</span>
+  grpc_listen_port: <span class="token number">0</span>
+
+positions:
+  filename: /home/dpan/soft/promtail/positions.yaml
+
+clients:
+  - url: <span class="token operator">&lt;</span>http://10.252.32.99:3100/loki/api/v1/push<span class="token operator">&gt;</span>  <span class="token comment">#loki的ip地址 默认3100端口</span>
+
+scrape_configs:
+  - job_name: <span class="token number">10.252</span>.32.71
+    static_configs:
+      - targets:
+          - <span class="token number">10.252</span>.32.71-xxx
+        labels:
+          job:xxx-8094                 <span class="token comment">#job的名称</span>
+          host: <span class="token number">10.252</span>.32.71-xxx    <span class="token comment">#host名称和targets一致</span>
+          __path__: /home/dpan/xxx/run.log <span class="token comment">#日志路径</span>
+
+      - targets:
+          - <span class="token number">10.252</span>.32.71-xxx
+        labels:
+          job: xxx-8098
+          host: <span class="token number">10.252</span>.32.71-xxx
+          __path__: /home/dpan/xxx/run.log
+
+<span class="token comment">#增加服务管理</span>
+<span class="token function">cat</span> <span class="token operator">&lt;&lt;</span><span class="token string">EOF<span class="token bash punctuation"> <span class="token operator">&gt;</span>/etc/systemd/system/promtail.service</span>
+[Unit]
+Description=promtail server
+Wants=network-online.target
+After=network-online.target
+[Service]
+ExecStart=/home/dpan/soft/promtail/promtail-linux-amd64 -config.file=/home/dpan/soft/promtail/promtail.yaml
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=promtail
+[Install]
+WantedBy=default.target
+EOF</span>
+
+systemctl daemon-reload
+systemctl <span class="token builtin class-name">enable</span> promtail<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>三、grafana采集</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202304132317612.png" alt="image-20230413231723537"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202304132317858.png" alt="image-20230413231704815"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202304132316392.png" alt="image-20230413231645131"></p>
+<p>四、转发</p>
+<pre class="line-numbers language-none"><code class="language-none">#使用nginx转发 此处使用了basic认证
+
+location  /loki/ {
+        auth_basic           "Please input password";
+        auth_basic_user_file /etc/nginx/.htpasswd;
+    proxy_set_header        Host $host;
+    proxy_set_header        X-Real-IP $remote_addr;
+    proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header        Upgrade $http_upgrade;
+    proxy_set_header        Connection "upgrade";
+
+        if ($request_uri ~* "/loki/(.*)"){
+                        proxy_pass http://10.252.32.99:3100/$1;
+                        break;
+        }
+    proxy_pass http://10.252.32.99:3100/loki;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -594,7 +644,7 @@ save <span class="token string">""</span><span aria-hidden="true" class="line-nu
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yushui1995.github.io/2022/09/23/xian-shang-redis-dang-ji-de-pai-cha-chu-li/">https://yushui1995.github.io/2022/09/23/xian-shang-redis-dang-ji-de-pai-cha-chu-li/</a>
+                    <a href="https://yushui1995.github.io/2023/04/13/loki-promtail-grafana-bu-shu/">https://yushui1995.github.io/2023/04/13/loki-promtail-grafana-bu-shu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -632,12 +682,12 @@ save <span class="token string">""</span><span aria-hidden="true" class="line-nu
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/redis/">
-                                    <span class="chip bg-color">redis</span>
+                                <a href="/tags/%E7%9B%91%E6%8E%A7/">
+                                    <span class="chip bg-color">监控</span>
                                 </a>
                             
-                                <a href="/tags/%E6%8A%A5%E9%94%99-%E5%91%8A%E8%AD%A6/">
-                                    <span class="chip bg-color">报错&amp;告警</span>
+                                <a href="/tags/grafana/">
+                                    <span class="chip bg-color">grafana</span>
                                 </a>
                             
                         </div>
@@ -1077,16 +1127,17 @@ save <span class="token string">""</span><span aria-hidden="true" class="line-nu
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/12/22/jian-kong-grafana/">
+                <a href="/2023/04/13/loki-promtail-grafana-bu-shu/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="监控-grafana">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="Loki+Promtail+Grafana部署">
                         
-                        <span class="card-title">监控-grafana</span>
+                        <span class="card-title">Loki+Promtail+Grafana部署</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1096,9 +1147,9 @@ save <span class="token string">""</span><span aria-hidden="true" class="line-nu
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-12-22
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1111,15 +1162,16 @@ save <span class="token string">""</span><span aria-hidden="true" class="line-nu
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/grafana/">
-                        <span class="chip bg-color">grafana</span>
+                    <a href="/tags/%E7%9B%91%E6%8E%A7/">
+                        <span class="chip bg-color">监控</span>
                     </a>
                     
-                    <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%8C%96/">
-                        <span class="chip bg-color">图形化</span>
+                    <a href="/tags/grafana/">
+                        <span class="chip bg-color">grafana</span>
                     </a>
                     
                 </div>
@@ -1133,12 +1185,12 @@ save <span class="token string">""</span><span aria-hidden="true" class="line-nu
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/09/22/centos7-9-qian-yi-anolis7-9/">
+                <a href="/2023/04/07/sys3md-wa-kuang-bing-du/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="centos7.9迁移anolis7.9">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="sys3md挖矿病毒">
                         
-                        <span class="card-title">centos7.9迁移anolis7.9</span>
+                        <span class="card-title">sys3md挖矿病毒</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1149,14 +1201,14 @@ save <span class="token string">""</span><span aria-hidden="true" class="line-nu
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-22
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-07
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/anolis/" class="post-category">
-                                    anolis
+                            <a href="/categories/%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    系统
                                 </a>
                             
                             
@@ -1166,12 +1218,12 @@ save <span class="token string">""</span><span aria-hidden="true" class="line-nu
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%BF%81%E7%A7%BB/">
-                        <span class="chip bg-color">迁移</span>
+                    <a href="/tags/%E7%B3%BB%E7%BB%9F/">
+                        <span class="chip bg-color">系统</span>
                     </a>
                     
-                    <a href="/tags/anolis/">
-                        <span class="chip bg-color">anolis</span>
+                    <a href="/tags/%E4%BF%AE%E5%A4%8D/">
+                        <span class="chip bg-color">修复</span>
                     </a>
                     
                 </div>

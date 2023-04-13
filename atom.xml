@@ -6,7 +6,7 @@
   <link href="https://yushui1995.github.io/atom.xml" rel="self"/>
   
   <link href="https://yushui1995.github.io/"/>
-  <updated>2023-04-12T13:23:13.960Z</updated>
+  <updated>2023-04-13T15:18:25.817Z</updated>
   <id>https://yushui1995.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Loki+Promtail+Grafana部署</title>
+    <link href="https://yushui1995.github.io/2023/04/13/loki-promtail-grafana-bu-shu/"/>
+    <id>https://yushui1995.github.io/2023/04/13/loki-promtail-grafana-bu-shu/</id>
+    <published>2023-04-13T15:11:20.000Z</published>
+    <updated>2023-04-13T15:18:25.817Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/yushui1995/img/202304132313111.png&quot; alt=&quot;image-20230413231355163&quot;&gt;官网git ：&lt;/p&gt;
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="监控" scheme="https://yushui1995.github.io/categories/%E7%9B%91%E6%8E%A7/"/>
+    
+    
+    <category term="监控" scheme="https://yushui1995.github.io/tags/%E7%9B%91%E6%8E%A7/"/>
+    
+    <category term="grafana" scheme="https://yushui1995.github.io/tags/grafana/"/>
+    
+  </entry>
   
   <entry>
     <title>sys3md挖矿病毒</title>
@@ -75,7 +103,7 @@
     <link href="https://yushui1995.github.io/2023/04/03/windows-xi-tong-yuan-cheng-zhuo-mian-lian-jie-centos7/"/>
     <id>https://yushui1995.github.io/2023/04/03/windows-xi-tong-yuan-cheng-zhuo-mian-lian-jie-centos7/</id>
     <published>2023-04-03T15:05:29.000Z</published>
-    <updated>2023-04-12T13:24:07.827Z</updated>
+    <updated>2023-04-13T15:09:27.207Z</updated>
     
     
       
@@ -83,7 +111,7 @@
         
         
     <summary type="html">&lt;p&gt;开始前请确保你有能上网的主机两部（一个是CentOS7系统，一个是Windows10系统）&lt;/p&gt;
-&lt;p&gt;1、用SSH root用户登录Centos主机；&lt;/p&gt;
+&lt;p&gt;1、用SSH  root用户登录Centos主机；&lt;/p&gt;
 &lt;p&gt;2、检查你的centos是否装了epel库&lt;/p&gt;
 &lt;pre class=&quot;line-numbers</summary>
         
@@ -175,9 +203,9 @@
     <category term="监控" scheme="https://yushui1995.github.io/categories/%E7%9B%91%E6%8E%A7/"/>
     
     
-    <category term="图形化" scheme="https://yushui1995.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%8C%96/"/>
-    
     <category term="grafana" scheme="https://yushui1995.github.io/tags/grafana/"/>
+    
+    <category term="图形化" scheme="https://yushui1995.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%8C%96/"/>
     
   </entry>
   
@@ -527,33 +555,6 @@
     <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
     
     <category term="LVM" scheme="https://yushui1995.github.io/tags/LVM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>nacos未授权访问漏洞</title>
-    <link href="https://yushui1995.github.io/2022/05/19/nacos-wei-shou-quan-fang-wen-lou-dong/"/>
-    <id>https://yushui1995.github.io/2022/05/19/nacos-wei-shou-quan-fang-wen-lou-dong/</id>
-    <published>2022-05-19T13:24:00.000Z</published>
-    <updated>2022-09-14T13:15:06.899Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;NACOS漏洞问题及修复-CVE-2021-29441&quot;&gt;&lt;a href=&quot;#NACOS漏洞问题及修复-CVE-2021-29441&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="漏洞修复" scheme="https://yushui1995.github.io/categories/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/"/>
-    
-    
-    <category term="nacos" scheme="https://yushui1995.github.io/tags/nacos/"/>
-    
-    <category term="漏洞修复" scheme="https://yushui1995.github.io/tags/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/"/>
     
   </entry>
   

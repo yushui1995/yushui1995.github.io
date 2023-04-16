@@ -263,9 +263,9 @@
       
         <tags>
             
-            <tag> shell </tag>
-            
             <tag> 漏洞修复 </tag>
+            
+            <tag> shell </tag>
             
         </tags>
       
@@ -290,9 +290,9 @@
       
         <tags>
             
-            <tag> 报错&amp;警告 </tag>
-            
             <tag> nginx </tag>
+            
+            <tag> 报错&amp;警告 </tag>
             
         </tags>
       
@@ -371,9 +371,9 @@
       
         <tags>
             
-            <tag> 前端 </tag>
-            
             <tag> 部署 </tag>
+            
+            <tag> 前端 </tag>
             
         </tags>
       
@@ -691,9 +691,9 @@
       
         <tags>
             
-            <tag> redis </tag>
-            
             <tag> 报错&amp;警告 </tag>
+            
+            <tag> redis </tag>
             
         </tags>
       
@@ -797,9 +797,9 @@
       
         <tags>
             
-            <tag> rabbitmq </tag>
-            
             <tag> nginx </tag>
+            
+            <tag> rabbitmq </tag>
             
         </tags>
       

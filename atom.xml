@@ -102,7 +102,7 @@
     <link href="https://yushui1995.github.io/2023/04/03/guan-yu-mysql-de-slow-log-man-ri-zhi/"/>
     <id>https://yushui1995.github.io/2023/04/03/guan-yu-mysql-de-slow-log-man-ri-zhi/</id>
     <published>2023-04-03T15:15:13.000Z</published>
-    <updated>2023-04-12T13:23:26.021Z</updated>
+    <updated>2023-04-25T16:09:49.169Z</updated>
     
     
       
@@ -129,7 +129,7 @@
     <link href="https://yushui1995.github.io/2023/04/03/windows-xi-tong-yuan-cheng-zhuo-mian-lian-jie-centos7/"/>
     <id>https://yushui1995.github.io/2023/04/03/windows-xi-tong-yuan-cheng-zhuo-mian-lian-jie-centos7/</id>
     <published>2023-04-03T15:05:29.000Z</published>
-    <updated>2023-04-13T15:09:27.207Z</updated>
+    <updated>2023-04-25T16:09:35.285Z</updated>
     
     
       
@@ -137,9 +137,9 @@
         
         
     <summary type="html">&lt;p&gt;开始前请确保你有能上网的主机两部（一个是CentOS7系统，一个是Windows10系统）&lt;/p&gt;
-&lt;p&gt;1、用SSH  root用户登录Centos主机；&lt;/p&gt;
+&lt;p&gt;1、用SSH  root用户登录Centos主机； &lt;/p&gt;
 &lt;p&gt;2、检查你的centos是否装了epel库&lt;/p&gt;
-&lt;pre class=&quot;line-numbers</summary>
+&lt;pre</summary>
         
       
     

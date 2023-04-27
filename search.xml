@@ -46,9 +46,9 @@
       
         <tags>
             
-            <tag> 监控 </tag>
-            
             <tag> grafana </tag>
+            
+            <tag> 监控 </tag>
             
         </tags>
       
@@ -208,9 +208,9 @@
       
         <tags>
             
-            <tag> grafana </tag>
-            
             <tag> 图形化 </tag>
+            
+            <tag> grafana </tag>
             
         </tags>
       

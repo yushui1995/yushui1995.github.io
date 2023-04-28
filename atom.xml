@@ -64,9 +64,9 @@
     <category term="监控" scheme="https://yushui1995.github.io/categories/%E7%9B%91%E6%8E%A7/"/>
     
     
-    <category term="grafana" scheme="https://yushui1995.github.io/tags/grafana/"/>
-    
     <category term="监控" scheme="https://yushui1995.github.io/tags/%E7%9B%91%E6%8E%A7/"/>
+    
+    <category term="grafana" scheme="https://yushui1995.github.io/tags/grafana/"/>
     
   </entry>
   
@@ -148,9 +148,9 @@
     <category term="系统" scheme="https://yushui1995.github.io/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-    <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
-    
     <category term="linux" scheme="https://yushui1995.github.io/tags/linux/"/>
+    
+    <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
     
   </entry>
   
@@ -175,9 +175,9 @@
     <category term="系统" scheme="https://yushui1995.github.io/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-    <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
-    
     <category term="linux" scheme="https://yushui1995.github.io/tags/linux/"/>
+    
+    <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
     
   </entry>
   
@@ -202,9 +202,9 @@
     <category term="系统" scheme="https://yushui1995.github.io/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-    <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
-    
     <category term="linux" scheme="https://yushui1995.github.io/tags/linux/"/>
+    
+    <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
     
   </entry>
   
@@ -229,9 +229,9 @@
     <category term="监控" scheme="https://yushui1995.github.io/categories/%E7%9B%91%E6%8E%A7/"/>
     
     
-    <category term="图形化" scheme="https://yushui1995.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%8C%96/"/>
-    
     <category term="grafana" scheme="https://yushui1995.github.io/tags/grafana/"/>
+    
+    <category term="图形化" scheme="https://yushui1995.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%8C%96/"/>
     
   </entry>
   
@@ -294,7 +294,7 @@
     <link href="https://yushui1995.github.io/2022/09/14/xi-tong-lou-dong-xiu-fu-shell-jiao-ben/"/>
     <id>https://yushui1995.github.io/2022/09/14/xi-tong-lou-dong-xiu-fu-shell-jiao-ben/</id>
     <published>2022-09-14T13:12:01.000Z</published>
-    <updated>2022-09-14T13:14:16.138Z</updated>
+    <updated>2023-04-28T15:16:58.902Z</updated>
     
     
       

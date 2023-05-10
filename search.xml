@@ -289,9 +289,9 @@
       
         <tags>
             
-            <tag> 漏洞修复 </tag>
-            
             <tag> shell </tag>
+            
+            <tag> 漏洞修复 </tag>
             
         </tags>
       
@@ -717,9 +717,9 @@
       
         <tags>
             
-            <tag> redis </tag>
-            
             <tag> 报错&amp;警告 </tag>
+            
+            <tag> redis </tag>
             
         </tags>
       
@@ -796,9 +796,9 @@
       
         <tags>
             
-            <tag> mysql </tag>
-            
             <tag> 工具 </tag>
+            
+            <tag> mysql </tag>
             
         </tags>
       

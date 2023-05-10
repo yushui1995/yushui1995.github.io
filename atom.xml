@@ -6,7 +6,7 @@
   <link href="https://yushui1995.github.io/atom.xml" rel="self"/>
   
   <link href="https://yushui1995.github.io/"/>
-  <updated>2023-04-18T14:41:26.422Z</updated>
+  <updated>2023-05-10T14:29:34.999Z</updated>
   <id>https://yushui1995.github.io/</id>
   
   <author>
@@ -17,28 +17,29 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>关于MySQL的slow—log慢日志</title>
-    <link href="https://yushui1995.github.io/2023/04/18/guan-yu-mysql-de-slow-log-man-ri-zhi-1/"/>
-    <id>https://yushui1995.github.io/2023/04/18/guan-yu-mysql-de-slow-log-man-ri-zhi-1/</id>
-    <published>2023-04-18T14:41:26.000Z</published>
-    <updated>2023-04-18T14:41:26.422Z</updated>
+    <title>运维监控-node_exporter</title>
+    <link href="https://yushui1995.github.io/2023/05/10/node-exporter-zeng-jia-ren-zheng/"/>
+    <id>https://yushui1995.github.io/2023/05/10/node-exporter-zeng-jia-ren-zheng/</id>
+    <published>2023-05-10T14:23:07.000Z</published>
+    <updated>2023-05-10T14:29:34.999Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;下载部署&quot;&gt;&lt;a href=&quot;#下载部署&quot; class=&quot;headerlink&quot; title=&quot;下载部署&quot;&gt;&lt;/a&gt;下载部署&lt;/h3&gt;&lt;p&gt;git地址：&lt;a</summary>
+        
+      
     
     
     
+    <category term="监控" scheme="https://yushui1995.github.io/categories/%E7%9B%91%E6%8E%A7/"/>
     
     
-  </entry>
-  
-  <entry>
-    <title>关于MySQL的slow—log慢日志</title>
-    <link href="https://yushui1995.github.io/2023/04/18/guan-yu-mysql-de-slow-log-man-ri-zhi/"/>
-    <id>https://yushui1995.github.io/2023/04/18/guan-yu-mysql-de-slow-log-man-ri-zhi/</id>
-    <published>2023-04-18T14:41:11.000Z</published>
-    <updated>2023-04-18T14:41:11.440Z</updated>
+    <category term="监控" scheme="https://yushui1995.github.io/tags/%E7%9B%91%E6%8E%A7/"/>
     
-    
-    
-    
+    <category term="漏洞修复" scheme="https://yushui1995.github.io/tags/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/"/>
     
   </entry>
   
@@ -527,6 +528,33 @@
     <category term="nginx" scheme="https://yushui1995.github.io/tags/nginx/"/>
     
     <category term="配置" scheme="https://yushui1995.github.io/tags/%E9%85%8D%E7%BD%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>将一个三T的硬盘做成LVM</title>
+    <link href="https://yushui1995.github.io/2022/05/24/jiang-yi-ge-san-t-de-ying-pan-zuo-cheng-lvm/"/>
+    <id>https://yushui1995.github.io/2022/05/24/jiang-yi-ge-san-t-de-ying-pan-zuo-cheng-lvm/</id>
+    <published>2022-05-24T14:42:47.000Z</published>
+    <updated>2023-05-10T14:19:22.492Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;将一个三T的硬盘分区并做LVM&quot;&gt;&lt;a href=&quot;#将一个三T的硬盘分区并做LVM&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="LVM" scheme="https://yushui1995.github.io/categories/LVM/"/>
+    
+    
+    <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="分区" scheme="https://yushui1995.github.io/tags/%E5%88%86%E5%8C%BA/"/>
     
   </entry>
   

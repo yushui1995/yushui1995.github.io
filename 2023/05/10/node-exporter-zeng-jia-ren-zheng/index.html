@@ -4,8 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="关于MySQL的slow—log慢日志, ">
-    <meta name="description" content="">
+    <meta name="keywords" content="运维监控-node_exporter, ">
+    <meta name="description" content="下载部署git地址：https://github.com/prometheus/node_exporter/releases
+#下载后解压
+tar -zxvf node_exporter-1.5.0.linux-amd64.tar.gz -">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +21,7 @@
 
     
 
-    <title>关于MySQL的slow—log慢日志 | </title>
+    <title>运维监控-node_exporter | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -273,7 +275,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">关于MySQL的slow—log慢日志</h1>
+                    <h1 class="description center-align post-title">运维监控-node_exporter</h1>
                 </div>
             </div>
         </div>
@@ -387,12 +389,29 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%9B%91%E6%8E%A7/">
+                                <span class="chip bg-color">监控</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/">
+                                <span class="chip bg-color">漏洞修复</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%9B%91%E6%8E%A7/" class="post-category">
+                                监控
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -401,7 +420,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-04-18
+                    2023-05-10
                 </div>
                 
 
@@ -410,7 +429,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    349
                 </div>
                 
 
@@ -440,7 +459,60 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h3 id="下载部署"><a href="#下载部署" class="headerlink" title="下载部署"></a>下载部署</h3><p>git地址：<a target="_blank" rel="noopener" href="https://github.com/prometheus/node_exporter/releases">https://github.com/prometheus/node_exporter/releases</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#下载后解压</span>
+<span class="token function">tar</span> -zxvf node_exporter-1.5.0.linux-amd64.tar.gz -C /usr/local
+
+<span class="token comment">#使用systemctl管理</span>
+<span class="token comment"># --web.config.file参数指定了认证，可选参数</span>
+<span class="token comment">#--web.listen-address参数指定了端口，可选参数</span>
+<span class="token function">cat</span> <span class="token operator">&gt;</span> /etc/systemd/system/node_exporter.service <span class="token operator">&lt;&lt;</span> <span class="token string">EOF
+[Unit]
+Description=node_exporter
+After=network.target
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/node_exporter-1.5.0.linux-amd64/node_exporter --web.config.file=/usr/local/node_exporter-1.5.0.linux-amd64/config.yaml --web.listen-address=:9091
+Restart=on-failure
+[Install]
+WantedBy=multi-user.target
+EOF</span>
+
+<span class="token comment">#启动</span>
+systemctl daemon-reload
+systemctl start node_exporter.service<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="为-node-exporter-配置密码（-–web-config-file可选参数）"><a href="#为-node-exporter-配置密码（-–web-config-file可选参数）" class="headerlink" title="为*node_exporter*配置密码（*–web.config.file可选参数）***"></a>为*<em><strong>node_exporter</strong></em>*配置密码（*<em><strong>–web.config.file可选参数</strong></em><em>）</em>***</h3><p>注意，高版本才有这个参数，具体参考githup或者./node_exporter-xxx.linux-amd64 –help</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#我们直接可以使用 htpasswd 来生成 bcrypt 密码 hash</span>
+htpasswd -nBC <span class="token number">12</span> <span class="token string">''</span> <span class="token operator">|</span> <span class="token function">tr</span> -d <span class="token string">':\\n'</span>       
+New password:
+Re-type new password:                                              
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+<span class="token comment">#把生成的密码放入config.yaml里：</span>
+<span class="token comment">#这段对应 admin: Simple@2022!</span>
+<span class="token function">cat</span> <span class="token operator">&gt;</span> /usr/local/node_exporter-1.5.0.linux-amd64/config.yaml <span class="token operator">&lt;&lt;</span> <span class="token string">EOF
+basic_auth_users:
+  admin: <span class="token variable">$2y</span><span class="token variable">$12</span><span class="token variable">$SGWqAtiYnvyHHkZzewhqYePTg8BS8eJfREtXDQz23PwKF8wUPvjEG</span>
+EOF</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="在prometheus需添加认证-当你加入了认证才需要配置"><a href="#在prometheus需添加认证-当你加入了认证才需要配置" class="headerlink" title="在prometheus需添加认证(当你加入了认证才需要配置)"></a>在prometheus需添加认证(当你加入了认证才需要配置)</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">..</span>.
+- job_name: <span class="token string">'linux_node'</span>
+    basic_auth:
+      username: admin          <span class="token comment">#刚才node_exporter生成的用户密码</span>
+      password: Simple@2022<span class="token operator">!</span>
+    static_configs:
+    - targets: <span class="token punctuation">[</span><span class="token string">'10.252.202.2:9091'</span>,<span class="token string">'10.252.202.3:9091'</span>,<span class="token string">'10.252.202.4:9091'</span>,<span class="token string">'10.252.202.5:9091'</span><span class="token punctuation">]</span>
+      labels:
+        group: <span class="token string">'我的监控机器'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="访问验证："><a href="#访问验证：" class="headerlink" title="访问验证："></a>访问验证：</h3><p>当访问时弹出这个表示认证添加成功</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202305102224360.png"></p>
+<p>认证参考：</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/144048025">为 Prometheus Node Exporter 加上认证</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_31977125/article/details/108528488">为 Prometheus Node Exporter 加上认证_Chai Yingchao的博客-CSDN博客</a></p>
+
                 
             </div>
             <hr/>
@@ -466,7 +538,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yushui1995.github.io/2023/04/18/guan-yu-mysql-de-slow-log-man-ri-zhi-1/">https://yushui1995.github.io/2023/04/18/guan-yu-mysql-de-slow-log-man-ri-zhi-1/</a>
+                    <a href="https://yushui1995.github.io/2023/05/10/node-exporter-zeng-jia-ren-zheng/">https://yushui1995.github.io/2023/05/10/node-exporter-zeng-jia-ren-zheng/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -503,7 +575,15 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E7%9B%91%E6%8E%A7/">
+                                    <span class="chip bg-color">监控</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/">
+                                    <span class="chip bg-color">漏洞修复</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -946,12 +1026,12 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2023/04/18/guan-yu-mysql-de-slow-log-man-ri-zhi-1/">
+                <a href="/2023/05/10/node-exporter-zeng-jia-ren-zheng/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="关于MySQL的slow—log慢日志">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="运维监控-node_exporter">
                         
-                        <span class="card-title">关于MySQL的slow—log慢日志</span>
+                        <span class="card-title">运维监控-node_exporter</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -962,17 +1042,33 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-10
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            yushui1995
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%9B%91%E6%8E%A7/" class="post-category">
+                                    监控
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%9B%91%E6%8E%A7/">
+                        <span class="chip bg-color">监控</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/">
+                        <span class="chip bg-color">漏洞修复</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -983,12 +1079,12 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/04/18/guan-yu-mysql-de-slow-log-man-ri-zhi/">
+                <a href="/2023/04/13/loki-promtail-grafana-bu-shu/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="关于MySQL的slow—log慢日志">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="Loki+Promtail+Grafana部署">
                         
-                        <span class="card-title">关于MySQL的slow—log慢日志</span>
+                        <span class="card-title">Loki+Promtail+Grafana部署</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -999,15 +1095,31 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-13
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            yushui1995
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%9B%91%E6%8E%A7/" class="post-category">
+                                    监控
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%9B%91%E6%8E%A7/">
+                        <span class="chip bg-color">监控</span>
+                    </a>
+                    
+                    <a href="/tags/grafana/">
+                        <span class="chip bg-color">grafana</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -1142,7 +1254,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">21k</span>
+                        class="white-color">21.3k</span>
             
             
             

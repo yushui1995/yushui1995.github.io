@@ -128,9 +128,9 @@
       
         <tags>
             
-            <tag> 系统 </tag>
-            
             <tag> linux </tag>
+            
+            <tag> 系统 </tag>
             
         </tags>
       
@@ -155,9 +155,9 @@
       
         <tags>
             
-            <tag> 系统 </tag>
-            
             <tag> linux </tag>
+            
+            <tag> 系统 </tag>
             
         </tags>
       
@@ -182,9 +182,9 @@
       
         <tags>
             
-            <tag> 系统 </tag>
-            
             <tag> linux </tag>
+            
+            <tag> 系统 </tag>
             
         </tags>
       
@@ -558,9 +558,9 @@
       
         <tags>
             
-            <tag> LVM </tag>
-            
             <tag> 系统 </tag>
+            
+            <tag> LVM </tag>
             
         </tags>
       
@@ -812,7 +812,7 @@
       <link href="/2022/05/05/rabbitmq-she-zhi-lu-jing-qian-zhui/"/>
       <url>/2022/05/05/rabbitmq-she-zhi-lu-jing-qian-zhui/</url>
       
-        <content type="html"><![CDATA[<h1 id="rabbtimq设置前缀"><a href="#rabbtimq设置前缀" class="headerlink" title="rabbtimq设置前缀"></a>rabbtimq设置前缀</h1><p>因为客户有时候只开放指定端口，只能将端口以目录的形式进行反向代理，修改tabbitmq的config文件，往下找到path_prefix相关字段,修改后重启rabbitmq生效</p><pre class="line-numbers language-none"><code class="language-none">vim /etc/rabbitmq/rabbitmq.config {rabbitmq_management,   [{path_prefix, "/mq"}]},         #此处我修改前缀为/mq<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h2 id="可能会存在的问题："><a href="#可能会存在的问题：" class="headerlink" title="可能会存在的问题："></a>可能会存在的问题：</h2><p><strong>Rabbitmq Management 在使用某些功能时 比如增加Virtual host服务端返回 405 Method not allowed</strong></p><p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205072336369.png"></p><p>正常登录 Rabbitmq Management 后，调用某些 url 包含 %2f 的接口时，后端返回:</p><pre class="line-numbers language-none"><code class="language-none">405 Method not allowed<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="原因："><a href="#原因：" class="headerlink" title="原因："></a><strong>原因：</strong></h3><p>正常访问该地址：<a href="https://xxx.xxx.com/mq/">https://xxx.xxx.com/mq/</a> 时能正常跳转，但是 rabbitmq management 的 api url 出现了 %2f 字符，这些字符会在经过 nginx 被转换为/</p><h3 id="使用以下nginx配置解决这问题"><a href="#使用以下nginx配置解决这问题" class="headerlink" title="使用以下nginx配置解决这问题"></a>使用以下nginx配置解决这问题</h3><p>nginx配置：</p><pre class="line-numbers language-none"><code class="language-none">    location  /mq/ {  # proxy_pass http://xx.xx.xx.xx:15672/mq;    proxy_set_header        Host $host;    proxy_set_header        X-Real-IP $remote_addr;    proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;    proxy_set_header        Upgrade $http_upgrade;    proxy_set_header        Connection "upgrade";        if ($request_uri ~* "/mq/(.*)"){                        proxy_pass http://xx.xx.xx.xx:15672/mq/$1;                        break;        }    proxy_pass http://xx.xx.xx.xx:15672/mq;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="rabbtimq设置前缀"><a href="#rabbtimq设置前缀" class="headerlink" title="rabbtimq设置前缀"></a>rabbtimq设置前缀</h1><p>因为客户有时候只开放指定端口，只能将端口以目录的形式进行反向代理，修改tabbitmq的config文件，往下找到path_prefix相关字段,修改后重启rabbitmq生效 </p><pre class="line-numbers language-none"><code class="language-none">vim /etc/rabbitmq/rabbitmq.config {rabbitmq_management,   [{path_prefix, "/mq"}]},         #此处我修改前缀为/mq<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h2 id="可能会存在的问题："><a href="#可能会存在的问题：" class="headerlink" title="可能会存在的问题："></a>可能会存在的问题：</h2><p><strong>Rabbitmq Management 在使用某些功能时 比如增加Virtual host服务端返回 405 Method not allowed</strong></p><p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205072336369.png"></p><p>正常登录 Rabbitmq Management 后，调用某些 url 包含 %2f 的接口时，后端返回:</p><pre class="line-numbers language-none"><code class="language-none">405 Method not allowed<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="原因："><a href="#原因：" class="headerlink" title="原因："></a><strong>原因：</strong></h3><p>正常访问该地址：<a href="https://xxx.xxx.com/mq/">https://xxx.xxx.com/mq/</a> 时能正常跳转，但是 rabbitmq management 的 api url 出现了 %2f 字符，这些字符会在经过 nginx 被转换为/</p><h3 id="使用以下nginx配置解决这问题"><a href="#使用以下nginx配置解决这问题" class="headerlink" title="使用以下nginx配置解决这问题"></a>使用以下nginx配置解决这问题</h3><p>nginx配置：</p><pre class="line-numbers language-none"><code class="language-none">    location  /mq/ {  # proxy_pass http://xx.xx.xx.xx:15672/mq;    proxy_set_header        Host $host;    proxy_set_header        X-Real-IP $remote_addr;    proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;    proxy_set_header        Upgrade $http_upgrade;    proxy_set_header        Connection "upgrade";        if ($request_uri ~* "/mq/(.*)"){                        proxy_pass http://xx.xx.xx.xx:15672/mq/$1;                        break;        }    proxy_pass http://xx.xx.xx.xx:15672/mq;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
       
       
       <categories>
@@ -878,9 +878,9 @@
       
         <tags>
             
-            <tag> 系统 </tag>
-            
             <tag> linux </tag>
+            
+            <tag> 系统 </tag>
             
         </tags>
       

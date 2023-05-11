@@ -585,9 +585,9 @@
       
         <tags>
             
-            <tag> 漏洞修复 </tag>
-            
             <tag> nacos </tag>
+            
+            <tag> 漏洞修复 </tag>
             
         </tags>
       
@@ -718,9 +718,9 @@
       
         <tags>
             
-            <tag> 报错&amp;警告 </tag>
-            
             <tag> redis </tag>
+            
+            <tag> 报错&amp;警告 </tag>
             
         </tags>
       
@@ -824,9 +824,9 @@
       
         <tags>
             
-            <tag> nginx </tag>
-            
             <tag> rabbitmq </tag>
+            
+            <tag> nginx </tag>
             
         </tags>
       

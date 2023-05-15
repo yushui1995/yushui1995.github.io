@@ -460,7 +460,7 @@
                 <p><strong>在默认情况下，MySQL是不会打开general log的，这个log里面会记录MySQL所有的SQL语句，不管是查询语句，还是DML语句，还是DDL语句，还是DCL语句，这些语句统统都会被记录在general log文件中。就连我们连接和断开MySQL数据库的这些语句。</strong></p>
 <p>MySQL会把它收到的所有SQL语句按照接收的顺序依次记录在general log中。我们需要注意的是，这里接受的SQL语句的顺序，并不等于SQL语句就是按照这个接受的顺序来执行，因为有的时候，一些SQL可能需要等待其他锁被释放后才会被真正的执行，SQL语句的执行顺序是和binlog中的顺序是相匹配的。</p>
 <p>假如我们执行一个select查询语句，在binlog中不会记录这样的SQL语句，但是在general log中就会记录这个select查询语句。</p>
-<p>General_log默认不开启的原因有两个：</p>
+<p>General_log默认不开启的原因有两个： </p>
 <blockquote>
 <p>日志将会非常大，对磁盘是一个很大的压力。因为所有的操作都会被记录下来。 对MySQL数据的性能有一定的影响。</p>
 </blockquote>

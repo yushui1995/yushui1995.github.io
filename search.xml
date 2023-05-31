@@ -290,9 +290,9 @@
       
         <tags>
             
-            <tag> nginx </tag>
-            
             <tag> 报错&amp;警告 </tag>
+            
+            <tag> nginx </tag>
             
         </tags>
       
@@ -691,9 +691,9 @@
       
         <tags>
             
-            <tag> 报错&amp;警告 </tag>
-            
             <tag> redis </tag>
+            
+            <tag> 报错&amp;警告 </tag>
             
         </tags>
       
@@ -770,9 +770,9 @@
       
         <tags>
             
-            <tag> 工具 </tag>
-            
             <tag> mysql </tag>
+            
+            <tag> 工具 </tag>
             
         </tags>
       

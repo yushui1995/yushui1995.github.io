@@ -502,7 +502,7 @@ net.ipv4.tcp_syn_retries <span class="token operator">=</span> <span class="toke
 net.ipv4.tcp_fin_timeout <span class="token operator">=</span> <span class="token number">1</span> <span class="token comment">#表示如果套接字由本端要求关闭，这个参数决定了它保持在FIN-WAIT-2状态的时间。</span>
 net.ipv4.tcp_keepalive_time <span class="token operator">=</span> <span class="token number">30</span>  <span class="token comment">#表示当keepalive起用的时候，TCP发送keepalive消息的频度。缺省是2小时。</span>
 
-
+ 
 sysctl.conf针对IPv4内核的7个参数的配置优化：
 <span class="token number">1</span>、net.core.netdev_max_backlog  <span class="token comment">#每个网络接口的处理速率比内核处理包的速度快的时候，允许发送队列的最大数目。</span>
 <span class="token punctuation">[</span>root@Server1 nginx<span class="token punctuation">]</span><span class="token comment"># sysctl -a | grep max_backlog</span>

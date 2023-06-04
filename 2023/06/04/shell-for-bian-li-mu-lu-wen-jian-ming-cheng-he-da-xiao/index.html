@@ -4,9 +4,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Rabbitmq设置路径前缀, ">
-    <meta name="description" content="rabbtimq设置前缀因为客户有时候只开放指定端口，只能将端口以目录的形式进行反向代理，修改tabbitmq的config文件，往下找到path_prefix相关字段,修改后重启rabbitmq生效 
-vim /etc/rabbitmq/">
+    <meta name="keywords" content="shell-for遍历目录文件名称和大小, ">
+    <meta name="description" content="#把多层目录中的文件 只截取文件名和大小
+
+#只截取文件名和大小
+ls -lh | awk &#39;{print $9,&#34;:&#34;,$5}&#39;
+
+#多层级for循环遍历
+for file in /home/dpan/qyrk_cz/20*/*/*/*/">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +25,7 @@ vim /etc/rabbitmq/">
 
     
 
-    <title>Rabbitmq设置路径前缀 | </title>
+    <title>shell-for遍历目录文件名称和大小 | </title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -274,7 +279,7 @@ vim /etc/rabbitmq/">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Rabbitmq设置路径前缀</h1>
+                    <h1 class="description center-align post-title">shell-for遍历目录文件名称和大小</h1>
                 </div>
             </div>
         </div>
@@ -390,12 +395,8 @@ vim /etc/rabbitmq/">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/nginx/">
-                                <span class="chip bg-color">nginx</span>
-                            </a>
-                        
-                            <a href="/tags/rabbitmq/">
-                                <span class="chip bg-color">rabbitmq</span>
+                            <a href="/tags/shell/">
+                                <span class="chip bg-color">shell</span>
                             </a>
                         
                     </div>
@@ -406,8 +407,8 @@ vim /etc/rabbitmq/">
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/rabbitmq/" class="post-category">
-                                rabbitmq
+                            <a href="/categories/shell/" class="post-category">
+                                shell
                             </a>
                         
                     </div>
@@ -419,7 +420,7 @@ vim /etc/rabbitmq/">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-05
+                    2023-06-04
                 </div>
                 
 
@@ -428,7 +429,7 @@ vim /etc/rabbitmq/">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    246
+                    122
                 </div>
                 
 
@@ -458,33 +459,23 @@ vim /etc/rabbitmq/">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="rabbtimq设置前缀"><a href="#rabbtimq设置前缀" class="headerlink" title="rabbtimq设置前缀"></a>rabbtimq设置前缀</h1><p>因为客户有时候只开放指定端口，只能将端口以目录的形式进行反向代理，修改tabbitmq的config文件，往下找到path_prefix相关字段,修改后重启rabbitmq生效 </p>
-<pre class="line-numbers language-none"><code class="language-none">vim /etc/rabbitmq/rabbitmq.config
- {rabbitmq_management,
-   [{path_prefix, "/mq"}]},         #此处我修改前缀为/mq<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+                <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#把多层目录中的文件 只截取文件名和大小</span>
 
-<h2 id="可能会存在的问题："><a href="#可能会存在的问题：" class="headerlink" title="可能会存在的问题："></a>可能会存在的问题：</h2><p><strong>Rabbitmq Management 在使用某些功能时 比如增加Virtual host服务端返回 405 Method not allowed</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205072336369.png"></p>
-<p>正常登录 Rabbitmq Management 后，调用某些 url 包含 %2f 的接口时，后端返回:</p>
-<pre class="line-numbers language-none"><code class="language-none">405 Method not allowed<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<span class="token comment">#只截取文件名和大小</span>
+<span class="token function">ls</span> -lh <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{print $9,":",$5}'</span>
 
-<h3 id="原因："><a href="#原因：" class="headerlink" title="原因："></a><strong>原因：</strong></h3><p>正常访问该地址：<a target="_blank" rel="noopener" href="https://xxx.xxx.com/mq/">https://xxx.xxx.com/mq/</a> 时能正常跳转，但是 rabbitmq management 的 api url 出现了 %2f 字符，这些字符会在经过 nginx 被转换为/</p>
-<h3 id="使用以下nginx配置解决这问题"><a href="#使用以下nginx配置解决这问题" class="headerlink" title="使用以下nginx配置解决这问题"></a>使用以下nginx配置解决这问题</h3><p>nginx配置：</p>
-<pre class="line-numbers language-none"><code class="language-none">    location  /mq/ {
-  # proxy_pass http://xx.xx.xx.xx:15672/mq;
-    proxy_set_header        Host $host;
-    proxy_set_header        X-Real-IP $remote_addr;
-    proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header        Upgrade $http_upgrade;
-    proxy_set_header        Connection "upgrade";
+<span class="token comment">#多层级for循环遍历</span>
+<span class="token keyword">for</span> <span class="token for-or-select variable">file</span> <span class="token keyword">in</span> /home/dpan/qyrk_cz/20*/*/*/*/*
+<span class="token keyword">do</span>
+    <span class="token function">ls</span> -lh <span class="token string">"<span class="token variable">$file</span>"</span>  <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{print $9,$5}'</span>  <span class="token operator">&gt;&gt;</span> /tmp/a.xlsx
+<span class="token keyword">done</span>
 
-        if ($request_uri ~* "/mq/(.*)"){
-                        proxy_pass http://xx.xx.xx.xx:15672/mq/$1;
-                        break;
-        }
-    proxy_pass http://xx.xx.xx.xx:15672/mq;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">#再按照需要进行分割</span>
+<span class="token function">awk</span> <span class="token string">'{print $1,$2}'</span> a.xlsx <span class="token operator">|</span> <span class="token function">awk</span> -F/ <span class="token string">'{print $NF}'</span> <span class="token operator">|</span> <span class="token function">xargs</span> -P10
 
+<span class="token comment">#awk '{print $1}' a.log：读取a.log文件的第一列</span>
+<span class="token comment">#awk -F/ '{print $NF}'：以/作为分隔符，取最后一个字段</span>
+<span class="token comment"># xargs -P10 多线程执行</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -511,7 +502,7 @@ vim /etc/rabbitmq/">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yushui1995.github.io/2022/05/05/rabbitmq-she-zhi-lu-jing-qian-zhui/">https://yushui1995.github.io/2022/05/05/rabbitmq-she-zhi-lu-jing-qian-zhui/</a>
+                    <a href="https://yushui1995.github.io/2023/06/04/shell-for-bian-li-mu-lu-wen-jian-ming-cheng-he-da-xiao/">https://yushui1995.github.io/2023/06/04/shell-for-bian-li-mu-lu-wen-jian-ming-cheng-he-da-xiao/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -549,12 +540,8 @@ vim /etc/rabbitmq/">
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/nginx/">
-                                    <span class="chip bg-color">nginx</span>
-                                </a>
-                            
-                                <a href="/tags/rabbitmq/">
-                                    <span class="chip bg-color">rabbitmq</span>
+                                <a href="/tags/shell/">
+                                    <span class="chip bg-color">shell</span>
                                 </a>
                             
                         </div>
@@ -994,16 +981,17 @@ vim /etc/rabbitmq/">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/05/06/xtrabackup-bei-fen-yu-hui-fu/">
+                <a href="/2023/06/04/shell-for-bian-li-mu-lu-wen-jian-ming-cheng-he-da-xiao/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="Xtrabackup备份与恢复">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="shell-for遍历目录文件名称和大小">
                         
-                        <span class="card-title">Xtrabackup备份与恢复</span>
+                        <span class="card-title">shell-for遍历目录文件名称和大小</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1013,30 +1001,27 @@ vim /etc/rabbitmq/">
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%B7%A5%E5%85%B7/" class="post-category">
-                                    工具
+                            <a href="/categories/shell/" class="post-category">
+                                    shell
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/mysql/">
-                        <span class="chip bg-color">mysql</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%B7%A5%E5%85%B7/">
-                        <span class="chip bg-color">工具</span>
+                    <a href="/tags/shell/">
+                        <span class="chip bg-color">shell</span>
                     </a>
                     
                 </div>
@@ -1050,12 +1035,12 @@ vim /etc/rabbitmq/">
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/04/reids-ji-qun-slots-que-shi-xiu-fu/">
+                <a href="/2023/05/10/node-exporter-zeng-jia-ren-zheng/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="Reids集群slots缺失修复">
+                        <img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202205032121798.png" class="responsive-img" alt="运维监控-node_exporter">
                         
-                        <span class="card-title">Reids集群slots缺失修复</span>
+                        <span class="card-title">运维监控-node_exporter</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1066,14 +1051,14 @@ vim /etc/rabbitmq/">
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-10
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/redis/" class="post-category">
-                                    redis
+                            <a href="/categories/%E7%9B%91%E6%8E%A7/" class="post-category">
+                                    监控
                                 </a>
                             
                             
@@ -1083,12 +1068,12 @@ vim /etc/rabbitmq/">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/redis/">
-                        <span class="chip bg-color">redis</span>
+                    <a href="/tags/%E7%9B%91%E6%8E%A7/">
+                        <span class="chip bg-color">监控</span>
                     </a>
                     
-                    <a href="/tags/%E4%BF%AE%E5%A4%8D/">
-                        <span class="chip bg-color">修复</span>
+                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/">
+                        <span class="chip bg-color">漏洞修复</span>
                     </a>
                     
                 </div>

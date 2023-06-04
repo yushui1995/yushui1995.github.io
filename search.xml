@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>shell-for遍历目录文件名称和大小</title>
+      <link href="/2023/06/04/shell-for-bian-li-mu-lu-wen-jian-ming-cheng-he-da-xiao/"/>
+      <url>/2023/06/04/shell-for-bian-li-mu-lu-wen-jian-ming-cheng-he-da-xiao/</url>
+      
+        <content type="html"><![CDATA[<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#把多层目录中的文件 只截取文件名和大小</span><span class="token comment">#只截取文件名和大小</span><span class="token function">ls</span> -lh <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{print $9,":",$5}'</span><span class="token comment">#多层级for循环遍历</span><span class="token keyword">for</span> <span class="token for-or-select variable">file</span> <span class="token keyword">in</span> /home/dpan/qyrk_cz/20*/*/*/*/*<span class="token keyword">do</span>    <span class="token function">ls</span> -lh <span class="token string">"<span class="token variable">$file</span>"</span>  <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{print $9,$5}'</span>  <span class="token operator">&gt;&gt;</span> /tmp/a.xlsx<span class="token keyword">done</span><span class="token comment">#再按照需要进行分割</span><span class="token function">awk</span> <span class="token string">'{print $1,$2}'</span> a.xlsx <span class="token operator">|</span> <span class="token function">awk</span> -F/ <span class="token string">'{print $NF}'</span> <span class="token operator">|</span> <span class="token function">xargs</span> -P10<span class="token comment">#awk '{print $1}' a.log：读取a.log文件的第一列</span><span class="token comment">#awk -F/ '{print $NF}'：以/作为分隔符，取最后一个字段</span><span class="token comment"># xargs -P10 多线程执行</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> shell </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> shell </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>运维监控-node_exporter</title>
       <link href="/2023/05/10/node-exporter-zeng-jia-ren-zheng/"/>
       <url>/2023/05/10/node-exporter-zeng-jia-ren-zheng/</url>
@@ -128,9 +153,9 @@
       
         <tags>
             
-            <tag> linux </tag>
-            
             <tag> 系统 </tag>
+            
+            <tag> linux </tag>
             
         </tags>
       
@@ -155,9 +180,9 @@
       
         <tags>
             
-            <tag> linux </tag>
-            
             <tag> 系统 </tag>
+            
+            <tag> linux </tag>
             
         </tags>
       
@@ -182,9 +207,9 @@
       
         <tags>
             
-            <tag> linux </tag>
-            
             <tag> 系统 </tag>
+            
+            <tag> linux </tag>
             
         </tags>
       
@@ -531,9 +556,9 @@
       
         <tags>
             
-            <tag> 系统 </tag>
-            
             <tag> LVM </tag>
+            
+            <tag> 系统 </tag>
             
         </tags>
       
@@ -691,9 +716,9 @@
       
         <tags>
             
-            <tag> redis </tag>
-            
             <tag> 报错&amp;警告 </tag>
+            
+            <tag> redis </tag>
             
         </tags>
       
@@ -851,9 +876,9 @@
       
         <tags>
             
-            <tag> linux </tag>
-            
             <tag> 系统 </tag>
+            
+            <tag> linux </tag>
             
         </tags>
       

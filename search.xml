@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title>No module named _ssl 问题</title>
+      <link href="/2023/06/07/no-module-named-ssl-wen-ti/"/>
+      <url>/2023/06/07/no-module-named-ssl-wen-ti/</url>
+      
+        <content type="html"><![CDATA[<h2 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h2><p><strong>centos安装python3.7时，查阅知需要的openssl版本最低为1.0.2，但是centos 默认的为1.0.1，所以需要重新*<em>更新openssl*</em></strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 报错 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 报错&amp;告警 </tag>
+            
+            <tag> 版本升级 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>openssl的部署升级</title>
+      <link href="/2023/06/07/openssl-de-bu-shu-sheng-ji/"/>
+      <url>/2023/06/07/openssl-de-bu-shu-sheng-ji/</url>
+      
+        <content type="html"><![CDATA[<h1 id="OpenSSL拒绝服务漏洞"><a href="#OpenSSL拒绝服务漏洞" class="headerlink" title="OpenSSL拒绝服务漏洞"></a>OpenSSL拒绝服务漏洞</h1><p>下载地址：<a href="https://www.openssl.org/source/">https://www.openssl.org/source/</a></p><h2 id="方法-升级openssl版本"><a href="#方法-升级openssl版本" class="headerlink" title="方法:升级openssl版本"></a>方法:升级openssl版本</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">关于OpenSSL拒绝服务漏洞的预警通报近日，OpenSSL版本1.0.2、1.1.1和3.0中的拒绝服务漏洞已被修复。OpenSSL作为使用最广泛的加密库之一，预装在各主流Linux发型版之中，如Ubuntu、Debian、Redhat、CentOS、SUSE等平台。目前漏洞细节及POC（观点验证程序）已公开，请各单位尽快对照排查相关内容，采取有效安全措施，防范该漏洞可能造成的服务异常等安全隐患。二、漏洞影响范围OpenSSL版本1.0.2：1.0.2-1.0.2zcOpenSSL版本1.1.1：1.1.1-1.1.1mOpenSSL版本3.0：3.0.0、3.0.1三、漏洞修复建议OpenSSL官方渠道已发布新版本修复漏洞，建议受影响用户及时升级更新，详细信息如下：OpenSSL1.0.2用户应升级至1.0.2zd（仅限高级支持用户）OpenSSL1.1.1用户应升级至1.1.1nOpenSSL3.0用户应升级至3.0.2下载链接：<span class="token operator">&lt;</span>https://www.openssl.org/source/<span class="token operator">&gt;</span>git：<span class="token operator">&lt;</span>https://github.com/openssl/openssl/tags<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="升级步骤："><a href="#升级步骤：" class="headerlink" title="升级步骤："></a>升级步骤：</h2><p>0、安装依赖：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yum <span class="token function">install</span> -y zlib zlib-dev openssl-devel sqlite-devel bzip2-devel libffi libffi-devel gcc gcc-c++<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>1、备份当前openssl：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mv</span> /usr/local/openssl /usr/local/openssl.bak<span class="token function">mv</span> /usr/include/openssl /usr/include/openssl.bak<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>2、解压并进入解压目录后执行：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./config --prefix<span class="token operator">=</span>/usr/local/openssl shared zlib<span class="token function">make</span> depend<span class="token function">make</span> <span class="token operator">&amp;&amp;</span> <span class="token function">make</span> <span class="token function">install</span><span class="token comment">#此时/usr/local/下有了新的openssl</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>3、配置使用新版本：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#配置软链接</span><span class="token function">ln</span> -sf /usr/local/openssl/bin/openssl /usr/bin/openssl<span class="token function">ln</span> -sf /usr/local/openssl/include/openssl /usr/include/openssl<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>4、更新动态链接库数据：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"/usr/local/ssl/lib"</span> <span class="token operator">&gt;&gt;</span> /etc/ld.so.conf<span class="token comment">#重新加载动态链接库</span>ldconfig -v<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>5、重新查看版本号：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">openssl version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="故障排查："><a href="#故障排查：" class="headerlink" title="故障排查："></a>故障排查：</h3><p>如果在更新完后执行openssl version 命令报错如下：</p><p><img src="https://cdn.jsdelivr.net/gh/yushui1995/img/202306072322072.png"></p><p>这是由于openssl库的位置不正确造成的。可以做一个软连接：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ln</span> -sf /usr/local/openssl/lib/libssl.so.1.1 /usr/lib/<span class="token function">ln</span> -sf /usr/local/openssl/lib/libcrypto.so.1.1 /usr/lib/<span class="token comment">#重新加载动态链接库</span>ldconfig -v<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>然后执行openssl version命令即可</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 部署 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 部署 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>shell-for遍历目录文件名称和大小</title>
       <link href="/2023/06/04/shell-for-bian-li-mu-lu-wen-jian-ming-cheng-he-da-xiao/"/>
       <url>/2023/06/04/shell-for-bian-li-mu-lu-wen-jian-ming-cheng-he-da-xiao/</url>
@@ -234,9 +286,9 @@
       
         <tags>
             
-            <tag> redis </tag>
-            
             <tag> 报错&amp;告警 </tag>
+            
+            <tag> redis </tag>
             
         </tags>
       
@@ -369,9 +421,9 @@
       
         <tags>
             
-            <tag> rabbitmq </tag>
-            
             <tag> 报错&amp;告警 </tag>
+            
+            <tag> rabbitmq </tag>
             
         </tags>
       
@@ -423,9 +475,9 @@
       
         <tags>
             
-            <tag> jenkins </tag>
-            
             <tag> 版本升级 </tag>
+            
+            <tag> jenkins </tag>
             
         </tags>
       

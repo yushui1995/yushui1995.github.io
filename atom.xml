@@ -226,9 +226,9 @@
     <category term="系统" scheme="https://yushui1995.github.io/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-    <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
-    
     <category term="linux" scheme="https://yushui1995.github.io/tags/linux/"/>
+    
+    <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
     
   </entry>
   
@@ -253,9 +253,9 @@
     <category term="系统" scheme="https://yushui1995.github.io/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-    <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
-    
     <category term="linux" scheme="https://yushui1995.github.io/tags/linux/"/>
+    
+    <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
     
   </entry>
   
@@ -280,9 +280,9 @@
     <category term="系统" scheme="https://yushui1995.github.io/categories/%E7%B3%BB%E7%BB%9F/"/>
     
     
-    <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
-    
     <category term="linux" scheme="https://yushui1995.github.io/tags/linux/"/>
+    
+    <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
     
   </entry>
   
@@ -307,9 +307,9 @@
     <category term="redis" scheme="https://yushui1995.github.io/categories/redis/"/>
     
     
-    <category term="redis" scheme="https://yushui1995.github.io/tags/redis/"/>
-    
     <category term="报错&amp;告警" scheme="https://yushui1995.github.io/tags/%E6%8A%A5%E9%94%99-%E5%91%8A%E8%AD%A6/"/>
+    
+    <category term="redis" scheme="https://yushui1995.github.io/tags/redis/"/>
     
   </entry>
   
@@ -442,9 +442,9 @@
     <category term="rabbitmq" scheme="https://yushui1995.github.io/categories/rabbitmq/"/>
     
     
-    <category term="rabbitmq" scheme="https://yushui1995.github.io/tags/rabbitmq/"/>
-    
     <category term="报错&amp;告警" scheme="https://yushui1995.github.io/tags/%E6%8A%A5%E9%94%99-%E5%91%8A%E8%AD%A6/"/>
+    
+    <category term="rabbitmq" scheme="https://yushui1995.github.io/tags/rabbitmq/"/>
     
   </entry>
   

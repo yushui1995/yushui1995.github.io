@@ -5,8 +5,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="No module named _ssl 问题, ">
-    <meta name="description" content="解决办法：centos安装python3.7时，查阅知需要的openssl版本最低为1.0.2，但是centos 默认的为1.0.1，所以需要重新*更新openssl*
-">
+    <meta name="description" content="解决办法：**centos安装python3.7时，查阅知需要的openssl版本最低为1.0.2，但是centos 默认的为1.0.1，所以需要重新**升级openssl****，可以参考我另一篇升级openssl的文章
+1、重新指定op">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -33,9 +33,9 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.2">
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
 </head>
 
 
@@ -428,7 +428,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    42
+                    175
                 </div>
                 
 
@@ -458,7 +458,24 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h2><p><strong>centos安装python3.7时，查阅知需要的openssl版本最低为1.0.2，但是centos 默认的为1.0.1，所以需要重新*<em>更新openssl*</em></strong></p>
+                <h2 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h2><p>**centos安装python3.7时，查阅知需要的openssl版本最低为1.0.2，但是centos 默认的为1.0.1，所以需要重新**升级openssl****，可以参考我另一篇升级openssl的文章</p>
+<h3 id="1、重新指定openssl所在目录并重新编译安装"><a href="#1、重新指定openssl所在目录并重新编译安装" class="headerlink" title="1、重新指定openssl所在目录并重新编译安装"></a>1、重新指定openssl所在目录并重新编译安装</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#配置安装目录，指定openssl环境的安装目录    </span>
+./configure --prefix<span class="token operator">=</span>/usr/local//python3 --with-openssl<span class="token operator">=</span>/usr/local//openssl 
+<span class="token function">make</span> <span class="token operator">&amp;&amp;</span> <span class="token function">make</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="2、创建软链接"><a href="#2、创建软链接" class="headerlink" title="2、创建软链接"></a>2、创建软链接</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ln</span> -s /usr/local/python3/bin/python3  /usr/bin/python   
+<span class="token function">ln</span> -s /usr/local/python3/bin/pip3 /usr/bin/pip3
+
+<span class="token comment">#查看当前python版本</span>
+python --version      <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3、导入ssl模块"><a href="#3、导入ssl模块" class="headerlink" title="3、导入ssl模块"></a>3、导入ssl模块</h3><pre class="line-numbers language-none"><code class="language-none">python3                      （进入python3命令行）
+&gt;import ssl                  （导入ssl模块）
+&gt;import _ssl                 （导入_ssl模块）
+&gt;exit()                      （退出python3命令行）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -1197,7 +1214,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">21.9k</span>
+                        class="white-color">22k</span>
             
             
             

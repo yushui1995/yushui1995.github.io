@@ -6,7 +6,7 @@
   <link href="https://yushui1995.github.io/atom.xml" rel="self"/>
   
   <link href="https://yushui1995.github.io/"/>
-  <updated>2023-06-07T15:38:11.112Z</updated>
+  <updated>2023-06-07T16:23:55.548Z</updated>
   <id>https://yushui1995.github.io/</id>
   
   <author>
@@ -21,14 +21,14 @@
     <link href="https://yushui1995.github.io/2023/06/07/no-module-named-ssl-wen-ti/"/>
     <id>https://yushui1995.github.io/2023/06/07/no-module-named-ssl-wen-ti/</id>
     <published>2023-06-07T15:35:58.000Z</published>
-    <updated>2023-06-07T15:38:11.112Z</updated>
+    <updated>2023-06-07T16:23:55.548Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;解决办法：&quot;&gt;&lt;a href=&quot;#解决办法：&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h2 id=&quot;解决办法：&quot;&gt;&lt;a href=&quot;#解决办法：&quot; class=&quot;headerlink&quot; title=&quot;解决办法：&quot;&gt;&lt;/a&gt;解决办法：&lt;/h2&gt;&lt;p&gt;**centos安装python3.7时，查阅知需要的openssl版本最低为1.0.2，但是centos</summary>
         
       
     

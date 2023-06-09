@@ -286,9 +286,9 @@
       
         <tags>
             
-            <tag> redis </tag>
-            
             <tag> 报错&amp;告警 </tag>
+            
+            <tag> redis </tag>
             
         </tags>
       
@@ -394,9 +394,9 @@
       
         <tags>
             
-            <tag> mysql </tag>
-            
             <tag> 报错&amp;告警 </tag>
+            
+            <tag> mysql </tag>
             
         </tags>
       
@@ -421,9 +421,9 @@
       
         <tags>
             
-            <tag> rabbitmq </tag>
-            
             <tag> 报错&amp;告警 </tag>
+            
+            <tag> rabbitmq </tag>
             
         </tags>
       

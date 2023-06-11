@@ -6,7 +6,7 @@
   <link href="https://yushui1995.github.io/atom.xml" rel="self"/>
   
   <link href="https://yushui1995.github.io/"/>
-  <updated>2023-06-07T16:23:55.548Z</updated>
+  <updated>2023-06-11T15:30:06.648Z</updated>
   <id>https://yushui1995.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>sys3md挖矿病毒</title>
+    <link href="https://yushui1995.github.io/2023/06/10/sys3md-wa-kuang-bing-du/"/>
+    <id>https://yushui1995.github.io/2023/06/10/sys3md-wa-kuang-bing-du/</id>
+    <published>2023-06-10T13:02:21.000Z</published>
+    <updated>2023-06-11T15:30:06.648Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一大早起来，发现客户服务器，cpu100&quot;&gt;&lt;a href=&quot;#一大早起来，发现客户服务器，cpu100&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="系统" scheme="https://yushui1995.github.io/categories/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="修复" scheme="https://yushui1995.github.io/tags/%E4%BF%AE%E5%A4%8D/"/>
+    
+  </entry>
   
   <entry>
     <title>No module named _ssl 问题</title>
@@ -145,33 +172,6 @@
     <category term="监控" scheme="https://yushui1995.github.io/tags/%E7%9B%91%E6%8E%A7/"/>
     
     <category term="grafana" scheme="https://yushui1995.github.io/tags/grafana/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>sys3md挖矿病毒</title>
-    <link href="https://yushui1995.github.io/2023/04/07/sys3md-wa-kuang-bing-du/"/>
-    <id>https://yushui1995.github.io/2023/04/07/sys3md-wa-kuang-bing-du/</id>
-    <published>2023-04-07T13:02:21.000Z</published>
-    <updated>2023-04-12T13:23:13.960Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;一大早起来，发现客户服务器，cpu100&quot;&gt;&lt;a href=&quot;#一大早起来，发现客户服务器，cpu100&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="系统" scheme="https://yushui1995.github.io/categories/%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-    <category term="系统" scheme="https://yushui1995.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
-    
-    <category term="修复" scheme="https://yushui1995.github.io/tags/%E4%BF%AE%E5%A4%8D/"/>
     
   </entry>
   

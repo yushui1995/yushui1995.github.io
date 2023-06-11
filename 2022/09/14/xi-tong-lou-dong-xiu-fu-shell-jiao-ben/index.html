@@ -647,7 +647,7 @@ EOF</span>
 <span class="token function">touch</span> /home/dpan/log/logback.sh
 <span class="token function">cat</span> <span class="token operator">&gt;&gt;</span> /home/dpan/log/logback.sh <span class="token operator">&lt;&lt;</span><span class="token string">EOF
 
-cd /home/dpan/log
+cd /home/dpan/log 
 tar -zcf messages_<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y%m%d<span class="token variable">)</span></span>.zip /var/log/messages
 
 tar -zcf secure_<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y%m%d<span class="token variable">)</span></span>.zip /var/log/secure

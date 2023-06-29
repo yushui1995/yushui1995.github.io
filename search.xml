@@ -286,9 +286,9 @@
       
         <tags>
             
-            <tag> 报错&amp;告警 </tag>
-            
             <tag> redis </tag>
+            
+            <tag> 报错&amp;告警 </tag>
             
         </tags>
       
@@ -421,9 +421,9 @@
       
         <tags>
             
-            <tag> 报错&amp;告警 </tag>
-            
             <tag> rabbitmq </tag>
+            
+            <tag> 报错&amp;告警 </tag>
             
         </tags>
       
@@ -475,9 +475,9 @@
       
         <tags>
             
-            <tag> 版本升级 </tag>
-            
             <tag> jenkins </tag>
+            
+            <tag> 版本升级 </tag>
             
         </tags>
       
@@ -768,9 +768,9 @@
       
         <tags>
             
-            <tag> 报错&amp;警告 </tag>
-            
             <tag> redis </tag>
+            
+            <tag> 报错&amp;警告 </tag>
             
         </tags>
       

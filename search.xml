@@ -286,9 +286,9 @@
       
         <tags>
             
-            <tag> redis </tag>
-            
             <tag> 报错&amp;告警 </tag>
+            
+            <tag> redis </tag>
             
         </tags>
       
@@ -475,9 +475,9 @@
       
         <tags>
             
-            <tag> jenkins </tag>
-            
             <tag> 版本升级 </tag>
+            
+            <tag> jenkins </tag>
             
         </tags>
       
@@ -635,9 +635,9 @@
       
         <tags>
             
-            <tag> nacos </tag>
-            
             <tag> 漏洞修复 </tag>
+            
+            <tag> nacos </tag>
             
         </tags>
       
@@ -731,7 +731,7 @@
       <link href="/2022/05/10/firewalld-bei-wang/"/>
       <url>/2022/05/10/firewalld-bei-wang/</url>
       
-        <content type="html"><![CDATA[<p><strong>CentOS7 中使用 firewall-cmd 配置只允许指定ip访问本机的指定端口</strong></p><p>1、启用firewalld </p><pre class="line-numbers language-none"><code class="language-none">systemctl enable firewalld systemctl start firewalld<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>2、更改防火墙默认区域为trusted，默认放行所有连接请求（默认为public区）</p><pre class="line-numbers language-none"><code class="language-none">firewall-cmd --set-default-zone=trusted<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>3、新建一个zone，将想要访问本机80端口的ip，如：192.168.10.134 ，添加的这个zone中，同时在这个zone中放行80端口。</p><pre class="line-numbers language-none"><code class="language-none">firewall-cmd --permanent --new-zone=newzonefirewall-cmd --permanent --zone=newzone --add-source=192.168.10.134firewall-cmd --permanent --zone=newzone --add-port=80/tcp#可在newzone中添加多个放行的端口ip 添加多条#删除对应策略将（--add-source、--add-rich-rule）更改为（--remove-source、--remove-rich-rule） --permanent设为永久策略 --zone设定指定zone<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>4、除192.168.10.134这个ip以外的地址访问本机时会使用当前默认的trusted这个zone里的规则，即禁止访问本机的80端口。</p><pre class="line-numbers language-none"><code class="language-none">#新增firewall-cmd --permanent --zone=trusted --add-rich-rule="rule family="ipv4" port protocol="tcp" port="80" drop"#移除firewall-cmd --permanent --zone=trusted --remove-rich-rule="rule family="ipv4" port protocol="tcp" port="27000" drop"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>重启防火墙</p><pre class="line-numbers language-none"><code class="language-none">systemctl restart firewalld<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>查看配置是否生效：</p><pre class="line-numbers language-none"><code class="language-none">firewall-cmd --list-all-zone<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>重新载入</p><pre class="line-numbers language-none"><code class="language-none">firewall-cmd --reload<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
+        <content type="html"><![CDATA[<p><strong>CentOS7 中使用 firewall-cmd 配置只允许指定ip访问本机的指定端口</strong></p><p>1、启用firewalld  </p><pre class="line-numbers language-none"><code class="language-none">systemctl enable firewalld systemctl start firewalld<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>2、更改防火墙默认区域为trusted，默认放行所有连接请求（默认为public区）</p><pre class="line-numbers language-none"><code class="language-none">firewall-cmd --set-default-zone=trusted<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>3、新建一个zone，将想要访问本机80端口的ip，如：192.168.10.134 ，添加的这个zone中，同时在这个zone中放行80端口。</p><pre class="line-numbers language-none"><code class="language-none">firewall-cmd --permanent --new-zone=newzonefirewall-cmd --permanent --zone=newzone --add-source=192.168.10.134firewall-cmd --permanent --zone=newzone --add-port=80/tcp#可在newzone中添加多个放行的端口ip 添加多条#删除对应策略将（--add-source、--add-rich-rule）更改为（--remove-source、--remove-rich-rule） --permanent设为永久策略 --zone设定指定zone<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>4、除192.168.10.134这个ip以外的地址访问本机时会使用当前默认的trusted这个zone里的规则，即禁止访问本机的80端口。</p><pre class="line-numbers language-none"><code class="language-none">#新增firewall-cmd --permanent --zone=trusted --add-rich-rule="rule family="ipv4" port protocol="tcp" port="80" drop"#移除firewall-cmd --permanent --zone=trusted --remove-rich-rule="rule family="ipv4" port protocol="tcp" port="27000" drop"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>重启防火墙</p><pre class="line-numbers language-none"><code class="language-none">systemctl restart firewalld<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>查看配置是否生效：</p><pre class="line-numbers language-none"><code class="language-none">firewall-cmd --list-all-zone<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>重新载入</p><pre class="line-numbers language-none"><code class="language-none">firewall-cmd --reload<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
       
       
       <categories>
@@ -874,9 +874,9 @@
       
         <tags>
             
-            <tag> nginx </tag>
-            
             <tag> rabbitmq </tag>
+            
+            <tag> nginx </tag>
             
         </tags>
       

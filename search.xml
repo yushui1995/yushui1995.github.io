@@ -367,9 +367,9 @@
       
         <tags>
             
-            <tag> nginx </tag>
-            
             <tag> 报错&amp;警告 </tag>
+            
+            <tag> nginx </tag>
             
         </tags>
       
@@ -421,9 +421,9 @@
       
         <tags>
             
-            <tag> rabbitmq </tag>
-            
             <tag> 报错&amp;告警 </tag>
+            
+            <tag> rabbitmq </tag>
             
         </tags>
       
@@ -874,9 +874,9 @@
       
         <tags>
             
-            <tag> rabbitmq </tag>
-            
             <tag> nginx </tag>
+            
+            <tag> rabbitmq </tag>
             
         </tags>
       
